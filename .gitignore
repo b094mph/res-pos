@@ -9,3 +9,9 @@ RemoteSystemsTempFiles/
 
 # Servers #
 Servers/
+
+# Tells Git to ignore all files that end with a tilde (~) *
+*~
+
+# sql
+*.mwb.bak
