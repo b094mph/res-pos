@@ -1,0 +1,11 @@
+# Package Files #
+#*.jar
+*.war
+*.ear
+
+# .metadata and RemoteSystemsTempFiles #
+.metadata/
+RemoteSystemsTempFiles/
+
+# Servers #
+Servers/
