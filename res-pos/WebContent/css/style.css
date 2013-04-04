@@ -1,0 +1,49 @@
+input#test{
+	height:normal;
+	width:normal;
+}
+
+/* category and subcategory buttons */
+.button1{
+	height:50px;
+	width:120px;
+	white-space:normal;
+}
+
+/* size buttons */
+.button2{
+	height:40px;
+	width:80px;
+	white-space:normal;	
+}
+
+/* section for category and subcategory */
+.sectionA{
+	height:310px;
+	width:740px;
+}
+
+/* Customer Information */
+.sectionB{
+	height:50px;
+}
+
+/* Order */
+.sectionC{
+	height:400px;
+}
+
+/* column for Customer Information and Order*/
+.colB{
+	width:480px;
+}
+
+/* column for Size */
+.colC{
+	width:100px;
+}
+
+/* red font for spicy */
+.red{
+	color: red;
+}
