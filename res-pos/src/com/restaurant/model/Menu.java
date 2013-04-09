@@ -1,105 +1,216 @@
 package com.restaurant.model;
 
-public class Menu {
+import java.sql.Time;
 
-	private int id;
-	private String name;
-	private String shortName;
-	private String longName;
-	private String description;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name="menu", catalog="restaurant", uniqueConstraints={
+		@UniqueConstraint(columnNames="restaurantid"),
+		@UniqueConstraint(columnNames="foodcategoryid"),
+		@UniqueConstraint(columnNames="foodid")
+})
+public class Menu {
+	//TODO:cascade and hibernate relationships
+	private long menuId;
+	private long restaurantId;
+	private long foodCategoryId;
+	private long foodId;
+	private String menuNum;
+	private float small;
+	private float large;
+	private String lunchNum;
+	private float lunch;
+	private String comboNum;
+	private float combo;
 	private boolean spicy;
 	private boolean rice;
 	private boolean sauce;
 	private boolean noodle;
-	private boolean combo;
-	private boolean lunch;
 	private int pieces;
-	private double small;
-	private double large;
+	private boolean appetizerCombo;
+	private Time createdDate;
+	private String createdBy;
+	private Time lastUpdatedDate;
+	private String lastUpdatedBy;
 	
-	public int getId() {
-		return id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="menuid")
+	public long getMenuId() {
+		return menuId;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setMenuId(long menuId) {
+		this.menuId = menuId;
 	}
-	public String getName() {
-		return name;
+	
+	@Column(name="restaurantid", unique=false, nullable=false, length=11)
+	public long getRestaurantId() {
+		return restaurantId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setRestaurantId(long restaurantId) {
+		this.restaurantId = restaurantId;
 	}
-	public String getShortName() {
-		return shortName;
+	@Column(name="foodcategoryid", unique=false, nullable=false, length=11)
+	public long getFoodCategoryId() {
+		return foodCategoryId;
 	}
-	public void setShortName(String shortName) {
-		this.shortName = shortName;
+	public void setFoodCategoryId(long foodCategoryId) {
+		this.foodCategoryId = foodCategoryId;
 	}
-	public String getLongName() {
-		return longName;
+	
+	@Column(name="foodid", unique=false, nullable=false, length=11)
+	public long getFoodId() {
+		return foodId;
 	}
-	public void setLongName(String longName) {
-		this.longName = longName;
+	public void setFoodId(long foodId) {
+		this.foodId = foodId;
 	}
-	public String getDescription() {
-		return description;
+	
+	@Column(name="menunum", unique=false, nullable=true, length=5)
+	public String getMenuNum() {
+		return menuNum;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setMenuNum(String menuNum) {
+		this.menuNum = menuNum;
 	}
+	
+	@Column(name="small", unique=false, nullable=true, length=5)
+	public float getSmall() {
+		return small;
+	}
+	public void setSmall(float small) {
+		this.small = small;
+	}
+	
+	@Column(name="large", unique=false, nullable=false, length=5)
+	public float getLarge() {
+		return large;
+	}
+	public void setLarge(float large) {
+		this.large = large;
+	}
+	
+	@Column(name="lunchnum", unique=false, nullable=true, length=5)
+	public String getLunchNum() {
+		return lunchNum;
+	}
+	public void setLunchNum(String lunchNum) {
+		this.lunchNum = lunchNum;
+	}
+	
+	@Column(name="lunch", unique=false, nullable=true, length=5)
+	public float getLunch() {
+		return lunch;
+	}
+	public void setLunch(float lunch) {
+		this.lunch = lunch;
+	}
+	
+	@Column(name="combonum", unique=false, nullable=true, length=5)
+	public String getComboNum() {
+		return comboNum;
+	}
+	public void setComboNum(String comboNum) {
+		this.comboNum = comboNum;
+	}
+	
+	@Column(name="combo", unique=false, nullable=true, length=5)
+	public float getCombo() {
+		return combo;
+	}
+	public void setCombo(float combo) {
+		this.combo = combo;
+	}
+	
+	@Column(name="spicy", unique=false, nullable=true, length=1)
 	public boolean isSpicy() {
 		return spicy;
 	}
 	public void setSpicy(boolean spicy) {
 		this.spicy = spicy;
 	}
-	public boolean isRice() {
+	
+	@Column(name="rice", unique=false, nullable=true, length=1)
+	public boolean hasRice() {
 		return rice;
 	}
 	public void setRice(boolean rice) {
 		this.rice = rice;
 	}
-	public boolean isSauce() {
+	
+	@Column(name="sauce", unique=false, nullable=true, length=1)
+	public boolean hasSauce() {
 		return sauce;
 	}
 	public void setSauce(boolean sauce) {
 		this.sauce = sauce;
 	}
-	public boolean isNoodle() {
+	
+	@Column(name="noodle", unique=false, nullable=true, length=1)
+	public boolean hasNoodle() {
 		return noodle;
 	}
 	public void setNoodle(boolean noodle) {
 		this.noodle = noodle;
 	}
-	public boolean isCombo() {
-		return combo;
-	}
-	public void setCombo(boolean combo) {
-		this.combo = combo;
-	}
-	public boolean isLunch() {
-		return lunch;
-	}
-	public void setLunch(boolean lunch) {
-		this.lunch = lunch;
-	}
+	
+	@Column(name="pieces", unique=false, nullable=true, length=2)
 	public int getPieces() {
 		return pieces;
 	}
 	public void setPieces(int pieces) {
 		this.pieces = pieces;
 	}
-	public double getSmall() {
-		return small;
+	
+	@Column(name="appetizercombo", unique=false, nullable=true, length=1)
+	public boolean isAppetizerCombo() {
+		return appetizerCombo;
 	}
-	public void setSmall(double small) {
-		this.small = small;
+	public void setAppetizerCombo(boolean appetizerCombo) {
+		this.appetizerCombo = appetizerCombo;
 	}
-	public double getLarge() {
-		return large;
+
+	@Temporal(TemporalType.TIME)
+	@Column(name="createddate", unique=false, nullable=true, length=12)
+	public Time getCreatedDate() {
+		return createdDate;
 	}
-	public void setLarge(double large) {
-		this.large = large;
+	public void setCreatedDate(Time createdDate) {
+		this.createdDate = createdDate;
+	}
+	
+	@Column(name="createdby", unique=false, nullable=true, length=20)
+	public String getCreatedBy() {
+		return createdBy;
+	}
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+	
+	@Temporal(TemporalType.TIME)
+	@Column(name="lastupdateddate", unique=false, nullable=true, length=12)
+	public Time getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+	public void setLastUpdatedDate(Time lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+	
+	@Column(name="lastupdatedby", unique=false, nullable=true, length=12)
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
 	}
 	
 }
