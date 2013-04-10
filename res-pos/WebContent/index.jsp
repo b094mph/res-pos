@@ -13,8 +13,7 @@
  	<table>
 		<tr>
 			<td>
-				<!-- <h1><a href="/res-pos/order.html">ENTER</a></h1>  -->
-				<h1><a href="/res-pos/category.html">ENTER</a></h1>			
+				<h1><a href="address">ENTER</a></h1>			
 			</td>
 		</tr>
 	</table>
