@@ -4,17 +4,17 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
     <definition name="base.definition"
-        template="/WEB-INF/jsp/layout.jsp">
+        template="/jsp/layout.jsp">
         <put-attribute name="title" value="" />
-        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />
-        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />
+        <put-attribute name="header" value="/jsp/header.jsp" />
+        <put-attribute name="menu" value="/jsp/menu.jsp" />
         <put-attribute name="body" value="" />
-        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />
+        <put-attribute name="footer" value="/jsp/footer.jsp" />
     </definition>
  
-    <definition name="contact" extends="base.definition">
-        <put-attribute name="title" value="Contact Manager" />
-        <put-attribute name="body" value="/WEB-INF/jsp/body/contact.jsp" />
+    <definition name="address" extends="base.definition">
+        <put-attribute name="title" value="Adding Address" />
+        <put-attribute name="body" value="/jsp/body/address.jsp" />
     </definition>
  
 </tiles-definitions>

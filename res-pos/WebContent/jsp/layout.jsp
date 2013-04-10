@@ -12,7 +12,9 @@
         </td>
     </tr>
     <tr>
-        <td height="250"><tiles:insertAttribute name="menu" /></td>
+    	<td height="30"><tiles:insertAttribute name="menu" /></td>
+    </tr>
+    <tr>
         <td width="350"><tiles:insertAttribute name="body" /></td>
     </tr>
     <tr>

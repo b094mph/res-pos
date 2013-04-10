@@ -21,6 +21,6 @@
 
 	<import resource="/spring/spring-controller.xml"/>
 	<import resource="/spring/spring-transaction.xml"/>
-<!-- 	<import resource="/spring/spring-tiles.xml"/> -->
+	<import resource="/spring/spring-tiles.xml"/>
 	
 </beans>

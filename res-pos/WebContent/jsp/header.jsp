@@ -11,12 +11,12 @@
 <body>
 
  
-<h1><spring:message code="label.title"/></h1>
+<h1>HEADER</h1>
  
 <span style="float: right">
     <a href="?lang=en">en</a> 
     | 
-    <a href="?lang=de">de</a>
+    <a href="?lang=ch">ch</a>
 </span>
 
 
