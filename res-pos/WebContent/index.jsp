@@ -13,7 +13,7 @@
  	<table>
 		<tr>
 			<td>
-				<h1><a href="address">ENTER</a></h1>			
+				<h1><a href="address.html">ENTER</a></h1>			
 			</td>
 		</tr>
 	</table>
