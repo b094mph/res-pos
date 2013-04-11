@@ -1,21 +1,27 @@
 # Package Files #
+#################
 #*.jar
 *.war
 *.ear
 
 # .metadata and RemoteSystemsTempFiles #
+########################################
 .metadata/
 RemoteSystemsTempFiles/
 
 # Servers #
+###########
 Servers/
 
-# Tells Git to ignore all files that end with a tilde (~) *
+# Tells Git to ignore all files that end with a tilde (~) * #
+#############################################################
 *~
 
-# sql
+# sql #
+#######
 *.mwb.bak
 
-#ignore database connection properties
+#ignore database connection properties #
+########################################
 res-pos/WebContent/WEB-INF/database.properties
 
