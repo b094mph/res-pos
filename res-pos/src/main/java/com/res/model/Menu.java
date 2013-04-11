@@ -179,7 +179,6 @@ public class Menu {
 		this.appetizerCombo = appetizerCombo;
 	}
 
-	@Temporal(TemporalType.TIME)
 	@Column(name="createddate", unique=false, nullable=true, length=12)
 	public Time getCreatedDate() {
 		return createdDate;
@@ -196,7 +195,6 @@ public class Menu {
 		this.createdBy = createdBy;
 	}
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="lastupdateddate", unique=false, nullable=true, length=12)
 	public Time getLastUpdatedDate() {
 		return lastUpdatedDate;

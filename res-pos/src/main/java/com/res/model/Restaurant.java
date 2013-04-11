@@ -194,7 +194,6 @@ public class Restaurant {
 		this.sunClose = sunClose;
 	}
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="createddate", unique=false, nullable=true, length=12)
 	public Time getCreatedDate() {
 		return createdDate;
@@ -211,7 +210,6 @@ public class Restaurant {
 		this.createdBy = createdBy;
 	}
 	
-	@Temporal(TemporalType.TIME)
 	@Column(name="lastupdateddate", unique=false, nullable=true, length=12)
 	public Time getLastUpdatedDate() {
 		return lastUpdatedDate;

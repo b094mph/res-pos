@@ -35,23 +35,11 @@
 				<prop key="hibernate.show_sql">${jdbc.showhql}</prop>
 			</props>
 		</property>
-		
-		<!-- Package to scan for entity classes -->
-<!--     	<property name="packagesToScan" value="com.res.model" /> -->
-
-<!-- 	    OR -->
-<!-- 	    <property name="packagesToScan"> -->
-<!-- 	        <list> -->
-<!-- 	            <value>com.res.model</value> -->
-<!-- 	            <value>com.res.model2</value> -->
-<!-- 	        </list> -->
-<!-- 	    </property> -->
-		<property name="annotatedClasses">
-			<list>
-				<value>com.res.model.Address</value>
-				<value>com.res.model.Person</value>
-			</list>
-		</property>
+	    <property name="packagesToScan">
+	        <list>
+	            <value>com.res.model</value>
+	        </list>
+	    </property>
 	</bean>
 	
 	<tx:annotation-driven/>
