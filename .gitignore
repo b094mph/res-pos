@@ -17,6 +17,5 @@ Servers/
 *.mwb.bak
 
 #ignore database connection properties
-#to ignore only database.properties, need to give the full path, otherwise use * in front
-# res-pos/WebContent/WEB-INF/database.properties
-*database.properties
+res-pos/WebContent/WEB-INF/database.properties
+
