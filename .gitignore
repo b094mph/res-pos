@@ -15,3 +15,6 @@ Servers/
 
 # sql
 *.mwb.bak
+
+#ignore database connection properties
+database.properties
