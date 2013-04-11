@@ -36,15 +36,43 @@
     	</property>
     </bean>
     
-    <bean id="messageSource" 
-    	class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="messageSource"
+	    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 	    <property name="basename" value="classpath:messages" />
 	    <property name="defaultEncoding" value="UTF-8"/>
+	</bean>
+
+	<mvc:interceptors> 	 
+		<mvc:interceptor>
+			<mvc:mapping path="/*"/>
+			<ref bean="localeChangeInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="localeChangeInterceptor"
+	    class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+	    <property name="paramName" value="lang" />
+	</bean>
+	 
+	<bean id="localeResolver"
+	    class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+	    <property name="defaultLocale" value="en"/>
+	</bean>
+	 
+	<bean id="handlerMapping"
+	    class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+	    <property name="interceptors">
+	        <ref bean="localeChangeInterceptor" />
+	    </property>
 	</bean>
 	
 	<bean id="propertyConfigurer" 
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="location" value="/WEB-INF/database.properties"/>
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/database.properties</value>
+			</list>
+		</property>
 	</bean>
 	 
 </beans>

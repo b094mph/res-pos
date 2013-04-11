@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -7,9 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
  
-<%-- <spring:message code="label.footer"/> --%>
-FOOTER
+<spring:message code="label.footer"/>
 </body>
 </html>

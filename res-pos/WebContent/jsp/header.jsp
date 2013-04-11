@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE HTML>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<!DOCTYPE HTML>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -16,7 +15,7 @@
 <span style="float: right">
     <a href="?lang=en">en</a> 
     | 
-    <a href="?lang=ch">ch</a>
+    <a href="?lang=zh">zh</a>
 </span>
 
 
