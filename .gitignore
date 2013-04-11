@@ -23,5 +23,5 @@ Servers/
 
 #ignore database connection properties #
 ########################################
-res-pos/WebContent/WEB-INF/database.properties
+#res-pos/WebContent/WEB-INF/database.properties
 
