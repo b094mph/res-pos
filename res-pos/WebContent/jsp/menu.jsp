@@ -8,6 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1><spring:message code="label.menu"/></h1>
+<p><b><spring:message code="label.menu"/></b></p>
 </body>
 </html>

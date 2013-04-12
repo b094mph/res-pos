@@ -8,15 +8,6 @@
 </head>
 <!-- http://localhost:8080/res-pos/index.jsp -->
 <body>
-	<h3>RESTAURANT_01</h3>
-
- 	<table>
-		<tr>
-			<td>
-				<h1><a href="address.html">ENTER</a></h1>			
-			</td>
-		</tr>
-	</table>
-
+<jsp:forward page="login.html"/>
 </body>
 </html>

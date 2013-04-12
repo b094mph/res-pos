@@ -7,10 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Enter Address Information</title>
 </head>
 <body>
-<h1>Enter Address Information</h1>
+<p>Enter Address Information</p>
 <form:form method="post" action="addAddress.html">
 	<table>
 		<tr>

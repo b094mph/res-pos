@@ -10,7 +10,7 @@
 <body>
 
  
-<h1>HEADER</h1>
+<h5>Welcome to RES-POS!</h5>
  
 <span style="float: right">
     <a href="?lang=en">en</a> 
