@@ -4,10 +4,24 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<jsp:include page="common/headerimport.jsp"/>
 </head>
 <body>
-<p><b><spring:message code="label.menu"/></b></p>
+<div class="container">
+	
+	<div class="btn-group row">
+		<button class="btn">Home</button>
+		<button class="btn"><spring:message code="label.menu"/></button>
+		<button class="btn">About</button>
+		<button class="btn">Test</button>
+		<button class="btn">Test</button>
+		<button class="btn">Test</button>
+		<button class="btn">Test</button>
+		<button class="btn">Test</button>
+		<button class="btn">Other</button>
+	</div>
+	<div class="row"><br></div>
+</div>
 </body>
 </html>
