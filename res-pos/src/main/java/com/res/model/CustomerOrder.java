@@ -30,7 +30,7 @@ public class CustomerOrder {
 	private float tax;
 	private float grandTotal;
 	private float tip;
-	private String status;
+	private String orderStatus;
 	private String note;
 	
 	@Id
@@ -123,12 +123,12 @@ public class CustomerOrder {
 		this.tip = tip;
 	}
 	
-	@Column(name="status", unique=false, nullable=false, length=10)
-	public String getStatus() {
-		return status;
+	@Column(name="orderstatus", unique=false, nullable=false, length=10)
+	public String getOrderStatus() {
+		return orderStatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setOrderStatus(String orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 	
 	@Column(name="note", unique=false, nullable=true, length=200)

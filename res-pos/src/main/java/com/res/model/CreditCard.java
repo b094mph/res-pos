@@ -22,7 +22,8 @@ public class CreditCard {
 	private long personId;
 	private long addressId;
 	private long cardTypeId;
-	private String creditCardNumber;
+	private String creditCardEnding;
+	private String creditCardNum;
 	private String creditCardName;
 	private Date expiration;
 	private String ccv;
@@ -61,12 +62,20 @@ public class CreditCard {
 		this.cardTypeId = cardTypeId;
 	}
 	
-	@Column(name="creditcardnumber", unique=false, nullable=false, length=19)
-	public String getCreditCardNumber() {
-		return creditCardNumber;
+	@Column(name="creditcardending", unique=false, nullable=false, length=4)
+	public String getCreditCardEnding() {
+		return creditCardEnding;
 	}
-	public void setCreditCardNumber(String creditCardNumber) {
-		this.creditCardNumber = creditCardNumber;
+	public void setCreditCardEnding(String creditCardEnding) {
+		this.creditCardEnding = creditCardEnding;
+	}
+	
+	@Column(name="creditcardnum", unique=false, nullable=false, length=19)
+	public String getCreditCardNum() {
+		return creditCardNum;
+	}
+	public void setCreditCardNum(String creditCardNum) {
+		this.creditCardNum = creditCardNum;
 	}
 	
 	@Column(name="creditcardname", unique=false, nullable=false, length=50)
