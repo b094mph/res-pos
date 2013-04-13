@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS person (
     lastname varchar(20),
     phone1 varchar(10) NOT NULL,
 	phone2 varchar(10),
+	ext varchar(5),
 	email varchar(50),
     note text,
 	lastupdateddate timestamp default current_timestamp,

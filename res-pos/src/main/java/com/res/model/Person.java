@@ -27,6 +27,7 @@ public class Person {
 	private String lastName;
 	private String phone1;
 	private String phone2;
+	private String ext;
 	private String email;
 	private String note;
 	private Time lastUpdatedDate;
@@ -73,6 +74,14 @@ public class Person {
 	}
 	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
+	}
+	
+	@Column(name="ext", unique=false, nullable=true, length=5)
+	public String getExt() {
+		return ext;
+	}
+	public void setExt(String ext) {
+		this.ext = ext;
 	}
 	
 	@Column(name="email", unique=false, nullable=true, length=10)
