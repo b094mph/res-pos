@@ -11,7 +11,7 @@ public class BaseDaoImpl implements BaseDao{
 	@Autowired
 	private SessionFactory sessionFactory;
 	
-	public Session getCurrentSession(){
+	public Session currentSession(){
 		return sessionFactory.getCurrentSession();
 	}
 	
@@ -25,27 +25,27 @@ public class BaseDaoImpl implements BaseDao{
 	
 	@Override
 	public void save(Object obj) {
-		this.getCurrentSession().save(obj);
+		currentSession().save(obj);
 	}
 
 	@Override
 	public void update(Object obj) {
-		this.getCurrentSession().update(obj);
+		currentSession().update(obj);
 	}
 
 	@Override
 	public void saveOrUpdate(Object obj) {
-		this.getCurrentSession().saveOrUpdate(obj);
+		currentSession().saveOrUpdate(obj);
 	}
 
 	@Override
 	public void delete(Object obj) {
-		this.getCurrentSession().delete(obj);
+		currentSession().delete(obj);
 	}
 
 	@Override
 	public void merge(Object obj) {
-		this.getCurrentSession().merge(obj);
+		currentSession().merge(obj);
 	}
 
 }

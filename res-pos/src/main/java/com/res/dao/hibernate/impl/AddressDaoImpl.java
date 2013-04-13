@@ -10,7 +10,7 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 
 	@Override
 	public Address findByAddressId(long id) {
-		return (Address) getSessionFactory().getCurrentSession().get(getClass(), id);
+		return (Address) currentSession().get(getClass(), id);
 	}
 
 }

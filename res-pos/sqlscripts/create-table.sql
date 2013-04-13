@@ -166,6 +166,7 @@ CREATE TABLE IF NOT EXISTS customerorder (
 	tax float,
 	grandtotal float NOT NULL,
 	tip float,
+	status varchar(10),
 	note varchar(200),
     PRIMARY KEY (customerorderid),
 	CONSTRAINT fk_customerorder_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,

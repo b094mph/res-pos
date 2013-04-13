@@ -1,7 +1,10 @@
 package com.res.dao.hibernate;
 
+import org.hibernate.Session;
+
 public interface BaseDao {
 
+	public Session currentSession();
 	public void save(Object obj);
 	public void update(Object obj);
 	public void saveOrUpdate(Object obj);
