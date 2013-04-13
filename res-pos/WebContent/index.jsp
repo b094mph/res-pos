@@ -8,6 +8,6 @@
 </head>
 <!-- http://localhost:8080/res-pos/index.jsp -->
 <body>
-<jsp:forward page="login.html"/>
+<jsp:forward page="login_home.html"/>
 </body>
 </html>

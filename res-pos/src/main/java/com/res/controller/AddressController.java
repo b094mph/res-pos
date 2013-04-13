@@ -17,7 +17,7 @@ import com.res.service.AddressService;
 @SessionAttributes
 public class AddressController {
 	
-	private static Logger log = Logger.getLogger(AddressController.class);
+	private static Logger logger = Logger.getLogger(AddressController.class);
 
 	@Autowired
 	private AddressService addressService;
@@ -29,7 +29,7 @@ public class AddressController {
 	
 	@RequestMapping(value = "/addAddress", method = RequestMethod.POST)
 	public String addAddress(@ModelAttribute("address") Address address, BindingResult result){
-		log.info("Address = " + address.getStreet1() + " " +  address.getStreet2() + " " +
+		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() + " " +
 				address.getState() + " " + address.getZipCode());
 		addressService.save(address);
 		return "redirect:/address.html";

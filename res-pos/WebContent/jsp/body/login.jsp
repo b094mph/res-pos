@@ -18,7 +18,7 @@
 		<div class="span4 offset4">
 			<p>RESTAURANT_01</p>
 			<p>Login Page</p>
-			<form:form method="post" action="address.html">
+			<form:form method="post" action="authenticateLogin.html">
 				<table>
 					<tr>
 						<td><form:label path="userName">Agent:</form:label></td>
