@@ -5,10 +5,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css" rel="stylesheet">
-	<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<jsp:include page="../common/bootstrap.jsp"/>
+	<jsp:include page="../common/jquery.jsp"/>
 	<title>Restaurant_01</title>
 </head>
 <!-- http://localhost:8080/res-pos/index.jsp -->
@@ -26,7 +24,7 @@
 					</tr>
 					<tr>
 						<td><form:label path="agentPassword">Password:</form:label> </td>
-						<td><form:input path="agentPassword"/></td>
+						<td><form:password path="agentPassword"/></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Login"/></td>

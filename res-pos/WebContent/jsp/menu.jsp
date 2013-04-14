@@ -5,15 +5,16 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="common/headerimport.jsp"/>
+	<jsp:include page="common/bootstrap.jsp"/>
+	<jsp:include page="common/jquery.jsp"/>
 </head>
 <body>
 <div class="container">
 	
-	<div class="btn-group row">
-		<button class="btn">Home</button>
+	<div class="btn-group row" data-toggle="buttons-radio">
+		<button id="home" class="btn">Home</button>
 		<button class="btn"><spring:message code="label.menu"/></button>
-		<button class="btn">About</button>
+		<button id="about" class="btn">About</button>
 		<button class="btn">Test</button>
 		<button class="btn">Test</button>
 		<button class="btn">Test</button>

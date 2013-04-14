@@ -20,6 +20,7 @@
 		http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
 
 	<import resource="/spring/spring-controller.xml"/>
+	<import resource="/spring/spring-security.xml"/>
 	<import resource="/spring/spring-transaction.xml"/>
 	<import resource="/spring/spring-tiles.xml"/>
 	

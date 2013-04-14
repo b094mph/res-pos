@@ -22,7 +22,7 @@ public class LoginController {
 	@Autowired
 	private AgentService agentService;
 	
-	@RequestMapping(value = "/login_home")
+	@RequestMapping(value = "/loginHome")
 	public ModelAndView showLoginHome(){
 		logger.info("Logging in...");
 		return new ModelAndView("login", "command", new Agent());
@@ -35,7 +35,7 @@ public class LoginController {
 			return "redirect:/address.html";
 		}else{
 			logger.debug("Agent could not be validated...");
-			return "redirect:/fail";
+			return "redirect:/authenticateFail.html";
 		}
 		
 	}
