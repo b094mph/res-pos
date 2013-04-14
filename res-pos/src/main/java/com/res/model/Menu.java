@@ -4,9 +4,14 @@ import java.sql.Time;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -40,6 +45,9 @@ public class Menu {
 	private Time lastUpdatedDate;
 	private String lastUpdatedBy;
 	
+	private FoodCategory foodCategory;
+	private Food food;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="menuid")
@@ -57,6 +65,7 @@ public class Menu {
 	public void setRestaurantId(long restaurantId) {
 		this.restaurantId = restaurantId;
 	}
+	
 	@Column(name="foodcategoryid", unique=false, nullable=false, length=11)
 	public long getFoodCategoryId() {
 		return foodCategoryId;
@@ -207,6 +216,24 @@ public class Menu {
 	}
 	public void setLastUpdatedBy(String lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
+	}
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="foodcategoryid", nullable=false)
+	public FoodCategory getFoodCategory() {
+		return foodCategory;
+	}
+	public void setFoodCategory(FoodCategory foodCategory) {
+		this.foodCategory = foodCategory;
+	}
+	
+	@OneToOne(fetch=FetchType.LAZY)
+	@PrimaryKeyJoinColumn
+	public Food getFood() {
+		return food;
+	}
+	public void setFood(Food food) {
+		this.food = food;
 	}
 	
 }

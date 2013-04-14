@@ -1,10 +1,14 @@
 package com.res.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,7 @@ public class FoodCategory {
 	private long foodCategoryId;
 	private String foodCategoryName;
 	private String foodCategoryCName;
+	private List<Menu> menuCategoryList;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -39,6 +44,14 @@ public class FoodCategory {
 	}
 	public void setFoodCategoryCName(String foodCategoryCName) {
 		this.foodCategoryCName = foodCategoryCName;
+	}
+	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodcategory")
+	public List<Menu> getMenuCategoryList() {
+		return menuCategoryList;
+	}
+	public void setMenuCategoryList(List<Menu> menuCategoryList) {
+		this.menuCategoryList = menuCategoryList;
 	}
 	
 }

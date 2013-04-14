@@ -1,10 +1,13 @@
 package com.res.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,8 @@ public class Food {
 	private String cFoodName;
 	private String description;
 	private String cDescription;
+
+	private Menu menu;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -66,6 +71,14 @@ public class Food {
 	}
 	public void setcDescription(String cDescription) {
 		this.cDescription = cDescription;
+	}
+	
+	@OneToOne(fetch=FetchType.LAZY, mappedBy="food", cascade= CascadeType.ALL)
+	public Menu getMenu() {
+		return menu;
+	}
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 }
