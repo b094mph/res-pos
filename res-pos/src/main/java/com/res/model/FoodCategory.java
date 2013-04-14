@@ -18,7 +18,7 @@ public class FoodCategory {
 	private long foodCategoryId;
 	private String foodCategoryName;
 	private String foodCategoryCName;
-	private List<Menu> menus;
+	private List<Menu> menu;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -46,12 +46,12 @@ public class FoodCategory {
 		this.foodCategoryCName = foodCategoryCName;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodcategory")	
-	public List<Menu> getMenus() {
-		return menus;
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodCategory")	
+	public List<Menu> getMenu() {
+		return menu;
 	}
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
+	public void setMenu(List<Menu> menu) {
+		this.menu = menu;
 	}
 	
 }

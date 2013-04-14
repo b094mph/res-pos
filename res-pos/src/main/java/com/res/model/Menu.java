@@ -66,7 +66,8 @@ public class Menu {
 		this.restaurantId = restaurantId;
 	}
 	
-	@Column(name="foodcategoryid", unique=false, nullable=false, length=11)
+	@Column(name="foodcategoryid", unique=false, nullable=false, length=11, 
+			updatable=false, insertable=false)
 	public long getFoodCategoryId() {
 		return foodCategoryId;
 	}
