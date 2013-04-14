@@ -9,8 +9,7 @@
 	<jsp:include page="common/jquery.jsp"/>
 </head>
 <body>
-<div class="container">
-	
+<div class="container">	
 	<div class="btn-group row" data-toggle="buttons-radio">
 		<button id="home" class="btn">Home</button>
 		<button class="btn"><spring:message code="label.menu"/></button>
