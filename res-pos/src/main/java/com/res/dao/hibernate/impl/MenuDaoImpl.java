@@ -19,8 +19,10 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	public List<Menu> menuByRestaurantId(long restaurantId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT m.foodCategory FROM Menu m WHERE m.restaurantId = :restaurantId");
+		
 		Query query = currentSession().createQuery(sb.toString());
 		query.setLong("restaurantId",restaurantId);
+		
 		logger.debug("MenuList size = " + query.list().size());
 		logger.debug("MenuList = " + query.list());
 		return query.list();
@@ -31,9 +33,13 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName){
 		StringBuffer sb = new StringBuffer();
 		sb.append("FROM Menu m ");
-		sb.append("WHERE m.restaurantId = :restaurantId );" +
+		sb.append("WHERE m.restaurantId = :restaurantId " +
 				"AND m.foodCategory.foodCategoryName = :foodCategoryName");
+		
 		Query query = currentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
+		query.setParameter("foodCategoryName", foodCategoryName);
+		
 		logger.debug("FoodList size = " + query.list().size());
 		return query.list();
 	}
