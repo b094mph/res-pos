@@ -22,7 +22,7 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames="foodid")
 })
 public class Menu {
-	//TODO:cascade and hibernate relationships
+
 	private long menuId;
 	private long restaurantId;
 	private long foodCategoryId;

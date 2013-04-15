@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 @Entity
 @Table(name="foodcategory", catalog="restaurant")
 public class FoodCategory {
@@ -46,7 +49,8 @@ public class FoodCategory {
 		this.foodCategoryCName = foodCategoryCName;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodCategory")	
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodCategory")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	public List<Menu> getMenu() {
 		return menu;
 	}

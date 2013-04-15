@@ -1,6 +1,5 @@
 package com.res.model;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="food", catalog="restaurant")
@@ -73,7 +75,8 @@ public class Food {
 		this.cDescription = cDescription;
 	}
 	
-	@OneToOne(fetch=FetchType.LAZY, mappedBy="food", cascade= CascadeType.ALL)
+	@OneToOne(fetch=FetchType.LAZY, mappedBy="food")
+	@Cascade({CascadeType.SAVE_UPDATE})
 	public Menu getMenu() {
 		return menu;
 	}
