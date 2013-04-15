@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -15,7 +16,9 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames="restaurantid"),
 		@UniqueConstraint(columnNames="agentid")
 })
-public class AgentJob {
+public class AgentJob implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long agentJobId;
 	private long restaurantId;

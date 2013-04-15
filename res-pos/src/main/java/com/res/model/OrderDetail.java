@@ -1,5 +1,7 @@
 package com.res.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +15,9 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames="customerorderid"),
 		@UniqueConstraint(columnNames="menuid")
 })
-public class OrderDetail {
+public class OrderDetail implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long orderDetailId;
 	private long customerOrderId;

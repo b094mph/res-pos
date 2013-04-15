@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames="addressid"),
 		@UniqueConstraint(columnNames="cardtypeid")
 })
-public class CreditCard {
+public class CreditCard implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long creditCardId;
 	private long personId;

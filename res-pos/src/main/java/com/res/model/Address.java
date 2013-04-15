@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +13,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="address", catalog="restaurant")
-public class Address {
+public class Address implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long addressId;
 	private String street1;

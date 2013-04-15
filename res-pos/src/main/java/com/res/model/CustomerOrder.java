@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -17,7 +18,9 @@ import javax.persistence.UniqueConstraint;
 		@UniqueConstraint(columnNames="personid"),
 		@UniqueConstraint(columnNames="creditcardid")
 })
-public class CustomerOrder {
+public class CustomerOrder implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long customerOrderId;
 	private long restaurantId;

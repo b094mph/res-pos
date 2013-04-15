@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.sql.Time;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,9 @@ import javax.persistence.UniqueConstraint;
 @Table(name="person", catalog="restaurant", uniqueConstraints={
 	@UniqueConstraint(columnNames="addressid")
 })
-public class Person {
+public class Person implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long personId;
 	private String firstName;

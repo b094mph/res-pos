@@ -1,5 +1,7 @@
 package com.res.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -14,7 +16,9 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="food", catalog="restaurant")
-public class Food {
+public class Food implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long foodId;
 	private String foodShortName;

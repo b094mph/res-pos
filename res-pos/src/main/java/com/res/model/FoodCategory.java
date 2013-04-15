@@ -1,5 +1,6 @@
 package com.res.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,9 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 @Table(name="foodcategory", catalog="restaurant")
-public class FoodCategory {
+public class FoodCategory implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 
 	private long foodCategoryId;
 	private String foodCategoryName;
