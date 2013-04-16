@@ -6,5 +6,6 @@
  
  	<defaultCache eternal="true" maxElementsInMemory="100" overflowToDisk="false"/>
  	<cache name="addresses" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
+ 	<cache name="agents" maxElementsInMemory="10" eternal="true" overflowToDisk="false"/>
  
  </ehcache>
