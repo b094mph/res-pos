@@ -1,7 +1,7 @@
 use restaurant;
 start transaction;
 
-load data infile 'goldenbamboo-foodcategory.csv'
+load data infile 'foodcategory.csv'
 	ignore
 	into table foodcategory 
 	character set utf8
