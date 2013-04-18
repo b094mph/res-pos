@@ -1,7 +1,7 @@
 use restaurant;
 start transaction;
 
-load data infile 'food.csv'
+load data infile 'newcitychinese-food.csv'
 	ignore
 	into table food
 	character set utf8
@@ -11,4 +11,3 @@ load data infile 'food.csv'
 	;
 
 commit;
-select * from food;
