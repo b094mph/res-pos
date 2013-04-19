@@ -1,16 +1,17 @@
-use restaurant;
+USE restaurant;
 
-drop table if exists orderdetail;
-drop table if exists customerorder;
-drop table if exists menu;
-drop table if exists agentjob;
-drop table if exists restaurant;
-drop table if exists food;
-drop table if exists foodcategory;
-drop table if exists agent;
-drop table if exists creditcard;
-drop table if exists cardtype;
-drop table if exists person;
-drop table if exists address;
+DROP TABLE IF EXISTS orderdetail;
+DROP TABLE IF EXISTS customerorder;
+DROP TABLE IF EXISTS menu;
+DROP TABLE IF EXISTS agentjob;
+DROP TABLE IF EXISTS restaurant;
+DROP TABLE IF EXISTS food;
+DROP TABLE IF EXISTS foodcategory;
+DROP TABLE IF EXISTS agent;
+DROP TABLE IF EXISTS creditcard;
+DROP TABLE IF EXISTS cardtype;
+DROP TABLE IF EXISTS person;
+DROP TABLE IF EXISTS address;
+DROP TABLE IF EXISTS temp
 
 
