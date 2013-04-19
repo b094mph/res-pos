@@ -1,4 +1,6 @@
-USE restaurant;
+DELIMITER //
+CREATE PROCEDURE restaurant.dropTables()
+BEGIN
 
 DROP TABLE IF EXISTS orderdetail;
 DROP TABLE IF EXISTS customerorder;
@@ -12,6 +14,9 @@ DROP TABLE IF EXISTS creditcard;
 DROP TABLE IF EXISTS cardtype;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS address;
-DROP TABLE IF EXISTS temp
+DROP TABLE IF EXISTS temp;
+
+END//
+DELIMITER ;
 
 

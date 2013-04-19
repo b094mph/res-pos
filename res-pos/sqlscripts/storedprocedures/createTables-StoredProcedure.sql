@@ -1,6 +1,6 @@
-/*CREATE SCHEMA restaurant;*/
-
-USE restaurant;
+DELIMITER //
+CREATE PROCEDURE restaurant.createTables()
+BEGIN
 
 CREATE TABLE IF NOT EXISTS address (
     addressid BIGINT(11) NOT NULL AUTO_INCREMENT,
@@ -213,3 +213,6 @@ CREATE TABLE IF NOT EXISTS temp(
 	appetizercombo TINYINT(1) NULL,
 	PRIMARY KEY (id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+END //
+DELIMITER ;
