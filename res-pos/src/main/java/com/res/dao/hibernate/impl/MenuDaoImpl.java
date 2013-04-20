@@ -9,22 +9,20 @@ import org.springframework.stereotype.Repository;
 import com.res.dao.hibernate.MenuDao;
 import com.res.model.Menu;
 
-@Repository("MenuDao")
+@Repository("menuDao")
 public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 
 	private static Logger logger = Logger.getLogger(MenuDaoImpl.class);
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Menu> menuByRestaurantId(long restaurantId){
+	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId){
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT m.foodCategory FROM Menu m WHERE m.restaurantId = :restaurantId");
+		sb.append("SELECT m.foodCategoryId FROM Menu m WHERE m.restaurantId = :restaurantId");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setLong("restaurantId",restaurantId);
 		
-		logger.debug("MenuList size = " + query.list().size());
-		logger.debug("MenuList = " + query.list());
 		return query.list();
 	}
 	

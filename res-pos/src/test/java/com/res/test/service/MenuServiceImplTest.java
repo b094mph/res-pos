@@ -1,15 +1,14 @@
 package com.res.test.service;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
-import java.util.List;
+import java.util.Set;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.res.model.Menu;
 import com.res.service.MenuService;
 
 public class MenuServiceImplTest{
@@ -24,8 +23,9 @@ public class MenuServiceImplTest{
 	}
 	
 	@Test
-	public void menuByRestaurantIdTest(){
-		
+	public void getFoodCategoriesFromMenuTest(){
+		Set<Long> foodCategorySet = menuService.getFoodCategoriesFromMenu(1L);
+		assertEquals(18 ,foodCategorySet.size());
 	}
 
 }

@@ -6,6 +6,6 @@ import com.res.model.Menu;
 
 public interface MenuDao extends BaseDao {
 
-	public List<Menu> menuByRestaurantId(long restaurantId);
+	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId);
 	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName);
 }

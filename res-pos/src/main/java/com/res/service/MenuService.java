@@ -8,6 +8,6 @@ import com.res.model.Menu;
 
 public interface MenuService {
 
-	public Set<FoodCategory> getFoodCategoriesFromMenu(long restaurantId);
+	public Set<Long> getFoodCategoriesFromMenu(long restaurantId);
 	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName);
 }
