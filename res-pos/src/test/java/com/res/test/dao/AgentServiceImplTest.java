@@ -1,31 +1,28 @@
 package com.res.test.dao;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.res.dao.hibernate.AgentDao;
-import com.res.model.Agent;
+import com.res.service.AgentService;
 
-public class AgentDaoImplTest {
+public class AgentServiceImplTest {
 	
 	private ApplicationContext ctx;
-	private AgentDao agentDao;
+	private AgentService agentService;
 	
 	@Before
 	public void setUp(){
 		ctx = new ClassPathXmlApplicationContext("junit-context.xml");
-		agentDao = (AgentDao) ctx.getBean("agentDao");
+		agentService = (AgentService) ctx.getBean("agentService");
 	}
 	
 	@Test
 	public void isPasswordValidTest(){
-		//TODO: need a way to make daos transactional for this unit test to work.
-		Agent agent = agentDao.getAgentById(1L);
-		assertEquals("bobby", agent.getUserName());
+		assertTrue(agentService.isPasswordValid("bthai", "123"));
 	}
 
 }

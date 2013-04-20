@@ -10,6 +10,7 @@ import com.res.model.Address;
 import com.res.service.AddressService;
 
 @Service("addressService")
+@Transactional
 public class AddressServiceImpl implements AddressService {
 	
 	private static Logger logger = Logger.getLogger(AddressServiceImpl.class);
@@ -17,24 +18,20 @@ public class AddressServiceImpl implements AddressService {
 	@Autowired
 	private AddressDao addressDao;
 
-	@Transactional
 	public void save(Address address) {
 		addressDao.save(address);
 	}
 
-	@Transactional
 	public void update(Address address) {
 		addressDao.update(address);
 
 	}
 
-	@Transactional
 	public void delete(Address address) {
 		addressDao.delete(address);
 
 	}
 
-	@Transactional
 	public Address findByAddressId(long id) {
 		return addressDao.findByAddressId(id);
 	}

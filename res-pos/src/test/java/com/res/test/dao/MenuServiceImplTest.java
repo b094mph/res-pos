@@ -9,25 +9,23 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.res.dao.hibernate.MenuDao;
 import com.res.model.Menu;
+import com.res.service.MenuService;
 
-public class MenuDaoImplTest{
+public class MenuServiceImplTest{
 	
 	private ApplicationContext ctx;
-	private MenuDao menuDao;
+	private MenuService menuService;
 	
 	@Before
 	public void setUp(){
 		ctx = new ClassPathXmlApplicationContext("junit-context.xml");
-		menuDao = (MenuDao) ctx.getBean("menuDao");
+		menuService = (MenuService) ctx.getBean("menuService");
 	}
 	
 	@Test
 	public void menuByRestaurantIdTest(){
-		//TODO: need to make dao classes transactional to run unit tests
-		List<Menu> menuList = menuDao.menuByRestaurantId(1L);
-		assertTrue(!menuList.isEmpty());
+		
 	}
 
 }

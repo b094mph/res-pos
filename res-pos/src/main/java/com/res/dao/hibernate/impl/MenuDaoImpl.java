@@ -20,7 +20,7 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT m.foodCategory FROM Menu m WHERE m.restaurantId = :restaurantId");
 		
-		Query query = currentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setLong("restaurantId",restaurantId);
 		
 		logger.debug("MenuList size = " + query.list().size());
@@ -36,7 +36,7 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		sb.append("WHERE m.restaurantId = :restaurantId " +
 				"AND m.foodCategory.foodCategoryName = :foodCategoryName");
 		
-		Query query = currentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
 		query.setParameter("foodCategoryName", foodCategoryName);
 		

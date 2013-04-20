@@ -12,14 +12,14 @@ import com.res.model.Agent;
 import com.res.service.AgentService;
 
 @Service("agentService")
+@Transactional
 public class AgentServiceImpl implements AgentService {
 
 	private static Logger logger = Logger.getLogger(AgentServiceImpl.class);
 	
 	@Autowired
 	public AgentDao agentDao;
-
-	@Transactional
+	
 	@Override
 	public Boolean verifyAgent(Agent agent) {
 		String username = agent.getUserName();
@@ -32,7 +32,6 @@ public class AgentServiceImpl implements AgentService {
 		return true;
 	}
 
-	@Transactional
 	@Override
 	public Boolean isNewAgent(String username) {
 		boolean agentExist = false;
@@ -46,7 +45,6 @@ public class AgentServiceImpl implements AgentService {
 		return agentExist;
 	}
 
-	@Transactional
 	@Override
 	public Boolean isPasswordValid(String username, String password) {
 		Boolean passwordValid = false;

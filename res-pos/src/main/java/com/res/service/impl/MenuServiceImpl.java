@@ -15,6 +15,7 @@ import com.res.model.Menu;
 import com.res.service.MenuService;
 
 @Service("MenuService")
+@Transactional
 public class MenuServiceImpl implements MenuService {
 
 	private static Logger logger = Logger.getLogger(MenuServiceImpl.class);
@@ -22,7 +23,6 @@ public class MenuServiceImpl implements MenuService {
 	@Autowired
 	private MenuDao menuDao;
 	
-	@Transactional
 	@Override
 	public Set<FoodCategory> getFoodCategoriesFromMenu(long restaurantId) {
 		List<Menu> menuList = menuDao.menuByRestaurantId(restaurantId);
@@ -34,7 +34,6 @@ public class MenuServiceImpl implements MenuService {
 		return foodCategorySet;
 	}
 
-	@Transactional
 	@Override
 	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName) {
 		List<Menu> foodList = menuDao.getMenuByFoodCategory(restaurantId, foodCategoryName);

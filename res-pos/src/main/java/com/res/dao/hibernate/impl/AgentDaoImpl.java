@@ -16,14 +16,14 @@ public class AgentDaoImpl extends BaseDaoImpl implements AgentDao {
 
 	@Override
 	public Agent getAgentById(long id) {
-		return (Agent) currentSession().get(getClass(), id);
+		return (Agent) getCurrentSession().get(getClass(), id);
 	}
 
 	@Override
 	public Agent getAgentByUsername(String username) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("FROM Agent a WHERE a.userName = :username");
-		Query query = currentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setString("username", username);
 		return (Agent) query.list().get(0);
 	}
@@ -33,7 +33,7 @@ public class AgentDaoImpl extends BaseDaoImpl implements AgentDao {
 	public List<String> getAgentUsernames() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT a.userName FROM Agent a");
-		Query query = currentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().createQuery(sb.toString());
 		return (List<String>) query.list();
 	}
 
