@@ -9,7 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.res.service.AgentService;
 
-public class AgentServiceImplTest{
+public class AgentServiceImplTest {
 	
 	private ApplicationContext ctx;
 	private AgentService agentService;
@@ -22,8 +22,7 @@ public class AgentServiceImplTest{
 	
 	@Test
 	public void isPasswordValidTest(){
-		boolean logic = agentService.isPasswordValid("bobby", "12345");
-		assertTrue(logic);
+		assertTrue(agentService.isPasswordValid("bthai", "123"));
 	}
 
 }

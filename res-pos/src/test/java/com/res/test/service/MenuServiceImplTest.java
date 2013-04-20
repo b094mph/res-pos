@@ -1,4 +1,4 @@
-package com.res.test.dao;
+package com.res.test.service;
 
 import static org.junit.Assert.assertTrue;
 
