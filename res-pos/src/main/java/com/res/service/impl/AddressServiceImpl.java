@@ -1,5 +1,6 @@
 package com.res.service.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,6 +11,8 @@ import com.res.service.AddressService;
 
 @Service("addressService")
 public class AddressServiceImpl implements AddressService {
+	
+	private static Logger logger = Logger.getLogger(AddressServiceImpl.class);
 	
 	@Autowired
 	private AddressDao addressDao;
