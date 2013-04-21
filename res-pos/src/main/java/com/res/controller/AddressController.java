@@ -29,8 +29,8 @@ public class AddressController {
 	
 	@RequestMapping(value = "/addAddress", method = RequestMethod.POST)
 	public String addAddress(@ModelAttribute("address") Address address, BindingResult result){
-		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() + " " +
-				address.getState() + " " + address.getZipCode());
+		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() +
+				" " + address.getCity() + " " + address.getState() + " " + address.getZipCode());
 		addressService.save(address);
 		return "redirect:/address.html";
 	}

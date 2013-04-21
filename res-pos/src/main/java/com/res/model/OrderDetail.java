@@ -19,52 +19,61 @@ public class OrderDetail implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private long orderDetailId;
-	private long customerOrderId;
-	private long menuId;
-	private int quantity;
-	private String note;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="orderdetailid")
+	private long orderDetailId;
+	
+	@Column(name="customerorderid", unique=false, nullable=false, length=11)
+	private long customerOrderId;
+	
+	@Column(name="menuid", unique=false, nullable=false, length=11)
+	private long menuId;
+	
+	@Column(name="quantity", unique=false, nullable=false, length=2)
+	private int quantity;
+	
+	@Column(name="note", unique=false, nullable=true, length=200)
+	private String note;
+
 	public long getOrderDetailId() {
 		return orderDetailId;
 	}
+
 	public void setOrderDetailId(long orderDetailId) {
 		this.orderDetailId = orderDetailId;
 	}
-	
-	@Column(name="customerorderid", unique=false, nullable=false, length=11)
+
 	public long getCustomerOrderId() {
 		return customerOrderId;
 	}
+
 	public void setCustomerOrderId(long customerOrderId) {
 		this.customerOrderId = customerOrderId;
 	}
-	
-	@Column(name="menuid", unique=false, nullable=false, length=11)
+
 	public long getMenuId() {
 		return menuId;
 	}
+
 	public void setMenuId(long menuId) {
 		this.menuId = menuId;
 	}
-	
-	@Column(name="quantity", unique=false, nullable=false, length=2)
+
 	public int getQuantity() {
 		return quantity;
 	}
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	@Column(name="note", unique=false, nullable=true, length=200)
+
 	public String getNote() {
 		return note;
 	}
+
 	public void setNote(String note) {
 		this.note = note;
 	}
-	
+		
 }

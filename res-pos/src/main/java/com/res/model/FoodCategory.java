@@ -21,44 +21,51 @@ public class FoodCategory implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private long foodCategoryId;
-	private String foodCategoryName;
-	private String foodCategoryCName;
-	private List<Menu> menu;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="foodcategoryid")
+	private long foodCategoryId;
+	
+	@Column(name="foodcategoryname", unique=true, nullable=false, length=30)
+	private String foodCategoryName;
+	
+	@Column(name="foodcategorycname", unique=false, nullable=true, length=10)
+	private String foodCategoryCName;
+
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodCategory")
+	@Cascade({CascadeType.SAVE_UPDATE})
+	private List<Menu> menu;
+
 	public long getFoodCategoryId() {
 		return foodCategoryId;
 	}
+
 	public void setFoodCategoryId(long foodCategoryId) {
 		this.foodCategoryId = foodCategoryId;
 	}
-	
-	@Column(name="foodcategoryname", unique=true, nullable=false, length=30)
+
 	public String getFoodCategoryName() {
 		return foodCategoryName;
 	}
+
 	public void setFoodCategoryName(String foodCategoryName) {
 		this.foodCategoryName = foodCategoryName;
 	}
-	
-	@Column(name="foodcategorycname", unique=false, nullable=true, length=10)
+
 	public String getFoodCategoryCName() {
 		return foodCategoryCName;
 	}
+
 	public void setFoodCategoryCName(String foodCategoryCName) {
 		this.foodCategoryCName = foodCategoryCName;
 	}
 
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="foodCategory")
-	@Cascade({CascadeType.SAVE_UPDATE})
 	public List<Menu> getMenu() {
 		return menu;
 	}
+
 	public void setMenu(List<Menu> menu) {
 		this.menu = menu;
 	}
-	
+		
 }

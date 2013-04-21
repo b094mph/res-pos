@@ -21,88 +21,105 @@ public class CreditCard implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private long creditCardId;
-	private long personId;
-	private long addressId;
-	private long cardTypeId;
-	private String creditCardEnding;
-	private String creditCardNum;
-	private String creditCardName;
-	private Date expiration;
-	private String ccv;
-	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="creditcardid")
+	private long creditCardId;
+	
+	@Column(name="personid", unique=false, nullable=false, length=11)
+	private long personId;
+	
+	@Column(name="addressid", unique=false, nullable=true, length=11)
+	private long addressId;
+	
+	@Column(name="cardtypeid", unique=false, nullable=true, length=11)
+	private long cardTypeId;
+	
+	@Column(name="creditcardending", unique=false, nullable=false, length=4)
+	private String creditCardEnding;
+	
+	@Column(name="creditcardnum", unique=false, nullable=false, length=19)
+	private String creditCardNum;
+	
+	@Column(name="creditcardname", unique=false, nullable=false, length=50)
+	private String creditCardName;
+	
+	@Column(name="expiration", unique=false, nullable=false, length=6)
+	private Date expiration;
+	
+	@Column(name="ccv", unique=false, nullable=false, length=3)
+	private String ccv;
+
 	public long getCreditCardId() {
 		return creditCardId;
 	}
+
 	public void setCreditCardId(long creditCardId) {
 		this.creditCardId = creditCardId;
 	}
-	
-	@Column(name="personid", unique=false, nullable=false, length=11)
+
 	public long getPersonId() {
 		return personId;
 	}
+
 	public void setPersonId(long personId) {
 		this.personId = personId;
 	}
-	
-	@Column(name="addressid", unique=false, nullable=true, length=11)
+
 	public long getAddressId() {
 		return addressId;
 	}
+
 	public void setAddressId(long addressId) {
 		this.addressId = addressId;
 	}
-	
-	@Column(name="cardtypeid", unique=false, nullable=true, length=11)
+
 	public long getCardTypeId() {
 		return cardTypeId;
 	}
+
 	public void setCardTypeId(long cardTypeId) {
 		this.cardTypeId = cardTypeId;
 	}
-	
-	@Column(name="creditcardending", unique=false, nullable=false, length=4)
+
 	public String getCreditCardEnding() {
 		return creditCardEnding;
 	}
+
 	public void setCreditCardEnding(String creditCardEnding) {
 		this.creditCardEnding = creditCardEnding;
 	}
-	
-	@Column(name="creditcardnum", unique=false, nullable=false, length=19)
+
 	public String getCreditCardNum() {
 		return creditCardNum;
 	}
+
 	public void setCreditCardNum(String creditCardNum) {
 		this.creditCardNum = creditCardNum;
 	}
-	
-	@Column(name="creditcardname", unique=false, nullable=false, length=50)
+
 	public String getCreditCardName() {
 		return creditCardName;
 	}
+
 	public void setCreditCardName(String creditCardName) {
 		this.creditCardName = creditCardName;
 	}
-	
-	@Column(name="expiration", unique=false, nullable=false, length=6)
+
 	public Date getExpiration() {
 		return expiration;
 	}
+
 	public void setExpiration(Date expiration) {
 		this.expiration = expiration;
 	}
-	
-	@Column(name="ccv", unique=false, nullable=false, length=3)
+
 	public String getCcv() {
 		return ccv;
 	}
+
 	public void setCcv(String ccv) {
 		this.ccv = ccv;
 	}
-
+	
 }
