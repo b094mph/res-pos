@@ -7,6 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.MenuDao;
+import com.res.model.FoodCategory;
 import com.res.model.Menu;
 
 @Repository("menuDao")
@@ -18,11 +19,26 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@Override
 	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId){
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT m.foodCategoryId FROM Menu m WHERE m.restaurantId = :restaurantId");
+		sb.append("SELECT distinct m.foodCategory.foodCategoryId FROM Menu m ");
+		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setLong("restaurantId",restaurantId);
 		
+		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<FoodCategory> getFoodCategoriesFromMenu(long restaurantId){
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT distinct m.foodCategory FROM Menu m ");
+		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
 		return query.list();
 	}
 	

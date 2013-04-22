@@ -1,8 +1,6 @@
 package com.res.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.MenuDao;
+import com.res.model.FoodCategory;
 import com.res.model.Menu;
 import com.res.service.MenuService;
 
@@ -23,13 +22,13 @@ public class MenuServiceImpl implements MenuService {
 	private MenuDao menuDao;
 	
 	@Override
-	public Set<Long> getFoodCategoriesFromMenu(long restaurantId) {
-		List<Long> list = menuDao.getFoodCategoryIdsFromMenu(restaurantId);
-		Set<Long> set = new HashSet<Long>();
-		for(Long id : list){
-			set.add(id);
-		}
-		return set;
+	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId) {
+		return menuDao.getFoodCategoryIdsFromMenu(restaurantId);
+	}
+	
+	@Override
+	public List<FoodCategory> getFoodCategoriesFromMenu(long restaurantId){
+		return menuDao.getFoodCategoriesFromMenu(restaurantId);
 	}
 
 	@Override
