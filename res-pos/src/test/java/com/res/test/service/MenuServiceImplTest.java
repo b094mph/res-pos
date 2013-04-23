@@ -9,7 +9,9 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.res.constant.RestaurantContant;
 import com.res.model.FoodCategory;
+import com.res.model.Menu;
 import com.res.service.MenuService;
 
 public class MenuServiceImplTest{
@@ -25,20 +27,31 @@ public class MenuServiceImplTest{
 	
 	@Test
 	public void getFoodCategoriesFromMenuTest(){
-		List<Long> fcList = menuService.getFoodCategoryIdsFromMenu(1L);
-		assertEquals(18 ,fcList.size());
+		List<Long> ids = menuService.getFoodCategoryIdsFromMenu(RestaurantContant.NEW_CITY_CHINESE_ID);
+		assertEquals(18 , ids.size());
+		for(Long id : ids){
+			System.out.println("foodCategoryId = " + id);
+		}
 	}
 	
 	@Test
 	public void getFoodCategoriesForMenuTest(){
-		List<FoodCategory> fcSet =  menuService.getFoodCategoriesFromMenu(1L);
-		assertEquals(18, fcSet.size());
-		for(FoodCategory fc : fcSet){
+		List<FoodCategory> foodCategories =  menuService.getFoodCategoriesFromMenu(RestaurantContant.NEW_CITY_CHINESE_ID);
+		assertEquals(18, foodCategories.size());
+		for(FoodCategory fc : foodCategories){
 			System.out.println("foodcategoryid = " + fc.getFoodCategoryId() + 
 					" foodcategoryname = " + fc.getFoodCategoryName() +
 					" foodcategorycname = " + fc.getFoodCategoryCName());
 		}
-		
+	}
+	
+	@Test
+	public void getMenuFromFoodCategoryTest(){
+		List<Menu> subMenus = menuService.getMenuByFoodCategory(RestaurantContant.NEW_CITY_CHINESE_ID, 2L);
+		assertEquals(20, subMenus.size());
+		for(Menu menu : subMenus){
+			System.out.println(menu.getFood().getFoodShortName());
+		}
 	}
 
 }

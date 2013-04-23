@@ -3,6 +3,7 @@ package com.res.dao.hibernate.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -44,15 +45,15 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName){
+	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("FROM Menu m ");
 		sb.append("WHERE m.restaurantId = :restaurantId " +
-				"AND m.foodCategory.foodCategoryName = :foodCategoryName");
+				"AND m.foodCategory.foodCategoryId = :foodCategoryId");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
-		query.setParameter("foodCategoryName", foodCategoryName);
+		query.setParameter("foodCategoryId", foodCategoryId);
 		
 		logger.debug("FoodList size = " + query.list().size());
 		return query.list();

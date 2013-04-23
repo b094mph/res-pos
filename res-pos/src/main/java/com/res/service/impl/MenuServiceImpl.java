@@ -32,9 +32,8 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<Menu> getMenuByFoodCategory(long restaurantId, String foodCategoryName) {
-		List<Menu> foodList = menuDao.getMenuByFoodCategory(restaurantId, foodCategoryName);
-		return foodList;
+	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId) {
+		return menuDao.getMenuByFoodCategory(restaurantId, foodCategoryId);
 	}
 
 }
