@@ -46,7 +46,7 @@ public class MenuServiceImplTest{
 	}
 	
 	@Test
-	public void getMenuFromFoodCategoryTest(){
+	public void getMenuByFoodCategoryTest(){
 		List<Menu> subMenus = menuService.getMenuByFoodCategory(RestaurantContant.NEW_CITY_CHINESE_ID, 2L);
 		assertEquals(20, subMenus.size());
 		for(Menu menu : subMenus){
