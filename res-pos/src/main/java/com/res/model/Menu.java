@@ -45,40 +45,40 @@ public class Menu implements Serializable{
 	private String menuNum;
 	
 	@Column(name="small", unique=false, nullable=true, length=5)
-	private float small;
+	private Float small;
 	
 	@Column(name="large", unique=false, nullable=false, length=5)
-	private float large;
+	private Float large;
 	
 	@Column(name="lunchnum", unique=false, nullable=true, length=5)
 	private String lunchNum;
 	
 	@Column(name="lunch", unique=false, nullable=true, length=5)
-	private float lunch;
+	private Float lunch;
 	
 	@Column(name="combonum", unique=false, nullable=true, length=5)
 	private String comboNum;
 	
 	@Column(name="combo", unique=false, nullable=true, length=5)
-	private float combo;
+	private Float combo;
 	
 	@Column(name="spicy", unique=false, nullable=true, length=1)
-	private boolean spicy;
+	private Boolean spicy;
 	
 	@Column(name="rice", unique=false, nullable=true, length=1)
-	private boolean rice;
+	private Boolean rice;
 	
 	@Column(name="sauce", unique=false, nullable=true, length=1)
-	private boolean sauce;
+	private Boolean sauce;
 	
 	@Column(name="noodle", unique=false, nullable=true, length=1)
-	private boolean noodle;
+	private Boolean noodle;
 	
 	@Column(name="pieces", unique=false, nullable=true, length=2)
-	private int pieces;
+	private Integer pieces;
 	
 	@Column(name="appetizercombo", unique=false, nullable=true, length=1)
-	private boolean appetizerCombo;
+	private Boolean appetizerCombo;
 	
 	@Column(name="createddate", unique=false, nullable=true, length=12)
 	private Time createdDate;
@@ -140,19 +140,19 @@ public class Menu implements Serializable{
 		this.menuNum = menuNum;
 	}
 
-	public float getSmall() {
+	public Float getSmall() {
 		return small;
 	}
 
-	public void setSmall(float small) {
+	public void setSmall(Float small) {
 		this.small = small;
 	}
 
-	public float getLarge() {
+	public Float getLarge() {
 		return large;
 	}
 
-	public void setLarge(float large) {
+	public void setLarge(Float large) {
 		this.large = large;
 	}
 
@@ -164,11 +164,11 @@ public class Menu implements Serializable{
 		this.lunchNum = lunchNum;
 	}
 
-	public float getLunch() {
+	public Float getLunch() {
 		return lunch;
 	}
 
-	public void setLunch(float lunch) {
+	public void setLunch(Float lunch) {
 		this.lunch = lunch;
 	}
 
@@ -180,59 +180,59 @@ public class Menu implements Serializable{
 		this.comboNum = comboNum;
 	}
 
-	public float getCombo() {
+	public Float getCombo() {
 		return combo;
 	}
 
-	public void setCombo(float combo) {
+	public void setCombo(Float combo) {
 		this.combo = combo;
 	}
 
-	public boolean isSpicy() {
+	public Boolean getSpicy() {
 		return spicy;
 	}
 
-	public void setSpicy(boolean spicy) {
+	public void setSpicy(Boolean spicy) {
 		this.spicy = spicy;
 	}
 
-	public boolean isRice() {
+	public Boolean getRice() {
 		return rice;
 	}
 
-	public void setRice(boolean rice) {
+	public void setRice(Boolean rice) {
 		this.rice = rice;
 	}
 
-	public boolean isSauce() {
+	public Boolean getSauce() {
 		return sauce;
 	}
 
-	public void setSauce(boolean sauce) {
+	public void setSauce(Boolean sauce) {
 		this.sauce = sauce;
 	}
 
-	public boolean isNoodle() {
+	public Boolean getNoodle() {
 		return noodle;
 	}
 
-	public void setNoodle(boolean noodle) {
+	public void setNoodle(Boolean noodle) {
 		this.noodle = noodle;
 	}
 
-	public int getPieces() {
+	public Integer getPieces() {
 		return pieces;
 	}
 
-	public void setPieces(int pieces) {
+	public void setPieces(Integer pieces) {
 		this.pieces = pieces;
 	}
 
-	public boolean isAppetizerCombo() {
+	public Boolean getAppetizerCombo() {
 		return appetizerCombo;
 	}
 
-	public void setAppetizerCombo(boolean appetizerCombo) {
+	public void setAppetizerCombo(Boolean appetizerCombo) {
 		this.appetizerCombo = appetizerCombo;
 	}
 
@@ -283,5 +283,5 @@ public class Menu implements Serializable{
 	public void setFood(Food food) {
 		this.food = food;
 	}
-		
+	
 }

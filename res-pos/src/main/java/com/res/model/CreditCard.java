@@ -30,10 +30,10 @@ public class CreditCard implements Serializable{
 	private long personId;
 	
 	@Column(name="addressid", unique=false, nullable=true, length=11)
-	private long addressId;
+	private Long addressId;
 	
 	@Column(name="cardtypeid", unique=false, nullable=true, length=11)
-	private long cardTypeId;
+	private Long cardTypeId;
 	
 	@Column(name="creditcardending", unique=false, nullable=false, length=4)
 	private String creditCardEnding;
@@ -66,19 +66,19 @@ public class CreditCard implements Serializable{
 		this.personId = personId;
 	}
 
-	public long getAddressId() {
+	public Long getAddressId() {
 		return addressId;
 	}
 
-	public void setAddressId(long addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 
-	public long getCardTypeId() {
+	public Long getCardTypeId() {
 		return cardTypeId;
 	}
 
-	public void setCardTypeId(long cardTypeId) {
+	public void setCardTypeId(Long cardTypeId) {
 		this.cardTypeId = cardTypeId;
 	}
 

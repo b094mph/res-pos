@@ -37,7 +37,7 @@ public class CustomerOrder implements Serializable{
 	private long personId;
 	
 	@Column(name="creditcardid", unique=false, nullable=true, length=11)
-	private long creditCardId;
+	private Long creditCardId;
 	
 	@Column(name="orderoption", unique=false, nullable=false, length=11)
 	private String orderOption;
@@ -49,13 +49,13 @@ public class CustomerOrder implements Serializable{
 	private float subTotal;
 	
 	@Column(name="tax", unique=false, nullable=true, length=5)
-	private float tax;
+	private Float tax;
 	
 	@Column(name="grandtotal", unique=false, nullable=false, length=5)
 	private float grandTotal;
 	
 	@Column(name="tip", unique=false, nullable=true, length=5)
-	private float tip;
+	private Float tip;
 	
 	@Column(name="orderstatus", unique=false, nullable=false, length=10)
 	private String orderStatus;
@@ -95,11 +95,11 @@ public class CustomerOrder implements Serializable{
 		this.personId = personId;
 	}
 
-	public long getCreditCardId() {
+	public Long getCreditCardId() {
 		return creditCardId;
 	}
 
-	public void setCreditCardId(long creditCardId) {
+	public void setCreditCardId(Long creditCardId) {
 		this.creditCardId = creditCardId;
 	}
 
@@ -127,11 +127,11 @@ public class CustomerOrder implements Serializable{
 		this.subTotal = subTotal;
 	}
 
-	public float getTax() {
+	public Float getTax() {
 		return tax;
 	}
 
-	public void setTax(float tax) {
+	public void setTax(Float tax) {
 		this.tax = tax;
 	}
 
@@ -143,11 +143,11 @@ public class CustomerOrder implements Serializable{
 		this.grandTotal = grandTotal;
 	}
 
-	public float getTip() {
+	public Float getTip() {
 		return tip;
 	}
 
-	public void setTip(float tip) {
+	public void setTip(Float tip) {
 		this.tip = tip;
 	}
 

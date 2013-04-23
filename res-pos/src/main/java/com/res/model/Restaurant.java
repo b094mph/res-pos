@@ -47,13 +47,13 @@ public class Restaurant implements Serializable{
 	private String faxNumber;
 	
 	@Column(name="deliverycost", unique=false, nullable=true, length=5)
-	private float deliveryCost;
+	private Float deliveryCost;
 	
 	@Column(name="tax", unique=false, nullable=true, length=5)
-	private float tax;
+	private Float tax;
 	
 	@Column(name="rounding", unique=false, nullable=true, length=1)
-	private boolean rounding;
+	private Boolean rounding;
 	
 	@Column(name="montothursopen", unique=false, nullable=false, length=8)
 	private String monToThursOpen;
@@ -155,27 +155,27 @@ public class Restaurant implements Serializable{
 		this.faxNumber = faxNumber;
 	}
 
-	public float getDeliveryCost() {
+	public Float getDeliveryCost() {
 		return deliveryCost;
 	}
 
-	public void setDeliveryCost(float deliveryCost) {
+	public void setDeliveryCost(Float deliveryCost) {
 		this.deliveryCost = deliveryCost;
 	}
 
-	public float getTax() {
+	public Float getTax() {
 		return tax;
 	}
 
-	public void setTax(float tax) {
+	public void setTax(Float tax) {
 		this.tax = tax;
 	}
 
-	public boolean isRounding() {
+	public Boolean getRounding() {
 		return rounding;
 	}
 
-	public void setRounding(boolean rounding) {
+	public void setRounding(Boolean rounding) {
 		this.rounding = rounding;
 	}
 
@@ -274,5 +274,5 @@ public class Restaurant implements Serializable{
 	public void setLastUpdatedBy(String lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
 	}
-	
+
 }
