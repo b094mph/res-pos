@@ -1,5 +1,7 @@
 package com.res.controller;
 
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,6 +36,14 @@ public class CustomerController {
 		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
 		customerService.save(customer);
+		return "redirect:/showCustomerForm.html";
+	}
+	
+	@RequestMapping("/listCustomers")
+	public String listCustomers(Map<String, Object> map){
+		logger.info("in listCustomers() method...");
+		map.put("customer", new Person());
+		map.put("customerList", customerService.listCustomers());
 		return "redirect:/showCustomerForm.html";
 	}
 }

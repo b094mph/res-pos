@@ -17,13 +17,19 @@ $(document).ready(function(){
 	
 	$('#customerBtn').click(function(){
 		window.location = "http://localhost:8080/res-pos/showCustomerForm.html";
-//		$.ajax({
-//			type: "POST",
-//			cache: false,
-//			url: "showCustomerForm.html",
-//			success: showSuccess,
-//			error: showError
-//		});
+	});
+	
+	$('#showCustomerTable').click(function(){
+		$.ajax({
+			type: "GET",
+			cache: false,
+			url: "listCustomers.html",
+			success: function(){
+				alert("list customer success");
+				$('#showCustomerList').html().show();
+			},
+			error: showError
+		});
 	});
 
 });
@@ -34,6 +40,6 @@ function showSuccess(){
 }
 
 function showError(){
-	alert("An error occured");
+	alert("An error occured.");
 }
 

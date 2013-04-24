@@ -1,5 +1,7 @@
 package com.res.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,6 +38,11 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public Person findCustomer(long id) {
 		return customerDao.findCustomer(id);
+	}
+
+	@Override
+	public List<Person> listCustomers() {
+		return customerDao.listCustomers();
 	}
 
 }

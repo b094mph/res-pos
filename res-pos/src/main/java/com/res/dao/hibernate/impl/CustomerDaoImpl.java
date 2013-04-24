@@ -1,5 +1,7 @@
 package com.res.dao.hibernate.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -15,6 +17,14 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 	public Person findCustomer(long id) {
 		return (Person) getCurrentSession().get(getClass(), id);
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Person> listCustomers() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("FROM Person");
+		return getCurrentSession().createQuery(sb.toString()).list();
 	}
 
 }
