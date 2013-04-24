@@ -12,10 +12,10 @@
 <div class="container">	
 	<div class="btn-group row" data-toggle="buttons-radio">
 		<button id="home" class="btn">Home</button>
+		<button id="addressBtn" class="btn">Address</button>
+		<button id="customerBtn" class="btn">Customer</button>
 		<button class="btn"><spring:message code="label.menu"/></button>
 		<button id="about" class="btn">About</button>
-		<button class="btn">Test</button>
-		<button class="btn">Test</button>
 		<button class="btn">Test</button>
 		<button class="btn">Test</button>
 		<button class="btn">Test</button>
