@@ -7,9 +7,10 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<script type="text/javascript" src="../js/customer.js"></script>
+	<script type="text/javascript" src="js/customer.js"></script>
 </head>
 <body>
+<p>Enter Customer Information</p>
 <form:form method="post" action="addCustomer.html">
 	<table>
 		<tr>

@@ -3,34 +3,34 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
-	alert("menubar js is loaded. ");
 	
 	$('#addressBtn').click(function(){
-		$.ajax({
-			type: "POST",
-			cache: false,
-			url: "address.html",
-			success: showSuccess,
-			error: showError
-		});
+		window.location = "http://localhost:8080/res-pos/address.html";
+//		$.ajax({
+//			type: "POST",
+//			cache: false,
+//			url: "address.html",
+//			success: showSuccess,
+//			error: showError
+//		});
 	});
 	
 	$('#customerBtn').click(function(){
-		$.ajax({
-			type: "POST",
-			cache: false,
-			url: "showCustomerForm.html",
-			success: showSuccess,
-			error: showError
-		});
+		window.location = "http://localhost:8080/res-pos/showCustomerForm.html";
+//		$.ajax({
+//			type: "POST",
+//			cache: false,
+//			url: "showCustomerForm.html",
+//			success: showSuccess,
+//			error: showError
+//		});
 	});
 
 });
 
 
-
 function showSuccess(){
-	alert("succcess");
+	alert("Success");
 }
 
 function showError(){

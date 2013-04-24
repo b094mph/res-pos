@@ -3,5 +3,5 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
-	alert("address loaded.");
+//	alert("address loaded.");
 });
