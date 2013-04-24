@@ -14,11 +14,11 @@
 <form:form method="post" action="addCustomer.html">
 	<table>
 		<tr>
-			<td><form:label path="firstName">FirstName:</form:label></td>
+			<td><form:label path="firstName">First Name:</form:label></td>
 			<td><form:input path="firstName"/></td>
 		</tr>
 		<tr>
-			<td><form:label path="lastName">lastName:</form:label></td>
+			<td><form:label path="lastName">Last Name:</form:label></td>
 			<td><form:input path="lastName"/></td>
 		</tr>
 		<tr>
