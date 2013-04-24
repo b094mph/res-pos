@@ -7,6 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<jsp:include page="common/bootstrap.jsp"/>
 	<jsp:include page="common/jquery.jsp"/>
+	<script type="text/javascript" src="js/menubar.js"></script>
 </head>
 <body>
 <div class="container">	
