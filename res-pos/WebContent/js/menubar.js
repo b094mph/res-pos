@@ -4,7 +4,7 @@ $.ajaxSetup({
 
 $(document).ready(function(){
 	
-	$('#addressBtn').click(function(){
+	$('#address-link').click(function(){
 		window.location = "http://localhost:8080/res-pos/address.html";
 //		$.ajax({
 //			type: "POST",
@@ -15,7 +15,7 @@ $(document).ready(function(){
 //		});
 	});
 	
-	$('#customerBtn').click(function(){
+	$('#customer-link').click(function(){
 		window.location = "http://localhost:8080/res-pos/showCustomerForm.html";
 	});
 	
