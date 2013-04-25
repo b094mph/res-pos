@@ -1,5 +1,7 @@
 package com.res.dao.hibernate.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +16,12 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 	@Override
 	public Address findByAddressId(long id) {
 		return (Address) getCurrentSession().get(getClass(), id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Address> listAddress() {
+		return getCurrentSession().createQuery("FROM Address").list();
 	}
 
 }

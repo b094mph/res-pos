@@ -24,7 +24,10 @@ public class AddressController {
 	
 	@RequestMapping("/address")
     public ModelAndView listAddresses() {
-        return new ModelAndView("address", "command", new Address());
+		ModelAndView mav = new ModelAndView("address");
+		mav.addObject("command", new Address());
+		mav.addObject("addressList", addressService.listAddress());
+        return mav;
     }
 	
 	@RequestMapping(value = "/addAddress", method = RequestMethod.POST)

@@ -1,5 +1,7 @@
 package com.res.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,11 @@ public class AddressServiceImpl implements AddressService {
 
 	public Address findByAddressId(long id) {
 		return addressDao.findByAddressId(id);
+	}
+
+	@Override
+	public List<Address> listAddress() {
+		return addressDao.listAddress();
 	}
 
 }
