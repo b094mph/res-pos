@@ -21,6 +21,7 @@ public class AddressServiceImpl implements AddressService {
 	private AddressDao addressDao;
 
 	public void save(Address address) {
+		address.setState(address.getState().toUpperCase());
 		addressDao.save(address);
 	}
 
