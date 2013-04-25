@@ -18,7 +18,6 @@
 		<button id="showCustomerTable" class="btn">Show Customer Table</button>
 		<button class="btn"><spring:message code="label.menu"/></button>
 		<button id="about" class="btn">About</button>
-
 		<button class="btn">Test</button>
 		<button class="btn">Test</button>
 		<button class="btn">Other</button>

@@ -19,18 +19,18 @@ $(document).ready(function(){
 		window.location = "http://localhost:8080/res-pos/showCustomerForm.html";
 	});
 	
-	$('#showCustomerTable').click(function(){
-		$.ajax({
-			type: "GET",
-			cache: false,
-			url: "listCustomers.html",
-			success: function(){
-				alert("list customer success");
-				$('#showCustomerList').html().show();
-			},
-			error: showError
-		});
-	});
+//	$('#showCustomerTable').click(function(){
+//		$.ajax({
+//			type: "GET",
+//			cache: false,
+//			url: "listCustomers.html",
+//			success: function(){
+//				alert("list customer success");
+//				$('#showCustomerList').html().show();
+//			},
+//			error: showError
+//		});
+//	});
 
 });
 

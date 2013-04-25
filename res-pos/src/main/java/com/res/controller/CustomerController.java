@@ -27,8 +27,13 @@ public class CustomerController {
 	@RequestMapping("/showCustomerForm")
 	public ModelAndView showCustomerForm(){
 		logger.info("in showCustomerForm() method...");
+		ModelAndView mav = new ModelAndView("customer");
+		
 		Person customer = new Person();
-		return new ModelAndView("customer", "command", customer);
+		mav.addObject("command", customer);
+		mav.addObject("customerList", customerService.listCustomers());
+		
+		return mav;
 	}
 	
 	@RequestMapping(value= "addCustomer", method=RequestMethod.POST)
@@ -36,14 +41,6 @@ public class CustomerController {
 		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
 		customerService.save(customer);
-		return "redirect:/showCustomerForm.html";
-	}
-	
-	@RequestMapping("/listCustomers")
-	public String listCustomers(Map<String, Object> map){
-		logger.info("in listCustomers() method...");
-		map.put("customer", new Person());
-		map.put("customerList", customerService.listCustomers());
 		return "redirect:/showCustomerForm.html";
 	}
 }

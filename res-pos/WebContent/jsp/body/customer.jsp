@@ -11,10 +11,11 @@
 </head>
 <body>
 <fieldset>
-<legend>Customer Information</legend>
+<legend>Enter Customer Information</legend>
 	<table>
 		<tr>
 		<td>
+		<div class="span4">
 		<form:form method="post" action="addCustomer.html">
 			<table>
 				<tr>
@@ -52,13 +53,15 @@
 				</tr>
 			</table>
 		</form:form>
+		</div>
 		</td>
 		<td>
-			<div id="showCustomerList">
-				<c:if test="${!empty customerList }">
+			<div id="showCustomerList" class="span7">
+				<fieldset>
+				<legend>Customer Information</legend>
 				<table class="table table-striped table-hover">
 					<tr>
-						<th>Name</th>
+						<th>Last Name, First Name</th>
 						<th>Phone 1</th>
 						<th>Phone 2</th>
 						<th>Ext</th>
@@ -76,7 +79,7 @@
 						</tr>
 					</c:forEach>
 				</table>
-				</c:if>
+				</fieldset>
 				</div>
 			</td>
 		</tr>
