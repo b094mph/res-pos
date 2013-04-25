@@ -10,35 +10,37 @@
 	<script type="text/javascript" src="js/address.js"></script>
 </head>
 <body>
-<p>Enter Address Information</p>
-<form:form method="post" action="addAddress.html">
-	<table>
-		<tr>
-			<td><form:label path="street1"><spring:message code="label.street1"/></form:label></td>
-			<td><form:input path="street1"/></td>
-		</tr>
-		<tr>
-			<td><form:label path="street2"><spring:message code="label.street2"/></form:label></td>
-			<td><form:input path="street2"/></td>
-		</tr>
-		<tr>
-			<td><form:label path="city"><spring:message code="label.city"/></form:label></td>
-			<td><form:input path="city"/></td>
-		</tr>
-		<tr>
-			<td><form:label path="state"><spring:message code="label.state"/></form:label></td>
-			<td><form:input path="state"/></td>
-		</tr>
-		<tr>
-			<td><form:label path="zipCode"><spring:message code="label.zipCode"/></form:label></td>
-			<td><form:input path="zipCode"/></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<input type="submit" value="<spring:message code="label.addAddress"/>"/>
-			</td>
-		</tr>
-	</table>
-</form:form>
+<fieldset>
+<legend>Enter Address Information</legend>
+	<form:form method="post" action="addAddress.html">
+		<table>
+			<tr>
+				<td><form:label path="street1"><spring:message code="label.street1"/></form:label></td>
+				<td><form:input path="street1"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="street2"><spring:message code="label.street2"/></form:label></td>
+				<td><form:input path="street2"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="city"><spring:message code="label.city"/></form:label></td>
+				<td><form:input path="city"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="state"><spring:message code="label.state"/></form:label></td>
+				<td><form:input path="state"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="zipCode"><spring:message code="label.zipCode"/></form:label></td>
+				<td><form:input path="zipCode"/></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="<spring:message code="label.addAddress"/>"/>
+				</td>
+			</tr>
+		</table>
+	</form:form>
+</fieldset>
 </body>
 </html>
