@@ -6,20 +6,22 @@
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>
-<table align="center">
-    <tr>
-        <td colspan="2"><tiles:insertAttribute name="header" />
-        </td>
-    </tr>
-    <tr>
-    	<td><tiles:insertAttribute name="menu" /></td>
-    </tr>
-    <tr>
-        <td><tiles:insertAttribute name="body" /></td>
-    </tr>
-    <tr>
-        <td colspan="2"><tiles:insertAttribute name="footer"/></td>
-    </tr>
-</table>
+<div class="container">
+	<table>
+	    <tr>
+	        <td colspan="2"><tiles:insertAttribute name="header" />
+	        </td>
+	    </tr>
+	    <tr>
+	    	<td><tiles:insertAttribute name="menu" /></td>
+	    </tr>
+	    <tr>
+	        <td><tiles:insertAttribute name="body" /></td>
+	    </tr>
+	    <tr>
+	        <td colspan="2"><tiles:insertAttribute name="footer"/></td>
+	    </tr>
+	</table>
+</div>
 </body>
 </html>

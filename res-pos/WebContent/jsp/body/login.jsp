@@ -12,27 +12,32 @@
 <!-- http://localhost:8080/res-pos/index.jsp -->
 <body>
 <div class="container">
-	<div class="row">
-		<div class="span4 offset4">
-			<p>RESTAURANT_01</p>
-			<p>Login Page</p>
-			<form:form method="post" action="authenticateLogin.html">
-				<table>
-					<tr>
-						<td><form:label path="userName">Agent:</form:label></td>
-						<td><form:input path="userName"/></td>
-					</tr>
-					<tr>
-						<td><form:label path="agentPassword">Password:</form:label> </td>
-						<td><form:password path="agentPassword"/></td>
-					</tr>
-					<tr>
-						<td><input type="submit" value="Login"/></td>
-					</tr>
-				</table>
-			</form:form>
-		</div>
-	</div> <!-- .row -->
+	<fieldset>
+	<legend>Restaurant_01</legend>
+		<div class="row">
+			<div class="span4 offset3">
+				<form class="form-horizontal" method="post" action="authenticateLogin.html">
+					<div class="control-group">
+						<label class="control-label" for="username">Username</label>
+						<div class="controls">
+							<input type="text" id="username" name="userName" placeholder="Username">
+						</div>
+					</div>
+					<div class="control-group">
+						<label class="control-label" for="password">Password</label>
+						<div class="controls">
+							<input type="password" id="password" name="agentPassword" placeholder="Password">
+						</div>
+					</div>
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn">Submit</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div> <!-- .row -->
+	</fieldset>
 </div> <!-- .container -->
 </body>
 </html>

@@ -11,40 +11,33 @@
 </head>
 <body>
 <fieldset>
-<legend>Enter Address Information</legend>
+<legend>Address</legend>
 <table>
 	<tr>
 		<td>
 			<div class="span4">
-				<form:form method="post" action="addAddress.html">
+				<form method="post" action="addAddress.html">
 					<table>
 						<tr>
-							<td><form:label path="street1"><spring:message code="label.street1"/></form:label></td>
-							<td><form:input path="street1"/></td>
+							<td><input type="text" name="street1" placeholder="<spring:message code="label.street1"/>"></td>
 						</tr>
 						<tr>
-							<td><form:label path="street2"><spring:message code="label.street2"/></form:label></td>
-							<td><form:input path="street2"/></td>
+							<td><input type="text" name="street2" placeholder="<spring:message code="label.street2"/>"></td>
 						</tr>
 						<tr>
-							<td><form:label path="city"><spring:message code="label.city"/></form:label></td>
-							<td><form:input path="city"/></td>
+							<td><input type="text" name="city" placeholder="<spring:message code="label.city"/>"></td>
 						</tr>
 						<tr>
-							<td><form:label path="state"><spring:message code="label.state"/></form:label></td>
-							<td><form:input path="state"/></td>
+							<td><input type="text" name="state" placeholder="<spring:message code="label.state"/>"></td>
 						</tr>
 						<tr>
-							<td><form:label path="zipCode"><spring:message code="label.zipCode"/></form:label></td>
-							<td><form:input path="zipCode"/></td>
+							<td><input type="text" name="zipCode" placeholder="<spring:message code="label.zipCode"/>"></td>
 						</tr>
 						<tr>
-							<td colspan="2">
-								<input type="submit" value="<spring:message code="label.addAddress"/>"/>
-							</td>
+							<td><button type="submit"><spring:message code="label.addAddress"/></button></td>
 						</tr>
 					</table>
-				</form:form>
+				</form>
 			</div>
 		</td>
 		<td>

@@ -11,7 +11,7 @@
 </head>
 <body>
 <fieldset>
-<legend>Enter Customer Information</legend>
+<legend>Customer</legend>
 	<table>
 		<tr>
 			<td>
