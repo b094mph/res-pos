@@ -39,7 +39,7 @@ public class AddressController {
 		return "redirect:/address.html";
 	}
 	
-	@RequestMapping("/delete/${addressId}")
+	@RequestMapping("/delete/{addressId}")
 	public String deleteAddress(@PathVariable("addressId") long id){
 		addressService.deleteAddress(id);
 		return "redirect:/address.html";
