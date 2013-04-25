@@ -44,4 +44,9 @@ public class AddressServiceImpl implements AddressService {
 		return addressDao.listAddress();
 	}
 
+	@Override
+	public void deleteAddress(long id) {
+		addressDao.deleteAddress(id);
+	}
+
 }
