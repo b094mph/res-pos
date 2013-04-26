@@ -59,7 +59,7 @@
 							<td>${address.city}</td>
 							<td>${address.state}</td>
 							<td>${address.zipCode}</td>
-							<td><a href="delete/${address.addressId}">delete</a></td>
+							<td><a href="delete/${address.addressId}.html">delete</a></td>
 						</tr>
 					</c:forEach>
 					</table>

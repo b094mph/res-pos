@@ -48,6 +48,6 @@ public class AddressController {
 //	@RequestMapping("/find/{addressId}")
 //	public String findByAddressId(@PathVariable("addressId") Integer addressId){
 //		addressService.findByAddressId(addressId);
-//		return "redirect:/index";
+//		return "redirect:/address.html";
 //	}
 }
