@@ -3,10 +3,10 @@
 
 <div class="navbar navbar-static-top">	
 	<div class="navbar-inner">
-		<a class="brand" href="#">RES-POS</a>
+		<a class="brand" href="index.jsp">RES-POS</a>
 		<ul class="nav">
 			<li id="home-link">
-				<a id="home-link" href="http://localhost:8080/res-pos/index.jsp">Home</a>
+				<a id="home-link" href="index.jsp">Home</a>
 			</li>
 			<li><a id="address-link" href="address.html">Address</a></li>
 			<li><a id="customer-link" href="showCustomerForm.html">Customer</a></li>

@@ -10,22 +10,30 @@
 <body>
 <fieldset>
 <legend><spring:message code="label.menu"/></legend>
-<div>
-	<table>
-		<tr>
-			<td></td>
-		</tr>
-		<tr>
-			<td>
-				<table>
-					<c:forEach items="${foodCategories}" var="foodCategory">
-						<button type="button" class="btn" >${foodCategory.foodCategoryName}</button> 
-					</c:forEach>
-				</table>
-			</td>
-		</tr>
-	</table>
-</div>
+	<div class="row">
+		<div id="category" class="span5">
+			<fieldset>
+			<legend>Category</legend>
+			<table>
+				<c:forEach items="${foodCategories}" var="fc">
+					<button id="fc_${fc.foodCategoryId}" 
+							type="button" 
+							name="${fc.foodCategoryId}" 
+							class="btn btn-info btn-large" 
+							value='<c:out value="${fc.foodCategoryId}"></c:out>'
+					>
+						${fc.foodCategoryName}
+					</button> 
+				</c:forEach>
+			</table>
+			</fieldset>
+		</div>
+		<div id="subcategory" class="span7">
+			<fieldset>
+			<legend>SubCategory</legend>
+			</fieldset>
+		</div>
+	</div>
 </fieldset>
 </body>
 </html>

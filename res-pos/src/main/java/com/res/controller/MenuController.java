@@ -23,9 +23,10 @@ public class MenuController {
 	
 	@RequestMapping("/menu")
 	public ModelAndView showMenu(){
-		logger.info("hitting showMenu()");
 		ModelAndView mav = new ModelAndView("menu");
+		
 		long restaurantId = 1L;
+		logger.info("restaurantId = " + restaurantId);
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId);
 		
