@@ -26,5 +26,10 @@
     	<put-attribute name="title" value="Adding Customer"/>
     	<put-attribute name="body" value="/jsp/body/customer.jsp"/>
     </definition>
+ 	
+ 	<definition name="menu" extends="base.definition">
+ 		<put-attribute name="title" value="Menu"/>
+ 		<put-attribute name="body" value="/jsp/body/menu.jsp"/>
+ 	</definition>
  
 </tiles-definitions>
