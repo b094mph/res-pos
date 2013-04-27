@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -39,6 +40,12 @@ public class CustomerController {
 		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
 		customerService.save(customer);
+		return "redirect:/showCustomerForm.html";
+	}
+	
+	@RequestMapping(value="delete/{customerId}", method=RequestMethod.GET)
+	public String deleteCustomer(@PathVariable("customerId") long id){
+		customerService.deleteCustomer(id);
 		return "redirect:/showCustomerForm.html";
 	}
 }

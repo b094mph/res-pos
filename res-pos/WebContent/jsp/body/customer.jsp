@@ -47,6 +47,7 @@
 						<td>${customer.ext}</td>
 						<td>${customer.email}</td>
 						<td>${customer.note}</td> 
+						<td><a href="delete/${customer.personId}.html">delete</a></td>
 					</tr>
 				</c:forEach>
 			</table>

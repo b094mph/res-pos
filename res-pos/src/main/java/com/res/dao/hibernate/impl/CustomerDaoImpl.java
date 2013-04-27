@@ -27,4 +27,18 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 		return getCurrentSession().createQuery(sb.toString()).list();
 	}
 
+	@Override
+	public void deleteCustomer(long id) {
+		Person customer = (Person) getCurrentSession().load(Person.class, id);
+		try{
+			logger.info("Attempting to delete customer with personId = " + id);
+			super.delete(customer);
+		}catch(NullPointerException e){
+			logger.info("Can not delete customer with personId = " + id);
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
+
 }

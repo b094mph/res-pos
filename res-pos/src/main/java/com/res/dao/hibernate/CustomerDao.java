@@ -8,4 +8,5 @@ public interface CustomerDao extends BaseDao {
 
 	public Person findCustomer(long id);
 	public List<Person> listCustomers();
+	public void deleteCustomer(long id);
 }

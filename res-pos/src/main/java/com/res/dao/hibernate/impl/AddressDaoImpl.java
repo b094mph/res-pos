@@ -27,11 +27,13 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 	@Override
 	public void deleteAddress(long id) {
 		Address address = (Address) getCurrentSession().load(Address.class, id);
-		logger.info("Attempting to delete address with id = " + id);
 		try{
-			getCurrentSession().delete(address);
+			logger.info("Attempting to delete address with addressId = " + id);
+			super.delete(address);
 		}catch(NullPointerException e){
 			logger.info("Can not delete address with addressId = " + id);
+			e.printStackTrace();
+		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}

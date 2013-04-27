@@ -25,7 +25,7 @@ public class MenuController {
 	public ModelAndView showMenu(){
 		ModelAndView mav = new ModelAndView("menu");
 		
-		long restaurantId = 1L;
+		long restaurantId = 1L; //TODO: hardcoded for now.
 		logger.info("restaurantId = " + restaurantId);
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId);
