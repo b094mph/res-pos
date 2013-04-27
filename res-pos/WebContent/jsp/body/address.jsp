@@ -13,7 +13,7 @@
 <fieldset>
 <legend>Address</legend>
 	<div class="row">
-		<div class="span4">
+		<div class="span3">
 			<form method="get" action="addAddress.html">
 				<table>
 					<tr>

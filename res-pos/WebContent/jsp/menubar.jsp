@@ -13,6 +13,12 @@
 			<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
 			<li><a href="#">About Us</a></li>
 			<li><a href="#">Careers</a></li>
+			<li>&nbsp;</li>
+			<li>
+				<form class="navbar-search pull-right">
+					<input type="text" class="search-query" placeholder="Search">
+				</form>
+			</li>
 		</ul>
 	</div>
 </div>

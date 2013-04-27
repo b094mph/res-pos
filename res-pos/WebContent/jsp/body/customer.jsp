@@ -13,7 +13,7 @@
 <fieldset>
 <legend>Customer</legend>
 	<div class="row">
-		<div class="span4">
+		<div class="span3">
 			<form method="get" action="addCustomer.html">
 				<table>
 					<tr><td><input type="text" name="firstName" placeholder="First Name"></td></tr>
@@ -27,7 +27,7 @@
 				</table>
 			</form>
 		</div>
-		<div id="showCustomerList" class="span6">
+		<div id="showCustomerList" class="span7">
 			<fieldset>
 			<legend>Customer Information</legend>
 			<table class="table table-striped table-hover">
