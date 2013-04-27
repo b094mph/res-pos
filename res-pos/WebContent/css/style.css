@@ -4,14 +4,14 @@ input#test{
 }
 
 /* category and subcategory buttons */
-.button1{
+.btn1{
 	height:50px;
 	width:120px;
 	white-space:normal;
 }
 
 /* size buttons */
-.button2{
+.btn2{
 	height:40px;
 	width:80px;
 	white-space:normal;	

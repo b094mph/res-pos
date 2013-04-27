@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <fieldset>
@@ -19,7 +20,7 @@
 					<button id="fc_${fc.foodCategoryId}" 
 							type="button" 
 							name="${fc.foodCategoryId}" 
-							class="btn btn-info btn-large" 
+							class="btn btn-info btn-large btn1"
 							value='<c:out value="${fc.foodCategoryId}"></c:out>'
 					>
 						${fc.foodCategoryName}
