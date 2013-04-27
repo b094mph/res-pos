@@ -35,7 +35,7 @@ public class CustomerController {
 		return mav;
 	}
 	
-	@RequestMapping(value= "addCustomer", method=RequestMethod.POST)
+	@RequestMapping(value= "addCustomer", method=RequestMethod.GET)
 	public String addCustomer(@ModelAttribute("customer") Person customer, BindingResult result){
 		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());

@@ -14,7 +14,7 @@
 <legend>Customer</legend>
 	<div class="row">
 		<div class="span4">
-			<form method="post" action="addCustomer.html">
+			<form method="get" action="addCustomer.html">
 				<table>
 					<tr><td><input type="text" name="firstName" placeholder="First Name"></td></tr>
 					<tr><td><input type="text" name="lastName" placeholder="Last Name"></td></tr>

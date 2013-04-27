@@ -14,7 +14,7 @@
 <legend>Address</legend>
 	<div class="row">
 		<div class="span4">
-			<form method="post" action="addAddress.html">
+			<form method="get" action="addAddress.html">
 				<table>
 					<tr>
 						<td><input type="text" name="street1" placeholder="<spring:message code="label.street1"/>"></td>

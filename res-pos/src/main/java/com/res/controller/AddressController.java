@@ -31,7 +31,7 @@ public class AddressController {
         return mav;
     }
 	
-	@RequestMapping(value = "/addAddress", method = RequestMethod.POST)
+	@RequestMapping(value = "/addAddress", method = RequestMethod.GET)
 	public String addAddress(@ModelAttribute("address") Address address, BindingResult result){
 		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() +
 				" " + address.getCity() + " " + address.getState() + " " + address.getZipCode());
