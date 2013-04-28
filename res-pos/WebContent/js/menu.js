@@ -21,14 +21,29 @@ function showSubCategory(foodCategoryId){
 	var params = {foodCategoryId : foodCategoryId};
 	$.ajax({
 		type : GET,
-		url : "subCategory.json",
+		url : "subMenu.json",
+		dataType : "json",
+		contentType : "application/json",
 		data : params,
-		success : function(data){
-			//$("#subcategoryajax").html(data).show();
-			alert("success" + data);
-		},
-		error : showError()
+		success : 
+			showSuccess,
+		error : showError
 	});
+	
+//	$.ajax({
+//		type : GET,
+//		url : "subMenu.json",
+//		data : params,
+//		success : function(data){
+//			//$("#subcategoryajax").html(data).show();
+//			alert("success" + data);
+//		},
+//		error : showError()
+//	});
+}
+
+function showSuccess(){
+	alert("success");
 }
 
 function showError(){

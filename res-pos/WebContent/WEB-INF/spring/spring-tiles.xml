@@ -34,5 +34,9 @@
  			</definition>
  		</put-attribute>
  	</definition>
+ 	
+ 	<definition name="ajax.menu" template="/jsp/body/menu.jsp">
+ 		<put-attribute name="body.subcategory" value="/jsp/body/subcategory.jsp"/>
+ 	</definition>
  
 </tiles-definitions>

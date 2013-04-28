@@ -9,10 +9,13 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.res.model.FoodCategory;
+import com.res.model.Menu;
 import com.res.service.MenuService;
 
 @Controller
@@ -39,15 +42,18 @@ public class MenuController {
 		return mav;
 	}
 	
-	@RequestMapping("/subCategory")
-	public ModelAndView showSubCategories(HttpServletRequest req, HttpServletResponse res){
-		String foodCategoryId = req.getParameter("foodCategoryId");
-		logger.info("hitting showSubcatregories controller " + foodCategoryId);
-		ModelAndView mav = new ModelAndView("base.category");
-		
-		//TODO: restaurant id is hard coded for now
-		mav.addObject("subCategories", menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId)));
-		return mav;
+	@RequestMapping(value="/subMenu", method=RequestMethod.GET)
+	public String showSubMenu(){
+		logger.info("hitting subMenu GET request controller.");
+		return "subMenu";
 	}
+	
+//	@RequestMapping(value="/subMenu.json", method=RequestMethod.POST)
+//	public @ResponseBody List<Menu> showSubCategories(HttpServletRequest req, HttpServletResponse res){
+//		String foodCategoryId = req.getParameter("foodCategoryId");
+//		logger.info("hitting showSubcatregories controller " + foodCategoryId);
+//		List<Menu> subMenuList = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
+//		return subMenuList;
+//	}
 
 }

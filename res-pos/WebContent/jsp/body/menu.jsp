@@ -38,7 +38,7 @@ var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
 			<fieldset>
 			<legend>SubCategory</legend>
 				<div id="subcategoryajax">
-					<tiles:insertAttribute name="body.subcategory"/>
+<%-- 					<tiles:insertAttribute name="ajax.menu"/> --%>
 				</div>
 			</fieldset>
 		</div>
