@@ -4,8 +4,8 @@ $.ajaxSetup({
 
 $(document).ready(function(){
 	
-	$('#address-link').click(function(){
-		window.location = "http://localhost:8080/res-pos/address.html";
+//	$('#address-link').click(function(){
+//		window.location = "address.html";
 //		$.ajax({
 //			type: "POST",
 //			cache: false,
@@ -13,11 +13,11 @@ $(document).ready(function(){
 //			success: showSuccess,
 //			error: showError
 //		});
-	});
+//	});
 	
-	$('#customer-link').click(function(){
-		window.location = "http://localhost:8080/res-pos/showCustomerForm.html";
-	});
+//	$('#customer-link').click(function(){
+//		window.location = "showCustomerForm.html";
+//	});
 	
 //	$('#showCustomerTable').click(function(){
 //		$.ajax({

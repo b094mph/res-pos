@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE tiles-definitions PUBLIC
-       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
 <tiles-definitions>
-    <definition name="base.definition"
-        template="/jsp/layout.jsp">
+    <definition name="base.definition" template="/jsp/layout.jsp">
         <put-attribute name="title" value="" />
         <put-attribute name="header" value="/jsp/header.jsp" />
         <put-attribute name="menu" value="/jsp/menubar.jsp" />
@@ -29,7 +28,11 @@
  	
  	<definition name="menu" extends="base.definition">
  		<put-attribute name="title" value="Menu"/>
- 		<put-attribute name="body" value="/jsp/body/menu.jsp"/>
+ 		<put-attribute name="body">
+ 			<definition template="/jsp/body/menu.jsp">
+ 				<put-attribute name="body.subcategory" value="/jsp/body/subcategory.jsp"/>
+ 			</definition>
+ 		</put-attribute>
  	</definition>
  
 </tiles-definitions>
