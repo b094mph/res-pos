@@ -20,32 +20,20 @@ function ajaxFoodCategory(id){
 function showSubCategory(foodCategoryId){
 	var params = {foodCategoryId : foodCategoryId};
 	$.ajax({
-		type : "GET",
-		url : "subMenu.json",
-		dataType : "json",
-		contentType : "application/json",
-		data : params,
-		success : 
-			showSuccess,
-		error : showError
+		type: "GET",
+		url: "subMenu.json",
+		dataType: "json",
+		contentType: "application/json",
+		data: params,
+		success: 
+			function(data){
+				alert("successful " + data);
+				$('#subcategoryajax').html("<h1>"+data+"</h1>").show();
+		},
+		error: 
+			function(data){
+				alert("unsuccessful..." + data);
+		}
 	});
 	
-//	$.ajax({
-//		type : "GET",
-//		url : "subMenu.json",
-//		data : params,
-//		success : function(data){
-//			//$("#subcategoryajax").html(data).show();
-//			alert("success" + data);
-//		},
-//		error : showError()
-//	});
-}
-
-function showSuccess(){
-	alert("success");
-}
-
-function showError(){
-	alert("An error occured.");
 }
