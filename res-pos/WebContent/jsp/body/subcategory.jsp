@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<b>subCategory.jsp</b>
 <c:forEach items="${subCategories}" var="subCategory">
 	<button id="food_${subCategory.food.foodId}" 
 			type="button" 

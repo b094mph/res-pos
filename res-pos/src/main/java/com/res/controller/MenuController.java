@@ -40,7 +40,7 @@ public class MenuController {
 	@RequestMapping(value="/subMenu", method=RequestMethod.GET)
 	public String showSubMenu(){
 		logger.info("hitting subMenu GET request controller.");
-		return "subMenu";
+		return "ajax.menu";
 	}
 	
 //	@RequestMapping(value="/subMenu.json", method=RequestMethod.POST)
