@@ -40,8 +40,8 @@
 <!--  		</put-attribute> -->
 <!--  	</definition> -->
  	
-<!--  	<definition name="subMenu" template="/jsp/body/menu.jsp"> -->
-<!--  		<put-attribute name="body.subcategory" value="/jsp/body/subcategory.jsp"/> -->
-<!--  	</definition> -->
+ 	<definition name="subMenu" template="/jsp/body/menu.jsp">
+ 		<put-attribute name="body.subcategory" value="/jsp/body/subcategory.jsp"/>
+ 	</definition>
  
 </tiles-definitions>

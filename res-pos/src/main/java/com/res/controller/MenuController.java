@@ -42,19 +42,22 @@ public class MenuController {
 		return mav;
 	}
 	
+	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
+	public ModelAndView showSubCategories(HttpServletRequest req, HttpServletResponse res){
+		ModelAndView mav = new ModelAndView("subMenu");
+		String foodCategoryId = req.getParameter("foodCategoryId");
+		logger.info("hitting showSubcatregories controller " + foodCategoryId);
+		List<Menu> subCategories = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
+		mav.addObject("subCategories", subCategories);
+		return mav;
+	}
+	
 //	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
-//	public List<Menu> showSubCategories(HttpServletRequest req, HttpServletResponse res){
+//	public @ResponseBody String showSubCategories(HttpServletRequest req, HttpServletResponse res){
 //		String foodCategoryId = req.getParameter("foodCategoryId");
 //		logger.info("hitting showSubcatregories controller " + foodCategoryId);
 //		List<Menu> subMenuList = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
-//		return subMenuList;
+//		return foodCategoryId;
 //	}
-	
-	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
-	public @ResponseBody String showSubCategories(HttpServletRequest req, HttpServletResponse res){
-		String foodCategoryId = req.getParameter("foodCategoryId");
-		logger.info("hitting showSubcatregories controller " + foodCategoryId);
-		return foodCategoryId;
-	}
 
 }

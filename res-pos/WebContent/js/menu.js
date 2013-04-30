@@ -1,7 +1,7 @@
 var id = "";
 
 $.ajaxSetup({
-	cache: false
+	cache: true //true is the default value
 });
 
 $(document).ready(function(){
@@ -23,13 +23,11 @@ function showSubCategory(foodCategoryId){
 	$.ajax({
 		type: "GET",
 		url: "subMenu.json",
-		dataType: "json",
-		contentType: "application/json",
 		data: params,
 		success: 
 			function(data){
 //				alert("successful " + data);
-				$('#subcategoryajax').html("<h1>"+data+"</h1>").show();
+				$('#subcategoryajax').html(data).show();
 		},
 		error: 
 			function(data){
