@@ -1,3 +1,5 @@
+var id = "";
+
 $.ajaxSetup({
 	cache: false
 });
@@ -5,14 +7,13 @@ $.ajaxSetup({
 $(document).ready(function(){
 	//creating on click event for food category buttons
 	for(var i=1; i <=foodCategoriesSize; i++){
-		var id = '#fc_'+i.toString();
-		ajaxFoodCategory(id);
+		id = '#fc_'+i.toString();
+		createFoodCategoryOnClick(id);
 	}
 });
 
-function ajaxFoodCategory(id){
+function createFoodCategoryOnClick(id){
 	$(id).click(function(){
-		alert(id);
 		showSubCategory($(this).val());
 	});
 }
@@ -27,7 +28,7 @@ function showSubCategory(foodCategoryId){
 		data: params,
 		success: 
 			function(data){
-				alert("successful " + data);
+//				alert("successful " + data);
 				$('#subcategoryajax').html("<h1>"+data+"</h1>").show();
 		},
 		error: 

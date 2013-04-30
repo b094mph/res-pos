@@ -21,8 +21,9 @@ var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
 			<fieldset>
 			<legend>Category</legend>
 			<table>
+				<% int count = 1; %>
 				<c:forEach items="${foodCategories}" var="fc">
-					<button id="fc_${fc.foodCategoryId}" 
+					<button id='fc_<%=count++%>'  
 							type="button" 
 							name="${fc.foodCategoryId}" 
 							class="btn btn-info btn-large btn1"
