@@ -28,6 +28,7 @@ function showSubCategory(foodCategoryId){
 			function(data){
 //				alert("successful " + data);
 				$('#subcategoryajax').html(data).show();
+//				'<button type="button" class="btn btn-info btn-large btn1">TEST</button>'
 		},
 		error: 
 			function(data){
