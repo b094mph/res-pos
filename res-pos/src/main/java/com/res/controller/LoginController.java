@@ -3,10 +3,7 @@ package com.res.controller;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -22,21 +19,10 @@ public class LoginController {
 	@Autowired
 	private AgentService agentService;
 	
-	@RequestMapping(value = "/loginHome")
+	@RequestMapping(value = "/login")
 	public ModelAndView showLoginHome(){
 		logger.info("Logging in...");
 		return new ModelAndView("login", "command", new Agent());
 	}
-	
-	@RequestMapping(value="/authenticateLogin", method=RequestMethod.POST)
-	public String authenticateLogin(@ModelAttribute("agent") Agent agent, BindingResult result){
-		boolean isValidAgent = agentService.verifyAgent(agent);
-		if(isValidAgent){
-			return "redirect:/address.html";
-		}else{
-			logger.debug("Agent could not be validated...");
-			return "redirect:/authenticateFail.html";
-		}
-		
-	}
+
 }

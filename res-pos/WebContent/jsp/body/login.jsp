@@ -1,43 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<jsp:include page="../common/bootstrap.jsp"/>
-	<jsp:include page="../common/jquery.jsp"/>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<title>Restaurant_01</title>
 </head>
 <!-- http://localhost:8080/res-pos/index.jsp -->
-<body>
+<body onload="document.loginform.j_username.focus();">
 <div class="container">
+	<c:if test="${not empty error}">
+		<div class="errorblock">
+			Your login attempt was not successful, try again.<br /> Caused :
+			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
+		</div>
+	</c:if>
+	 
 	<fieldset>
 	<legend>Restaurant_01</legend>
 		<div class="row">
 			<div class="span4 offset3">
-				<form class="form-horizontal" method="post" action="authenticateLogin.html">
+				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
 						<div class="controls">
-							<input type="text" id="username" name="userName" placeholder="Username">
+							<input type="text" id="username" name="j_username" placeholder="Username">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password">Password</label>
 						<div class="controls">
-							<input type="password" id="password" name="agentPassword" placeholder="Password">
+							<input type="password" id="password" name="j_password" placeholder="Password">
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn">Submit</button>
+							<button type="submit" class="btn" name="submit">Submit</button>
+							<button type="reset" class="btn" name="reset">Reset</button>
 						</div>
 					</div>
 				</form>
 			</div>
-		</div> <!-- .row -->
+		</div>
 	</fieldset>
-</div> <!-- .container -->
+</div>
 </body>
 </html>
