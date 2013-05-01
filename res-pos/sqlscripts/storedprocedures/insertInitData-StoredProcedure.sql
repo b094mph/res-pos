@@ -1,8 +1,8 @@
 DELIMITER //
 CREATE PROCEDURE restaurant.insertInitData()
 BEGIN
-	INSERT IGNORE INTO agent(username, firstname, lastname, agentpassword, createdby)
-		VALUES('bthai', 'bobby', 'thai', '123', 'admin');
+	INSERT IGNORE INTO agent(username, firstname, lastname, agentpassword, enabled, createdby)
+		VALUES('bthai', 'bobby', 'thai', '123', 1, 'admin');
 	INSERT IGNORE INTO address(street1, city, state, zipcode) 
 		VALUES('100 Main Street', 'Flushing', 'NY', '11355');
 	INSERT IGNORE INTO person(firstname, lastname, phone1)

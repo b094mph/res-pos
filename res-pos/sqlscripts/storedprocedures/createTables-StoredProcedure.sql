@@ -83,6 +83,7 @@ CREATE TABLE IF NOT EXISTS agent (
     firstname VARCHAR(20) NOT NULL,
     lastname VARCHAR(20) NOT NULL,
     agentpassword VARCHAR(30) NOT NULL,
+	enabled TINYINT(1) NOT NULL,
 	createddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	createdby VARCHAR(20),
 	lastupdateddate DATETIME,
