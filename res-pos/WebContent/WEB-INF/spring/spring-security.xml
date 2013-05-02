@@ -1,43 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<bean:beans xmlns="http://www.springframework.org/schema/security"
+	   xmlns:bean="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:security="http://www.springframework.org/schema/security"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/security
                            http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 	
-	<security:http auto-config="true">
-		<security:intercept-url pattern="/address*" access="ROLE_USER"/>
-		<security:intercept-url pattern="/customer*" access="ROLE_USER"/>
-		<security:intercept-url pattern="/menu*" access="ROLE_USER"/>
+	<http auto-config="true">
+		<intercept-url pattern="/welcome*" access="ROLE_USER"/>
+		<intercept-url pattern="/address*" access="ROLE_USER"/>
+		<intercept-url pattern="/customer*" access="ROLE_USER"/>
+		<intercept-url pattern="/menu*" access="ROLE_USER"/>
 		
 		<!-- Override default login and logout pages -->
-		<security:form-login login-page="/login.html" 
+		<form-login login-page="/login.html" 
 							 default-target-url="/welcome.html"
 							 authentication-failure-url="/loginfail.html"
 							 />
-		<security:logout logout-url="/logout" logout-success-url="/logout.html"/>
-	</security:http>
+		<logout logout-url="/logout" logout-success-url="/logout.html"/>
+	</http>
 	
-<!-- 	<security:authentication-manager> -->
-<!-- 		<security:authentication-provider> -->
-<!-- 			<security:jdbc-user-service data-source-ref="dataSource" -->
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider> -->
+<!-- 			<jdbc-user-service data-source-ref="dataSource" -->
 <!-- 				users-by-username-query= -->
 <!-- 					"SELECT username, agentpassword FROM agent WHERE username = ?" -->
 <!-- 				authorities-by-username-query= -->
 <!-- 					"SELECT a.username, ar.authority FROM agent a, agentrole ar -->
 <!--  						WHERE a.agentid = ar.agentid AND a.username = ?" -->
 <!-- 			/> -->
-<!-- 		</security:authentication-provider> -->
-<!-- 	</security:authentication-manager> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
 	
-	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="bthai" password="123" authorities="ROLE_USER"/>
-			</security:user-service>
-		</security:authentication-provider>
-	</security:authentication-manager>
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="bthai" password="123" authorities="ROLE_USER"/>
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
 	
-</beans>
+</bean:beans>

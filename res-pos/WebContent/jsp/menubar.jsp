@@ -6,7 +6,7 @@
 		<a class="brand" href="index.jsp">RES-POS</a>
 		<ul class="nav">
 			<li id="home-link">
-				<a id="home-link" href="index.jsp">Home</a>
+				<a id="home-link" href="welcome.html">Home</a>
 			</li>
 			<li><a id="address-link" href="addressForm.html">Address</a></li>
 			<li><a id="customer-link" href="customerForm.html">Customer</a></li>
