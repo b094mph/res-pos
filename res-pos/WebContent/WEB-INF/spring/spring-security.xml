@@ -12,10 +12,12 @@
 		<security:intercept-url pattern="/customer*" access="ROLE_USER"/>
 		<security:intercept-url pattern="/menu*" access="ROLE_USER"/>
 		
+		<!-- Override default login and logout pages -->
 		<security:form-login login-page="/login.html" 
 							 default-target-url="/welcome.html"
 							 authentication-failure-url="/loginfail.html"
 							 />
+		<security:logout logout-url="/logout" logout-success-url="/logout.html"/>
 	</security:http>
 	
 <!-- 	<security:authentication-manager> -->

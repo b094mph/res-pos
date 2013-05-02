@@ -23,8 +23,8 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 	
-	@RequestMapping("/showCustomerForm")
-	public ModelAndView showCustomerForm(){
+	@RequestMapping("/customerForm")
+	public ModelAndView customerForm(){
 		logger.info("in showCustomerForm() method...");
 		ModelAndView mav = new ModelAndView("customer");
 		

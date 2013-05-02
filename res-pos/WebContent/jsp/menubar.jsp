@@ -8,8 +8,8 @@
 			<li id="home-link">
 				<a id="home-link" href="index.jsp">Home</a>
 			</li>
-			<li><a id="address-link" href="address.html">Address</a></li>
-			<li><a id="customer-link" href="showCustomerForm.html">Customer</a></li>
+			<li><a id="address-link" href="addressForm.html">Address</a></li>
+			<li><a id="customer-link" href="customerForm.html">Customer</a></li>
 			<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
 			<li><a href="#">About Us</a></li>
 			<li><a href="#">Careers</a></li>

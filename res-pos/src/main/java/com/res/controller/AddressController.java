@@ -23,8 +23,8 @@ public class AddressController {
 	@Autowired
 	private AddressService addressService;
 	
-	@RequestMapping("/address")
-    public ModelAndView listAddresses() {
+	@RequestMapping("/addressForm")
+    public ModelAndView addressForm() {
 		ModelAndView mav = new ModelAndView("address");
 		mav.addObject("command", new Address());
 		mav.addObject("addressList", addressService.listAddress());

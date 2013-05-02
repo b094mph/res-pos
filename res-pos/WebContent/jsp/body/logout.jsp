@@ -8,9 +8,8 @@
 </head>
 <body>
 	<div class="row">
-		<h1>Welcome <c:out value="${username}"/> </h1>
+		<h1>Goodbye! </h1>
 		
-		<a href='<c:url value="/logout" />'>Logout</a>
 	</div>
 </body>
 </html>

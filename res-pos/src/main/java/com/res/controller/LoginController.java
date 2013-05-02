@@ -47,5 +47,11 @@ public class LoginController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(){
+		logger.info("Logging out...");
+		return "logout";
+	}
 
 }
