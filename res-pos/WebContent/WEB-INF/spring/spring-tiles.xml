@@ -2,6 +2,7 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
 <tiles-definitions>
     <definition name="base.definition" template="/jsp/layout.jsp">
         <put-attribute name="title" value="" />
@@ -41,6 +42,7 @@
  		<put-attribute name="body" value="/jsp/body/menu.jsp"/>
  	</definition>
  	
+ 	<!-- Ajax calls -->
  	<definition name="subMenu" template="/jsp/body/subcategory.jsp">
  		<put-attribute name="ajax" value="/jsp/body/subcategory.jsp"/>
  	</definition>

@@ -9,6 +9,9 @@
 	
 	<security:http auto-config="true">
 		<security:intercept-url pattern="/address*" access="ROLE_USER"/>
+		<security:intercept-url pattern="/customer*" access="ROLE_USER"/>
+		<security:intercept-url pattern="/menu*" access="ROLE_USER"/>
+		
 		<security:form-login login-page="/login.html" 
 							 default-target-url="/welcome.html"
 							 authentication-failure-url="/loginfail.html"
