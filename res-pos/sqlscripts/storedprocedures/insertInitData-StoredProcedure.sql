@@ -3,6 +3,8 @@ CREATE PROCEDURE restaurant.insertInitData()
 BEGIN
 	INSERT IGNORE INTO agent(username, firstname, lastname, agentpassword, enabled, createdby)
 		VALUES('bthai', 'bobby', 'thai', '123', 1, 'admin');
+	INSERT IGNORE INTO agentrole(agentid, authority) values(1, 'ROLE_ADMIN');
+	INSERT IGNORE INTO agentrole(agentid, authority) values(1, 'ROLE_USER');
 	INSERT IGNORE INTO address(street1, city, state, zipcode) 
 		VALUES('100 Main Street', 'Flushing', 'NY', '11355');
 	INSERT IGNORE INTO person(firstname, lastname, phone1)
