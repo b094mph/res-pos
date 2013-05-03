@@ -77,40 +77,42 @@ CREATE TABLE IF NOT EXISTS restaurant (
 	CONSTRAINT fk_restaurant_person FOREIGN KEY (personid) REFERENCES person (personid) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS agent (
-    agentid BIGINT(11) NOT NULL AUTO_INCREMENT,
-	username VARCHAR(20) NOT NULL,
-    firstname VARCHAR(20) NOT NULL,
-    lastname VARCHAR(20) NOT NULL,
-    agentpassword VARCHAR(30) NOT NULL,
+CREATE TABLE IF NOT EXISTS users(
+	username VARCHAR(50) NOT NULL,
+	password VARCHAR(100) NOT NULL,
+	firstname VARCHAR(30),
+    lastname VARCHAR(50),
 	enabled TINYINT(1) NOT NULL,
 	createddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	createdby VARCHAR(20),
 	lastupdateddate DATETIME,
 	lastupdatedby VARCHAR(20),
-    PRIMARY KEY (agentid),
-	UNIQUE INDEX (username)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+	PRIMARY KEY (username)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
-CREATE TABLE IF NOT EXISTS agentrole (
-	agentroleid BIGINT(11) NOT NULL AUTO_INCREMENT,
-	agentid BIGINT(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS authorities(
+	username VARCHAR(50) NOT NULL,
 	authority VARCHAR(50) NOT NULL,
-	PRIMARY KEY (agentroleid),
-	CONSTRAINT fk_agentrole_agent FOREIGN KEY (agentid) REFERENCES agent(agentid) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+	createddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	createdby VARCHAR(20),
+	lastupdateddate DATETIME,
+	lastupdatedby VARCHAR(20),
+	PRIMARY KEY (username, authority),
+	UNIQUE INDEX(username, authority),
+	CONSTRAINT fk_authorities_users FOREIGN KEY (username) REFERENCES users (username)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS agentjob (
     agentjobid BIGINT(11) NOT NULL AUTO_INCREMENT,
     restaurantid BIGINT(11) NOT NULL,
-	agentid BIGINT(11) NOT NULL,
+	username VARCHAR(50) NOT NULL,
 	createddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	createdby VARCHAR(20),
 	lastupdateddate DATETIME,
 	lastupdatedby VARCHAR(20),
     PRIMARY KEY (agentjobid),
 	CONSTRAINT fk_agentjob_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
-	CONSTRAINT fk_agentjob_agent FOREIGN KEY (agentid) REFERENCES agent (agentid) ON DELETE CASCADE
+	CONSTRAINT fk_agentjob_users FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS menu (
@@ -168,7 +170,7 @@ CREATE TABLE IF NOT EXISTS creditcard (
 CREATE TABLE IF NOT EXISTS customerorder (
     customerorderid BIGINT(11) NOT NULL AUTO_INCREMENT,
     restaurantid BIGINT(11) NOT NULL,
-    agentid BIGINT(11) NOT NULL,
+    username VARCHAR(50) NOT NULL,
 	personid BIGINT(11) NOT NULL,
 	creditcardid BIGINT(11),
     orderoption TINYINT(1) NOT NULL,
@@ -181,7 +183,7 @@ CREATE TABLE IF NOT EXISTS customerorder (
 	note VARCHAR(200),
     PRIMARY KEY (customerorderid),
 	CONSTRAINT fk_customerorder_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
-	CONSTRAINT fk_customerorder_agent FOREIGN KEY (agentid) REFERENCES agent (agentid) ON DELETE CASCADE,
+	CONSTRAINT fk_customerorder_users FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE,
 	CONSTRAINT fk_customerorder_person FOREIGN KEY (personid) REFERENCES person (personid) ON DELETE CASCADE,
 	CONSTRAINT fk_customerorder_creditcard FOREIGN KEY (creditcardid) REFERENCES creditcard (creditcardid) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

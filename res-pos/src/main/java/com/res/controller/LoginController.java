@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.res.model.Agent;
-import com.res.service.AgentService;
+import com.res.model.Users;
+import com.res.service.UsersService;
 
 @Controller
 @SessionAttributes
@@ -21,12 +21,12 @@ public class LoginController {
 	private static Logger logger = Logger.getLogger(LoginController.class);
 	
 	@Autowired
-	private AgentService agentService;
+	private UsersService agentService;
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public ModelAndView login(){
 		logger.info("Logging in...");
-		return new ModelAndView("login", "command", new Agent());
+		return new ModelAndView("login", "command", new Users());
 	}
 	
 	@RequestMapping(value= "/loginfail", method=RequestMethod.GET)
