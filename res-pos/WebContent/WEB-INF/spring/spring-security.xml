@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bean:beans xmlns="http://www.springframework.org/schema/security"
-	   xmlns:bean="http://www.springframework.org/schema/beans"
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	   xmlns:beans="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -21,24 +21,12 @@
 		<logout logout-url="/logout" logout-success-url="/logout.html"/>
 	</http>
 	
-<!-- 	<authentication-manager> -->
-<!-- 		<authentication-provider> -->
-<!-- 			<jdbc-user-service data-source-ref="dataSource" -->
-<!-- 				users-by-username-query= -->
-<!-- 					"SELECT username, agentpassword FROM agent WHERE username = ?" -->
-<!-- 				authorities-by-username-query= -->
-<!-- 					"SELECT a.username, ar.authority FROM agent a, agentrole ar -->
-<!--  						WHERE a.agentid = ar.agentid AND a.username = ?" -->
-<!-- 			/> -->
-<!-- 		</authentication-provider> -->
-<!-- 	</authentication-manager> -->
-	
 	<authentication-manager>
-		<authentication-provider>
-			<user-service>
-				<user name="bthai" password="123" authorities="ROLE_USER"/>
-			</user-service>
-		</authentication-provider>
+		<authentication-provider user-service-ref="userDetailsService"/>
 	</authentication-manager>
 	
-</bean:beans>
+	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+    	<beans:property name="dataSource" ref="dataSource"/>
+  	</beans:bean>
+	
+</beans:beans>
