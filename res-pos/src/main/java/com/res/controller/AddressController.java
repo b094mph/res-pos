@@ -36,18 +36,18 @@ public class AddressController {
 		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() +
 				" " + address.getCity() + " " + address.getState() + " " + address.getZipCode());
 		addressService.save(address);
-		return "redirect:/address.html";
+		return "redirect:/addressForm.html";
 	}
 	
-	@RequestMapping("/delete/{addressId}")
+	@RequestMapping("/deleteAddress/{addressId}")
 	public String deleteAddress(@PathVariable("addressId") long id){
 		addressService.deleteAddress(id);
-		return "redirect:/address.html";
+		return "redirect:/addressForm.html";
 	}
 	
 //	@RequestMapping("/find/{addressId}")
 //	public String findByAddressId(@PathVariable("addressId") Integer addressId){
 //		addressService.findByAddressId(addressId);
-//		return "redirect:/address.html";
+//		return "redirect:/addressForm.html";
 //	}
 }

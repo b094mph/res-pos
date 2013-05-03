@@ -15,9 +15,9 @@
 		
 		<!-- Override default login and logout pages -->
 		<form-login login-page="/login.html" 
-							 default-target-url="/welcome.html"
-							 authentication-failure-url="/loginfail.html"
-							 />
+					default-target-url="/welcome.html"
+					authentication-failure-url="/loginfail.html"
+					/>
 		<logout logout-url="/logout" logout-success-url="/logout.html"/>
 	</http>
 	
@@ -25,7 +25,8 @@
 		<authentication-provider user-service-ref="userDetailsService"/>
 	</authentication-manager>
 	
-	<beans:bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+	<beans:bean id="userDetailsService" 
+			class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
     	<beans:property name="dataSource" ref="dataSource"/>
   	</beans:bean>
 	

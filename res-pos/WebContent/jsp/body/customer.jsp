@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -47,7 +48,12 @@
 						<td>${customer.ext}</td>
 						<td>${customer.email}</td>
 						<td>${customer.note}</td> 
-						<td><a href="delete/${customer.personId}.html">delete</a></td>
+						<sec:authorize ifAllGranted="ROLE_ADMIN">
+							<td>
+								<c:url var="deleteUrl" value="deleteCustomer/${customer.personId}.html"/>							
+								<a href="${deleteUrl}">delete</a>
+							</td>
+						</sec:authorize>
 					</tr>
 				</c:forEach>
 			</table>

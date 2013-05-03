@@ -3,7 +3,6 @@ package com.res.model;
 import java.io.Serializable;
 import java.sql.Time;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -55,7 +54,7 @@ public class Person implements Serializable{
 	@Column(name="lastupdatedby", unique=false, nullable=true, length=20)
 	private String lastUpdatedBy;
 	
-	@ManyToOne(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="addressid", nullable=true)
 	private Address address;
 

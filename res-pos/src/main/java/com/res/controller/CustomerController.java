@@ -40,12 +40,12 @@ public class CustomerController {
 		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
 		customerService.save(customer);
-		return "redirect:/showCustomerForm.html";
+		return "redirect:/customerForm.html";
 	}
 	
-	@RequestMapping(value="delete/{customerId}", method=RequestMethod.GET)
+	@RequestMapping(value="deleteCustomer/{customerId}", method=RequestMethod.GET)
 	public String deleteCustomer(@PathVariable("customerId") long id){
 		customerService.deleteCustomer(id);
-		return "redirect:/showCustomerForm.html";
+		return "redirect:/customerForm.html";
 	}
 }

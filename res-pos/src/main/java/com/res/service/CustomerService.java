@@ -2,6 +2,8 @@ package com.res.service;
 
 import java.util.List;
 
+import org.springframework.security.access.annotation.Secured;
+
 import com.res.model.Person;
 
 public interface CustomerService {
@@ -11,5 +13,7 @@ public interface CustomerService {
 	public void delete(Person customer);
 	public Person findCustomer(long id);
 	public List<Person> listCustomers();
+	
+	@Secured({"ROLE_ADMIN"})
 	public void deleteCustomer(long id);
 }
