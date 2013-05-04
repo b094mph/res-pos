@@ -22,7 +22,7 @@
 	<fieldset>
 	<legend>Restaurant_01</legend>
 		<div class="row">
-			<div class="span4 offset3">
+			<div class="span4">
 				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
@@ -38,11 +38,44 @@
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn" name="submit">Submit</button>
+							<button type="submit" class="btn" name="submit">Log In</button>
 							<button type="reset" class="btn" name="reset">Reset</button>
 						</div>
 					</div>
 				</form>
+			</div>
+			<div class="span2 offset2">
+				<fieldset>
+				<legend>Sign Up</legend>
+					<form class="form-horizontal" method="post" action="signup.html">
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" id="firstname" name="firstname" placeholder="First Name">
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" id="lastname" name="lastname" placeholder="Last Name">
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" id="username" name="username" placeholder="Username">
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<input type="text" id="password" name="password" placeholder="Password">
+							</div>
+						</div>
+						<div class="control-group">
+							<div class="controls">
+								<button type="submit" class="btn" name="signup">Sign Up</button>
+								<button type="reset" class="btn" name="reset">Reset</button>
+							</div>
+						</div>
+					</form>
+				</fieldset>
 			</div>
 		</div>
 	</fieldset>
