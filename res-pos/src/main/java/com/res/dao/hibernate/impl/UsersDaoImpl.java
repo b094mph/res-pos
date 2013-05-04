@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.UsersDao;
-import com.res.model.Users;
+import com.res.model.UserDetails;
 
 @Repository("usersDao")
 public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
@@ -15,18 +15,18 @@ public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
 	private static Logger logger = Logger.getLogger(UsersDaoImpl.class);
 
 	@Override
-	public Users findUser(long id) {
-		return (Users) getCurrentSession().get(getClass(), id);
+	public UserDetails findUser(long id) {
+		return (UserDetails) getCurrentSession().get(getClass(), id);
 	}
 
 	@Override
-	public Users getUserByUsername(String username) {
+	public UserDetails getUserByUsername(String username) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("FROM Users u WHERE u.username = :username");
+		sb.append("FROM UserDetails u WHERE u.username = :username");
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setString("username", username);
 		if(!query.list().isEmpty()){
-			return (Users) query.list().get(0);
+			return (UserDetails) query.list().get(0);
 		}else{
 			logger.info("User not found.");
 			return null;
@@ -38,7 +38,7 @@ public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
 	@Override
 	public List<String> getUsernames() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT u.username FROM Users u");
+		sb.append("SELECT u.username FROM UserDetails u");
 		Query query = getCurrentSession().createQuery(sb.toString());
 		return (List<String>) query.list();
 	}

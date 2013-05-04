@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.res.model.Users;
+import com.res.model.UserDetails;
 import com.res.service.UsersService;
 
 @Controller
@@ -26,7 +26,7 @@ public class LoginController {
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public ModelAndView login(){
 		logger.info("Logging in...");
-		return new ModelAndView("login", "command", new Users());
+		return new ModelAndView("login", "command", new UserDetails());
 	}
 	
 	@RequestMapping(value= "/loginfail", method=RequestMethod.GET)
