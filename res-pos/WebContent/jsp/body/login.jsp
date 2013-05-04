@@ -22,7 +22,7 @@
 	<fieldset>
 	<legend>Restaurant_01</legend>
 		<div class="row">
-			<div class="span4">
+			<div class="span4 offset1">
 				<fieldset>
 				<legend>Sign In</legend>
 				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
@@ -47,36 +47,30 @@
 				</form>
 				</fieldset>
 			</div>
-			<div class="span2 offset2">
+			<div class="span2 offset3">
 				<fieldset>
 				<legend>Sign Up</legend>
 					<form class="form-horizontal" method="post" action="signup.html">
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" id="firstname" name="firstname" placeholder="First Name">
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" id="lastname" name="lastname" placeholder="Last Name">
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" id="username" name="username" placeholder="Username">
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-								<input type="text" id="password" name="password" placeholder="Password">
-							</div>
-						</div>
-						<div class="control-group">
-							<div class="controls">
-								<button type="submit" class="btn" name="signup">Sign Up</button>
-								<button type="reset" class="btn" name="reset">Reset</button>
-							</div>
-						</div>
+						<table>
+							<tr>
+								<td><input type="text" id="firstname" name="firstname" placeholder="First Name"></td>
+							</tr>
+							<tr>
+								<td><input type="text" id="lastname" name="lastname" placeholder="Last Name"></td>
+							</tr>
+							<tr>
+								<td><input type="text" id="username" name="username" placeholder="Username"></td>
+							</tr>
+							<tr>
+								<td><input type="password" id="password" name="password" placeholder="Password"></td>
+							</tr>
+							<tr>
+								<td>
+									<button type="submit" class="btn" name="signup">Sign Up</button>
+									<button type="reset" class="btn" name="reset">Reset</button>
+								</td>
+							</tr>
+						</table>
 					</form>
 				</fieldset>
 			</div>

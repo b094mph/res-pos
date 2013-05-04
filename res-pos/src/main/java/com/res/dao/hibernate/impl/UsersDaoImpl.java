@@ -25,7 +25,13 @@ public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
 		sb.append("FROM Users u WHERE u.username = :username");
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setString("username", username);
-		return (Users) query.list().get(0);
+		if(!query.list().isEmpty()){
+			return (Users) query.list().get(0);
+		}else{
+			logger.info("User not found.");
+			return null;
+		}
+		
 	}
 
 	@SuppressWarnings("unchecked")
