@@ -79,7 +79,8 @@ CREATE TABLE IF NOT EXISTS restaurant (
 
 CREATE TABLE IF NOT EXISTS users(
 	username VARCHAR(50) NOT NULL,
-	password VARCHAR(100) NOT NULL,
+	password VARCHAR(64) NOT NULL,
+	salt VARCHAR(48) NOT NULL,
 	firstname VARCHAR(30),
     lastname VARCHAR(50),
 	enabled TINYINT(1) NOT NULL,

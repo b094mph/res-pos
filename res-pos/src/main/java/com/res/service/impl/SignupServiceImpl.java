@@ -38,7 +38,13 @@ public class SignupServiceImpl implements SignupService {
 		String hashedPassword = SHAHashing.createHash(salt + password);
 		return hashedPassword;
 	}
-	
-	
 
+	@Override
+	public void saveUser(Users user) {
+		usersDao.save(user);
+	}
+
+	//TODO: validate if user exists 
+	
+	
 }

@@ -1,10 +1,10 @@
 DELIMITER //
 CREATE PROCEDURE restaurant.insertInitData()
 BEGIN
-	INSERT IGNORE INTO users (username, password, firstname, enabled, createdby) 
-		VALUES ('admin', 'admin123','admin', 1,'admin');
-	INSERT IGNORE INTO users (username, password, firstname, lastname, enabled, createdby) 
-		VALUES ('bthai', 'bt123','bobby', 'thai', 1,'admin');
+	INSERT IGNORE INTO users (username, password, salt, firstname, enabled, createdby) 
+		VALUES ('admin', 'b0b65c379234be44f406b8a0c418d679568230d1870fde1d4eb115db4079ad3c', 'bfbaf639c79f06ca22556c5bb59def6ebea816eb37801787','admin', 1,'admin');
+	INSERT IGNORE INTO users (username, password, salt, firstname, lastname, enabled, createdby) 
+		VALUES ('bthai', '33078addb707e266404407af29e8205c570efd7a8aeab421b06d8dca70c592e8','daee01bac2ff29e976116fa3d6515c51fddea2917b57c4b5','bobby', 'thai', 1,'admin');
 	INSERT IGNORE INTO authorities(username, authority,createdby) 
 		VALUES('admin', 'ROLE_ADMIN', 'admin');
 	INSERT IGNORE INTO authorities(username, authority,createdby) 

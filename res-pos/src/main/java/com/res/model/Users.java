@@ -25,8 +25,11 @@ public class Users implements Serializable{
 	@Column(name="username", unique=true, nullable=false, length=20)
 	private String username;
 	
-	@Column(name="password", nullable=false, length=30)
+	@Column(name="password", nullable=false, length=64)
 	private String password;
+	
+	@Column(name="salt", nullable=false, length=48)
+	private String salt;
 	
 	@Column(name="firstname", length=20)
 	private String firstname;
@@ -63,6 +66,14 @@ public class Users implements Serializable{
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public String getFirstname() {

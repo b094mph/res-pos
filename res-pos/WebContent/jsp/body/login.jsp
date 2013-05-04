@@ -23,6 +23,8 @@
 	<legend>Restaurant_01</legend>
 		<div class="row">
 			<div class="span4">
+				<fieldset>
+				<legend>Sign In</legend>
 				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
@@ -43,6 +45,7 @@
 						</div>
 					</div>
 				</form>
+				</fieldset>
 			</div>
 			<div class="span2 offset2">
 				<fieldset>
