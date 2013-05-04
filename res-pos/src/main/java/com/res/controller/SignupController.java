@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.res.model.UserDetails;
+import com.res.model.User;
 import com.res.service.SignupService;
 
 @Controller
@@ -20,7 +20,7 @@ public class SignupController {
 	private SignupService signupService;
 	
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
-	public String signup(@ModelAttribute("user") UserDetails user, BindingResult result){
+	public String signup(@ModelAttribute("user") User user, BindingResult result){
 		Boolean validateUser = signupService.validateUser(user);
 		logger.info("User valid = " + validateUser);
 		if(validateUser){

@@ -6,27 +6,27 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
-import com.res.dao.hibernate.UsersDao;
-import com.res.model.UserDetails;
+import com.res.dao.hibernate.UserDao;
+import com.res.model.User;
 
-@Repository("usersDao")
-public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
+@Repository("userDao")
+public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 	
-	private static Logger logger = Logger.getLogger(UsersDaoImpl.class);
+	private static Logger logger = Logger.getLogger(UserDaoImpl.class);
 
 	@Override
-	public UserDetails findUser(long id) {
-		return (UserDetails) getCurrentSession().get(getClass(), id);
+	public User findUser(long id) {
+		return (User) getCurrentSession().get(getClass(), id);
 	}
 
 	@Override
-	public UserDetails getUserByUsername(String username) {
+	public User getUserByUsername(String username) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("FROM UserDetails u WHERE u.username = :username");
+		sb.append("FROM User u WHERE u.username = :username");
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setString("username", username);
 		if(!query.list().isEmpty()){
-			return (UserDetails) query.list().get(0);
+			return (User) query.list().get(0);
 		}else{
 			logger.info("User not found.");
 			return null;
@@ -38,7 +38,7 @@ public class UsersDaoImpl extends BaseDaoImpl implements UsersDao {
 	@Override
 	public List<String> getUsernames() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT u.username FROM UserDetails u");
+		sb.append("SELECT u.username FROM User u");
 		Query query = getCurrentSession().createQuery(sb.toString());
 		return (List<String>) query.list();
 	}

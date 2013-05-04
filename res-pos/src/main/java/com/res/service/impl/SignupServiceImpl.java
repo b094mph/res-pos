@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.AuthoritiesDao;
-import com.res.dao.hibernate.UsersDao;
-import com.res.model.UserDetails;
+import com.res.dao.hibernate.UserDao;
+import com.res.model.User;
 import com.res.security.SHAHashing;
 import com.res.service.SignupService;
 
@@ -23,14 +23,14 @@ public class SignupServiceImpl implements SignupService {
 	private static Logger logger = Logger.getLogger("SignupServiceImpl.class");
 
 	@Autowired
-	private UsersDao usersDao;
+	private UserDao usersDao;
 	
 	@Autowired
 	private AuthoritiesDao authoritiesDao;
 	
 	@Override
 	public boolean isUsernameTaken(String username) {
-		UserDetails user = usersDao.getUserByUsername(username);
+		User user = usersDao.getUserByUsername(username);
 		
 		if( user != null && StringUtils.trimToEmpty(username).equals(user.getUsername())){
 			logger.info("Username " + username + " is taken.");
@@ -58,7 +58,7 @@ public class SignupServiceImpl implements SignupService {
 	}
 
 	@Override
-	public boolean validateUser(UserDetails user) {
+	public boolean validateUser(User user) {
 		String username = user.getUsername();
 		if(!isUsernameTaken(username)){
 			String salt = createSalt();
