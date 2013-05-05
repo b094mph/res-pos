@@ -2,6 +2,7 @@ package com.res.model;
 
 import java.io.Serializable;
 import java.sql.Time;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,11 +11,12 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name="users", catalog="restaurant")
 @Cache(region="users", usage=CacheConcurrencyStrategy.READ_WRITE)
-public class User implements Serializable{
+public class User implements Serializable, org.springframework.security.core.userdetails.UserDetails{
 
 	private static final long serialVersionUID = 1L;
 
@@ -127,6 +129,30 @@ public class User implements Serializable{
 
 	public void setLastUpdatedBy(String lastUpdatedBy) {
 		this.lastUpdatedBy = lastUpdatedBy;
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
