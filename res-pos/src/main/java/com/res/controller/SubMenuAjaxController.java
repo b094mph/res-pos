@@ -20,7 +20,7 @@ import com.res.service.MenuService;
 @SessionAttributes
 public class SubMenuAjaxController {
 	
-	public static Logger logger = Logger.getLogger("SubMenuAjaxController.class");
+	public static Logger logger = Logger.getLogger(SubMenuAjaxController.class);
 	
 	@Autowired
 	private MenuService menuService;

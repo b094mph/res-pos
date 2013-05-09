@@ -16,7 +16,7 @@ import com.res.service.MenuService;
 @SessionAttributes
 public class MenuController {
 
-	private static Logger logger = Logger.getLogger("MenuController.class");
+	private static Logger logger = Logger.getLogger(MenuController.class);
 	
 	@Autowired
 	private MenuService menuService;

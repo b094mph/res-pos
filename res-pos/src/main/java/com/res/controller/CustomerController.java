@@ -18,7 +18,7 @@ import com.res.service.CustomerService;
 @SessionAttributes
 public class CustomerController {
 
-	private static Logger logger = Logger.getLogger("CustomerController.class");
+	private static Logger logger = Logger.getLogger(CustomerController.class);
 	
 	@Autowired
 	private CustomerService customerService;

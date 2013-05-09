@@ -14,7 +14,7 @@ import com.res.service.SignupService;
 @Controller
 public class SignupController {
 
-	private static Logger logger = Logger.getLogger("SignupController.class");
+	private static Logger logger = Logger.getLogger(SignupController.class);
 	
 	@Autowired
 	private SignupService signupService;

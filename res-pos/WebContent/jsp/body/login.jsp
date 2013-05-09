@@ -9,16 +9,8 @@
 	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<title>Restaurant_01</title>
 </head>
-<!-- http://localhost:8080/res-pos/index.jsp -->
 <body onload="document.loginform.j_username.focus();">
-<div class="container">
-	<c:if test="${not empty error}">
-		<div class="errorblock">
-			Your login attempt was not successful, try again.<br /> Caused :
-			${sessionScope["SPRING_SECURITY_LAST_EXCEPTION"].message}
-		</div>
-	</c:if>
-	 
+<div class="container"> 
 	<fieldset>
 	<legend>Restaurant_01</legend>
 		<div class="row">

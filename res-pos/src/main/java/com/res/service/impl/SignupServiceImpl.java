@@ -1,9 +1,5 @@
 package com.res.service.impl;
 
-
-
-
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +16,7 @@ import com.res.service.SignupService;
 @Transactional
 public class SignupServiceImpl implements SignupService {
 	
-	private static Logger logger = Logger.getLogger("SignupServiceImpl.class");
+	private static Logger logger = Logger.getLogger(SignupServiceImpl.class);
 
 	@Autowired
 	private UserDao usersDao;
@@ -52,8 +48,8 @@ public class SignupServiceImpl implements SignupService {
 	
 	@Override
 	public String createHash(String password, String salt){
-//		String hash = SHAHashing.createHash(salt + password);
-		String hash = SHAHashing.createHash(password);
+		String hash = SHAHashing.createHash(salt + password);
+//		String hash = SHAHashing.createHash(password);
 		logger.info("Hash : " + hash);
 		return hash;
 	}
@@ -63,7 +59,7 @@ public class SignupServiceImpl implements SignupService {
 		String username = user.getUsername();
 		if(!isUsernameTaken(username)){
 			String salt = createSalt();
-			String hash = createHash(user.getPassword(), salt);
+			String hash = createHash(user.getPassword(), username);
 			user.setSalt(salt);
 			user.setPassword(hash);
 			user.setEnabled(true);

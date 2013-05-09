@@ -11,7 +11,7 @@ import com.res.model.AuthoritiesId;
 @Repository("authoritiesDao")
 public class AuthoritiesDaoImpl extends BaseDaoImpl implements AuthoritiesDao{
 	
-	private static Logger logger = Logger.getLogger("AuthoritiesDaoImpl.class");
+	private static Logger logger = Logger.getLogger(AuthoritiesDaoImpl.class);
 
 	@Override
 	public void setRoleAdmin(String username) {
