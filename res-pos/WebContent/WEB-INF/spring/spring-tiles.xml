@@ -5,7 +5,7 @@
        
 <tiles-definitions>
     <definition name="base.definition" template="/jsp/layout.jsp">
-        <put-attribute name="title" value="" />
+        <put-attribute name="title" value="RES-POS" />
         <put-attribute name="header" value="/jsp/header.jsp" />
         <put-attribute name="menu" value="/jsp/menubar.jsp" />
         <put-attribute name="body" value="" />
@@ -14,37 +14,30 @@
     </definition>
     
  	<definition name="login" extends="base.definition">
-    	<put-attribute name="title" value="Welcome to Restaurant POS"/>
     	<put-attribute name="body" value="/jsp/body/login.jsp"/>
     </definition>
     
     <definition name="loginfail" extends="base.definition">
-    	<put-attribute name="title" value="Login Failed."/>
     	<put-attribute name="body" value="/jsp/body/loginfail.jsp"/>
     </definition>
     
     <definition name="welcome" extends="base.definition">
-    	<put-attribute name="title" value="Welcome!"/>
     	<put-attribute name="body" value="/jsp/body/welcome.jsp"/>
     </definition>
     
     <definition name="logout" extends="base.definition">
-    	<put-attribute name="title" value="Goodbye!"/>
     	<put-attribute name="body" value="/jsp/body/logout.jsp"/>
     </definition>
  
     <definition name="address" extends="base.definition">
-        <put-attribute name="title" value="Adding Address" />
         <put-attribute name="body" value="/jsp/body/address.jsp" />
     </definition>
     
     <definition name="customer" extends="base.definition">
-    	<put-attribute name="title" value="Adding Customer"/>
     	<put-attribute name="body" value="/jsp/body/customer.jsp"/>
     </definition>
     
     <definition name="menu" extends="base.definition">
- 		<put-attribute name="title" value="Menu"/>
  		<put-attribute name="body" value="/jsp/body/menu.jsp"/>
  	</definition>
  	

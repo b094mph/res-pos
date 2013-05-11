@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE HTML>
 <html>
@@ -5,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<jsp:include page="common/bootstrap.jsp"/>
 	<jsp:include page="common/jquery.jsp"/>
-	<title><tiles:insertAttribute name="title" ignore="true" /></title>
+	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
 <div class="container">

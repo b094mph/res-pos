@@ -16,24 +16,24 @@
 		<div class="row">
 			<div class="span4 offset1">
 				<fieldset>
-				<legend>Sign In</legend>
+				<legend>Have a Username? Sign In!</legend>
 				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
 						<div class="controls">
-							<input type="text" id="username" name="j_username" placeholder="Username">
+							<input type="text" id="username" name="j_username" placeholder="Your username">
 						</div>
 					</div>
 					<div class="control-group">
 						<label class="control-label" for="password">Password</label>
 						<div class="controls">
-							<input type="password" id="password" name="j_password" placeholder="Password">
+							<input type="password" id="password" name="j_password" placeholder="Your password">
 						</div>
 					</div>
 					<div class="control-group">
 						<div class="controls">
-							<button type="submit" class="btn" name="submit">Log In</button>
-							<button type="reset" class="btn" name="reset">Reset</button>
+							<button type="submit" class="btn btn-success btn-large" name="submit">Log In</button>
+							<button type="reset" class="btn btn-large" name="reset">Reset</button>
 						</div>
 					</div>
 				</form>
@@ -45,21 +45,21 @@
 					<form class="form-horizontal" method="post" action="signup.html">
 						<table>
 							<tr>
-								<td><input type="text" id="firstname" name="firstname" placeholder="First Name"></td>
+								<td><input type="text" id="firstname" class="span3" name="firstname" placeholder="Your first name"></td>
 							</tr>
 							<tr>
-								<td><input type="text" id="lastname" name="lastname" placeholder="Last Name"></td>
+								<td><input type="text" id="lastname" class="span3" name="lastname" placeholder="Your last name"></td>
 							</tr>
 							<tr>
-								<td><input type="text" id="username" name="username" placeholder="Username"></td>
+								<td><input type="text" id="username" class="span3" name="username" placeholder="Pick a username"></td>
 							</tr>
 							<tr>
-								<td><input type="password" id="password" name="password" placeholder="Password"></td>
+								<td><input type="password" id="password" class="span3" name="password" placeholder="Create a password"></td>
 							</tr>
 							<tr>
 								<td>
-									<button type="submit" class="btn" name="signup">Sign Up</button>
-									<button type="reset" class="btn" name="reset">Reset</button>
+									<button type="submit" class="btn btn-success btn-large" name="signup">Sign up for free</button>
+									<button type="reset" class="btn btn-large" name="reset">&nbsp;Reset&nbsp;&nbsp;</button>
 								</td>
 							</tr>
 						</table>
