@@ -21,7 +21,10 @@
 	        <td><tiles:insertAttribute name="body" /></td>
 	    </tr>
 	    <tr>
-	        <td colspan="2"><tiles:insertAttribute name="footer"/></td>
+	        <td><tiles:insertAttribute name="footer"/></td>
+	    </tr>
+	    <tr>
+	    	<td><tiles:insertAttribute name="copyright"/></td>
 	    </tr>
 	</table>
 </div>

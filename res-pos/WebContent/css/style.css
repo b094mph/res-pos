@@ -48,6 +48,10 @@ input#test{
 	color: red;
 }
 
+.center{
+	text-align: center;
+}
+
 /* .errorblock{ */
 /* 	color: #ff0000; */
 /* 	background-color: #ffEEEE; */
