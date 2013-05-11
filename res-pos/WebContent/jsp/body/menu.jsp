@@ -7,10 +7,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="css/style.css">
 <script type="text/javascript" src="js/menu.js"></script>
 <script>
-var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
+	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
 </script>
 </head>
 <body>
@@ -44,6 +43,7 @@ var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
 			</fieldset>
 		</div>
 	</div>
+	<br>
 </fieldset>
 </body>
 </html>

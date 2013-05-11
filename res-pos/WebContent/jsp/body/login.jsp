@@ -6,7 +6,6 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<title>Restaurant_01</title>
 </head>
 <body onload="document.loginform.j_username.focus();">
@@ -16,7 +15,7 @@
 		<div class="row">
 			<div class="span4 offset1">
 				<fieldset>
-				<legend>Have a Username? Sign In!</legend>
+				<legend>Have a username? Sign in!</legend>
 				<form name="loginform" class="form-horizontal" method="post" action="<c:url value='j_spring_security_check'/>">
 					<div class="control-group">
 						<label class="control-label" for="username">Username</label>
@@ -68,6 +67,7 @@
 			</div>
 		</div>
 	</fieldset>
+	<br><br><br><br><br><br><br><br><br><br>
 </div>
 </body>
 </html>

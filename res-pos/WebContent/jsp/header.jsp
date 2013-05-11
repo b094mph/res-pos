@@ -2,7 +2,7 @@
 	<div class="span12">
 		<fieldset>
 		<legend><b>Welcome to RES-POS!</b>
-			<span style="float: right">
+			<span class="float-right">
 			    <a href="?lang=en">en</a> 
 			    | 
 			    <a href="?lang=zh">ch</a>

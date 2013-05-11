@@ -52,6 +52,10 @@ input#test{
 	text-align: center;
 }
 
+.float-right{
+	float: right;
+}
+
 /* .errorblock{ */
 /* 	color: #ff0000; */
 /* 	background-color: #ffEEEE; */

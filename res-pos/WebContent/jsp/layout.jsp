@@ -6,6 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<jsp:include page="common/bootstrap.jsp"/>
 	<jsp:include page="common/jquery.jsp"/>
+	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
