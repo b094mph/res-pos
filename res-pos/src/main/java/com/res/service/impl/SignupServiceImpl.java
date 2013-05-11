@@ -48,8 +48,8 @@ public class SignupServiceImpl implements SignupService {
 	
 	@Override
 	public String createHash(String password, String salt){
-		String hash = SHAHashing.createHash(salt + password);
-//		String hash = SHAHashing.createHash(password);
+//		String hash = SHAHashing.createHash(salt + password);
+		String hash = SHAHashing.createHash(password);
 		logger.info("Hash : " + hash);
 		return hash;
 	}
