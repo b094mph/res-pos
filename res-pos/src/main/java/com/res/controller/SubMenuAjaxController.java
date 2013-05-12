@@ -1,5 +1,6 @@
 package com.res.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,6 +33,12 @@ public class SubMenuAjaxController {
 		logger.info("hitting showSubcatregories controller " + foodCategoryId);
 		List<Menu> subCategories = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
 		mav.addObject("subCategories", subCategories);
+		
+		List<Long> foodIDs = new ArrayList<Long>();
+		for(Menu foodItem : subCategories){
+			foodIDs.add(foodItem.getFoodId());
+		}
+		mav.addObject("foodIDs", foodIDs);
 		return mav;
 	}
 	

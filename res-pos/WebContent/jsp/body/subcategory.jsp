@@ -1,4 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<script>
+	var foodIDs = ${foodIDs};
+</script>
+<script type="text/javascript" src="js/submenu.js"></script>
+
+
 <c:forEach items="${subCategories}" var="subCategory">
 	<c:choose>
 		<c:when test="${subCategory.spicy}">
@@ -22,5 +28,4 @@
 			</button>	
 		</c:otherwise>
 	</c:choose>
-
 </c:forEach>
