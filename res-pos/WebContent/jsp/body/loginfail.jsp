@@ -1,9 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <body>
 	<div class="container">
 		<div class="row">
-			<p>Login Failed.</p>
+			<div class="span12">
+			<h1>The username/password entered is incorrect.</h1>
+			</div>
 		</div>
 	</div>	
 </body>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br>
