@@ -8,6 +8,7 @@
 	<jsp:include page="common/bootstrap.jsp"/>
 	<jsp:include page="common/jquery.jsp"/>
 	<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	<link type="image/png" rel="icon" href="img/favicons/RP-favicon.ico">
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
