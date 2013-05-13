@@ -33,12 +33,9 @@
 				</fieldset>
 			</div>
 			<div id="subcategory" class="span7">
-				<fieldset>
-				<legend>SubCategory</legend>
-					<div id="subcategoryajax">
-	
-					</div>
-				</fieldset>
+				<div id="subcategoryajax">
+
+				</div>
 			</div>
 		</div>
 		<br>

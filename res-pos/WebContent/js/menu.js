@@ -10,6 +10,7 @@ $(document).ready(function(){
 		id = '#fc_'+i.toString();
 		createFoodCategoryOnClick(id);
 	}
+	fireFirstCategoryButton();
 });
 
 function createFoodCategoryOnClick(id){
@@ -34,4 +35,8 @@ function showSubCategory(foodCategoryId){
 		}
 	});
 	
+}
+
+function fireFirstCategoryButton(){
+	$('#fc_1').click();
 }

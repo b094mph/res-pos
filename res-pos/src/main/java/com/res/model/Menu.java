@@ -92,11 +92,11 @@ public class Menu implements Serializable{
 	@Column(name="lastupdatedby", unique=false, nullable=true, length=12)
 	private String lastUpdatedBy;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="foodcategoryid", nullable=false)
 	private FoodCategory foodCategory;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@OneToOne(fetch=FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	private Food food;
 
