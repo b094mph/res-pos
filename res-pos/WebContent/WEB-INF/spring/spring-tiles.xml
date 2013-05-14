@@ -45,5 +45,9 @@
  	<definition name="subMenu" template="/jsp/body/subMenu.jsp">
  		<put-attribute name="ajax" value="/jsp/body/subMenu.jsp"/>
  	</definition>
+ 	
+ 	<definition name="showOrder" template="/jsp/body/showOrder.jsp">
+ 		<put-attribute name="ajax" value="/jsp/body/showOrder.jsp"/>
+ 	</definition>
  
 </tiles-definitions>

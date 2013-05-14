@@ -30,7 +30,8 @@ public class OrderDetail implements Serializable{
 	@Column(name="customerorderid", unique=false, nullable=false, length=11)
 	private long customerOrderId;
 	
-	@Column(name="menuid", unique=false, nullable=false, length=11)
+	@Column(name="menuid", unique=false, nullable=false, length=11,
+			insertable=false, updatable=false)
 	private long menuId;
 	
 	@Column(name="quantity", unique=false, nullable=false, length=2)

@@ -29,7 +29,7 @@ public class OrderAjaxController {
 		
 		logger.info("hitting showOrderList controller...");
 		long customerOrderId = 1L;
-		orderService.listOrder(customerOrderId);
+//		orderService.listOrder(customerOrderId);
 		return mav;
 	}
 	
@@ -41,7 +41,7 @@ public class OrderAjaxController {
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setMenuId(Long.parseLong(menuId));
 		orderDetail.setQuantity(1); //TODO: hard coded for now.
-		orderService.addOrder(orderDetail);
+//		orderService.addOrder(orderDetail);
 		
 		return "redirect:/showOrder.html";
 	}

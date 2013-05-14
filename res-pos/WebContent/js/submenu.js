@@ -15,18 +15,17 @@ function createSubCategoriesOnClick(id){
 
 function addToOrder(menuId){
 	var params = {menuId: menuId};
-	alert(menuId);
 	$.ajax({
 		type: "GET",
 		url: "addOrder.json",
 		data: params,
 		success:
 			function(data){
-				alert("success in ajax for order");
+				$('#orderListAjax').html(data).show();
 		},
 		error:
 			function(data){
-				alert("unccessful in order ajax...");
+				alert("unsuccessful in order ajax...");
 		}
 	});
 }

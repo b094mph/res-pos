@@ -12,7 +12,11 @@
 		</tr>
 		
 		<tr>
+			<td>1</td>
+			<td>L</td>
+			<td>Wonton Soup</td>
 			<td></td>
+			<td>5.50</td>
 		</tr>
 
 	</table>
