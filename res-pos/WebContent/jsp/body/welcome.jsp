@@ -2,8 +2,16 @@
 <body>
 <div class="container">
 	<div class="row">
+		<div class="span12">
+			<div id="welcomealert" class="alert alert-success">
+				<a class="close" data-dismiss="alert">x</a>
+				<h3>Hello <c:out value="${username}"/>!</h3>
+				<p>Welcome to RES-POS!</p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
 		<div class="span6">
-			<h1>Welcome <c:out value="${username}"/></h1>
 			<h3><a href='<c:url value="/logout" />'>Logout</a></h3>
 		</div>
 		<div class="span6">

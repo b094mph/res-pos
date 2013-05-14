@@ -3,7 +3,11 @@
 	<div class="containter">
 		<div class="row">
 			<div class="span12">
-				<h1>You are logged out. Goodbye!</h1>
+				<div id="logoutalert" class="alert alert-info">
+					<a class="close" data-dismiss="alert">x</a>
+					<h3 class="alert-heading">Logging out...</h3>
+					<p>You are logged out. Goodbye!</p>
+				</div>
 			</div>
 		</div>
 	</div>
