@@ -7,7 +7,7 @@
 	<div class="span12">
 		<fieldset>
 		<legend><b>Welcome to RES-POS!</b>
-			<span class="float-right">
+			<span class="pull-right">
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">
 					<a href="${logoutUrl}">Logout</a> |
 				</sec:authorize>

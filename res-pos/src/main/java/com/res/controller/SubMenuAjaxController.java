@@ -39,11 +39,11 @@ public class SubMenuAjaxController {
 		if(!subCategories.isEmpty()){
 			mav.addObject("foodCategoryName", subCategories.get(0).getFoodCategory().getFoodCategoryName());
 		
-			List<Long> foodIDs = new ArrayList<Long>();
+			List<Long> menuIDs = new ArrayList<Long>();
 			for(Menu foodItem : subCategories){
-				foodIDs.add(foodItem.getFoodId());
+				menuIDs.add(foodItem.getMenuId());
 			}
-			mav.addObject("foodIDs", foodIDs);
+			mav.addObject("menuIDs", menuIDs);
 		}else{
 			logger.error("subCategories is empty.");
 			throw new EmptyCollectionException("ArrayList can not be empty.");
@@ -51,13 +51,5 @@ public class SubMenuAjaxController {
 		
 		return mav;
 	}
-	
-//	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
-//	public @ResponseBody String showSubCategories(HttpServletRequest req, HttpServletResponse res){
-//		String foodCategoryId = req.getParameter("foodCategoryId");
-//		logger.info("hitting showSubcatregories controller " + foodCategoryId);
-//		List<Menu> subMenuList = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
-//		return foodCategoryId;
-//	}
 
 }

@@ -11,35 +11,39 @@
 
 <body>
 <div class="container">
-	<fieldset>
-	<legend><spring:message code="label.menu"/></legend>
-		<div class="row">
-			<div id="category" class="span5">
-				<fieldset>
-				<legend>Category</legend>
-				<table>
-					<% int count = 1; %>
-					<c:forEach items="${foodCategories}" var="fc">
-						<button id='fc_<%=count++%>'  
-								type="button" 
-								name="${fc.foodCategoryId}" 
-								class="btn btn-info btn-large btn1"
-								value='<c:out value="${fc.foodCategoryId}"></c:out>'
-						>
-							${fc.foodCategoryName}
-						</button> 
-					</c:forEach>
-				</table>
-				</fieldset>
-			</div>
-			<div id="subcategory" class="span7">
-				<div id="subcategoryajax">
+	<div class="row">
+		<div id="category" class="span5">
+			<fieldset>
+			<legend>Category</legend>
+			<table>
+				<% int count = 1; %>
+				<c:forEach items="${foodCategories}" var="fc">
+					<button id='fc_<%=count++%>'  
+							type="button" 
+							name="${fc.foodCategoryId}" 
+							class="btn btn-info btn-large btn1"
+							value='<c:out value="${fc.foodCategoryId}"></c:out>'
+					>
+						${fc.foodCategoryName}
+					</button> 
+				</c:forEach>
+			</table>
+			</fieldset>
+		</div>
+		<div id="subcategory" class="span7">
+			<div id="subcategoryajax">
 
-				</div>
 			</div>
 		</div>
-		<br>
-	</fieldset>
+	</div>
+	<br>
+	<div class="row">
+		<div id="orderList" class="span12">
+			<div id="orderListAjax">
+							
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 <br><br><br><br>
