@@ -40,7 +40,7 @@
 	<div class="row">
 		<div id="orderList" class="span12">
 			<div id="orderListAjax">
-							
+						
 			</div>
 		</div>
 	</div>

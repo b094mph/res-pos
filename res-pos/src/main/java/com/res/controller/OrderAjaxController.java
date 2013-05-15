@@ -1,17 +1,23 @@
 package com.res.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.model.Menu;
 import com.res.model.OrderDetail;
+import com.res.service.MenuService;
 import com.res.service.OrderService;
 
 @Controller
@@ -23,26 +29,44 @@ public class OrderAjaxController {
 	@Autowired
 	private OrderService orderService;
 	
+	@Autowired
+	private MenuService menuService;
+	
+	public List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
 	public ModelAndView showOrderList(){
 		ModelAndView mav = new ModelAndView("showOrder");
 		
 		logger.info("hitting showOrderList controller...");
-		long customerOrderId = 1L;
-//		orderService.listOrder(customerOrderId);
+		mav.addObject("orderList", orderList);
 		return mav;
 	}
 	
-	@RequestMapping(value="/addOrder.json", method=RequestMethod.GET)
+	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
 	public String addOrder(HttpServletRequest req, HttpServletResponse res){
 		
 		String menuId = req.getParameter("menuId");
 		logger.info("hitting addOrder controller with menuId " + menuId);
-		OrderDetail orderDetail = new OrderDetail();
-		orderDetail.setMenuId(Long.parseLong(menuId));
-		orderDetail.setQuantity(1); //TODO: hard coded for now.
-//		orderService.addOrder(orderDetail);
+		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
 		
+		
+		OrderDetail orderDetail = new OrderDetail();
+		orderDetail.setMenuId(menu.getMenuId());
+		orderDetail.setQuantity(1); //TODO: hard coded for now.
+		orderDetail.setMenu(menu);
+		orderDetail.setCustomerOrderId(1L);
+		orderDetail.setQuantity(1);
+		
+		orderList.add(orderDetail);
+		
+		return "redirect:/showOrder.html";
+	}
+	
+	@RequestMapping(value="deleteItem/{index}", method=RequestMethod.GET)
+	public String deleteItem(@PathVariable("index") int index){
+		logger.info("removing orderList with " + index);
+		orderList.remove(index);
 		return "redirect:/showOrder.html";
 	}
 }

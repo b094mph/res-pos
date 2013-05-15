@@ -36,4 +36,9 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.getMenuByFoodCategory(restaurantId, foodCategoryId);
 	}
 
+	@Override
+	public Menu getMenuByMenuId(long menuId) {
+		return menuDao.getMenuByMenuId(menuId);
+	}
+
 }

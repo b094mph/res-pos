@@ -10,14 +10,18 @@
 			<th>Unit</th>
 			<th>Price</th>
 		</tr>
-		
-		<tr>
-			<td>1</td>
-			<td>L</td>
-			<td>Wonton Soup</td>
-			<td></td>
-			<td>5.50</td>
-		</tr>
-
+		<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
+			<tr>
+				<td>${orderdetail.quantity}</td>
+				<td>L</td>
+				<td>${orderdetail.menu.food.foodShortName}</td>
+				<td></td>
+				<td>${orderdetail.menu.large}</td>
+				<td>
+					<c:url var="deleteItem" value="deleteItem/${pageScope.idx.index}.html"/>
+					<a href="${deleteItem}">x</a>
+				</td>
+			</tr>
+		</c:forEach>
 	</table>
 </fieldset>

@@ -17,7 +17,7 @@ function addToOrder(menuId){
 	var params = {menuId: menuId};
 	$.ajax({
 		type: "GET",
-		url: "addOrder.json",
+		url: "addToOrder.json",
 		data: params,
 		success:
 			function(data){

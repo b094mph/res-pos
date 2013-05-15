@@ -57,6 +57,11 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		logger.debug("FoodList size = " + query.list().size());
 		return query.list();
 	}
+
+	@Override
+	public Menu getMenuByMenuId(long menuId) {
+		return (Menu) getCurrentSession().get(Menu.class, menuId);
+	}
 	
 	
 }
