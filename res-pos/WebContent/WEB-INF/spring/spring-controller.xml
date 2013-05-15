@@ -35,6 +35,10 @@
     	</property>
     </bean>
     
+    <bean id="messageLoader" class="com.res.util.MessageLoader">
+    	<property name="messages" ref="messageSource"/>
+    </bean>
+    
 	<bean id="messageSource"
 	    class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 	    <property name="basename" value="classpath:messages" />

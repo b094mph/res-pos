@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.exception.EmptyCollectionException;
 import com.res.model.Menu;
 import com.res.service.MenuService;
+import com.res.util.MessageLoader;
 
 @Controller
 @SessionAttributes
@@ -26,6 +27,9 @@ public class SubMenuAjaxController {
 	
 	@Autowired
 	private MenuService menuService;
+	
+	@Autowired
+	private MessageLoader messages;
 
 	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
 	public ModelAndView showSubCategories(HttpServletRequest req, HttpServletResponse res) 
@@ -46,7 +50,7 @@ public class SubMenuAjaxController {
 			mav.addObject("menuIDs", menuIDs);
 		}else{
 			logger.error("subCategories is empty.");
-			throw new EmptyCollectionException("ArrayList can not be empty.");
+			throw new EmptyCollectionException(messages.getMessage("arraylist.empty"));
 		}
 		
 		return mav;
