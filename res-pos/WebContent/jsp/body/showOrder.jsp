@@ -37,4 +37,18 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<table class="table">
+	<tr>
+		<td>Sub Total:</td>
+		<td><b>$ ${subTotal}</b></td>
+	</tr>
+	<tr>
+		<td>Tax:</td>
+		<td><b>$ ${tax}</b></td>
+	</tr>
+	<tr>
+		<td>Grand Total:</td>
+		<td><b>$ ${grandTotal}</b></td>
+	</tr>
+</table>
 </fieldset>

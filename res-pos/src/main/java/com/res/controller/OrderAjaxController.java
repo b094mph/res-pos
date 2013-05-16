@@ -1,6 +1,7 @@
 package com.res.controller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import com.res.model.OrderDetail;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
 import com.res.util.MessageLoader;
+import com.res.util.Price;
 
 @Controller
 @SessionAttributes
@@ -35,7 +37,7 @@ public class OrderAjaxController {
 	private MenuService menuService;
 	
 	@Autowired
-	MessageLoader messages;
+	private MessageLoader messages;
 	
 	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 	
@@ -46,11 +48,28 @@ public class OrderAjaxController {
 		logger.info("hitting showOrderList controller...");
 		mav.addObject("orderList", orderList);
 		mav.addObject("orderListSize", orderList.size());
+		
+		BigDecimal subTotal = new BigDecimal(0.00);
+		BigDecimal tax = new BigDecimal(0.08);
+		BigDecimal grandTotal = new BigDecimal(0.00);
+		
+		mav.addObject("tax", tax.setScale(ResConstant.SCALE,RoundingMode.HALF_UP));
+		
+		if(!orderList.isEmpty()){
+			for(OrderDetail orderDetail : orderList){
+				subTotal = subTotal.add(orderDetail.getPrice());
+			}
+			
+			grandTotal = subTotal.add(subTotal.multiply(tax));
+		}
+		mav.addObject("subTotal", Price.roundToNearestNickel(subTotal));
+		mav.addObject("grandTotal", Price.roundToNearestNickel(grandTotal));
+		
 		return mav;
 	}
 	
 	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
-	public String addOrder(HttpServletRequest req, HttpServletResponse res){
+	public String addToOrder(HttpServletRequest req, HttpServletResponse res){
 		
 		String menuId = req.getParameter("menuId");
 		logger.info("hitting addOrder controller with menuId " + menuId);
@@ -63,7 +82,6 @@ public class OrderAjaxController {
 		orderDetail.setCustomerOrderId(1L);
 		
 		BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
-		//TODO: get rounding to nearest nickel.
 		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		
 		orderList.add(orderDetail);
@@ -129,4 +147,5 @@ public class OrderAjaxController {
 			
 		return "redirect:/showOrder.html";
 	}
+
 }

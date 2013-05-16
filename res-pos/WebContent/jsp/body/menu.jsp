@@ -55,6 +55,13 @@
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<div id="total" class="span4 offset8">
+			<div id="totalAjax">
+			
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 <br><br><br><br>
