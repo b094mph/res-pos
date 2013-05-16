@@ -61,7 +61,7 @@ public class OrderAjaxController {
 		orderDetail.setQuantity(1); //TODO: hard coded for now.
 		orderDetail.setMenu(menu);
 		orderDetail.setCustomerOrderId(1L);
-		orderDetail.setQuantity(1);
+		orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
 		
 		orderList.add(orderDetail);
 		
@@ -81,5 +81,39 @@ public class OrderAjaxController {
 		}
 		
 		return "redirect:/showOrder.html";
+	}
+	
+	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
+	public String increaseQty(HttpServletRequest req, HttpServletResponse res){
+		String idx = req.getParameter("idx");
+		if(StringUtils.isNumeric(idx)){
+			int index = Integer.parseInt(idx);
+			logger.info("increasing qty for item");
+			OrderDetail orderDetail = orderList.get(index);
+			orderDetail.setQuantity(orderDetail.getQuantity() + 1);
+			orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
+		}else{
+			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+		}
+		
+		return "redirect:/showOrder.html";
+	}
+	
+	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
+	public String decreaseQty(HttpServletRequest req, HttpServletResponse res){
+		String idx = req.getParameter("idx");
+		if(StringUtils.isNumeric(idx)){
+			int index  = Integer.parseInt(idx);
+			logger.info("decreasing qty for item");
+			OrderDetail orderDetail = orderList.get(index);
+			//TODO: need to check to make sure not to subtract zero
+			orderDetail.setQuantity(orderDetail.getQuantity() - 1);
+			orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
+			}else{
+				//TODO: need to check to make sure not to subtract zero
+				throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+			}
+			
+			return "redirect:/showOrder.html";
 	}
 }

@@ -19,14 +19,14 @@
 				<td>${orderdetail.quantity}</td>
 				<td>L</td>
 				<td>${orderdetail.menu.food.foodShortName}</td>
-				<td></td>
 				<td>${orderdetail.menu.large}</td>
+				<td>${orderdetail.price}</td>
 				<td>
-					<button id="addQty_${pageScope.idx.index}" 
+					<button id="increaseQty_${pageScope.idx.index}" 
 							class="btn btn-success" 
 							value='${pageScope.idx.index}'>+</button>
 				&nbsp;
-					<button id="minusQty_${pageScope.idx.index}" 
+					<button id="decreaseQty_${pageScope.idx.index}" 
 							class="btn btn-warning" 
 							value='${pageScope.idx.index}'>-</button>
 				&nbsp;

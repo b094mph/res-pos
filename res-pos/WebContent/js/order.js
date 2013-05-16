@@ -1,10 +1,18 @@
 var orderListSize = $('#orderListSize').val();
+var deleteItemId = null;
+var increaseQtyId = null;
+var decreaseQtyId = null;
+var idx = null;
+var params = null;
 
 for(var i=0; i<orderListSize; i++){
-	var deleteItemId = '#deleteItem_' + i.toString();
+	deleteItemId = '#deleteItem_' + i.toString();
+	increaseQtyId = '#increaseQty_' + i.toString();
+	decreaseQtyId = '#decreaseQty_' + i.toString();
+	
 	$(deleteItemId).click(function(){
-		var idx = $(this).val();
-		var params = {idx: idx};
+		idx = $(this).val();
+		params = {idx: idx};
 		$.ajax({
 			type: "GET",
 			url: "deleteItem.json",
@@ -19,4 +27,40 @@ for(var i=0; i<orderListSize; i++){
 			}
 		});
 	});	
+	
+	$(increaseQtyId).click(function(){
+		idx = $(this).val();
+		params = {idx: idx};
+		$.ajax({
+			type: "GET",
+			url: "increaseQty.json",
+			data: params,
+			success:
+				function(data){
+					$('#orderListAjax').html(data).show();
+			},
+			error:
+				function(data){
+					alert("unsuccessful increasing qty for item in ajax call...");
+			}
+		});
+	});
+	
+	$(decreaseQtyId).click(function(){
+		idx = $(this).val();
+		params = {idx: idx};
+		$.ajax({
+			type: "GET",
+			url: "decreaseQty.json",
+			data: params,
+			success:
+				function(data){
+					$('#orderListAjax').html(data).show();
+			},
+			error:
+				function(data){
+					alert("unsuccessful decreasing qty for item in ajax call...");
+			}
+		});
+	});
 }

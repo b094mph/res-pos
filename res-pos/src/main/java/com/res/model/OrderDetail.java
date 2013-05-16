@@ -37,6 +37,9 @@ public class OrderDetail implements Serializable{
 	@Column(name="quantity", unique=false, nullable=false, length=2)
 	private int quantity;
 	
+	private String size;
+	private float price;
+	
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
 	
@@ -76,6 +79,22 @@ public class OrderDetail implements Serializable{
 		this.quantity = quantity;
 	}
 
+	public String getSize() {
+		return size;
+	}
+
+	public void setSize(String size) {
+		this.size = size;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
 	public String getNote() {
 		return note;
 	}
@@ -91,5 +110,6 @@ public class OrderDetail implements Serializable{
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
+	
 		
 }
