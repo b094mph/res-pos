@@ -6,10 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -19,6 +19,7 @@ import com.res.model.Menu;
 import com.res.model.OrderDetail;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
+import com.res.util.MessageLoader;
 
 @Controller
 @SessionAttributes
@@ -32,6 +33,9 @@ public class OrderAjaxController {
 	@Autowired
 	private MenuService menuService;
 	
+	@Autowired
+	MessageLoader messages;
+	
 	public List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
@@ -40,6 +44,7 @@ public class OrderAjaxController {
 		
 		logger.info("hitting showOrderList controller...");
 		mav.addObject("orderList", orderList);
+		mav.addObject("orderListSize", orderList.size());
 		return mav;
 	}
 	
@@ -63,10 +68,18 @@ public class OrderAjaxController {
 		return "redirect:/showOrder.html";
 	}
 	
-	@RequestMapping(value="deleteItem/{index}", method=RequestMethod.GET)
-	public String deleteItem(@PathVariable("index") int index){
-		logger.info("removing orderList with " + index);
-		orderList.remove(index);
+	@RequestMapping(value="/deleteItem.json", method=RequestMethod.GET)
+	public String deleteItem(HttpServletRequest req, HttpServletResponse res)
+			throws NumberFormatException{
+		String idx = req.getParameter("idx");
+		if(StringUtils.isNumeric(idx)){
+			int index = Integer.parseInt(idx);
+			logger.info("removing orderList with " + idx);
+			orderList.remove(index);
+		}else{
+			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+		}
+		
 		return "redirect:/showOrder.html";
 	}
 }

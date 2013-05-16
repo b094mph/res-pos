@@ -40,7 +40,18 @@
 	<div class="row">
 		<div id="orderList" class="span12">
 			<div id="orderListAjax">
-						
+				<fieldset>
+				<legend>Order</legend>
+					<table class="table table-striped table-hover">
+						<tr>
+							<th>Qty</th>
+							<th>Size</th>
+							<th>Name</th>
+							<th>Unit</th>
+							<th>Price</th>
+						</tr>
+					</table>
+				</fieldset>
 			</div>
 		</div>
 	</div>

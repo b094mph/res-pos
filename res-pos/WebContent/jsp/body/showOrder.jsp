@@ -1,5 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<input id="orderListSize" type="hidden" value="${orderListSize}">
+
+<script type="text/javascript" src="js/order.js"></script>
+
 <fieldset>
 <legend>Order</legend>
 	<table class="table table-striped table-hover">
@@ -18,8 +22,17 @@
 				<td></td>
 				<td>${orderdetail.menu.large}</td>
 				<td>
-					<c:url var="deleteItem" value="deleteItem/${pageScope.idx.index}.html"/>
-					<a href="${deleteItem}">x</a>
+					<button id="addQty_${pageScope.idx.index}" 
+							class="btn btn-success" 
+							value='${pageScope.idx.index}'>+</button>
+				&nbsp;
+					<button id="minusQty_${pageScope.idx.index}" 
+							class="btn btn-warning" 
+							value='${pageScope.idx.index}'>-</button>
+				&nbsp;
+					<button id="deleteItem_${pageScope.idx.index}" 
+							class="btn btn-danger" 
+							value='${pageScope.idx.index}'>x</button>
 				</td>
 			</tr>
 		</c:forEach>
