@@ -1,6 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,16 +47,16 @@ public class CustomerOrder implements Serializable{
 	private Date orderTime;
 	
 	@Column(name="subtotal", unique=false, nullable=false, length=5)
-	private float subTotal;
+	private BigDecimal subTotal;
 	
 	@Column(name="tax", unique=false, nullable=true, length=5)
-	private Float tax;
+	private BigDecimal tax;
 	
 	@Column(name="grandtotal", unique=false, nullable=false, length=5)
-	private float grandTotal;
+	private BigDecimal grandTotal;
 	
 	@Column(name="tip", unique=false, nullable=true, length=5)
-	private Float tip;
+	private BigDecimal tip;
 	
 	@Column(name="orderstatus", unique=false, nullable=false, length=10)
 	private String orderStatus;
@@ -119,35 +120,35 @@ public class CustomerOrder implements Serializable{
 		this.orderTime = orderTime;
 	}
 
-	public float getSubTotal() {
+	public BigDecimal getSubTotal() {
 		return subTotal;
 	}
 
-	public void setSubTotal(float subTotal) {
+	public void setSubTotal(BigDecimal subTotal) {
 		this.subTotal = subTotal;
 	}
 
-	public Float getTax() {
+	public BigDecimal getTax() {
 		return tax;
 	}
 
-	public void setTax(Float tax) {
+	public void setTax(BigDecimal tax) {
 		this.tax = tax;
 	}
 
-	public float getGrandTotal() {
+	public BigDecimal getGrandTotal() {
 		return grandTotal;
 	}
 
-	public void setGrandTotal(float grandTotal) {
+	public void setGrandTotal(BigDecimal grandTotal) {
 		this.grandTotal = grandTotal;
 	}
 
-	public Float getTip() {
+	public BigDecimal getTip() {
 		return tip;
 	}
 
-	public void setTip(Float tip) {
+	public void setTip(BigDecimal tip) {
 		this.tip = tip;
 	}
 

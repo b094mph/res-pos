@@ -1,6 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,8 +38,11 @@ public class OrderDetail implements Serializable{
 	@Column(name="quantity", unique=false, nullable=false, length=2)
 	private int quantity;
 	
+	@Column(name="size", unique=false, nullable=false, length=5)
 	private String size;
-	private float price;
+	
+	@Column(name="price", unique=false, nullable=false, length=5)
+	private BigDecimal price;
 	
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
@@ -87,11 +91,11 @@ public class OrderDetail implements Serializable{
 		this.size = size;
 	}
 
-	public float getPrice() {
+	public BigDecimal getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(BigDecimal price) {
 		this.price = price;
 	}
 

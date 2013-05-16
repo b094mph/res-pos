@@ -1,12 +1,12 @@
 package com.res.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.constant.ResConstant;
 import com.res.model.Menu;
 import com.res.model.OrderDetail;
 import com.res.service.MenuService;
@@ -36,7 +37,7 @@ public class OrderAjaxController {
 	@Autowired
 	MessageLoader messages;
 	
-	public List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
 	public ModelAndView showOrderList(){
@@ -55,13 +56,15 @@ public class OrderAjaxController {
 		logger.info("hitting addOrder controller with menuId " + menuId);
 		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
 		
-		
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setMenuId(menu.getMenuId());
 		orderDetail.setQuantity(1); //TODO: hard coded for now.
 		orderDetail.setMenu(menu);
 		orderDetail.setCustomerOrderId(1L);
-		orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
+		
+		BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
+		//TODO: get rounding to nearest nickel.
+		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		
 		orderList.add(orderDetail);
 		
@@ -72,11 +75,11 @@ public class OrderAjaxController {
 	public String deleteItem(HttpServletRequest req, HttpServletResponse res)
 			throws NumberFormatException{
 		String idx = req.getParameter("idx");
-		if(StringUtils.isNumeric(idx)){
+		try{
 			int index = Integer.parseInt(idx);
 			logger.info("removing orderList with " + idx);
 			orderList.remove(index);
-		}else{
+		}catch(Exception e){
 			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
 		}
 		
@@ -84,15 +87,18 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
-	public String increaseQty(HttpServletRequest req, HttpServletResponse res){
+	public String increaseQty(HttpServletRequest req, HttpServletResponse res)
+			throws NumberFormatException{
 		String idx = req.getParameter("idx");
-		if(StringUtils.isNumeric(idx)){
+		try{
 			int index = Integer.parseInt(idx);
 			logger.info("increasing qty for item");
 			OrderDetail orderDetail = orderList.get(index);
 			orderDetail.setQuantity(orderDetail.getQuantity() + 1);
-			orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
-		}else{
+			
+			BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
+			orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+		}catch(Exception e){
 			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
 		}
 		
@@ -100,20 +106,27 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
-	public String decreaseQty(HttpServletRequest req, HttpServletResponse res){
+	public String decreaseQty(HttpServletRequest req, HttpServletResponse res)
+			throws NumberFormatException{
 		String idx = req.getParameter("idx");
-		if(StringUtils.isNumeric(idx)){
+		try{
 			int index  = Integer.parseInt(idx);
 			logger.info("decreasing qty for item");
 			OrderDetail orderDetail = orderList.get(index);
-			//TODO: need to check to make sure not to subtract zero
-			orderDetail.setQuantity(orderDetail.getQuantity() - 1);
-			orderDetail.setPrice(orderDetail.getQuantity() * orderDetail.getMenu().getLarge());
-			}else{
-				//TODO: need to check to make sure not to subtract zero
-				throw new NumberFormatException(messages.getMessage("is.not.a.number"));
-			}
+			int quantity = orderDetail.getQuantity();
 			
-			return "redirect:/showOrder.html";
+			if(quantity > 1){
+				orderDetail.setQuantity(quantity - 1);
+				BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
+				orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+			}else{
+				logger.info("subtracting quantity of 1, therefore deleting item.");
+				orderList.remove(index);
+			}
+		}catch(Exception e){
+			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+		}
+			
+		return "redirect:/showOrder.html";
 	}
 }

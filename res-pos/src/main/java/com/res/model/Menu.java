@@ -1,6 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -45,22 +46,22 @@ public class Menu implements Serializable{
 	private String menuNum;
 	
 	@Column(name="small", unique=false, nullable=true, length=5)
-	private Float small;
+	private BigDecimal small;
 	
 	@Column(name="large", unique=false, nullable=false, length=5)
-	private Float large;
+	private BigDecimal large;
 	
 	@Column(name="lunchnum", unique=false, nullable=true, length=5)
 	private String lunchNum;
 	
 	@Column(name="lunch", unique=false, nullable=true, length=5)
-	private Float lunch;
+	private BigDecimal lunch;
 	
 	@Column(name="combonum", unique=false, nullable=true, length=5)
 	private String comboNum;
 	
 	@Column(name="combo", unique=false, nullable=true, length=5)
-	private Float combo;
+	private BigDecimal combo;
 	
 	@Column(name="spicy", unique=false, nullable=true, length=1)
 	private Boolean spicy;
@@ -140,19 +141,19 @@ public class Menu implements Serializable{
 		this.menuNum = menuNum;
 	}
 
-	public Float getSmall() {
+	public BigDecimal getSmall() {
 		return small;
 	}
 
-	public void setSmall(Float small) {
+	public void setSmall(BigDecimal small) {
 		this.small = small;
 	}
 
-	public Float getLarge() {
+	public BigDecimal getLarge() {
 		return large;
 	}
 
-	public void setLarge(Float large) {
+	public void setLarge(BigDecimal large) {
 		this.large = large;
 	}
 
@@ -164,11 +165,11 @@ public class Menu implements Serializable{
 		this.lunchNum = lunchNum;
 	}
 
-	public Float getLunch() {
+	public BigDecimal getLunch() {
 		return lunch;
 	}
 
-	public void setLunch(Float lunch) {
+	public void setLunch(BigDecimal lunch) {
 		this.lunch = lunch;
 	}
 
@@ -180,11 +181,11 @@ public class Menu implements Serializable{
 		this.comboNum = comboNum;
 	}
 
-	public Float getCombo() {
+	public BigDecimal getCombo() {
 		return combo;
 	}
 
-	public void setCombo(Float combo) {
+	public void setCombo(BigDecimal combo) {
 		this.combo = combo;
 	}
 

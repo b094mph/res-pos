@@ -1,6 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.sql.Time;
 
 import javax.persistence.Column;
@@ -47,10 +48,10 @@ public class Restaurant implements Serializable{
 	private String faxNumber;
 	
 	@Column(name="deliverycost", unique=false, nullable=true, length=5)
-	private Float deliveryCost;
+	private BigDecimal deliveryCost;
 	
 	@Column(name="tax", unique=false, nullable=true, length=5)
-	private Float tax;
+	private BigDecimal tax;
 	
 	@Column(name="rounding", unique=false, nullable=true, length=1)
 	private Boolean rounding;
@@ -155,19 +156,19 @@ public class Restaurant implements Serializable{
 		this.faxNumber = faxNumber;
 	}
 
-	public Float getDeliveryCost() {
+	public BigDecimal getDeliveryCost() {
 		return deliveryCost;
 	}
 
-	public void setDeliveryCost(Float deliveryCost) {
+	public void setDeliveryCost(BigDecimal deliveryCost) {
 		this.deliveryCost = deliveryCost;
 	}
 
-	public Float getTax() {
+	public BigDecimal getTax() {
 		return tax;
 	}
 
-	public void setTax(Float tax) {
+	public void setTax(BigDecimal tax) {
 		this.tax = tax;
 	}
 
