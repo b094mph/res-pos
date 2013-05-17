@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS restaurant (
 	deliverycost DECIMAL(3,2),
 	tax DECIMAL(2,2),
 	rounding TINYINT(1),
-	montothrusopen VARCHAR(8) NOT NULL,
+	montothursopen VARCHAR(8) NOT NULL,
 	montothursclose VARCHAR(8) NOT NULL,
 	friopen VARCHAR(8) NOT NULL,
 	friclose VARCHAR(8) NOT NULL,

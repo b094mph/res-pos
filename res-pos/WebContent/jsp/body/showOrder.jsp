@@ -19,8 +19,8 @@
 				<td>${orderdetail.quantity}</td>
 				<td>L</td>
 				<td>${orderdetail.menu.food.foodShortName}</td>
-				<td>${orderdetail.menu.large}</td>
-				<td>${orderdetail.price}</td>
+				<td>$ ${orderdetail.menu.large}</td>
+				<td>$ ${orderdetail.price}</td>
 				<td>
 					<button id="increaseQty_${pageScope.idx.index}" 
 							class="btn btn-success" 
@@ -36,19 +36,26 @@
 				</td>
 			</tr>
 		</c:forEach>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td><b>Sub Total:</b></td>
+				<td><b>$ ${subTotal}</b></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td><b>Tax:</b></td>
+				<td><b>$ ${tax}</b></td>
+			</tr>
+			<tr>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td>&nbsp;</td>
+				<td><b>Grand Total:</b></td>
+				<td><b>$ ${grandTotal}</b></td>
+			</tr>
 	</table>
-	<table class="table">
-	<tr>
-		<td>Sub Total:</td>
-		<td><b>$ ${subTotal}</b></td>
-	</tr>
-	<tr>
-		<td>Tax:</td>
-		<td><b>$ ${tax}</b></td>
-	</tr>
-	<tr>
-		<td>Grand Total:</td>
-		<td><b>$ ${grandTotal}</b></td>
-	</tr>
-</table>
 </fieldset>

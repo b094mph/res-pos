@@ -19,8 +19,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.constant.ResConstant;
 import com.res.model.Menu;
 import com.res.model.OrderDetail;
+import com.res.model.Restaurant;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
+import com.res.service.RestaurantService;
 import com.res.util.MessageLoader;
 import com.res.util.Price;
 
@@ -30,14 +32,10 @@ public class OrderAjaxController {
 
 	private static Logger logger = Logger.getLogger(OrderAjaxController.class);
 	
-	@Autowired
-	private OrderService orderService;
-	
-	@Autowired
-	private MenuService menuService;
-	
-	@Autowired
-	private MessageLoader messages;
+	@Autowired private OrderService orderService;
+	@Autowired private MenuService menuService;
+	@Autowired private RestaurantService restaurantService;
+	@Autowired private MessageLoader messages;
 	
 	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 	
@@ -45,12 +43,14 @@ public class OrderAjaxController {
 	public ModelAndView showOrderList(){
 		ModelAndView mav = new ModelAndView("showOrder");
 		
-		logger.info("hitting showOrderList controller...");
 		mav.addObject("orderList", orderList);
 		mav.addObject("orderListSize", orderList.size());
 		
 		BigDecimal subTotal = new BigDecimal(0.00);
-		BigDecimal tax = new BigDecimal(0.08);
+		
+		Restaurant res = restaurantService.getResturantInfo(ResConstant.NEW_CITY_CHINESE_ID);
+		BigDecimal tax = res.getTax();
+		logger.info("tax = " + tax);
 		BigDecimal grandTotal = new BigDecimal(0.00);
 		
 		mav.addObject("tax", tax.setScale(ResConstant.SCALE,RoundingMode.HALF_UP));
@@ -59,12 +59,23 @@ public class OrderAjaxController {
 			for(OrderDetail orderDetail : orderList){
 				subTotal = subTotal.add(orderDetail.getPrice());
 			}
-			
 			grandTotal = subTotal.add(subTotal.multiply(tax));
 		}
-		mav.addObject("subTotal", Price.roundToNearestNickel(subTotal));
-		mav.addObject("grandTotal", Price.roundToNearestNickel(grandTotal));
 		
+		if(res.getRounding()){
+			subTotal = Price.roundToNearestNickel(subTotal);
+			grandTotal = Price.roundToNearestNickel(grandTotal);
+			mav.addObject("subTotal", subTotal);
+			mav.addObject("grandTotal", grandTotal);	
+		}else{
+			subTotal = subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+			grandTotal = grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+			mav.addObject("subTotal", subTotal);
+			mav.addObject("grandTotal", grandTotal);
+		}
+		logger.info("Sub Total = " + subTotal);
+		logger.info("Grand Total = " + grandTotal);
+
 		return mav;
 	}
 	
