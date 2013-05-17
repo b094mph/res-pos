@@ -6,30 +6,30 @@
 
 <fieldset>
 <legend>${foodCategoryName}</legend>
-<div>
+<table>
 	<c:forEach items="${subCategories}" var="subCategory">
 		<c:choose>
 			<c:when test="${subCategory.spicy}">
-				<button id="menu_${subCategory.menuId}" 
-					type="button" 
-					name="${subCategory.menuId}" 
-					class="btn btn-danger btn-large btn1"
-					value='<c:out value="${subCategory.menuId}"></c:out>'
-				>
-					${subCategory.food.foodShortName}
-				</button>	
+				<button id="menu_${subCategory.menuId}"  
+							type="button" 
+							name="${subCategory.menuId}" 
+							class="btn btn-danger btn1"
+							value='<c:out value="${subCategory.menuId}"></c:out>'
+					>
+						${subCategory.food.foodShortName}
+				</button>
 			</c:when>
 			<c:otherwise>
-				<button id="menu_${subCategory.menuId}" 
-					type="button" 
-					name="${subCategory.menuId}" 
-					class="btn btn-info btn-large btn1"
-					value='<c:out value="${subCategory.menuId}"></c:out>'
-				>
-					${subCategory.food.foodShortName}
-				</button>	
+				<button id="menu_${subCategory.menuId}"  
+							type="button" 
+							name="${subCategory.menuId}" 
+							class="btn btn-info btn1"
+							value='<c:out value="${subCategory.menuId}"></c:out>'
+					>
+						${subCategory.food.foodShortName}
+				</button>
 			</c:otherwise>
 		</c:choose>
 	</c:forEach>
-</div>
+</table>
 </fieldset>

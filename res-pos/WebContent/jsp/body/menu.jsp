@@ -21,7 +21,7 @@
 					<button id='fc_<%=count++%>'  
 							type="button" 
 							name="${fc.foodCategoryId}" 
-							class="btn btn-info btn-large btn1"
+							class="btn btn-info btn1"
 							value='<c:out value="${fc.foodCategoryId}"></c:out>'
 					>
 						${fc.foodCategoryName}
@@ -52,13 +52,6 @@
 						</tr>
 					</table>
 				</fieldset>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div id="total" class="span4 offset8">
-			<div id="totalAjax">
-			
 			</div>
 		</div>
 	</div>
