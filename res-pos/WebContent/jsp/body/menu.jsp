@@ -50,6 +50,40 @@
 							<th>Unit</th>
 							<th>Price</th>
 						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td><b>Sub Total:</b></td>
+							<td><b>$ 0.00</b></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td><b>Tax:</b></td>
+							<td><b>$ 0.00</b></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td><b>Grand Total:</b></td>
+							<td><b>$ 0.00</b></td>
+							<td>
+								<button id="void" class="btn btn-danger">Void</button>
+								<button id="send" class="btn btn-success">Send</button>
+							</td>
+						</tr>
 					</table>
 				</fieldset>
 			</div>
