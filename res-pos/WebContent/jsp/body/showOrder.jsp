@@ -42,6 +42,7 @@
 				<td>&nbsp;</td>
 				<td><b>Sub Total:</b></td>
 				<td><b>$ ${subTotal}</b></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -49,6 +50,7 @@
 				<td>&nbsp;</td>
 				<td><b>Tax:</b></td>
 				<td><b>$ ${tax}</b></td>
+				<td></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>
@@ -56,6 +58,10 @@
 				<td>&nbsp;</td>
 				<td><b>Grand Total:</b></td>
 				<td><b>$ ${grandTotal}</b></td>
+				<td>
+					<button id="void" class="btn btn-danger">Void</button>
+					<button id="send" class="btn btn-success">Send</button>
+				</td>
 			</tr>
 	</table>
 </fieldset>

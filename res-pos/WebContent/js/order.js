@@ -64,3 +64,18 @@ for(var i=0; i<orderListSize; i++){
 		});
 	});
 }
+
+$('#void').click(function(){
+	$.ajax({
+		type: "GET",
+		url: "voidOrder.json",
+		success:
+			function(data){
+				$('#orderListAjax').html(data).show();
+		},
+		error:
+			function(data){
+				alert("unsuccessful voiding the order in ajax call...");
+		}
+	});
+});

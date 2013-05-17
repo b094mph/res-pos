@@ -63,18 +63,14 @@ public class OrderAjaxController {
 		}
 		
 		if(res.getRounding()){
-			subTotal = Price.roundToNearestNickel(subTotal);
-			grandTotal = Price.roundToNearestNickel(grandTotal);
-			mav.addObject("subTotal", subTotal);
-			mav.addObject("grandTotal", grandTotal);	
+			logger.info(res.getRestaurantName() + " rounds to nearest nickel.");
+			mav.addObject("subTotal", Price.roundToNearestNickel(subTotal));
+			mav.addObject("grandTotal", Price.roundToNearestNickel(grandTotal));	
 		}else{
-			subTotal = subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
-			grandTotal = grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
-			mav.addObject("subTotal", subTotal);
-			mav.addObject("grandTotal", grandTotal);
+			logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
+			mav.addObject("subTotal", subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
+			mav.addObject("grandTotal", grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
 		}
-		logger.info("Sub Total = " + subTotal);
-		logger.info("Grand Total = " + grandTotal);
 
 		return mav;
 	}
@@ -156,6 +152,13 @@ public class OrderAjaxController {
 			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
 		}
 			
+		return "redirect:/showOrder.html";
+	}
+	
+	@RequestMapping(value="/voidOrder.json", method=RequestMethod.GET)
+	public String voidOrder(HttpServletRequest req, HttpServletResponse res){
+		logger.info("deleting order...");
+		orderList.clear();
 		return "redirect:/showOrder.html";
 	}
 
