@@ -48,7 +48,7 @@
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
 				<td>&nbsp;</td>
-				<td><b>Tax:</b></td>
+				<td><b>Tax ${salesTax} %</b></td>
 				<td><b>$ ${tax}</b></td>
 				<td></td>
 			</tr>

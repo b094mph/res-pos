@@ -53,22 +53,24 @@ public class OrderAjaxController {
 		logger.info("tax = " + tax);
 		BigDecimal grandTotal = new BigDecimal(0.00);
 		
-		mav.addObject("tax", tax.setScale(ResConstant.SCALE,RoundingMode.HALF_UP));
+		mav.addObject("salesTax", tax.multiply(new BigDecimal(100)));
+		
 		
 		if(!orderList.isEmpty()){
 			for(OrderDetail orderDetail : orderList){
 				subTotal = subTotal.add(orderDetail.getPrice());
 			}
+			mav.addObject("tax", subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
 			grandTotal = subTotal.add(subTotal.multiply(tax));
 		}
 		
+		mav.addObject("subTotal", subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
+		
 		if(res.getRounding()){
 			logger.info(res.getRestaurantName() + " rounds to nearest nickel.");
-			mav.addObject("subTotal", Price.roundToNearestNickel(subTotal));
 			mav.addObject("grandTotal", Price.roundToNearestNickel(grandTotal));	
 		}else{
 			logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
-			mav.addObject("subTotal", subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
 			mav.addObject("grandTotal", grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
 		}
 
