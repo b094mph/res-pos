@@ -49,6 +49,7 @@ public class LoginController {
 		mav.addObject("username", username);
 		List<Restaurant> restaurants = restaurantService.getRestaurants();
 		mav.addObject("restaurants", restaurants);
+		mav.addObject("numOfRes", restaurants.size());
 		
 		return mav;
 	}
