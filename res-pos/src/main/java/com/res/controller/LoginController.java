@@ -1,6 +1,7 @@
 package com.res.controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.model.Restaurant;
 import com.res.model.User;
+import com.res.service.RestaurantService;
 import com.res.service.UserService;
 
 @Controller
@@ -20,8 +23,8 @@ public class LoginController {
 
 	private static Logger logger = Logger.getLogger(LoginController.class);
 	
-	@Autowired
-	private UserService agentService;
+	@Autowired private UserService agentService;
+	@Autowired private RestaurantService restaurantService;
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public ModelAndView login(){
@@ -44,6 +47,8 @@ public class LoginController {
 		logger.info("in welcome " + username);
 		
 		mav.addObject("username", username);
+		List<Restaurant> restaurants = restaurantService.getRestaurants();
+		mav.addObject("restaurants", restaurants);
 		
 		return mav;
 	}

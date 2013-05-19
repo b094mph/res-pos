@@ -1,5 +1,7 @@
 package com.res.service.impl;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +22,11 @@ public class RestaurantServiceImpl implements RestaurantService{
 	@Override
 	public Restaurant getResturantInfo(long restaurantId) {
 		return restaurantDao.restaurantInfo(restaurantId);
+	}
+
+	@Override
+	public List<Restaurant> getRestaurants() {
+		return restaurantDao.getRestaurants();
 	}
 
 }
