@@ -11,13 +11,9 @@
 	<link type="image/png" rel="icon" href="img/favicons/RP-favicon.ico">
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
-<body>
+
 <div class="container">
 	<table>
-	    <tr>
-	        <td colspan="2"><tiles:insertAttribute name="header" />
-	        </td>
-	    </tr>
 	    <tr>
 	    	<td><tiles:insertAttribute name="menu" /></td>
 	    </tr>
@@ -25,12 +21,9 @@
 	        <td><tiles:insertAttribute name="body" /></td>
 	    </tr>
 	    <tr>
-	        <td><tiles:insertAttribute name="footer"/></td>
-	    </tr>
-	    <tr>
 	    	<td><tiles:insertAttribute name="copyright"/></td>
 	    </tr>
 	</table>
 </div>
-</body>
+
 </html>
