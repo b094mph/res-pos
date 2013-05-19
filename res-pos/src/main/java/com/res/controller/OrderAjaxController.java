@@ -3,6 +3,7 @@ package com.res.controller;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.res.constant.ResConstant;
+import com.res.model.CustomerOrder;
 import com.res.model.Menu;
 import com.res.model.OrderDetail;
 import com.res.model.Restaurant;
@@ -38,6 +40,9 @@ public class OrderAjaxController {
 	@Autowired private MessageLoader messages;
 	
 	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+	private BigDecimal _subTotal;
+	private BigDecimal _tax;
+	private BigDecimal _grandTotal;
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
 	public ModelAndView showOrderList(){
@@ -60,18 +65,25 @@ public class OrderAjaxController {
 			for(OrderDetail orderDetail : orderList){
 				subTotal = subTotal.add(orderDetail.getPrice());
 			}
-			mav.addObject("tax", subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
-			grandTotal = subTotal.add(subTotal.multiply(tax));
-		}
-		
-		mav.addObject("subTotal", subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
-		
-		if(res.getRounding()){
-			logger.info(res.getRestaurantName() + " rounds to nearest nickel.");
-			mav.addObject("grandTotal", Price.roundToNearestNickel(grandTotal));	
-		}else{
-			logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
-			mav.addObject("grandTotal", grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP));
+			BigDecimal calcSubTotal = subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+			set_subTotal(calcSubTotal);
+			mav.addObject("subTotal", calcSubTotal);
+			
+			BigDecimal calcTax = subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP); 
+			set_tax(calcTax);		
+			mav.addObject("tax", calcTax);
+			
+			grandTotal = subTotal.add(calcTax);
+
+			if(res.getRounding()){
+				logger.info(res.getRestaurantName() + " rounds to nearest nickel.");
+				grandTotal = Price.roundToNearestNickel(grandTotal);
+			}else{
+				logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
+				grandTotal = grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+			}
+			set_grandTotal(grandTotal);
+			mav.addObject("grandTotal", grandTotal);
 		}
 
 		return mav;
@@ -87,6 +99,7 @@ public class OrderAjaxController {
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setMenuId(menu.getMenuId());
 		orderDetail.setQuantity(1); //TODO: hard coded for now.
+		orderDetail.setSize("Large");
 		orderDetail.setMenu(menu);
 		orderDetail.setCustomerOrderId(1L);
 		
@@ -162,6 +175,51 @@ public class OrderAjaxController {
 		logger.info("deleting order...");
 		orderList.clear();
 		return "redirect:/showOrder.html";
+	}
+	
+	@RequestMapping(value="/sendOrder.json", method=RequestMethod.GET)
+	public String sendOrder(HttpServletRequest req, HttpServletResponse res){
+		CustomerOrder customerOrder = new CustomerOrder();
+		customerOrder.setRestaurantId(1); //TODO: save by the selected restaurant id
+		customerOrder.setPersonId(2); //TODO: save with the customer information
+		customerOrder.setUsername("bthai"); //TODO: need to save order with the user who logged in
+		customerOrder.setOrderOption("Pick Up");
+		customerOrder.setOrderTime(new Date());
+		customerOrder.setSubTotal(get_subTotal());
+		customerOrder.setTax(get_tax());
+		customerOrder.setGrandTotal(get_grandTotal());
+		
+		for(OrderDetail orderDetail : orderList){
+			orderDetail.setCustomerOrder(customerOrder);
+		}
+		
+		orderService.saveOrder(customerOrder, orderList);
+		orderList.clear();
+		return "redirect:/showOrder.html";
+	}
+
+	public BigDecimal get_subTotal() {
+		return _subTotal;
+	}
+
+	public void set_subTotal(BigDecimal _subTotal) {
+		this._subTotal = _subTotal;
+	}
+
+	public BigDecimal get_tax() {
+		return _tax;
+	}
+
+	public void set_tax(BigDecimal _tax) {
+		this._tax = _tax;
+	}
+
+	public BigDecimal get_grandTotal() {
+		return _grandTotal;
+	}
+
+	public void set_grandTotal(BigDecimal _grandTotal) {
+		this._grandTotal = _grandTotal;
 	}
 
 }

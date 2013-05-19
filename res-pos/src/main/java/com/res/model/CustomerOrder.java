@@ -15,7 +15,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="customerorder", catalog="restaurant", uniqueConstraints={
 		@UniqueConstraint(columnNames="restaurantid"),
-		@UniqueConstraint(columnNames="agentid"),
+		@UniqueConstraint(columnNames="username"),
 		@UniqueConstraint(columnNames="personid"),
 		@UniqueConstraint(columnNames="creditcardid")
 })
@@ -31,10 +31,10 @@ public class CustomerOrder implements Serializable{
 	@Column(name="restaurantid", unique=false, nullable=false, length=11)
 	private long restaurantId;
 	
-	@Column(name="agentid", unique=false, nullable=false, length=11)
-	private long agentId;
+	@Column(name="username", unique=false, nullable=false, length=11)
+	private String username;
 	
-	@Column(name="personid", unique=false, nullable=false, length=11)
+	@Column(name="personid", unique=false, length=11/*, insertable=false, updatable=false*/)
 	private long personId;
 	
 	@Column(name="creditcardid", unique=false, nullable=true, length=11)
@@ -63,6 +63,10 @@ public class CustomerOrder implements Serializable{
 	
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
+	
+//	@OneToOne(fetch=FetchType.EAGER)
+//	@JoinColumn(name="personid")
+//	private Person customer;
 
 	public long getCustomerOrderId() {
 		return customerOrderId;
@@ -80,12 +84,12 @@ public class CustomerOrder implements Serializable{
 		this.restaurantId = restaurantId;
 	}
 
-	public long getAgentId() {
-		return agentId;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setAgentId(long agentId) {
-		this.agentId = agentId;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public long getPersonId() {
@@ -167,5 +171,13 @@ public class CustomerOrder implements Serializable{
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+//	public Person getCustomer() {
+//		return customer;
+//	}
+//
+//	public void setCustomer(Person customer) {
+//		this.customer = customer;
+//	}
 
 }

@@ -79,3 +79,18 @@ $('#void').click(function(){
 		}
 	});
 });
+
+$('#send').click(function(){
+	$.ajax({
+		type: "GET",
+		url: "sendOrder.json",
+		success:
+			function(data){
+				$('#orderListAjax').html(data).show();
+		},
+		error:
+			function(data){
+				alert("unsuccessful sending the order in ajax call...");
+		}
+	});
+});

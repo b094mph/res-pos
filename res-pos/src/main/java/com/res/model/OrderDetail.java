@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -28,7 +28,8 @@ public class OrderDetail implements Serializable{
 	@Column(name="orderdetailid")
 	private long orderDetailId;
 	
-	@Column(name="customerorderid", unique=false, nullable=false, length=11)
+	@Column(name="customerorderid", unique=false, nullable=false, length=11,
+			insertable=false, updatable=false)
 	private long customerOrderId;
 	
 	@Column(name="menuid", unique=false, nullable=false, length=11,
@@ -47,9 +48,13 @@ public class OrderDetail implements Serializable{
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
 	
-	@ManyToOne(fetch=FetchType.EAGER)
+	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="menuid", nullable=false)
 	private Menu menu;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="customerorderid", nullable=false)
+	private CustomerOrder customerOrder;
 
 	public long getOrderDetailId() {
 		return orderDetailId;
@@ -114,6 +119,13 @@ public class OrderDetail implements Serializable{
 	public void setMenu(Menu menu) {
 		this.menu = menu;
 	}
-	
+
+	public CustomerOrder getCustomerOrder() {
+		return customerOrder;
+	}
+
+	public void setCustomerOrder(CustomerOrder customerOrder) {
+		this.customerOrder = customerOrder;
+	}
 		
 }

@@ -174,7 +174,7 @@ CREATE TABLE IF NOT EXISTS customerorder (
     username VARCHAR(50) NOT NULL,
 	personid BIGINT(11) NOT NULL,
 	creditcardid BIGINT(11),
-    orderoption TINYINT(1) NOT NULL,
+    orderoption VARCHAR(10) NOT NULL,
     ordertime TIMESTAMP NOT NULL,
 	subtotal DECIMAL(6,2) NOT NULL,
 	tax DECIMAL(4,2),
@@ -185,8 +185,7 @@ CREATE TABLE IF NOT EXISTS customerorder (
     PRIMARY KEY (customerorderid),
 	CONSTRAINT fk_customerorder_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,
 	CONSTRAINT fk_customerorder_users FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE,
-	CONSTRAINT fk_customerorder_person FOREIGN KEY (personid) REFERENCES person (personid) ON DELETE CASCADE,
-	CONSTRAINT fk_customerorder_creditcard FOREIGN KEY (creditcardid) REFERENCES creditcard (creditcardid) ON DELETE CASCADE
+	CONSTRAINT fk_customerorder_person FOREIGN KEY (personid) REFERENCES person (personid) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS orderdetail (
