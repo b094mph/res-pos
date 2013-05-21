@@ -14,7 +14,7 @@
 		<div id="orderListAjax">
 			<fieldset>
 			<legend>Order</legend>
-				<table class="table table-striped table-hover">
+				<table class="table table-striped table-hover table-condensed">
 					<tr>
 						<th>Qty</th>
 						<th>Size</th>
@@ -60,27 +60,29 @@
 			</fieldset>
 		</div>
 	</div>
-	<div id="category" class="span6">
-		<fieldset>
-		<legend>Category</legend>
-		<table>
-			<% int count = 1; %>
-			<c:forEach items="${foodCategories}" var="fc">
-				<button id='fc_<%=count++%>'  
-						type="button" 
-						name="${fc.foodCategoryId}" 
-						class="btn btn-info btn1"
-						value='<c:out value="${fc.foodCategoryId}"></c:out>'
-				>
-					${fc.foodCategoryName}
-				</button> 
-			</c:forEach>
-		</table>
-		</fieldset>
-	</div>
-	<div id="subcategory" class="span6">
-		<div id="subcategoryajax">
-
+	<div class="span6">
+		<div id="category">
+			<fieldset>
+			<legend>Category</legend>
+			<table>
+				<% int count = 1; %>
+				<c:forEach items="${foodCategories}" var="fc">
+					<button id='fc_<%=count++%>'  
+							type="button" 
+							name="${fc.foodCategoryId}" 
+							class="btn btn-info btn1"
+							value='<c:out value="${fc.foodCategoryId}"></c:out>'
+					>
+						${fc.foodCategoryName}
+					</button> 
+				</c:forEach>
+			</table>
+			</fieldset>
+		</div>
+		<div id="subcategory">
+			<div id="subcategoryajax">
+	
+			</div>
 		</div>
 	</div>
 </div>

@@ -56,3 +56,8 @@ body{
 	text-align: center;
 }
 
+.scroll{
+	height: 65%;
+	overflow-y: auto;
+}
+
