@@ -7,7 +7,7 @@
     <definition name="base.definition" template="/jsp/layout.jsp">
         <put-attribute name="title" value="RES-POS" />
         <put-attribute name="header" value="/jsp/header.jsp" />
-        <put-attribute name="menu" value="/jsp/menubar.jsp" />
+        <put-attribute name="menubar" value="/jsp/menubar.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/jsp/footer.jsp" />
         <put-attribute name="copyright" value="/jsp/copyright.jsp"/>

@@ -3,6 +3,10 @@ input#test{
 	width:normal;
 }
 
+body{
+	padding: 40px;
+}
+
 /* category and subcategory buttons */
 .btn1{
 	height:65px;

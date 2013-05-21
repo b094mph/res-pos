@@ -4,8 +4,8 @@
 
 <script type="text/javascript" src="js/welcome.js"></script>
 
-<body>
-<div class="container">
+
+
 	<div class="row">
 		<div class="span12">
 			<div id="welcomealert" class="alert alert-success">
@@ -39,11 +39,10 @@
 						<tbody>
 					<c:forEach items="${restaurants}" var="res" varStatus="idx">
 							<tr>
-								<td>${res.restaurantId}</td>
 								<td>
-<%-- 								${res.restaurantName} --%>
-									<button id="resId_${pageScope.idx.index}" class="btn btn-primary" value="${res.restaurantId}">${res.restaurantName}</button>
+									<button id="resId_${pageScope.idx.index}" class="btn btn-primary" value="${res.restaurantId}">${res.restaurantId}</button>
 								</td>
+								<td>${res.restaurantName}</td>
 								<td>${res.location}</td>
 								<td>${res.phone1}</td>
 								<td>${res.phone2}</td>
@@ -61,6 +60,6 @@
 				</fieldset>
 		</div>
 	</div>
-</div>
-</body>
+
+
 <br><br><br><br><br><br>

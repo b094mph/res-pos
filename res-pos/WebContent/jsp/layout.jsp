@@ -11,19 +11,17 @@
 	<link type="image/png" rel="icon" href="img/favicons/RP-favicon.ico">
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
-
-<div class="container">
-	<table>
-	    <tr>
-	    	<td><tiles:insertAttribute name="menu" /></td>
-	    </tr>
-	    <tr>
-	        <td><tiles:insertAttribute name="body" /></td>
-	    </tr>
-	    <tr>
-	    	<td><tiles:insertAttribute name="copyright"/></td>
-	    </tr>
-	</table>
-</div>
-
+<body>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<tiles:insertAttribute name="menubar" />
+		</div>
+		<div class="row-fluid">
+			<tiles:insertAttribute name="body" />
+		</div>
+		<div class="row-fluid">
+			<tiles:insertAttribute name="copyright"/>
+		</div>
+	</div>
+</body>
 </html>
