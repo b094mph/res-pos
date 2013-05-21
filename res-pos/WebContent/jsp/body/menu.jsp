@@ -7,6 +7,9 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script>
 	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
+	$(document).ready(function(){
+		$('#screenHeight').css("height", SCREEN_HEIGHT);
+	});
 </script>
 
 <div class="row">
@@ -14,6 +17,8 @@
 		<div id="orderListAjax">
 			<fieldset>
 			<legend>Order</legend>
+				<div id="screenHeight">
+				<div class="scroll">
 				<table class="table table-striped table-hover table-condensed">
 					<tr>
 						<th>Qty</th>
@@ -22,13 +27,9 @@
 						<th>Unit</th>
 						<th>Price</th>
 					</tr>
-					<tr>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					</tr>
+				</table>
+				</div>
+				<table class="table table-striped table-hover table-condensed">
 					<tr>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -57,6 +58,7 @@
 						</td>
 					</tr>
 				</table>
+				</div>
 			</fieldset>
 		</div>
 	</div>

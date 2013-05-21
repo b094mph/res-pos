@@ -12,6 +12,9 @@
 	<title><tiles:insertAttribute name="title"/></title>
 </head>
 <body>
+<script>
+	var SCREEN_HEIGHT = screen.availHeight;
+</script>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<tiles:insertAttribute name="menubar" />

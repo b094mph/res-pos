@@ -3,10 +3,8 @@
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 
 <script>
-var screenHeight = screen.height;
-
 $(document).ready(function(){
-	$('#screenHeight').css("height", screenHeight);
+	$('#screenHeight').css("height", SCREEN_HEIGHT);
 });
 </script>
 
@@ -15,35 +13,39 @@ $(document).ready(function(){
 	<div id="screenHeight">
 		<div class="scroll">
 			<table class="table table-striped table-hover table-condensed">
-				<tr>
-					<th>Qty</th>
-					<th>Size</th>
-					<th>Name</th>
-					<th>Unit</th>
-					<th>Price</th>
-				</tr>
-				<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
+				<thead id="theadOrder">
 					<tr>
-						<td>${orderdetail.quantity}</td>
-						<td>L</td>
-						<td>${orderdetail.menu.food.foodShortName}</td>
-						<td>$ ${orderdetail.menu.large}</td>
-						<td>$ ${orderdetail.price}</td>
-						<td>
-							<button id="increaseQty_${pageScope.idx.index}" 
-									class="btn btn-success" 
-									value='${pageScope.idx.index}'>+</button>
-						&nbsp;
-							<button id="decreaseQty_${pageScope.idx.index}" 
-									class="btn btn-warning" 
-									value='${pageScope.idx.index}'>-</button>
-						&nbsp;
-							<button id="deleteItem_${pageScope.idx.index}" 
-									class="btn btn-danger" 
-									value='${pageScope.idx.index}'>x</button>
-						</td>
+						<th>Qty</th>
+						<th>Size</th>
+						<th>Name</th>
+						<th>Unit</th>
+						<th>Price</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody id="tbodyOrder">
+					<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
+						<tr>
+							<td>${orderdetail.quantity}</td>
+							<td>L</td>
+							<td>${orderdetail.menu.food.foodShortName}</td>
+							<td>$ ${orderdetail.menu.large}</td>
+							<td>$ ${orderdetail.price}</td>
+							<td>
+								<button id="increaseQty_${pageScope.idx.index}" 
+										class="btn btn-success" 
+										value='${pageScope.idx.index}'>+</button>
+							&nbsp;
+								<button id="decreaseQty_${pageScope.idx.index}" 
+										class="btn btn-warning" 
+										value='${pageScope.idx.index}'>-</button>
+							&nbsp;
+								<button id="deleteItem_${pageScope.idx.index}" 
+										class="btn btn-danger" 
+										value='${pageScope.idx.index}'>x</button>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 			<table class="table table-striped table-hover table-condensed">
