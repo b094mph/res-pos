@@ -44,7 +44,10 @@ $(document).ready(function(){
 						</td>
 					</tr>
 				</c:forEach>
-					<tr>
+			</table>
+		</div>
+			<table class="table table-striped table-hover table-condensed">
+					<tr class="padding">
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
 						<td>&nbsp;</td>
@@ -72,7 +75,6 @@ $(document).ready(function(){
 						</td>
 					</tr>
 			</table>
-		</div>
 	</div>
 </fieldset>
 

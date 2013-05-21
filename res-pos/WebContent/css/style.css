@@ -57,7 +57,11 @@ body{
 }
 
 .scroll{
-	height: 65%;
+	height: 55%;
 	overflow-y: auto;
+}
+
+.padding{
+	padding: 200px;
 }
 
