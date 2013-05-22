@@ -6,7 +6,7 @@
 
 <div class="row">
 	<div class="span12">
-		<div id="welcomealert" class="alert alert-success">
+		<div id="welcomealert" class="alert alert-info">
 			<a class="close" data-dismiss="alert">x</a>
 			<h3>Hello <c:out value="${username}"/>!</h3>
 			<p>Welcome to RES-POS!</p>
