@@ -14,6 +14,7 @@
 <body>
 <script>
 	var SCREEN_HEIGHT = screen.availHeight;
+	var SCREEN_WIDTH = screen.availWidth;
 </script>
 	<div class="container-fluid">
 		<div class="row-fluid">

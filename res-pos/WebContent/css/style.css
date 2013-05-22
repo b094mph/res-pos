@@ -1,50 +1,19 @@
-input#test{
-	height:normal;
-	width:normal;
-}
-
 body{
 	padding: 40px;
 }
 
-/* category and subcategory buttons */
+/* primary buttons */
 .btn1{
 	height:65px;
 	width:130px;
 	white-space:normal;
 }
 
-/* size buttons */
+/* secondary buttons */
 .btn2{
 	height:40px;
 	width:80px;
 	white-space:normal;	
-}
-
-/* section for category and subcategory */
-.sectionA{
-	height:310px;
-	width:740px;
-}
-
-/* Customer Information */
-.sectionB{
-	height:50px;
-}
-
-/* Order */
-.sectionC{
-	height:400px;
-}
-
-/* column for Customer Information and Order*/
-.colB{
-	width:480px;
-}
-
-/* column for Size */
-.colC{
-	width:100px;
 }
 
 /* red font for spicy */
@@ -57,7 +26,7 @@ body{
 }
 
 .scroll{
-	height: 50%;
+	height: 500px;
 	overflow-y: auto;
 }
 
