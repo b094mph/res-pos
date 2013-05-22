@@ -82,6 +82,7 @@
 				<div class="scroll">
 				<table class="table table-striped table-hover table-condensed">
 					<tr>
+						<th>&nbsp;</th>
 						<th>Qty</th>
 						<th>Size</th>
 						<th>Name</th>
@@ -113,8 +114,10 @@
 					</tr>
 					<tr>
 						<td>
+							<button id="new" class="btn btn-info btn2">New</button>
 							<button id="void" class="btn btn-danger btn2">Void</button>
-							<button id="send" class="btn btn-success btn2">Send</button>
+							<button id="send" class="btn btn-success btn2">Save</button>
+							<button id="print" class="btn btn-success btn2">Print</button>
 						</td>
 						<td><b>Grand Total:</b></td>
 						<td><b>$ 0.00</b></td>

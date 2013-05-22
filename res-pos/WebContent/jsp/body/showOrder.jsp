@@ -8,6 +8,7 @@
 			<table class="table table-striped table-hover table-condensed">
 				<thead id="theadOrder">
 					<tr>
+						<th>&nbsp;</th>
 						<th>Qty</th>
 						<th>Size</th>
 						<th>Name</th>
@@ -18,11 +19,6 @@
 				<tbody id="tbodyOrder">
 					<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
 						<tr>
-							<td>${orderdetail.quantity}</td>
-							<td>L</td>
-							<td>${orderdetail.menu.food.foodShortName}</td>
-							<td>$ ${orderdetail.menu.large}</td>
-							<td>$ ${orderdetail.price}</td>
 							<td>	
 								<button id="increaseQty_${pageScope.idx.index}" 
 										class="btn btn-success" 
@@ -36,6 +32,11 @@
 										class="btn btn-danger" 
 										value='${pageScope.idx.index}'>x</button>								
 							</td>
+							<td>${orderdetail.quantity}</td>
+							<td>L</td>
+							<td>${orderdetail.menu.food.foodShortName}</td>
+							<td>$ ${orderdetail.menu.large}</td>
+							<td>$ ${orderdetail.price}</td>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -64,8 +65,10 @@
 					</tr>
 					<tr>
 						<td>
+							<button id="new" class="btn btn-info btn2">New</button>
 							<button id="void" class="btn btn-danger btn2">Void</button>
-							<button id="send" class="btn btn-success btn2">Send</button>
+							<button id="send" class="btn btn-success btn2">Save</button>
+							<button id="print" class="btn btn-success btn2">Print</button>
 						</td>
 						<td><b>Grand Total:</b></td>
 						<td><b>$ ${grandTotal}</b></td>
