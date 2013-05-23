@@ -25,15 +25,18 @@
 					<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
 						<tr>
 							<td>	
-								<button id="increaseQty_${pageScope.idx.index}" 
+								<button id="increaseQty_${pageScope.idx.index}"
+										title="Increase quantity" 
 										class="btn btn-success" 
 										value='${pageScope.idx.index}'>+</button>
 							&nbsp;
-								<button id="decreaseQty_${pageScope.idx.index}" 
+								<button id="decreaseQty_${pageScope.idx.index}"
+										title="Decrease quantity" 
 										class="btn btn-warning" 
 										value='${pageScope.idx.index}'>-</button>
 							&nbsp;
-								<button id="deleteItem_${pageScope.idx.index}" 
+								<button id="deleteItem_${pageScope.idx.index}"
+										title="Remove Item" 
 										class="btn btn-danger" 
 										value='${pageScope.idx.index}'>x</button>								
 							</td>
