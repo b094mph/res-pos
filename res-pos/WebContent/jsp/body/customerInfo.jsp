@@ -2,7 +2,7 @@
 
 <fieldset>
 <legend>Customer Information</legend>
-	<form method="get" action="submitOrder.html">
+	<form method="get" action="submitCustomerInfo.html">
 		<table>
 			<tr>
 				<td>

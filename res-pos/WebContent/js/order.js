@@ -120,4 +120,8 @@ $(document).ready(function(){
 	//make the header fixed on scroll
 	$('.table-fixed-header').fixedHeader();
 
+	$('#new').attr('title', "Clears the customer and order information.");
+	$('#void').attr('title', "Cancels the order.");
+	$('#save').attr('title', "Saves the customer and order information.");
+	$('#print').attr('title', "Printing to receipt.");
 });
