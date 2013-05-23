@@ -15,15 +15,15 @@
 					</li>
 					<li id="file" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
-						   <ul class="dropdown-menu">
-							<li><a tabindex="-1" href="#">Careers</a></li>
-	                        <li><a tabindex="-1" href="#">Contact Us</a></li>
-	                     <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
-							<li><a tabindex="-1" href="${logoutUrl}">Logout</a></li>
-						 </sec:authorize>
-	                        <li class="divider"></li>
-	                        <li><a id="exit" tabindex="-1">Exit</a></li>
-	                      </ul>
+					    <ul class="dropdown-menu">
+						<li><a tabindex="-1" href="#">Careers</a></li>
+                        <li><a tabindex="-1" href="#">Contact Us</a></li>
+                     <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
+						<li><a tabindex="-1" href="${logoutUrl}">Logout</a></li>
+					 </sec:authorize>
+                        <li class="divider"></li>
+                        <li><a id="exit" tabindex="-1">Exit</a></li>
+                      </ul>
 					</li>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN">
 					<li><a id="address-link" href="addressForm.html">Address</a></li>
