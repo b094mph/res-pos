@@ -9,6 +9,7 @@
 	<legend>Restaurant_01</legend>
 	</fieldset>
 </div>
+<br><br><br><br><br><br>
 <div class="row">
 	<div class="span4 offset1">
 		<fieldset>

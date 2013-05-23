@@ -2,11 +2,23 @@
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 
+<link rel="stylesheet" href="css/fixed-table-header.css">
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+
+<script type="text/javascript" >
+	$(document).ready(function(){
+	
+	  // make the header fixed on scroll
+	  $('.table-fixed-header').fixedHeader();
+	});
+</script>
+
 <fieldset>
 <legend>Order</legend>
-		<div class="scroll">
-			<table class="table table-striped table-hover table-condensed">
-				<thead id="theadOrder">
+		<div class="fixed-table">
+		<div class="table-content">
+			<table class="table table-striped table-hover table-condensed table-fixed-header">
+				<thead class="header">
 					<tr>
 						<th>&nbsp;</th>
 						<th>Qty</th>
@@ -16,7 +28,7 @@
 						<th>Price</th>
 					</tr>
 				</thead>
-				<tbody id="tbodyOrder">
+				<tbody>
 					<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
 						<tr>
 							<td>	
@@ -41,6 +53,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+		</div>
 		</div>
 			<table class="table table-striped table-hover table-condensed">
 					<tr>

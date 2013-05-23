@@ -4,9 +4,17 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
+<link rel="stylesheet" href="css/fixed-table-header.css">
 <script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+
 <script>
 	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
+	
+	$(document).ready(function(){	
+		  // make the header fixed on scroll
+		  $('.table-fixed-header').fixedHeader();
+	});
 </script>
 
 <div class="row">
@@ -20,24 +28,12 @@
 						<input type="text" name="firstName" placeholder="First Name">
 						<input type="text" name="lastName" placeholder="Last Name">
 						<input type="text" name="phone1" placeholder="Phone 1">
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<input type="text" name="phone2" placeholder="Phone 2">
 						<input type="text" name="ext" placeholder="Extention">
 						<input type="text" name="email" placeholder="Email">
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<input type="text" name="street1" placeholder="<spring:message code="label.street1"/>">
 						<input type="text" name="street2" placeholder="<spring:message code="label.street2"/>">
 						<input type="text" name="city" placeholder="<spring:message code="label.city"/>">
-					</td>
-				</tr>
-				<tr>
-					<td>
 						<input type="text" name="state" placeholder="<spring:message code="label.state"/>">
 						<input type="text" name="zipCode" placeholder="<spring:message code="label.zipCode"/>">
 						<input type="text" name="note" placeholder="Note">
@@ -78,17 +74,19 @@
 		<div id="orderListAjax">
 			<fieldset>
 			<legend>Order</legend>
-				<div id="screenHeight">
-				<div class="scroll">
-				<table class="table table-striped table-hover table-condensed">
-					<tr>
-						<th>&nbsp;</th>
-						<th>Qty</th>
-						<th>Size</th>
-						<th>Name</th>
-						<th>Unit</th>
-						<th>Price</th>
-					</tr>
+				<div class="fixed-table">
+				<div class="table-content">
+				<table class="table table-striped table-hover table-condensed fixed-table-header">
+					<thead class="header">
+						<tr>
+							<th>&nbsp;</th>
+							<th>Qty</th>
+							<th>Size</th>
+							<th>Name</th>
+							<th>Unit</th>
+							<th>Price</th>
+						</tr>
+					</thead>
 				</table>
 				</div>
 				<table class="table table-striped table-hover table-condensed">

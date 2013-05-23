@@ -24,10 +24,3 @@ body{
 .center{
 	text-align: center;
 }
-
-.scroll{
-	height: 500px;
-	overflow-y: auto;
-}
-
-
