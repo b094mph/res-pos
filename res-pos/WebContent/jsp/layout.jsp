@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<jsp:include page="common/bootstrap.jsp"/>
 	<jsp:include page="common/jquery.jsp"/>
+	<jsp:include page="common/bootstrap.jsp"/>
 	<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	<link type="image/png" rel="icon" href="img/favicons/RP-favicon.ico">
 	<title><tiles:insertAttribute name="title"/></title>

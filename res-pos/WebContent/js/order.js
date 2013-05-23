@@ -104,6 +104,7 @@ $(document).ready(function(){
 			url: "saveOrder.json",
 			success:
 				function(data){
+					//$('#hiddenSubmit').trigger('click');
 					$('#orderListAjax').html(data).show();
 			},
 			error:
@@ -113,8 +114,41 @@ $(document).ready(function(){
 		});
 	});
 	
+	//Temp buttons for alert as actions.
 	$('#print').click(function(){
 		alert("printing...");
+	});
+	
+	$('#walkin').click(function(){
+		alert("Walk In");
+	});
+	
+	$('#pickup').click(function(){
+		alert("Pick Up");
+	});
+	
+	$('#delivery').click(function(){
+		alert("Delivery");
+	});
+	
+	$('#eatin').click(function(){
+		alert("Eat In");
+	});
+	
+	$('#small').click(function(){
+		alert("Small");
+	});
+	
+	$('#large').click(function(){
+		alert("Large");
+	});
+	
+	$('#lunch').click(function(){
+		alert("Lunch");
+	});
+	
+	$('#combo').click(function(){
+		alert("Combo");
 	});
 	
 	//make the header fixed on scroll
