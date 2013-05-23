@@ -4,18 +4,11 @@
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
-
-<script type="text/javascript" >
-	$(document).ready(function(){
-	
-	  // make the header fixed on scroll
-	  $('.table-fixed-header').fixedHeader();
-	});
-</script>
+<script type="text/javascript" src="js/order.js"></script>
 
 <fieldset>
 <legend>Order</legend>
-		<div class="fixed-table">
+	<div class="fixed-table">
 		<div class="table-content">
 			<table class="table table-striped table-hover table-condensed table-fixed-header">
 				<thead class="header">
@@ -54,39 +47,37 @@
 				</tbody>
 			</table>
 		</div>
-		</div>
-			<table class="table table-striped table-hover table-condensed">
-					<tr>
-						<td>
-							<button id="walkin" class="btn btn-info btn2">Walk In</button>
-							<button id="pickup" class="btn btn-info btn2">Pick Up</button>
-							<button id="delivery" class="btn btn-info btn2">Delivery</button>
-							<button id="eatin" class="btn btn-info btn2">Eat In</button>
-						</td>
-						<td><b>Sub Total:</b></td>
-						<td><b>$ ${subTotal}</b></td>
-					</tr>
-					<tr>
-						<td>
-							<button id="small" class="btn btn-info btn2">Small</button>
-							<button id="large" class="btn btn-info btn2">Large</button>
-							<button id="lunch" class="btn btn-info btn2">Lunch</button>
-							<button id="combo" class="btn btn-info btn2">Combo</button>
-						</td>
-						<td><b>Tax ${salesTax} %</b></td>
-						<td><b>$ ${tax}</b></td>
-					</tr>
-					<tr>
-						<td>
-							<button id="new" class="btn btn-info btn2">New</button>
-							<button id="void" class="btn btn-danger btn2">Void</button>
-							<button id="send" class="btn btn-success btn2">Save</button>
-							<button id="print" class="btn btn-success btn2">Print</button>
-						</td>
-						<td><b>Grand Total:</b></td>
-						<td><b>$ ${grandTotal}</b></td>
-					</tr>
-			</table>
+	</div>
+	<table class="table table-striped table-hover table-condensed">
+		<tr>
+			<td>
+				<button id="walkin" class="btn btn-info btn2">Walk In</button>
+				<button id="pickup" class="btn btn-info btn2">Pick Up</button>
+				<button id="delivery" class="btn btn-info btn2">Delivery</button>
+				<button id="eatin" class="btn btn-info btn2">Eat In</button>
+			</td>
+			<td><b>Sub Total:</b></td>
+			<td><b>$ <c:out value="${subTotal}"></c:out></b></td>
+		</tr>
+		<tr>
+			<td>
+				<button id="small" class="btn btn-info btn2">Small</button>
+				<button id="large" class="btn btn-info btn2">Large</button>
+				<button id="lunch" class="btn btn-info btn2">Lunch</button>
+				<button id="combo" class="btn btn-info btn2">Combo</button>
+			</td>
+			<td><b>Tax ${salesTax} %</b></td>
+			<td><b>$ <c:out value="${tax}"></c:out></b></td>
+		</tr>
+		<tr>
+			<td>
+				<button id="new" type="reset" class="btn btn-info btn2">New</button>
+				<button id="void" class="btn btn-danger btn2">Void</button>
+				<button id="save" class="btn btn-success btn2">Save</button>
+				<button id="print" class="btn btn-success btn2">Print</button>
+			</td>
+			<td><b>Grand Total:</b></td>
+			<td><b>$ <c:out value="${grandTotal}"></c:out></b></td>
+			</tr>
+	</table>
 </fieldset>
-
-<script type="text/javascript" src="js/order.js"></script>

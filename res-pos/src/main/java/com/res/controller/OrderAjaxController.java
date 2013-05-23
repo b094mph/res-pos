@@ -170,6 +170,13 @@ public class OrderAjaxController {
 		return "redirect:/showOrder.html";
 	}
 	
+	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
+	public String newOrder(HttpServletRequest req, HttpServletResponse res){
+		logger.info("clearing the order and customer information...");
+		orderList.clear();
+		return "redirect:/showOrder.html";
+	}
+	
 	@RequestMapping(value="/voidOrder.json", method=RequestMethod.GET)
 	public String voidOrder(HttpServletRequest req, HttpServletResponse res){
 		logger.info("deleting order...");
@@ -177,8 +184,8 @@ public class OrderAjaxController {
 		return "redirect:/showOrder.html";
 	}
 	
-	@RequestMapping(value="/sendOrder.json", method=RequestMethod.GET)
-	public String sendOrder(HttpServletRequest req, HttpServletResponse res){
+	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
+	public String saveOrder(HttpServletRequest req, HttpServletResponse res){
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setRestaurantId(1); //TODO: save by the selected restaurant id
 		customerOrder.setPersonId(2); //TODO: save with the customer information
