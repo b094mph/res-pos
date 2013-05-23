@@ -5,7 +5,7 @@
 	 return this.each( function() {
 	  var o = $(this)
 	    , nhead = o.closest('.fixed-table');
-	 alert(o.width());
+	  
 	  var $head = $('thead.header', o);
 	  
 	  $head.clone().removeClass('header').addClass('header-copy header-fixed').appendTo(nhead);
@@ -14,7 +14,6 @@
 	    ww.push($(h).width());
 	  });
 	  $.each(ww, function (i, w){
-		  alert(w);
 	    nhead.find('thead.header > tr > th:eq('+i+'), thead.header-copy > tr > th:eq('+i+')').css({width: w});
 	  });
 	 
