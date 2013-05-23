@@ -3,8 +3,6 @@
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
-<script type="text/javascript" src="js/fixed-table-header.js"></script>
-<script type="text/javascript" src="js/order.js"></script>
 
 <fieldset>
 <legend>Order</legend>
@@ -74,13 +72,17 @@
 		</tr>
 		<tr>
 			<td>
-				<button id="new" type="reset" class="btn btn-info btn2">New</button>
-				<button id="void" class="btn btn-danger btn2">Void</button>
-				<button id="save" class="btn btn-success btn2">Save</button>
-				<button id="print" class="btn btn-success btn2">Print</button>
+				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">New</button>
+				<button id="void" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="bottom">Void</button>
+				<button id="save" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top">Save</button>
+				<button id="print" class="btn btn-success btn2" data-toggle="tooltip" data-placement="right">Print</button>
 			</td>
 			<td><b>Grand Total:</b></td>
 			<td><b>$ <c:out value="${grandTotal}"></c:out></b></td>
 			</tr>
 	</table>
 </fieldset>
+
+
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+<script type="text/javascript" src="js/order.js"></script>

@@ -5,18 +5,6 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
-<script type="text/javascript" src="js/menu.js"></script>
-<script type="text/javascript" src="js/fixed-table-header.js"></script>
-
-<script>
-	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
-	
-	$(document).ready(function(){	
-		  // make the header fixed on scroll
-		  $('.table-fixed-header').fixedHeader();
-	});
-</script>
-
 
 <div class="row">
 	<div class="span6">
@@ -42,4 +30,16 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript" src="js/menu.js"></script>
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+<script>
+	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
+	
+	$(document).ready(function(){	
+		  // make the header fixed on scroll
+		  $('.table-fixed-header').fixedHeader();
+	});
+</script>
 
