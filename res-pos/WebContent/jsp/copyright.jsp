@@ -11,11 +11,13 @@
 			</div>
 			<div class="span4">
 				<div class="center">
-					<a href="https://www.facebook.com"><img title="Like us on Facebook" alt="Facebook" src="img/glyphicons/glyphicons/png/glyphicons_410_facebook.png"></a>
-					<a href="https://www.twitter.com"><img title="Follow us on Twitter" alt="twitter" src="img/glyphicons/glyphicons/png/glyphicons_411_twitter.png"></a>
-			 		<a href="https://plus.google.com"><img title="+1 us on Google Plus" alt="google-plus" src="img/glyphicons/glyphicons/png/glyphicons_382_google_plus.png"></a>
-			 		<a href="https://www.linkedin.com"><img title="Link with us on LinkedIn" alt="linkedin" src="img/glyphicons/glyphicons/png/glyphicons_397_linked_in.png"></a>
-			 		<a href="https://maps.google.com/maps?q=New+York,+NY&hl=en&sll=40.643136,-73.935242&sspn=1.133721,2.526855&oq=new+york&hnear=New+York&t=m&z=10"><img title="Made in NYC" alt="Heart" src="img/glyphicons/glyphicons/png/glyphicons_012_heart.png"></a>
+					<a id="facebook" href="https://www.facebook.com" data-toggle="tooltip" data-placement="top"><img alt="Facebook" src="img/glyphicons/glyphicons/png/glyphicons_410_facebook.png"></a>
+					<a id="twitter" href="https://www.twitter.com" data-toggle="tooltip" data-placement="top"><img alt="twitter" src="img/glyphicons/glyphicons/png/glyphicons_411_twitter.png"></a>
+			 		<a id="google" href="https://plus.google.com" data-toggle="tooltip" data-placement="top"><img alt="google-plus" src="img/glyphicons/glyphicons/png/glyphicons_382_google_plus.png"></a>
+			 		<a id="linkedin" href="https://www.linkedin.com" data-toggle="tooltip" data-placement="top"><img alt="linkedin" src="img/glyphicons/glyphicons/png/glyphicons_397_linked_in.png"></a>
+			 		<a id="lovenyc" href="https://maps.google.com/maps?q=New+York,+NY&hl=en&sll=40.643136,-73.935242&sspn=1.133721,2.526855&oq=new+york&hnear=New+York&t=m&z=10" data-toggle="tooltip" data-placement="top">
+			 			<img alt="Heart" src="img/glyphicons/glyphicons/png/glyphicons_012_heart.png">
+			 		</a>
 				</div>
 			</div>
 			<div class="span4">
@@ -27,3 +29,5 @@
 		</div>
 	</div>
 </div>
+
+<script type="text/javascript" src="js/footer.js"></script>

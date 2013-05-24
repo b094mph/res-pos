@@ -1,8 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <input id="numOfRes" type="hidden" value="${numOfRes}"> 
-
-<script type="text/javascript" src="js/welcome.js"></script>
+<input id="menuPage" type="hidden" value='<%=request.getContextPath()%>/menu.html'>
 
 <div class="row">
 	<div class="span12">
@@ -38,7 +37,7 @@
 				<c:forEach items="${restaurants}" var="res" varStatus="idx">
 						<tr>
 							<td>
-								<button id="resId_${pageScope.idx.index}" class="btn btn-primary" value="${res.restaurantId}">${res.restaurantId}</button>
+								<button id="resId_${pageScope.idx.index}" class="btn btn-primary" value="${res.restaurantId}" >${res.restaurantId}</button>
 							</td>
 							<td>${res.restaurantName}</td>
 							<td>${res.location}</td>
@@ -59,5 +58,7 @@
 	</div>
 </div>
 
-
 <br><br><br><br><br><br>
+
+
+<script type="text/javascript" src="js/welcome.js"></script>

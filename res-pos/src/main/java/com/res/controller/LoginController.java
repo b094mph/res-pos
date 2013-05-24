@@ -3,6 +3,10 @@ package com.res.controller;
 import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +44,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
-	public ModelAndView welcome(Principal principal){
+	public ModelAndView welcome(Principal principal){	
 		ModelAndView mav = new ModelAndView("welcome");
 		
 		String username = principal.getName();
@@ -52,6 +56,16 @@ public class LoginController {
 		mav.addObject("numOfRes", restaurants.size());
 		
 		return mav;
+	}
+	
+	@RequestMapping(value="/setSessionAttribute", method=RequestMethod.GET)
+	public String setSessionAttribute(HttpServletRequest req){
+		HttpSession session = req.getSession();
+		
+		String restaurantId = StringUtils.trimToEmpty(req.getParameter("restaurantId"));
+		session.setAttribute("restaurantId", restaurantId);
+
+		return "menu";
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)

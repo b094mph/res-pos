@@ -2,10 +2,15 @@ package com.res.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,14 +26,16 @@ public class MenuController {
 	@Autowired
 	private MenuService menuService;
 	
-	@RequestMapping("/menu")
-	public ModelAndView showMenu(){
+	@RequestMapping(value="/menu", method=RequestMethod.GET)
+	public ModelAndView showMenu(HttpServletRequest req, HttpServletResponse res){
+		HttpSession session = req.getSession();
+		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+		
 		ModelAndView mav = new ModelAndView("menu");
 		
-		long restaurantId = 1L; //TODO: hard coded for now.
 		logger.info("restaurantId = " + restaurantId);
 		
-		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId);
+		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(1L); //TODO: change to real resid
 		
 		mav.addObject("restaurantId", restaurantId);
 		mav.addObject("foodCategories", foodCategories);
