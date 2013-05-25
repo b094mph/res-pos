@@ -105,18 +105,16 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
-	public String addToOrder(HttpServletRequest req, HttpServletResponse res){
+	public String addToOrder(HttpServletRequest request, HttpServletResponse response){
 		
-		String menuId = req.getParameter("menuId");
+		String menuId = request.getParameter("menuId");
 		logger.info("hitting addOrder controller with menuId " + menuId);
 		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
 		
 		OrderDetail orderDetail = new OrderDetail();
-		orderDetail.setMenuId(menu.getMenuId());
-		orderDetail.setQuantity(1); //TODO: hard coded for now.
+		orderDetail.setQuantity(1);
 		orderDetail.setSize("Large");
 		orderDetail.setMenu(menu);
-		orderDetail.setCustomerOrderId(1L);
 		
 		BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
 		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
@@ -142,9 +140,9 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
-	public String increaseQty(HttpServletRequest req, HttpServletResponse res)
+	public String increaseQty(HttpServletRequest request, HttpServletResponse response)
 			throws NumberFormatException{
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		try{
 			int index = Integer.parseInt(idx);
 			logger.info("increasing qty for item");
@@ -161,9 +159,9 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
-	public String decreaseQty(HttpServletRequest req, HttpServletResponse res)
+	public String decreaseQty(HttpServletRequest request, HttpServletResponse response)
 			throws NumberFormatException{
-		String idx = req.getParameter("idx");
+		String idx = request.getParameter("idx");
 		try{
 			int index  = Integer.parseInt(idx);
 			logger.info("decreasing qty for item");
@@ -186,14 +184,14 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
-	public String newOrder(HttpServletRequest req, HttpServletResponse res){
+	public String newOrder(HttpServletRequest request, HttpServletResponse response){
 		logger.info("clearing the order and customer information...");
 		orderList.clear();
 		return "redirect:/showOrder.html";
 	}
 	
 	@RequestMapping(value="/voidOrder.json", method=RequestMethod.GET)
-	public String voidOrder(HttpServletRequest req, HttpServletResponse res){
+	public String voidOrder(HttpServletRequest request, HttpServletResponse response){
 		logger.info("deleting order...");
 		orderList.clear();
 		return "redirect:/showOrder.html";

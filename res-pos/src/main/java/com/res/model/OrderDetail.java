@@ -28,14 +28,6 @@ public class OrderDetail implements Serializable{
 	@Column(name="orderdetailid")
 	private long orderDetailId;
 	
-	@Column(name="customerorderid", unique=false, nullable=false, length=11,
-			insertable=false, updatable=false)
-	private long customerOrderId;
-	
-	@Column(name="menuid", unique=false, nullable=false, length=11,
-			insertable=false, updatable=false)
-	private long menuId;
-	
 	@Column(name="quantity", unique=false, nullable=false, length=2)
 	private int quantity;
 	
@@ -62,22 +54,6 @@ public class OrderDetail implements Serializable{
 
 	public void setOrderDetailId(long orderDetailId) {
 		this.orderDetailId = orderDetailId;
-	}
-
-	public long getCustomerOrderId() {
-		return customerOrderId;
-	}
-
-	public void setCustomerOrderId(long customerOrderId) {
-		this.customerOrderId = customerOrderId;
-	}
-
-	public long getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(long menuId) {
-		this.menuId = menuId;
 	}
 
 	public int getQuantity() {

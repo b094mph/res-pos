@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,19 +26,19 @@ public class SubMenuAjaxController {
 	
 	public static Logger logger = Logger.getLogger(SubMenuAjaxController.class);
 	
-	@Autowired
-	private MenuService menuService;
-	
-	@Autowired
-	private MessageLoader messages;
+	@Autowired private MenuService menuService;
+	@Autowired private MessageLoader messageLoader;
 
 	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
-	public ModelAndView showSubCategories(HttpServletRequest req, HttpServletResponse res) 
+	public ModelAndView showSubCategories(HttpServletRequest request, HttpServletResponse response) 
 			throws EmptyCollectionException{
+		HttpSession session = request.getSession();
+		Long restaurantId = Long.parseLong((String) session.getAttribute("restaurantId"));
+		
 		ModelAndView mav = new ModelAndView("subMenu");
-		String foodCategoryId = req.getParameter("foodCategoryId");
+		String foodCategoryId = request.getParameter("foodCategoryId");
 		logger.info("hitting showSubcategories controller " + foodCategoryId);
-		List<Menu> subCategories = menuService.getMenuByFoodCategory(1L, Long.parseLong(foodCategoryId));
+		List<Menu> subCategories = menuService.getMenuByFoodCategory(restaurantId, Long.parseLong(foodCategoryId));
 		mav.addObject("subCategories", subCategories);
 		
 		if(!subCategories.isEmpty()){
@@ -50,7 +51,7 @@ public class SubMenuAjaxController {
 			mav.addObject("menuIDs", menuIDs);
 		}else{
 			logger.error("subCategories is empty.");
-			throw new EmptyCollectionException(messages.getMessage("arraylist.empty"));
+			throw new EmptyCollectionException(messageLoader.getMessage("arraylist.empty"));
 		}
 		
 		return mav;
