@@ -7,10 +7,13 @@
 <link rel="stylesheet" href="css/fixed-table-header.css">
 <div class="row">
 	<div class="span2">
-		<h6><b>Agent:</b> <c:out value="${agentName}"/></h6>
+		<h6><b>AGENT:</b> <c:out value="${agentName}"/></h6>
 	</div>
 	<div class="span3">
-		<h6><b>Restaurant:</b> <c:out value="${restaurantName}"/></h6>	
+		<h6><b>RESTAURANT:</b> <c:out value="${restaurantName}"/></h6>	
+	</div>
+	<div class="span2 offset5">
+		<h6><%= new java.util.Date() %></h6>
 	</div>
 </div>
 <div class="row">
