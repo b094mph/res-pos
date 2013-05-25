@@ -39,7 +39,8 @@ public class Menu implements Serializable{
 			updatable=false, insertable=false)
 	private long foodCategoryId;
 	
-	@Column(name="foodid", unique=false, nullable=false, length=11)
+	@Column(name="foodid", unique=false, nullable=false, length=11, 
+			updatable=false, insertable=false)
 	private long foodId;
 	
 	@Column(name="menunum", unique=false, nullable=true, length=5)

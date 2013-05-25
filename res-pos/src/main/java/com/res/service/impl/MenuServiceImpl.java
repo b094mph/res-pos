@@ -41,4 +41,9 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.getMenuByMenuId(menuId);
 	}
 
+	@Override
+	public List<Menu> getMenu(long restaurantId) {
+		return menuDao.getMenu(restaurantId);
+	}
+
 }

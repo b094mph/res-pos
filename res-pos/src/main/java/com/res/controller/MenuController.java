@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
+import com.res.model.Menu;
 import com.res.service.MenuService;
 import com.res.service.RestaurantService;
 import com.res.util.MessageLoader;
@@ -31,8 +32,8 @@ public class MenuController {
 	@Autowired private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
-	public ModelAndView showMenu(HttpServletRequest req, HttpServletResponse res) throws ServiceException{
-		HttpSession session = req.getSession();
+	public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) throws ServiceException{
+		HttpSession session = request.getSession();
 		
 		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
 		if(restaurantId == null){
@@ -53,5 +54,18 @@ public class MenuController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/wholeMenu", method=RequestMethod.GET)
+	public ModelAndView showMenuList(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		Long restaurantId = Long.parseLong((String) session.getAttribute("restaurantId"));
+	
+		ModelAndView mav = new ModelAndView("wholeMenu");
+		List<Menu> menuList = menuService.getMenu(restaurantId);
+		
+		mav.addObject("menuList", menuList);
+		return mav;
+	}
+	
 
 }

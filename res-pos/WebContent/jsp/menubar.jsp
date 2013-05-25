@@ -16,19 +16,20 @@
 					<li id="file" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
 					    <ul class="dropdown-menu">
-						<li><a tabindex="-1" href="#">Careers</a></li>
-                        <li><a tabindex="-1" href="#">Contact Us</a></li>
-                     <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
-						<li><a tabindex="-1" href="${logoutUrl}">Logout</a></li>
-					 </sec:authorize>
-                        <li class="divider"></li>
-                        <li><a id="exit" tabindex="-1">Exit</a></li>
-                      </ul>
+					    	<sec:authorize ifAnyGranted="ROLE_ADMIN">
+								<li><a id="address-link" href="addressForm.html">Address</a></li>
+								<li><a id="customer-link" href="customerForm.html">Customer</a></li>
+								<li><a id="wholeMenu-link" href="wholeMenu.html">Whole Menu</a></li>
+							</sec:authorize>
+							<li><a tabindex="-1" href="#">Careers</a></li>
+	                        <li><a tabindex="-1" href="#">Contact Us</a></li>
+		                     <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
+								<li><a tabindex="-1" href="${logoutUrl}">Logout</a></li>
+							 </sec:authorize>
+	                        <li class="divider"></li>
+	                        <li><a id="exit" tabindex="-1">Exit</a></li>
+                      	</ul>
 					</li>
-				<sec:authorize ifAnyGranted="ROLE_ADMIN">
-					<li><a id="address-link" href="addressForm.html">Address</a></li>
-					<li><a id="customer-link" href="customerForm.html">Customer</a></li>
-				</sec:authorize>
 				<c:if test="${not empty restaurantId }">
 					<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
 				</c:if>

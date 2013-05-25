@@ -41,6 +41,10 @@
  		<put-attribute name="body" value="/jsp/body/menu.jsp"/>
  	</definition>
  	
+ 	<definition name="wholeMenu" extends="base.definition">
+ 		<put-attribute name="body" value="/jsp/body/wholeMenu.jsp"/>
+ 	</definition>
+ 	
  	<!-- Ajax calls -->
  	<definition name="subMenu" template="/jsp/body/subMenu.jsp">
  		<put-attribute name="ajax" value="/jsp/body/subMenu.jsp"/>
