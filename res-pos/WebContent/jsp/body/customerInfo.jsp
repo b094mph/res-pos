@@ -2,22 +2,21 @@
 
 <fieldset>
 <legend>Customer Information</legend>
-	<form method="get" action="submitCustomerInfo.html">
 		<table>
 			<tr>
 				<td>
-					<input type="text" name="firstName" placeholder="First Name">
-					<input type="text" name="lastName" placeholder="Last Name">
-					<input type="text" name="phone1" placeholder="Phone 1">
-					<input type="text" name="phone2" placeholder="Phone 2">
-					<input type="text" name="ext" placeholder="Extention">
-					<input type="text" name="email" placeholder="Email">
-					<input type="text" name="street1" placeholder="<spring:message code="label.street1"/>">
-					<input type="text" name="street2" placeholder="<spring:message code="label.street2"/>">
-					<input type="text" name="city" placeholder="<spring:message code="label.city"/>">
-					<input type="text" name="state" placeholder="<spring:message code="label.state"/>">
-					<input type="text" name="zipCode" placeholder="<spring:message code="label.zipCode"/>">
-					<input type="text" name="note" placeholder="Note">
+					<input id="firstName" type="text" name="firstName" placeholder="First Name">
+					<input id="lastName" type="text" name="lastName" placeholder="Last Name">
+					<input id="phone1" type="text" name="phone1" placeholder="Phone 1">
+					<input id="phone2" type="text" name="phone2" placeholder="Phone 2">
+					<input id="ext" type="text" name="ext" placeholder="Extention">
+					<input id="email" type="text" name="email" placeholder="Email">
+					<input id="street1" type="text" name="street1" placeholder="<spring:message code="label.street1"/>">
+					<input id="street2" type="text" name="street2" placeholder="<spring:message code="label.street2"/>">
+					<input id="city" type="text" name="city" placeholder="<spring:message code="label.city"/>">
+					<input id="state" type="text" name="state" placeholder="<spring:message code="label.state"/>">
+					<input id="zipCode" type="text" name="zipCode" placeholder="<spring:message code="label.zipCode"/>">
+					<input id="note" type="text" name="note" placeholder="Note">
 				</td>
 			</tr>
 			<tr>
@@ -27,5 +26,4 @@
 				</td>
 			</tr>
 		</table>
-	</form>
 </fieldset>

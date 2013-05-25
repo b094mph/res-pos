@@ -6,9 +6,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -33,9 +36,6 @@ public class CustomerOrder implements Serializable{
 	
 	@Column(name="username", unique=false, nullable=false, length=11)
 	private String username;
-	
-	@Column(name="personid", unique=false, length=11/*, insertable=false, updatable=false*/)
-	private long personId;
 	
 	@Column(name="creditcardid", unique=false, nullable=true, length=11)
 	private Long creditCardId;
@@ -64,9 +64,9 @@ public class CustomerOrder implements Serializable{
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
 	
-//	@OneToOne(fetch=FetchType.EAGER)
-//	@JoinColumn(name="personid")
-//	private Person customer;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="personid")
+	private Person customer;
 
 	public long getCustomerOrderId() {
 		return customerOrderId;
@@ -90,14 +90,6 @@ public class CustomerOrder implements Serializable{
 
 	public void setUsername(String username) {
 		this.username = username;
-	}
-
-	public long getPersonId() {
-		return personId;
-	}
-
-	public void setPersonId(long personId) {
-		this.personId = personId;
 	}
 
 	public Long getCreditCardId() {
@@ -172,12 +164,12 @@ public class CustomerOrder implements Serializable{
 		this.note = note;
 	}
 
-//	public Person getCustomer() {
-//		return customer;
-//	}
-//
-//	public void setCustomer(Person customer) {
-//		this.customer = customer;
-//	}
+	public Person getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Person customer) {
+		this.customer = customer;
+	}
 
 }

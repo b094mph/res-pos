@@ -59,10 +59,10 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/setSessionAttribute", method=RequestMethod.GET)
-	public String setSessionAttribute(HttpServletRequest req){
-		HttpSession session = req.getSession();
+	public String setSessionAttribute(HttpServletRequest request){
+		HttpSession session = request.getSession();
 		
-		String restaurantId = StringUtils.trimToEmpty(req.getParameter("restaurantId"));
+		String restaurantId = StringUtils.trimToEmpty(request.getParameter("restaurantId"));
 		session.setAttribute("restaurantId", restaurantId);
 
 		return "menu";

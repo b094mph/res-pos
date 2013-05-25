@@ -8,7 +8,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,10 +20,15 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.res.constant.ResConstant;
+import com.res.exception.ServiceException;
+import com.res.model.Address;
 import com.res.model.CustomerOrder;
 import com.res.model.Menu;
 import com.res.model.OrderDetail;
+import com.res.model.Person;
 import com.res.model.Restaurant;
+import com.res.service.AddressService;
+import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
 import com.res.service.RestaurantService;
@@ -37,7 +44,9 @@ public class OrderAjaxController {
 	@Autowired private OrderService orderService;
 	@Autowired private MenuService menuService;
 	@Autowired private RestaurantService restaurantService;
-	@Autowired private MessageLoader messages;
+	@Autowired private AddressService addressService;
+	@Autowired private CustomerService customerService;
+	@Autowired private MessageLoader messageLoader;
 	
 	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
 	private BigDecimal _subTotal;
@@ -45,7 +54,13 @@ public class OrderAjaxController {
 	private BigDecimal _grandTotal;
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
-	public ModelAndView showOrderList(){
+	public ModelAndView showOrderList(HttpServletRequest request, HttpServletResponse response) 
+			throws ServiceException{
+		HttpSession session = request.getSession();
+		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+		if(restaurantId == null){
+			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
+		}
 		ModelAndView mav = new ModelAndView("showOrder");
 		
 		mav.addObject("orderList", orderList);
@@ -53,7 +68,7 @@ public class OrderAjaxController {
 		
 		BigDecimal subTotal = new BigDecimal(0.00);
 		
-		Restaurant res = restaurantService.getResturantInfo(ResConstant.NEW_CITY_CHINESE_ID);
+		Restaurant res = restaurantService.getResturantInfo(restaurantId);
 		BigDecimal tax = res.getTax();
 		logger.info("tax = " + tax);
 		BigDecimal grandTotal = new BigDecimal(0.00);
@@ -120,7 +135,7 @@ public class OrderAjaxController {
 			logger.info("removing orderList with " + idx);
 			orderList.remove(index);
 		}catch(Exception e){
-			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
 		
 		return "redirect:/showOrder.html";
@@ -139,7 +154,7 @@ public class OrderAjaxController {
 			BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
 			orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		}catch(Exception e){
-			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
 		
 		return "redirect:/showOrder.html";
@@ -164,7 +179,7 @@ public class OrderAjaxController {
 				orderList.remove(index);
 			}
 		}catch(Exception e){
-			throw new NumberFormatException(messages.getMessage("is.not.a.number"));
+			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
 			
 		return "redirect:/showOrder.html";
@@ -185,12 +200,37 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
-	public String saveOrder(HttpServletRequest req, HttpServletResponse res){
+	public String saveOrder(HttpServletRequest request, HttpServletResponse response){
+		HttpSession session = request.getSession();
+		String agentName = (String)session.getAttribute("agentName");
+		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+
+		//TODO: check if it is a delivery order, if yes, save address
+		//TODO: if address or person info already exists in database, use that id and dont save into database.
+		Address address = new Address();
+		address.setStreet1(StringUtils.trimToNull(request.getParameter("address[street1]")));
+		address.setStreet2(StringUtils.trimToNull(request.getParameter("address[street2]")));
+		address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
+		address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
+		address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
+		addressService.save(address);
+		
+		Person customer = new Person();
+		customer.setFirstName(StringUtils.trimToNull(request.getParameter("customer[firstName]")));
+		customer.setLastName(StringUtils.trimToNull(request.getParameter("customer[lastName]")));
+		customer.setPhone1(StringUtils.trimToNull(request.getParameter("customer[phone1]")));
+		customer.setPhone2(StringUtils.trimToNull(request.getParameter("customer[phone2]")));
+		customer.setEmail(StringUtils.trimToNull(request.getParameter("customer[email]")));
+		customer.setNote(StringUtils.trimToNull(request.getParameter("customer[note]")));
+		customer.setLastUpdatedBy(agentName);
+		customer.setAddress(address);
+		customerService.save(customer);
+		
 		CustomerOrder customerOrder = new CustomerOrder();
-		customerOrder.setRestaurantId(1); //TODO: save by the selected restaurant id
-		customerOrder.setPersonId(2); //TODO: save with the customer information
-		customerOrder.setUsername("bthai"); //TODO: need to save order with the user who logged in
-		customerOrder.setOrderOption("Pick Up");
+		customerOrder.setRestaurantId(restaurantId);
+		customerOrder.setCustomer(customer);
+		customerOrder.setUsername(agentName);
+		customerOrder.setOrderOption("Delivery");
 		customerOrder.setOrderTime(new Date());
 		customerOrder.setSubTotal(get_subTotal());
 		customerOrder.setTax(get_tax());
@@ -202,6 +242,8 @@ public class OrderAjaxController {
 		
 		orderService.saveOrder(customerOrder, orderList);
 		orderList.clear();
+		
+		//return "redirect:/welcome.html";
 		return "redirect:/showOrder.html";
 	}
 

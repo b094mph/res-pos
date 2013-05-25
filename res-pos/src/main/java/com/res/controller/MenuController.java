@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,11 +34,10 @@ public class MenuController {
 	public ModelAndView showMenu(HttpServletRequest req, HttpServletResponse res) throws ServiceException{
 		HttpSession session = req.getSession();
 		
-		String resId = (String)session.getAttribute("restaurantId");
-		if(StringUtils.isEmpty(resId)){
+		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+		if(restaurantId == null){
 			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
 		}
-		Long restaurantId = Long.parseLong(resId);
 		
 		ModelAndView mav = new ModelAndView("menu");
 		

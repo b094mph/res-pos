@@ -102,9 +102,10 @@ $(document).ready(function(){
 		$.ajax({
 			type: "GET",
 			url: "saveOrder.json",
+			contentType: 'application/json',
+			data: createJsonCusOrder(),
 			success:
 				function(data){
-					//$('#hiddenSubmit').trigger('click');
 					$('#orderListAjax').html(data).show();
 			},
 			error:
@@ -163,3 +164,23 @@ $(document).ready(function(){
 	$('#print').attr('title', "Print receipt.");
 	$('#print').tooltip();
 });
+
+
+function createJsonCusOrder(){
+	var jsonParams = {"customer": {"firstName": $('#firstName').val(),
+									"lastName": $('#lastName').val(),
+									"phone1": $('#phone1').val(),
+									"phone2": $('#phone2').val(),
+									"ext": $('#ext').val(),
+									"email": $('#email').val()
+									},
+					"address": {"street1": $('#street1').val(),
+							"street2": $('#street2').val(),
+							"city": $('#city').val(),
+							"state": $('#state').val(),
+							"zipCode": $('#zipCode').val(),
+							"note": $('#note').val()
+							}
+				};
+	return jsonParams;
+}
