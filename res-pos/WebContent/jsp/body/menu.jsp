@@ -5,7 +5,14 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
-
+<div class="row">
+	<div class="span2">
+		<h6><b>Agent:</b> <c:out value="${agentName}"/></h6>
+	</div>
+	<div class="span3">
+		<h6><b>Restaurant:</b> <c:out value="${restaurantName}"/></h6>	
+	</div>
+</div>
 <div class="row">
 	<div class="span6">
 		<jsp:include page="customerInfo.jsp"/>

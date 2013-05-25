@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
+<c:set scope="session" var="agentName" value="${username}"/>
+
 <input id="numOfRes" type="hidden" value="${numOfRes}"> 
 <input id="menuPage" type="hidden" value='<%=request.getContextPath()%>/menu.html'>
 

@@ -19,7 +19,6 @@
 		</c:when>
 		<c:otherwise>
 			<div id="noMenu" class="alert alert-danger">
-				<a class="close" data-dismiss="alert">x</a>
 				<h3>No menu found.</h3>
 			</div>
 		</c:otherwise>

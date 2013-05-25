@@ -18,6 +18,22 @@ public class RestaurantDaoImpl extends BaseDaoImpl implements RestaurantDao {
 	public Restaurant restaurantInfo(long restaurantId) {
 		return (Restaurant) getCurrentSession().get(Restaurant.class, restaurantId);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public String findRestaurantName(long restaurantId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT restaurantName FROM Restaurant WHERE restaurantId = :restaurantId");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		
+		List<String> resName = query.list();
+		if(!resName.isEmpty()){
+			return resName.get(0);
+		}
+		return null;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

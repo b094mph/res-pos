@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
 import com.res.service.MenuService;
+import com.res.service.RestaurantService;
 import com.res.util.MessageLoader;
 
 @Controller
@@ -27,6 +28,7 @@ public class MenuController {
 	private static Logger logger = Logger.getLogger(MenuController.class);
 	
 	@Autowired private MenuService menuService;
+	@Autowired private RestaurantService restaurantService;
 	@Autowired private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
@@ -43,11 +45,14 @@ public class MenuController {
 		
 		logger.info("restaurantId = " + restaurantId);
 		
-		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
+		String restaurantName = restaurantService.findRestaurantName(restaurantId);
+		mav.addObject("restaurantName", restaurantName);
 		
+		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("restaurantId", restaurantId);
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
+		
 		return mav;
 	}
 
