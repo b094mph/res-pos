@@ -6,7 +6,6 @@ $(document).ready(function(){
 		var resId = "#resId_" + i.toString();
 
 		$(resId).click(function(){
-//			alert($(this).val());
 			setSessionAttribute($(this).val());
 		});
 	}

@@ -154,12 +154,12 @@ $(document).ready(function(){
 	//make the header fixed on scroll
 	$('.table-fixed-header').fixedHeader();
 
-	$('#new').attr('title', "Clears customer and order information.");
+	$('#new').attr('title', "Clears customer and order.");
 	$('#new').tooltip();
 	$('#void').attr('title', "Cancels order.");
 	$('#void').tooltip();
-	$('#save').attr('title', "Saves customer and order information.");
+	$('#save').attr('title', "Saves customer and order.");
 	$('#save').tooltip();
-	$('#print').attr('title', "Printing to receipt.");
+	$('#print').attr('title', "Print receipt.");
 	$('#print').tooltip();
 });

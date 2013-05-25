@@ -73,9 +73,9 @@
 		<tr>
 			<td>
 				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">New</button>
-				<button id="void" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="bottom">Void</button>
+				<button id="void" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">Void</button>
 				<button id="save" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top">Save</button>
-				<button id="print" class="btn btn-success btn2" data-toggle="tooltip" data-placement="right">Print</button>
+				<button id="print" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top">Print</button>
 			</td>
 			<td><b>Grand Total:</b></td>
 			<td><b>$ <c:out value="${grandTotal}"></c:out></b></td>
