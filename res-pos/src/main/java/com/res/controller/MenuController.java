@@ -43,7 +43,7 @@ public class MenuController {
 		
 		logger.info("restaurantId = " + restaurantId);
 		
-		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); //TODO: change to real resid
+		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		
 		mav.addObject("restaurantId", restaurantId);
 		mav.addObject("foodCategories", foodCategories);

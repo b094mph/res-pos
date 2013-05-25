@@ -29,7 +29,9 @@
 					<li><a id="address-link" href="addressForm.html">Address</a></li>
 					<li><a id="customer-link" href="customerForm.html">Customer</a></li>
 				</sec:authorize>
+				<c:if test="${not empty restaurantId }">
 					<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
+				</c:if>
 					<li id="search" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Search</a>
 					</li>
