@@ -12,8 +12,10 @@
 	<div class="span3">
 		<h6><b>RESTAURANT:</b> <c:out value="${restaurantName}"/></h6>	
 	</div>
-	<div class="span2 offset5">
-		<h6><%= new java.util.Date() %></h6>
+	<div class="span3 offset4">
+		<div class="pull-right">
+			<h6><%= new java.util.Date() %></h6>
+		</div>
 	</div>
 </div>
 <div class="row">

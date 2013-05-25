@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,6 +38,7 @@ import com.res.util.Price;
 
 @Controller
 @SessionAttributes
+@Scope(value="session")
 public class OrderAjaxController {
 
 	private static Logger logger = Logger.getLogger(OrderAjaxController.class);
@@ -49,9 +51,9 @@ public class OrderAjaxController {
 	@Autowired private MessageLoader messageLoader;
 	
 	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
-	private BigDecimal _subTotal;
-	private BigDecimal _tax;
-	private BigDecimal _grandTotal;
+	private BigDecimal subTotal;
+	private BigDecimal tax;
+	private BigDecimal grandTotal;
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
 	public ModelAndView showOrderList(HttpServletRequest request, HttpServletResponse response) 
@@ -81,11 +83,11 @@ public class OrderAjaxController {
 				subTotal = subTotal.add(orderDetail.getPrice());
 			}
 			BigDecimal calcSubTotal = subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
-			set_subTotal(calcSubTotal);
+			this.setSubTotal(calcSubTotal);
 			mav.addObject("subTotal", calcSubTotal);
 			
 			BigDecimal calcTax = subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP); 
-			set_tax(calcTax);		
+			this.setTax(calcTax);		
 			mav.addObject("tax", calcTax);
 			
 			grandTotal = subTotal.add(calcTax);
@@ -97,7 +99,7 @@ public class OrderAjaxController {
 				logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
 				grandTotal = grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
 			}
-			set_grandTotal(grandTotal);
+			this.setGrandTotal(grandTotal);
 			mav.addObject("grandTotal", grandTotal);
 		}
 
@@ -230,9 +232,9 @@ public class OrderAjaxController {
 		customerOrder.setUsername(agentName);
 		customerOrder.setOrderOption("Delivery");
 		customerOrder.setOrderTime(new Date());
-		customerOrder.setSubTotal(get_subTotal());
-		customerOrder.setTax(get_tax());
-		customerOrder.setGrandTotal(get_grandTotal());
+		customerOrder.setSubTotal(this.getSubTotal());
+		customerOrder.setTax(this.getTax());
+		customerOrder.setGrandTotal(this.getGrandTotal());
 		
 		for(OrderDetail orderDetail : orderList){
 			orderDetail.setCustomerOrder(customerOrder);
@@ -241,32 +243,31 @@ public class OrderAjaxController {
 		orderService.saveOrder(customerOrder, orderList);
 		orderList.clear();
 		
-		//return "redirect:/welcome.html";
-		return "redirect:/showOrder.html";
+		return "redirect:/welcome.html";
 	}
 
-	public BigDecimal get_subTotal() {
-		return _subTotal;
+	public BigDecimal getSubTotal() {
+		return subTotal;
 	}
 
-	public void set_subTotal(BigDecimal _subTotal) {
-		this._subTotal = _subTotal;
+	public void setSubTotal(BigDecimal subTotal) {
+		this.subTotal = subTotal;
 	}
 
-	public BigDecimal get_tax() {
-		return _tax;
+	public BigDecimal getTax() {
+		return tax;
 	}
 
-	public void set_tax(BigDecimal _tax) {
-		this._tax = _tax;
+	public void setTax(BigDecimal tax) {
+		this.tax = tax;
 	}
 
-	public BigDecimal get_grandTotal() {
-		return _grandTotal;
+	public BigDecimal getGrandTotal() {
+		return grandTotal;
 	}
 
-	public void set_grandTotal(BigDecimal _grandTotal) {
-		this._grandTotal = _grandTotal;
+	public void setGrandTotal(BigDecimal grandTotal) {
+		this.grandTotal = grandTotal;
 	}
 
 }
