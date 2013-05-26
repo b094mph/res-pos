@@ -4,11 +4,12 @@ import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 
+import com.res.exception.ServiceException;
 import com.res.model.Address;
 
 public interface AddressService {
 
-	public void save(Address address);
+	public void save(Address address) throws ServiceException;
 	public void update(Address address);
 	public void delete(Address address);
 	public Address findByAddressId(long id);

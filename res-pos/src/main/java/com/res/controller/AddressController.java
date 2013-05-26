@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.exception.ServiceException;
 import com.res.model.Address;
 import com.res.service.AddressService;
 
@@ -32,7 +33,8 @@ public class AddressController {
     }
 	
 	@RequestMapping(value = "/addAddress", method = RequestMethod.GET)
-	public String addAddress(@ModelAttribute("address") Address address, BindingResult result){
+	public String addAddress(@ModelAttribute("address") Address address, BindingResult result) 
+			throws ServiceException{
 		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() +
 				" " + address.getCity() + " " + address.getState() + " " + address.getZipCode());
 		addressService.save(address);

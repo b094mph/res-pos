@@ -1,11 +1,12 @@
+var orderListSize = $('#orderListSize').val();
+var deleteItemId = null;
+var increaseQtyId = null;
+var decreaseQtyId = null;
+var idx = null;
+var params = null;
+var orderType = null;
+	
 $(document).ready(function(){
-
-	var orderListSize = $('#orderListSize').val();
-	var deleteItemId = null;
-	var increaseQtyId = null;
-	var decreaseQtyId = null;
-	var idx = null;
-	var params = null;
 	
 	for(var i=0; i<orderListSize; i++){
 		deleteItemId = '#deleteItem_' + i.toString();
@@ -99,11 +100,13 @@ $(document).ready(function(){
 	});
 	
 	$('#save').click(function(){
+		params = createJsonCusOrder();
+		params.orderType = orderType;
 		$.ajax({
 			type: "GET",
 			url: "saveOrder.json",
 			contentType: 'application/json',
-			data: createJsonCusOrder(),
+			data: params,
 			success:
 				function(data){
 					window.location.replace($('#welcomeJsp').val());
@@ -121,23 +124,23 @@ $(document).ready(function(){
 	});
 	
 	$('#walkin').click(function(){
-		alert("Walk In");
+		setOrderType("Walk In");
 	});
 	
 	$('#pickup').click(function(){
-		alert("Pick Up");
+		setOrderType("Pick Up");
 	});
 	
 	$('#delivery').click(function(){
-		alert("Delivery");
+		setOrderType("Delivery");
 	});
 	
 	$('#eatin').click(function(){
-		alert("Eat In");
+		setOrderType("Eat In");
 	});
 	
 	$('#small').click(function(){
-		alert("Small");
+		alert("small");
 	});
 	
 	$('#large').click(function(){
@@ -180,7 +183,8 @@ function createJsonCusOrder(){
 							"state": $('#state').val(),
 							"zipCode": $('#zipCode').val(),
 							"note": $('#note').val()
-							}
+							},
+					"orderType": "Pick Up"
 				};
 	return jsonParams;
 }
@@ -198,4 +202,9 @@ function clearCustomerInfo(){
 	$('#state').val("");
 	$('#zipCode').val("");
 	$('#note').val("");
+}
+
+function setOrderType(type){
+	orderType = type;
+	$('b#orderType').html(orderType);
 }

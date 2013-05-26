@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.AddressDao;
+import com.res.exception.ServiceException;
 import com.res.model.Address;
 import com.res.service.AddressService;
+import com.res.util.MessageLoader;
 
 @Service("addressService")
 @Transactional
@@ -17,10 +19,13 @@ public class AddressServiceImpl implements AddressService {
 	
 	private static Logger logger = Logger.getLogger(AddressServiceImpl.class);
 	
-	@Autowired
-	private AddressDao addressDao;
+	@Autowired private AddressDao addressDao;
+	@Autowired private MessageLoader messageLoader;
 
-	public void save(Address address) {
+	public void save(Address address) throws ServiceException {
+		if(address.getState() == null){
+			throw new ServiceException("state.is.required");
+		}
 		address.setState(address.getState().toUpperCase());
 		addressDao.save(address);
 	}

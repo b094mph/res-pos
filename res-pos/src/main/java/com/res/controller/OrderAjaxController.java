@@ -200,7 +200,8 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
-	public String saveOrder(HttpServletRequest request, HttpServletResponse response){
+	public String saveOrder(HttpServletRequest request, HttpServletResponse response) 
+			throws ServiceException{
 		HttpSession session = request.getSession();
 		String agentName = (String)session.getAttribute("agentName");
 		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
@@ -226,11 +227,16 @@ public class OrderAjaxController {
 		customer.setAddress(address);
 		customerService.save(customer);
 		
+		String orderType = StringUtils.trimToNull(request.getParameter("orderType"));
+		if(orderType == null){
+			throw new ServiceException(messageLoader.getMessage("orderType.is.null"));
+		}
+		
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setRestaurantId(restaurantId);
 		customerOrder.setCustomer(customer);
 		customerOrder.setUsername(agentName);
-		customerOrder.setOrderOption("Delivery");
+		customerOrder.setOrderOption(orderType);
 		customerOrder.setOrderTime(new Date());
 		customerOrder.setSubTotal(this.getSubTotal());
 		customerOrder.setTax(this.getTax());
