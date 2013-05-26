@@ -73,7 +73,7 @@ $(document).ready(function(){
 			url: "newOrder.json",
 			success:
 				function(data){
-					$('#hiddenReset').trigger('click');
+					clearCustomerInfo();
 					$('#orderListAjax').html(data).show();
 			},
 			error:
@@ -106,7 +106,7 @@ $(document).ready(function(){
 			data: createJsonCusOrder(),
 			success:
 				function(data){
-					$('#orderListAjax').html(data).show();
+					window.location.replace($('#welcomeJsp').val());
 			},
 			error:
 				function(data){
@@ -183,4 +183,19 @@ function createJsonCusOrder(){
 							}
 				};
 	return jsonParams;
+}
+
+function clearCustomerInfo(){
+	$('#firstName').val("");
+	$('#lastName').val("");
+	$('#phone1').val("");
+	$('#phone2').val("");
+	$('#ext').val("");
+	$('#email').val("");
+	$('#street1').val("");
+	$('#street2').val("");
+	$('#city').val("");
+	$('#state').val("");
+	$('#zipCode').val("");
+	$('#note').val("");
 }

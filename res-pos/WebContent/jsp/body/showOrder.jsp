@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
+<input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 

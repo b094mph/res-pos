@@ -243,7 +243,7 @@ public class OrderAjaxController {
 		orderService.saveOrder(customerOrder, orderList);
 		orderList.clear();
 		
-		return "redirect:/welcome.html";
+		return "welcome";
 	}
 
 	public BigDecimal getSubTotal() {
