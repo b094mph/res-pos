@@ -211,32 +211,35 @@ public class OrderAjaxController {
 			throw new ServiceException(messageLoader.getMessage("orderType.is.null"));
 		}
 		
-		//TODO: if address or person info already exists in database, use that id and dont save into database.
-		Person customer = new Person();
-		customer.setFirstName(StringUtils.trimToNull(request.getParameter("customer[firstName]")));
-		customer.setLastName(StringUtils.trimToNull(request.getParameter("customer[lastName]")));
-		customer.setPhone1(StringUtils.trimToNull(request.getParameter("customer[phone1]")));
-		customer.setPhone2(StringUtils.trimToNull(request.getParameter("customer[phone2]")));
-		customer.setEmail(StringUtils.trimToNull(request.getParameter("customer[email]")));
-		customer.setNote(StringUtils.trimToNull(request.getParameter("customer[note]")));
-		customer.setLastUpdatedBy(agentName);
-		
-		if(ResConstant.DELIVERY.equals(orderType)){
-			Address address = new Address();
-			address.setStreet1(StringUtils.trimToNull(request.getParameter("address[street1]")));
-			address.setStreet2(StringUtils.trimToNull(request.getParameter("address[street2]")));
-			address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
-			address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
-			address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
-			addressService.save(address);
-			customer.setAddress(address);
-		}
-		
-		customerService.save(customer);
-		
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setRestaurantId(restaurantId);
-		customerOrder.setCustomer(customer);
+		
+		//TODO: if address or person info already exists in database, use that id and dont save into database.
+		if(ResConstant.PICK_UP.equals(orderType) || ResConstant.DELIVERY.equals(orderType)){
+			Person customer = new Person();
+			customer.setFirstName(StringUtils.trimToNull(request.getParameter("customer[firstName]")));
+			customer.setLastName(StringUtils.trimToNull(request.getParameter("customer[lastName]")));
+			customer.setPhone1(StringUtils.trimToNull(request.getParameter("customer[phone1]")));
+			customer.setPhone2(StringUtils.trimToNull(request.getParameter("customer[phone2]")));
+			customer.setEmail(StringUtils.trimToNull(request.getParameter("customer[email]")));
+			customer.setNote(StringUtils.trimToNull(request.getParameter("customer[note]")));
+			customer.setLastUpdatedBy(agentName);
+			
+			if(ResConstant.DELIVERY.equals(orderType)){
+				Address address = new Address();
+				address.setStreet1(StringUtils.trimToNull(request.getParameter("address[street1]")));
+				address.setStreet2(StringUtils.trimToNull(request.getParameter("address[street2]")));
+				address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
+				address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
+				address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
+				addressService.save(address);
+				customer.setAddress(address);
+			}
+			
+			customerService.save(customer);
+			customerOrder.setCustomer(customer);
+		}
+
 		customerOrder.setUsername(agentName);
 		customerOrder.setOrderOption(orderType);
 		customerOrder.setOrderTime(new Date());

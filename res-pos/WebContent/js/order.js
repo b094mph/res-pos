@@ -104,6 +104,9 @@ $(document).ready(function(){
 		if(!validateOrderType()){
 			return;
 		}
+		if(!validateHasPhoneNumber()){
+			return;
+		}
 		params.orderType = orderType;
 		if(!validateDeliveryHasAddress(params)){
 			return;
@@ -233,6 +236,16 @@ function validateOrderType(){
 	if(orderType == null){
 		alert("Please choose an order type.");
 		return false;
+	}
+	return true;
+}
+
+function validateHasPhoneNumber(){
+	if(orderType == "Delivery" || orderType == "Pick Up"){
+		if($('#phone1').val() == ""){
+			alert("A phone number is required to complete the order.");
+			return false;
+		}
 	}
 	return true;
 }
