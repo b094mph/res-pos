@@ -205,17 +205,13 @@ public class OrderAjaxController {
 		HttpSession session = request.getSession();
 		String agentName = (String)session.getAttribute("agentName");
 		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
-
-		//TODO: check if it is a delivery order, if yes, save address
-		//TODO: if address or person info already exists in database, use that id and dont save into database.
-		Address address = new Address();
-		address.setStreet1(StringUtils.trimToNull(request.getParameter("address[street1]")));
-		address.setStreet2(StringUtils.trimToNull(request.getParameter("address[street2]")));
-		address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
-		address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
-		address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
-		addressService.save(address);
 		
+		String orderType = StringUtils.trimToNull(request.getParameter("orderType"));
+		if(orderType == null){
+			throw new ServiceException(messageLoader.getMessage("orderType.is.null"));
+		}
+		
+		//TODO: if address or person info already exists in database, use that id and dont save into database.
 		Person customer = new Person();
 		customer.setFirstName(StringUtils.trimToNull(request.getParameter("customer[firstName]")));
 		customer.setLastName(StringUtils.trimToNull(request.getParameter("customer[lastName]")));
@@ -224,13 +220,19 @@ public class OrderAjaxController {
 		customer.setEmail(StringUtils.trimToNull(request.getParameter("customer[email]")));
 		customer.setNote(StringUtils.trimToNull(request.getParameter("customer[note]")));
 		customer.setLastUpdatedBy(agentName);
-		customer.setAddress(address);
-		customerService.save(customer);
 		
-		String orderType = StringUtils.trimToNull(request.getParameter("orderType"));
-		if(orderType == null){
-			throw new ServiceException(messageLoader.getMessage("orderType.is.null"));
+		if(ResConstant.DELIVERY.equals(orderType)){
+			Address address = new Address();
+			address.setStreet1(StringUtils.trimToNull(request.getParameter("address[street1]")));
+			address.setStreet2(StringUtils.trimToNull(request.getParameter("address[street2]")));
+			address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
+			address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
+			address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
+			addressService.save(address);
+			customer.setAddress(address);
 		}
+		
+		customerService.save(customer);
 		
 		CustomerOrder customerOrder = new CustomerOrder();
 		customerOrder.setRestaurantId(restaurantId);

@@ -101,7 +101,13 @@ $(document).ready(function(){
 	
 	$('#save').click(function(){
 		params = createJsonCusOrder();
+		if(!validateOrderType()){
+			return;
+		}
 		params.orderType = orderType;
+		if(!validateDeliveryHasAddress(params)){
+			return;
+		}
 		$.ajax({
 			type: "GET",
 			url: "saveOrder.json",
@@ -207,4 +213,26 @@ function clearCustomerInfo(){
 function setOrderType(type){
 	orderType = type;
 	$('b#orderType').html(orderType);
+}
+
+function validateDeliveryHasAddress(data){
+	if(data.orderType == "Delivery"){
+		var addr = data.address;
+		if(addr.street1 != null && addr.city != null 
+				&& addr.state != null && addr.zipCode != null){
+			return true;
+		}else{
+			alert("A delivery order requires an address.");
+			return false;
+		}
+	}
+	return true;
+}
+
+function validateOrderType(){
+	if(orderType == null){
+		alert("Please choose an order type.");
+		return false;
+	}
+	return true;
 }
