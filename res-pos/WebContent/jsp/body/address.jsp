@@ -5,6 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<link rel="stylesheet" href="css/fixed-table-header.css">
 
 <div class="row">
 	<fieldset>
@@ -39,33 +40,45 @@
 	<div id="showAddressList" class="span6">
 		<fieldset>
 		<legend>Address Information</legend>
-			<table class="table table-striped table-hover">
-				<tr>
-					<th>Street1</th>
-					<th>Street2</th>
-					<th>City</th>
-					<th>State</th>
-					<th>Zip Code</th>
-				</tr>
-			<c:forEach items="${addressList}" var="address">
-				<tr>
-					<td>${address.street1}</td>
-					<td>${address.street2}</td>
-					<td>${address.city}</td>
-					<td>${address.state}</td>
-					<td>${address.zipCode}</td>
-					<sec:authorize ifAllGranted="ROLE_ADMIN">
-						<td>
-							<c:url var="deleteUrl" value="deleteAddress/${address.addressId}.html"/>
-							<a href="${deleteUrl}">delete</a>
-						</td>
-					</sec:authorize>
-				</tr>
-			</c:forEach>
-			</table>
+			<div class="fixed-table">
+				<div class="table-content">
+				<table class="table table-striped table-hover table-fixed-header">
+					<thead class="header">
+						<tr>
+							<th>Street1</th>
+							<th>Street2</th>
+							<th>City</th>
+							<th>State</th>
+							<th>Zip Code</th>
+						</tr>
+					</thead>
+					<tbody>
+					<c:forEach items="${addressList}" var="address">
+						<tr>
+							<td>${address.street1}</td>
+							<td>${address.street2}</td>
+							<td>${address.city}</td>
+							<td>${address.state}</td>
+							<td>${address.zipCode}</td>
+							<sec:authorize ifAllGranted="ROLE_ADMIN">
+								<td>
+									<c:url var="deleteUrl" value="deleteAddress/${address.addressId}.html"/>
+									<a href="${deleteUrl}">delete</a>
+								</td>
+							</sec:authorize>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+				</div>
+			</div>
 		</fieldset>
 	</div>	
 </div>
-
-
 <br><br><br><br><br><br><br><br><br><br>
+
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+<script type="text/javascript">
+	//make the header fixed on scroll
+	$('.table-fixed-header').fixedHeader();
+</script>

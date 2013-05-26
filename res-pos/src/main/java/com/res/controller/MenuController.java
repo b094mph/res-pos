@@ -45,7 +45,7 @@ public class MenuController {
 		logger.info("restaurantId = " + restaurantId);
 		
 		String restaurantName = restaurantService.findRestaurantName(restaurantId);
-		mav.addObject("restaurantName", restaurantName);
+		session.setAttribute("restaurantName", restaurantName);
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("restaurantId", restaurantId);

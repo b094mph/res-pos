@@ -1,7 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<c:set scope="session" var="agentName" value="${username}"/>
-
 <input id="numOfRes" type="hidden" value="${numOfRes}"> 
 <input id="menuPage" type="hidden" value='<%=request.getContextPath()%>/menu.html'>
 
@@ -9,7 +7,7 @@
 	<div class="span12">
 		<div id="welcomealert" class="alert alert-info">
 			<a class="close" data-dismiss="alert">x</a>
-			<h3>Hello <c:out value="${username}"/>!</h3>
+			<h3>Hello <c:out value="${agentName}"/>!</h3>
 			<p>Welcome to RES-POS!</p>
 		</div>
 	</div>

@@ -44,13 +44,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
-	public ModelAndView welcome(Principal principal){	
+	public ModelAndView welcome(Principal principal, HttpServletRequest request){	
+		HttpSession session = request.getSession();
+		
 		ModelAndView mav = new ModelAndView("welcome");
 		
-		String username = principal.getName();
-		logger.info("in welcome " + username);
-		
-		mav.addObject("username", username);
+		String agentName = principal.getName();
+		session.setAttribute("agentName", agentName);
+		logger.info("in welcome " + agentName);
+
 		List<Restaurant> restaurants = restaurantService.getRestaurants();
 		mav.addObject("restaurants", restaurants);
 		mav.addObject("numOfRes", restaurants.size());

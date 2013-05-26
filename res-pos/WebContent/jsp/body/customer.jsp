@@ -5,6 +5,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+<link rel="stylesheet" href="css/fixed-table-header.css">
+
 <div class="row">
 	<fieldset>
 	<legend>Customer</legend>
@@ -28,33 +30,47 @@
 	<div id="showCustomerList" class="span7">
 		<fieldset>
 		<legend>Customer Information</legend>
-		<table class="table table-striped table-hover">
-			<tr>
-				<th>Last Name, First Name</th>
-				<th>Phone 1</th>
-				<th>Phone 2</th>
-				<th>Ext</th>
-				<th>Email</th>
-				<th>Note</th>
-			</tr>
-			<c:forEach items="${customerList}" var="customer">
-				<tr>
-					<td>${customer.lastName}, ${customer.firstName}</td>
-					<td>${customer.phone1}</td>
-					<td>${customer.phone2}</td>
-					<td>${customer.ext}</td>
-					<td>${customer.email}</td>
-					<td>${customer.note}</td> 
-					<sec:authorize ifAllGranted="ROLE_ADMIN">
-						<td>
-							<c:url var="deleteUrl" value="deleteCustomer/${customer.personId}.html"/>							
-							<a href="${deleteUrl}">delete</a>
-						</td>
-					</sec:authorize>
-				</tr>
-			</c:forEach>
-		</table>
+			<div class="fixed-table">
+				<div class="table-content">
+					<table class="table table-striped table-hover table-fixed-header">
+						<thead class="header">
+						<tr>
+							<th>Last Name, First Name</th>
+							<th>Phone 1</th>
+							<th>Phone 2</th>
+							<th>Ext</th>
+							<th>Email</th>
+							<th>Note</th>
+						</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${customerList}" var="customer">
+								<tr>
+									<td>${customer.lastName}, ${customer.firstName}</td>
+									<td>${customer.phone1}</td>
+									<td>${customer.phone2}</td>
+									<td>${customer.ext}</td>
+									<td>${customer.email}</td>
+									<td>${customer.note}</td> 
+									<sec:authorize ifAllGranted="ROLE_ADMIN">
+										<td>
+											<c:url var="deleteUrl" value="deleteCustomer/${customer.personId}.html"/>							
+											<a href="${deleteUrl}">delete</a>
+										</td>
+									</sec:authorize>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</fieldset>
 	</div>
 </div>
 <br><br><br><br><br>
+
+<script type="text/javascript" src="js/fixed-table-header.js"></script>
+<script type="text/javascript">
+	//make the header fixed on scroll
+	$('.table-fixed-header').fixedHeader();
+</script>

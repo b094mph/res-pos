@@ -6,7 +6,7 @@
 
 <div class="row">
 	<fieldset>
-	<legend>Restaurant Menu </legend>
+	<legend><c:out value="${restaurantName}"/> Complete Menu </legend>
 	<div class="fixed-table">
 		<div class="table-content">
 			<table class="table table-striped table-hover table-fixed-header">
