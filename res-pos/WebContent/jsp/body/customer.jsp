@@ -46,7 +46,19 @@
 						<tbody>
 							<c:forEach items="${customerList}" var="customer">
 								<tr>
-									<td>${customer.lastName}, ${customer.firstName}</td>
+									<td>
+										<c:choose>
+											<c:when test="${not empty customer.lastName && customer.firstName}">
+												${customer.lastName}, ${customer.firstName}
+											</c:when>
+											<c:when test="${not empty customer.lastName}">
+												${customer.lastName}
+											</c:when>
+											<c:when test="${not empty customer.firstName}">
+												${customer.firstName}
+											</c:when>
+										</c:choose>
+									</td>
 									<td>${customer.phone1}</td>
 									<td>${customer.phone2}</td>
 									<td>${customer.ext}</td>
