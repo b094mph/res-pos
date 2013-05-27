@@ -221,11 +221,11 @@ function setOrderType(type){
 function validateDeliveryHasAddress(data){
 	if(data.orderType == "Delivery"){
 		var addr = data.address;
-		if(addr.street1 != null && addr.city != null 
-				&& addr.state != null && addr.zipCode != null){
+		if(addr.street1 != "" && addr.city != "" 
+				&& addr.state != "" && addr.zipCode != ""){
 			return true;
 		}else{
-			alert("A delivery order requires an address.");
+			$('#validateDeliveryHasAddressModal').modal();
 			return false;
 		}
 	}
@@ -234,7 +234,7 @@ function validateDeliveryHasAddress(data){
 
 function validateOrderType(){
 	if(orderType == null){
-		alert("Please choose an order type.");
+		$('#orderTypeModal').modal();
 		return false;
 	}
 	return true;
@@ -243,7 +243,7 @@ function validateOrderType(){
 function validateHasPhoneNumber(){
 	if(orderType == "Delivery" || orderType == "Pick Up"){
 		if($('#phone1').val() == ""){
-			alert("A phone number is required to complete the order.");
+			$('#validateHasPhoneNumberModal').modal();
 			return false;
 		}
 	}

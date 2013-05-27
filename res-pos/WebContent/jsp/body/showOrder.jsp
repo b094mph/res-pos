@@ -84,6 +84,7 @@
 	</table>
 </fieldset>
 
+<jsp:include page="../modal/showOrder-modal.jsp"/>
 
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
 <script type="text/javascript" src="js/order.js"></script>
