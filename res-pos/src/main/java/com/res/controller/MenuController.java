@@ -34,15 +34,16 @@ public class MenuController {
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) throws ServiceException{
 		HttpSession session = request.getSession();
+		String resId = (String) session.getAttribute("restaurantId");
+		logger.info("restaurantId = " + resId);
+		ModelAndView mav = null;
 		
-		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
-		if(restaurantId == null){
-			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
+		if(resId == null){
+			mav = new ModelAndView("redirect:/welcome.html");
+			return mav;
 		}
-		
-		ModelAndView mav = new ModelAndView("menu");
-		
-		logger.info("restaurantId = " + restaurantId);
+		Long restaurantId = Long.parseLong(resId);
+		mav = new ModelAndView("menu");
 		
 		String restaurantName = restaurantService.findRestaurantName(restaurantId);
 		session.setAttribute("restaurantName", restaurantName);
