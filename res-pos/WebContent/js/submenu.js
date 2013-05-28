@@ -1,5 +1,9 @@
 var id = null;
 
+$.ajaxSetup({
+	cache: false
+});
+
 $(document).ready(function(){
 	for(var i = menuIDs[0]; i <= menuIDs[menuIDs.length-1]; i++){
 		id = "#menu_" + i.toString();

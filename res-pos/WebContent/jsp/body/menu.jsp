@@ -6,7 +6,6 @@
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 
-
 <jsp:include page="status.jsp"/>
 
 <div class="row">

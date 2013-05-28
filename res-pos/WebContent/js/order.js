@@ -5,7 +5,11 @@ var decreaseQtyId = null;
 var idx = null;
 var params = null;
 var orderType = null;
-	
+
+$.ajaxSetup({
+	cache: false
+});
+
 $(document).ready(function(){
 	
 	for(var i=0; i<orderListSize; i++){
