@@ -180,7 +180,7 @@ CREATE TABLE IF NOT EXISTS customerorder (
 	tax DECIMAL(4,2),
 	grandtotal DECIMAL(6,2) NOT NULL,
 	tip DECIMAL(6,2),
-	orderstatus VARCHAR(10),
+	orderstatus VARCHAR(10) NOT NULL,
 	note VARCHAR(200),
     PRIMARY KEY (customerorderid),
 	CONSTRAINT fk_customerorder_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant (restaurantid) ON DELETE CASCADE,

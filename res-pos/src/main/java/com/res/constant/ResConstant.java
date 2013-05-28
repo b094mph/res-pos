@@ -18,4 +18,12 @@ public class ResConstant {
 	public static final String LARGE = "Large";
 	public static final String LUNCH = "Lunch";
 	public static final String COMBO = "Combo";
+	
+	// Order Status
+	public static final String VOID = "Void";
+	public static final String DELIVERED = "Delivered";
+	public static final String COMPLETE = "Complete";
+	public static final String PICKEDUP = "Picked Up";
+	public static final String PENDING = "Pending";
+			
 }

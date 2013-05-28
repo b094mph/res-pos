@@ -246,6 +246,7 @@ public class OrderAjaxController {
 		customerOrder.setSubTotal(this.getSubTotal());
 		customerOrder.setTax(this.getTax());
 		customerOrder.setGrandTotal(this.getGrandTotal());
+		customerOrder.setOrderStatus(ResConstant.PENDING);
 		
 		for(OrderDetail orderDetail : orderList){
 			orderDetail.setCustomerOrder(customerOrder);

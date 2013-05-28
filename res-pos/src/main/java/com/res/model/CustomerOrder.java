@@ -58,7 +58,7 @@ public class CustomerOrder implements Serializable{
 	@Column(name="tip", unique=false, nullable=true, length=5)
 	private BigDecimal tip;
 	
-	@Column(name="orderstatus", unique=false, nullable=false, length=10)
+	@Column(name="orderstatus", nullable=false, length=10)
 	private String orderStatus;
 	
 	@Column(name="note", unique=false, nullable=true, length=200)
