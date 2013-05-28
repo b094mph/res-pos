@@ -1,3 +1,7 @@
+/* fixed-table-header
+ * courtesy of flaviaza - https://gist.github.com/flaviaza/3763015
+ */
+
 .fixed-table .header-fixed {
   position: absolute;
   top: 0px;

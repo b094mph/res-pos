@@ -1,3 +1,7 @@
+/* fixed-table-header
+ * courtesy of flaviaza - https://gist.github.com/flaviaza/3763015
+ */
+
 (function($) {
 	 
 	$.fn.fixedHeader = function () {

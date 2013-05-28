@@ -17,10 +17,10 @@
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
 					    <ul class="dropdown-menu">
 					    	<sec:authorize ifAnyGranted="ROLE_ADMIN">
-								<li><a id="address-link" href="addressForm.html">Address</a></li>
-								<li><a id="customer-link" href="customerForm.html">Customer</a></li>
-								<li><a id="wholeMenu-link" href="wholeMenu.html">Whole Menu</a></li>
+								<li><a id="address-link" tabindex="-1" href="addressForm.html">Address</a></li>
+								<li><a id="customer-link" tabindex="-1" href="customerForm.html">Customer</a></li>
 							</sec:authorize>
+							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html">Complete Menu</a></li>
 							<li><a tabindex="-1" href="#">Careers</a></li>
 	                        <li><a tabindex="-1" href="#">Contact Us</a></li>
 	                        <li class="divider"></li>
