@@ -42,6 +42,14 @@
 	$(document).ready(function(){	
 		  // make the header fixed on scroll
 		  $('.table-fixed-header').fixedHeader();
+		  
+		var phoneArray = [];
+		<c:forEach items="${phoneNumbers}" var="phoneNum">
+			phoneArray.push("${phoneNum}");
+		</c:forEach>	
+
+		$('#phone1').typeahead({source: phoneArray});
+		$('#phone2').typeahead({source: phoneArray});
 	});
 </script>
 

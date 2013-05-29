@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.RestaurantService;
 import com.res.util.MessageLoader;
@@ -29,6 +30,7 @@ public class MenuController {
 	
 	@Autowired private MenuService menuService;
 	@Autowired private RestaurantService restaurantService;
+	@Autowired private CustomerService customerService;
 	@Autowired private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
@@ -42,16 +44,20 @@ public class MenuController {
 			mav = new ModelAndView("redirect:/welcome.html");
 			return mav;
 		}
-		Long restaurantId = Long.parseLong(resId);
 		mav = new ModelAndView("menu");
+		
+		Long restaurantId = Long.parseLong(resId);
+		mav.addObject("restaurantId", restaurantId);
 		
 		String restaurantName = restaurantService.findRestaurantName(restaurantId);
 		session.setAttribute("restaurantName", restaurantName);
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
-		mav.addObject("restaurantId", restaurantId);
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
+		
+		List<String> phoneNumbers = customerService.findPhoneNumbers(restaurantId);
+		mav.addObject("phoneNumbers", phoneNumbers);
 		
 		return mav;
 	}

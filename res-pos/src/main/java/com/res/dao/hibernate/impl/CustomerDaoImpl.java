@@ -3,6 +3,7 @@ package com.res.dao.hibernate.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.CustomerDao;
@@ -16,7 +17,6 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 	@Override
 	public Person findCustomer(long id) {
 		return (Person) getCurrentSession().get(getClass(), id);
-		
 	}
 
 	@SuppressWarnings("unchecked")
@@ -39,6 +39,20 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> findPhoneNumbers(long restaurantId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT p.phone1 FROM CustomerOrder co ");
+		sb.append("INNER JOIN co.customer p ");
+		sb.append("WHERE co.restaurantId = :restaurantId");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		
+		return query.list();
 	}
 
 }

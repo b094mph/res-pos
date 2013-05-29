@@ -7,8 +7,8 @@
 				<td>
 					<input id="firstName" type="text" name="firstName" placeholder="First Name">
 					<input id="lastName" type="text" name="lastName" placeholder="Last Name">
-					<input id="phone1" type="text" name="phone1" placeholder="Phone 1">
-					<input id="phone2" type="text" name="phone2" placeholder="Phone 2">
+					<input id="phone1" type="text" name="phone1" placeholder="Phone 1" data-provide="typeahead">
+					<input id="phone2" type="text" name="phone2" placeholder="Phone 2" data-provide="typeahead">
 					<input id="ext" type="text" name="ext" placeholder="Extention">
 					<input id="email" type="text" name="email" placeholder="Email">
 					<input id="street1" type="text" name="street1" placeholder="<spring:message code="label.street1"/>">

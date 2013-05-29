@@ -17,8 +17,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	private static Logger logger = Logger.getLogger(CustomerServiceImpl.class);
 	
-	@Autowired
-	private CustomerDao customerDao;
+	@Autowired private CustomerDao customerDao;
 
 	@Override
 	public void save(Person customer) {
@@ -48,6 +47,11 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public void deleteCustomer(long id) {
 		customerDao.deleteCustomer(id);
+	}
+
+	@Override
+	public List<String> findPhoneNumbers(long restaurantId) {
+		return customerDao.findPhoneNumbers(restaurantId);
 	}
 
 }
