@@ -43,13 +43,41 @@
 		  // make the header fixed on scroll
 		  $('.table-fixed-header').fixedHeader();
 		  
-		var phoneArray = [];
+		var array = [];
 		<c:forEach items="${phoneNumbers}" var="phoneNum">
-			phoneArray.push("${phoneNum}");
+			array.push("${phoneNum}");
 		</c:forEach>	
-
-		$('#phone1').typeahead({source: phoneArray});
-		$('#phone2').typeahead({source: phoneArray});
+		
+		$('#phone1').typeahead({source: array});
+		$('#phone2').typeahead({source: array});
+		
+		var array2 = [];
+		<c:forEach items="${firstNames}" var="firstName">
+			array2.push("${firstName}");
+		</c:forEach>
+		
+		$('#firstName').typeahead({source: array2});
+		
+		var array3 = [];
+		<c:forEach items="${lastNames}" var="lastName">
+			array3.push("${lastName}");
+		</c:forEach>
+		
+		$('#lastName').typeahead({source: array3});
+		
+		var array4 = [];
+		<c:forEach items="${emails}" var="email">
+			array4.push("${email}");
+		</c:forEach>
+		
+		$('#email').typeahead({source: array4});
+		
+		var array5 = [];
+		<c:forEach items="${notes}" var="note">
+			array5.push("${note}");
+		</c:forEach>
+		
+		$('#note').typeahead({source: array5});
 	});
 </script>
 

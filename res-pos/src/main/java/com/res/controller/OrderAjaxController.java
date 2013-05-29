@@ -221,6 +221,7 @@ public class OrderAjaxController {
 			customer.setLastName(StringUtils.trimToNull(request.getParameter("customer[lastName]")));
 			customer.setPhone1(StringUtils.trimToNull(request.getParameter("customer[phone1]")));
 			customer.setPhone2(StringUtils.trimToNull(request.getParameter("customer[phone2]")));
+			customer.setExt(StringUtils.trimToNull(request.getParameter("customer[ext]")));
 			customer.setEmail(StringUtils.trimToNull(request.getParameter("customer[email]")));
 			customer.setNote(StringUtils.trimToNull(request.getParameter("customer[note]")));
 			customer.setLastUpdatedBy(agentName);

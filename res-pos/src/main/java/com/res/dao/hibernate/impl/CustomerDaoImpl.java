@@ -43,9 +43,11 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> findPhoneNumbers(long restaurantId) {
+	public List<String> typeaheadAttribute(long restaurantId, String attribute) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT p.phone1 FROM CustomerOrder co ");
+		sb.append("SELECT DISTINCT ");
+		sb.append(attribute);
+		sb.append(" FROM CustomerOrder co ");
 		sb.append("INNER JOIN co.customer p ");
 		sb.append("WHERE co.restaurantId = :restaurantId");
 		

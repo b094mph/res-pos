@@ -56,8 +56,11 @@ public class MenuController {
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
 		
-		List<String> phoneNumbers = customerService.findPhoneNumbers(restaurantId);
-		mav.addObject("phoneNumbers", phoneNumbers);
+		mav.addObject("phoneNumbers", customerService.typeaheadPhoneNumber(restaurantId));
+		mav.addObject("firstNames", customerService.typeaheadFirstName(restaurantId));
+		mav.addObject("lastNames", customerService.typeaheadLastName(restaurantId));
+		mav.addObject("emails", customerService.typeaheadEmail(restaurantId));
+		mav.addObject("notes", customerService.typeaheadNote(restaurantId));
 		
 		return mav;
 	}

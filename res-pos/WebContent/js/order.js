@@ -188,14 +188,14 @@ function createJsonCusOrder(){
 									"phone1": $('#phone1').val(),
 									"phone2": $('#phone2').val(),
 									"ext": $('#ext').val(),
-									"email": $('#email').val()
+									"email": $('#email').val(),
+									"note": $('#note').val()
 									},
 					"address": {"street1": $('#street1').val(),
 							"street2": $('#street2').val(),
 							"city": $('#city').val(),
 							"state": $('#state').val(),
-							"zipCode": $('#zipCode').val(),
-							"note": $('#note').val()
+							"zipCode": $('#zipCode').val()
 							},
 					"orderType": "Pick Up"
 				};
