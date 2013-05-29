@@ -56,27 +56,27 @@ public class AddressServiceImpl implements AddressService {
 
 	@Override
 	public List<String> typeaheadStreet1(long restaurantId) {
-		return addressDao.typeaheadAttribute(restaurantId, "a.street1");
+		return addressDao.typeaheadAttribute(restaurantId, "street1");
 	}
 
 	@Override
 	public List<String> typeaheadStreet2(long restaurantId) {
-		return addressDao.typeaheadAttribute(restaurantId, "a.street2");
+		return addressDao.typeaheadAttribute(restaurantId, "street2");
 	}
 
 	@Override
 	public List<String> typeaheadCity(long restaurantId) {
-		return addressDao.typeaheadAttribute(restaurantId, "a.city");
+		return addressDao.typeaheadAttribute(restaurantId, "city");
 	}
 
 	@Override
 	public List<String> typeaheadState(long restaurantId) {
-		return addressDao.typeaheadAttribute(restaurantId, "a.state");
+		return addressDao.typeaheadAttribute(restaurantId, "state");
 	}
 
 	@Override
 	public List<String> typeaheadZipcode(long restaurantId) {
-		return addressDao.typeaheadAttribute(restaurantId, "a.zipCode");
+		return addressDao.typeaheadAttribute(restaurantId, "zipCode");
 	}
 
 }

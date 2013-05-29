@@ -53,8 +53,8 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public Set<String> typeaheadPhoneNumber(long restaurantId) {
-		List<String> phone1List = customerDao.typeaheadAttribute(restaurantId, "p.phone1");
-		List<String> phone2List = customerDao.typeaheadAttribute(restaurantId, "p.phone2");
+		List<String> phone1List = customerDao.typeaheadAttribute(restaurantId, "phone1");
+		List<String> phone2List = customerDao.typeaheadAttribute(restaurantId, "phone2");
 		logger.info("Combining phone1List and phone2List into a HashSet.");
 		phone1List.addAll(phone2List);
 		return new HashSet<String>(phone1List);
@@ -62,22 +62,22 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public List<String> typeaheadFirstName(long restaurantId) {
-		return customerDao.typeaheadAttribute(restaurantId, "p.firstName");
+		return customerDao.typeaheadAttribute(restaurantId, "firstName");
 	}
 
 	@Override
 	public List<String> typeaheadLastName(long restaurantId) {
-		return customerDao.typeaheadAttribute(restaurantId, "p.lastName");
+		return customerDao.typeaheadAttribute(restaurantId, "lastName");
 	}
 
 	@Override
 	public List<String> typeaheadEmail(long restaurantId) {
-		return customerDao.typeaheadAttribute(restaurantId, "p.email");
+		return customerDao.typeaheadAttribute(restaurantId, "email");
 	}
 
 	@Override
 	public List<String> typeaheadNote(long restaurantId) {
-		return customerDao.typeaheadAttribute(restaurantId, "p.note");
+		return customerDao.typeaheadAttribute(restaurantId, "note");
 	}
 
 }

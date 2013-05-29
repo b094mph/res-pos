@@ -43,7 +43,7 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 	@Override
 	public List<String> typeaheadAttribute(long restaurantId, String attribute) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT DISTINCT ");
+		sb.append("SELECT DISTINCT a.");
 		sb.append(attribute);
 		sb.append(" FROM CustomerOrder co ");
 		sb.append("INNER JOIN co.customer.address a ");

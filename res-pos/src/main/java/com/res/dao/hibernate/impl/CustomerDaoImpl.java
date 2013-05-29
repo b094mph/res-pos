@@ -45,7 +45,7 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 	@Override
 	public List<String> typeaheadAttribute(long restaurantId, String attribute) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT DISTINCT ");
+		sb.append("SELECT DISTINCT p.");
 		sb.append(attribute);
 		sb.append(" FROM CustomerOrder co ");
 		sb.append("INNER JOIN co.customer p ");
