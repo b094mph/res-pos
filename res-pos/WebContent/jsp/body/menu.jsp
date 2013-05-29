@@ -78,6 +78,41 @@
 		</c:forEach>
 		
 		$('#note').typeahead({source: array5});
+		
+		var array6 = [];
+		<c:forEach items="${street1s}" var="street1">
+			array6.push("${street1}");
+		</c:forEach>
+		
+		$('#street1').typeahead({source: array6});
+		
+		var array7 = [];
+		<c:forEach items="${street2s}" var="street2">
+			array7.push("${street2}");
+		</c:forEach>
+		
+		$('#street2').typeahead({source: array7});
+		
+		var array8 = [];
+		<c:forEach items="${cities}" var="city">
+			array8.push("${city}");
+		</c:forEach>
+		
+		$('#city').typeahead({source: array8});
+		
+		var array9 = [];
+		<c:forEach items="${states}" var="state">
+			array9.push("${state}");
+		</c:forEach>
+		
+		$('#state').typeahead({source: array9});
+		
+		var array10 = [];
+		<c:forEach items="${zipCodes}" var="zipCode">
+			array10.push("${zipCode}");
+		</c:forEach>
+		
+		$('#zipCode').typeahead({source: array10});
 	});
 </script>
 

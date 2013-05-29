@@ -3,6 +3,7 @@ package com.res.dao.hibernate.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.AddressDao;
@@ -36,6 +37,22 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 		}catch(Exception e){
 			e.printStackTrace();
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> typeaheadAttribute(long restaurantId, String attribute) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT DISTINCT ");
+		sb.append(attribute);
+		sb.append(" FROM CustomerOrder co ");
+		sb.append("INNER JOIN co.customer.address a ");
+		sb.append("WHERE co.restaurantId = :restaurantId");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		
+		return query.list();
 	}
 
 }

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.service.AddressService;
 import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.RestaurantService;
@@ -31,6 +32,7 @@ public class MenuController {
 	@Autowired private MenuService menuService;
 	@Autowired private RestaurantService restaurantService;
 	@Autowired private CustomerService customerService;
+	@Autowired private AddressService addressService;
 	@Autowired private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
@@ -56,11 +58,18 @@ public class MenuController {
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
 		
+		// typeaheads
 		mav.addObject("phoneNumbers", customerService.typeaheadPhoneNumber(restaurantId));
 		mav.addObject("firstNames", customerService.typeaheadFirstName(restaurantId));
 		mav.addObject("lastNames", customerService.typeaheadLastName(restaurantId));
 		mav.addObject("emails", customerService.typeaheadEmail(restaurantId));
 		mav.addObject("notes", customerService.typeaheadNote(restaurantId));
+		
+		mav.addObject("street1s", addressService.typeaheadStreet1(restaurantId));
+		mav.addObject("street2s", addressService.typeaheadStreet2(restaurantId));
+		mav.addObject("cities", addressService.typeaheadCity(restaurantId));
+		mav.addObject("states", addressService.typeaheadState(restaurantId));
+		mav.addObject("zipCodes", addressService.typeaheadZipcode(restaurantId));
 		
 		return mav;
 	}

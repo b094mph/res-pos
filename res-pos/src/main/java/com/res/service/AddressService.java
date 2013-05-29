@@ -14,6 +14,11 @@ public interface AddressService {
 	public void delete(Address address);
 	public Address findByAddressId(long id);
 	public List<Address> listAddress();
+	public List<String> typeaheadStreet1(long restaurantId);
+	public List<String> typeaheadStreet2(long restaurantId);
+	public List<String> typeaheadCity(long restaurantId);
+	public List<String> typeaheadState(long restaurantId);
+	public List<String> typeaheadZipcode(long restaurantId);
 	
 	@Secured({"ROLE_ADMIN"})
 	public void deleteAddress(long id);

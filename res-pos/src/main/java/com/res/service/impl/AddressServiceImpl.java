@@ -54,4 +54,29 @@ public class AddressServiceImpl implements AddressService {
 		addressDao.deleteAddress(id);
 	}
 
+	@Override
+	public List<String> typeaheadStreet1(long restaurantId) {
+		return addressDao.typeaheadAttribute(restaurantId, "a.street1");
+	}
+
+	@Override
+	public List<String> typeaheadStreet2(long restaurantId) {
+		return addressDao.typeaheadAttribute(restaurantId, "a.street2");
+	}
+
+	@Override
+	public List<String> typeaheadCity(long restaurantId) {
+		return addressDao.typeaheadAttribute(restaurantId, "a.city");
+	}
+
+	@Override
+	public List<String> typeaheadState(long restaurantId) {
+		return addressDao.typeaheadAttribute(restaurantId, "a.state");
+	}
+
+	@Override
+	public List<String> typeaheadZipcode(long restaurantId) {
+		return addressDao.typeaheadAttribute(restaurantId, "a.zipCode");
+	}
+
 }
