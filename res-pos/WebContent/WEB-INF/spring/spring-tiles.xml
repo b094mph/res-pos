@@ -10,7 +10,6 @@
         <put-attribute name="menubar" value="/jsp/menubar.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/jsp/footer.jsp" />
-        <put-attribute name="copyright" value="/jsp/copyright.jsp"/>
     </definition>
     
  	<definition name="login" extends="base.definition">

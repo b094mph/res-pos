@@ -21,7 +21,7 @@
 			<tiles:insertAttribute name="body" />
 		</div>
 		<div class="row-fluid">
-			<tiles:insertAttribute name="copyright"/>
+			<tiles:insertAttribute name="footer"/>
 		</div>
 	</div>
 </body>

@@ -120,6 +120,10 @@ $(document).ready(function(){
 	});
 	
 	$('#void').click(function(){
+		$('#voidAlertWarning').modal();
+	});
+	
+	$('#confirmVoid').click(function(){
 		$.ajax({
 			type: "GET",
 			url: "voidOrder.json",
