@@ -9,7 +9,7 @@
 <legend>Order</legend>
 	<div class="fixed-table">
 		<div class="table-content">
-			<table class="table table-striped table-hover table-condensed table-fixed-header">
+			<table id="orderTable" class="table table-striped table-hover table-condensed table-fixed-header">
 				<thead class="header">
 					<tr>
 						<th>&nbsp;</th>
@@ -43,9 +43,24 @@
 										value='${pageScope.idx.index}'>x</button>								
 							</td>
 							<td>${orderdetail.quantity}</td>
-							<td>L</td>
+							<td>${orderdetail.size}</td>
 							<td>${orderdetail.menu.food.foodShortName}</td>
-							<td>$ ${orderdetail.menu.large}</td>
+							<td>$&nbsp;
+								<c:choose>
+									<c:when test="${orderdetail.size == 'Sm'}">
+										${orderdetail.menu.small}
+									</c:when>
+									<c:when test="${orderdetail.size == 'Ln'}">
+										${orderdetail.menu.lunch}
+									</c:when>
+									<c:when test="${orderdetail.size == 'Cm'}">
+										${orderdetail.menu.combo}
+									</c:when>
+									<c:otherwise>
+										${orderdetail.menu.large}
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td>$ ${orderdetail.price}</td>
 						</tr>
 					</c:forEach>

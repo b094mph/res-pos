@@ -71,6 +71,37 @@ $(document).ready(function(){
 			});
 		});
 	}
+
+	//make the header fixed on scroll
+	$('.table-fixed-header').fixedHeader();
+	
+	//highlight order rows that are selected
+	$('#orderTable tbody tr').live('click', function(event) {
+	    $(this).addClass('highlight').siblings().removeClass('highlight');
+	});
+	
+	//on adding an item, last row is selected
+	$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
+	
+	$('#small').click(function(){
+		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		changeSize(rowIndex, SMALL);
+	});
+	
+	$('#large').click(function(){
+		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		changeSize(rowIndex, LARGE);
+	});
+	
+	$('#lunch').click(function(){
+		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		changeSize(rowIndex, LUNCH);
+	});
+	
+	$('#combo').click(function(){
+		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		changeSize(rowIndex, COMBO);
+	});
 	
 	$('#new').click(function(){
 		$.ajax({
@@ -152,25 +183,7 @@ $(document).ready(function(){
 		setOrderType("Eat In");
 	});
 	
-	$('#small').click(function(){
-		alert("small");
-	});
-	
-	$('#large').click(function(){
-		alert("Large");
-	});
-	
-	$('#lunch').click(function(){
-		alert("Lunch");
-	});
-	
-	$('#combo').click(function(){
-		alert("Combo");
-	});
-	
-	//make the header fixed on scroll
-	$('.table-fixed-header').fixedHeader();
-
+	//tooltip
 	$('#new').attr('title', "Clears customer and order.");
 	$('#new').tooltip();
 	$('#void').attr('title', "Cancels order.");
@@ -252,4 +265,20 @@ function validateHasPhoneNumber(){
 		}
 	}
 	return true;
+}
+
+function changeSize(rowIndex, size){
+	$.ajax({
+		type: "GET",
+		url: "changeSize.json",
+		data: {rowIndex: rowIndex, size: size},
+		success:
+			function(data){
+				$('#orderListAjax').html(data).show();
+			},
+		error:
+			function(data){
+				alert("unsuccessful change size to " + size + " for item in ajax call...");
+			}
+	});
 }

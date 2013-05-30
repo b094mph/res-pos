@@ -14,10 +14,10 @@ public class ResConstant {
 	public static final String EAT_IN = "Eat In";
 	
 	// Food size
-	public static final String SMALL = "Small";
-	public static final String LARGE = "Large";
-	public static final String LUNCH = "Lunch";
-	public static final String COMBO = "Combo";
+	public static final String SMALL = "Sm";
+	public static final String LARGE = "Lg";
+	public static final String LUNCH = "Ln";
+	public static final String COMBO = "Cm";
 	
 	// Order Status
 	public static final String VOID = "Void";
