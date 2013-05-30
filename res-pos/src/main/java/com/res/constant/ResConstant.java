@@ -17,7 +17,7 @@ public class ResConstant {
 	public static final String SMALL = "Sm";
 	public static final String LARGE = "Lg";
 	public static final String LUNCH = "Ln";
-	public static final String COMBO = "Cm";
+	public static final String COMBO = "Cb";
 	
 	// Order Status
 	public static final String VOID = "Void";

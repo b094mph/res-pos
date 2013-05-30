@@ -132,24 +132,20 @@ public class OrderAjaxController {
 		String size = request.getParameter("size");
 		
 		OrderDetail orderDetail = orderList.get(rowIndex);
-		BigDecimal price = null;
-		Menu menu = orderDetail.getMenu();
 		
 		if(ResConstant.SMALL.equals(size)){
 			orderDetail.setSize(ResConstant.SMALL);
-			price = menu.getSmall().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}else if(ResConstant.LARGE.equals(size)){
 			orderDetail.setSize(ResConstant.LARGE);
-			price = menu.getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}else if(ResConstant.COMBO.equals(size)){
 			orderDetail.setSize(ResConstant.COMBO);
-			price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}else if(ResConstant.LUNCH.equals(size)){
 			orderDetail.setSize(ResConstant.LUNCH);
-			price = menu.getLunch().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}
 		
-		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+		BigDecimal price = orderService.calculatePrice(orderDetail);
+		orderDetail.setPrice(price);
+		
 		return "redirect:/showOrder.html";
 	}
 	
@@ -175,24 +171,12 @@ public class OrderAjaxController {
 		try{
 			int index = Integer.parseInt(idx);
 			logger.info("increasing qty for item");
+			
 			OrderDetail orderDetail = orderList.get(index);
 			orderDetail.setQuantity(orderDetail.getQuantity() + 1);
 			
-			BigDecimal price = null;
-			String size = orderDetail.getSize();
-			Menu menu = orderDetail.getMenu();
-			
-			if(ResConstant.LARGE.equals(size)){
-				price = menu.getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
-			}else if(ResConstant.SMALL.equals(size)){
-				price = menu.getSmall().multiply(new BigDecimal(orderDetail.getQuantity()));
-			}else if(ResConstant.COMBO.equals(size)){
-				price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
-			}else if(ResConstant.LUNCH.equals(size)){
-				price = menu.getLunch().multiply(new BigDecimal(orderDetail.getQuantity()));
-			}
-			 
-			orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+			BigDecimal price = orderService.calculatePrice(orderDetail);
+			orderDetail.setPrice(price);
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
@@ -210,23 +194,11 @@ public class OrderAjaxController {
 			OrderDetail orderDetail = orderList.get(index);
 			int quantity = orderDetail.getQuantity();
 			
-			BigDecimal price = null;
-			String size = orderDetail.getSize();
-			Menu menu = orderDetail.getMenu();
 			if(quantity > 1){
 				orderDetail.setQuantity(quantity - 1);
 				
-				if(ResConstant.LARGE.equals(size)){
-					price = menu.getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
-				}else if(ResConstant.SMALL.equals(size)){
-					price = menu.getSmall().multiply(new BigDecimal(orderDetail.getQuantity()));
-				}else if(ResConstant.COMBO.equals(size)){
-					price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
-				}else if(ResConstant.LUNCH.equals(size)){
-					price = menu.getLunch().multiply(new BigDecimal(orderDetail.getQuantity()));
-				}
-				
-				orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+				BigDecimal price = orderService.calculatePrice(orderDetail);
+				orderDetail.setPrice(price);
 			}else{
 				logger.info("subtracting quantity of 1, therefore deleting item.");
 				orderList.remove(index);

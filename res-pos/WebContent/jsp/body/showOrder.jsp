@@ -61,7 +61,7 @@
 									<c:when test="${orderdetail.size == 'Ln'}">
 										${orderdetail.menu.lunch}
 									</c:when>
-									<c:when test="${orderdetail.size == 'Cm'}">
+									<c:when test="${orderdetail.size == 'Cb'}">
 										${orderdetail.menu.combo}
 									</c:when>
 									<c:otherwise>
