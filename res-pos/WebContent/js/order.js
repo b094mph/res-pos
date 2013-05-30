@@ -125,7 +125,7 @@ $(document).ready(function(){
 			url: "voidOrder.json",
 			success:
 				function(data){
-					$('#orderListAjax').html(data).show();
+					window.location.replace($('#welcomeJsp').val());
 			},
 			error:
 				function(data){

@@ -249,7 +249,7 @@ public class OrderAjaxController {
 	public String voidOrder(HttpServletRequest request, HttpServletResponse response){
 		logger.info("deleting order...");
 		orderList.clear();
-		return "redirect:/showOrder.html";
+		return "welcome";
 	}
 	
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)

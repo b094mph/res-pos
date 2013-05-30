@@ -100,7 +100,7 @@
 		<tr>
 			<td>
 				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">New</button>
-				<button id="void" type="button" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">Void</button>
+				<button id="void" type="reset" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">Void</button>
 				<button id="save" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Saving...">Save</button>
 				<button id="print" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Printing...">Print</button>
 			</td>
