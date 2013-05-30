@@ -4,6 +4,14 @@
 <input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
+<style>
+	.fixed-table .table-content{
+	  display:block;
+	  position: relative;
+	  height: 475px;
+	  overflow-y: auto;
+	}
+</style>
 
 <fieldset>
 <legend>Order</legend>

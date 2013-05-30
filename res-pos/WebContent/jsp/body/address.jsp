@@ -6,6 +6,14 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
+<style>
+	.fixed-table .table-content{
+	  display:block;
+	  position: relative;
+	  height: 870px;
+	  overflow-y: auto;
+	}
+</style>
 
 <div class="row">
 	<fieldset>

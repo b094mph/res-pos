@@ -20,12 +20,13 @@
   line-height: 18px;
   text-align: left;
 }
-.fixed-table .table-content{
-  display:block;
-  position: relative;
-  height: 475px; /*FIX THE HEIGHT YOU NEED*/
-  overflow-y: auto;
-}
+/* NEED TO FILL IN THIS IN RESPECTIVE JSP TO DETERMINE THE HEIGHT, REFER TO showOrder.jsp */
+/* .fixed-table .table-content{ */
+/*   display:block; */
+/*   position: relative; */
+/*   height: 475px; FIX THE HEIGHT YOU NEED */
+/*   overflow-y: auto; */
+/* } */
 .fixed-table .header-copy{
   position:absolute;
   top:0;
