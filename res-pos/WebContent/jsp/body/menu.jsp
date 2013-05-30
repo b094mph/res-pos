@@ -21,7 +21,7 @@
 <div class="row">
 	<div id="orderList" class="span6">
 		<div id="orderListAjax">
-			<jsp:include page="showOrder.jsp"/>
+			
 		</div>
 	</div>
 	<div class="span6">
@@ -40,8 +40,21 @@
 	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
 	
 	$(document).ready(function(){	
-		  // make the header fixed on scroll
-		  $('.table-fixed-header').fixedHeader();
+		// make the header fixed on scroll
+		$('.table-fixed-header').fixedHeader();
+		  
+		$.ajax({
+			type: "GET",
+			url: "showOrder.html",
+			success:
+				function(data){
+					$('#orderListAjax').html(data).show();
+			},
+			error:
+				function(data){
+					alert("unsuccessful in order ajax...");
+			}
+		});
 		  
 		var array = [];
 		<c:forEach items="${phoneNumbers}" var="phoneNum">
