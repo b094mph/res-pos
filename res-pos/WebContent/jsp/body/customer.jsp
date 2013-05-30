@@ -49,6 +49,9 @@
 							<th>Ext</th>
 							<th>Email</th>
 							<th>Note</th>
+							<sec:authorize ifAllGranted="ROLE_ADMIN">
+								<th>delete</th>
+							</sec:authorize>
 						</tr>
 						</thead>
 						<tbody>
@@ -87,7 +90,6 @@
 		</fieldset>
 	</div>
 </div>
-<br><br><br><br><br>
 
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
 <script type="text/javascript">
