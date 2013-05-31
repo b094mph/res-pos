@@ -89,10 +89,10 @@
 		</tr>
 		<tr>
 			<td>
-				<button id="small" type="button" class="btn btn-info btn2">Small</button>
-				<button id="large" type="button" class="btn btn-info btn2">Large</button>
-				<button id="lunch" type="button" class="btn btn-info btn2">Lunch</button>
-				<button id="combo" type="button" class="btn btn-info btn2">Combo</button>
+				<button id="small" type="button" disabled="disabled" class="btn btn-info btn2">Small</button>
+				<button id="large" type="button" disabled="disabled" class="btn btn-info btn2">Large</button>
+				<button id="lunch" type="button" disabled="disabled" class="btn btn-info btn2">Lunch</button>
+				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">Combo</button>
 			</td>
 			<td><b>Tax ${salesTax} %</b></td>
 			<td><b>$ <c:out value="${tax}"></c:out></b></td>
@@ -114,3 +114,45 @@
 
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
 <script type="text/javascript" src="js/order.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	determineAvailableFoodSize();
+});
+
+function determineAvailableFoodSize(){
+	var rowIndex = $('#orderTable tbody tr.highlight').index();
+	var sizes = [];
+	<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
+		var currentIndex = '<c:out value="${idx.index}"></c:out>';
+		if(currentIndex == rowIndex){
+			var small = '<c:out value="${orderdetail.menu.small}"></c:out>';
+			sizes.push(small);
+			var large = '<c:out value="${orderdetail.menu.large}"></c:out>';
+			sizes.push(large);
+			var lunch = '<c:out value="${orderdetail.menu.lunch}"></c:out>';
+			sizes.push(lunch);
+			var combo = '<c:out value="${orderdetail.menu.combo}"></c:out>';
+			sizes.push(combo);
+		}
+	</c:forEach>
+
+	if(sizes.length > 0){
+		if(sizes[0] == '0.00')
+			$('#small').attr("disabled", "disabled");
+		else
+			$('#small').removeAttr("disabled");
+		if(sizes[1] == '0.00')
+			$('#large').attr("disabled", "disabled");
+		else
+			$('#large').removeAttr("disabled");
+		if(sizes[2] == '0.00')
+			$('#lunch').attr("disabled", "disabled");
+		else
+			$('#lunch').removeAttr("disabled");
+		if(sizes[3] == '0.00')
+			$('#combo').attr("disabled", "disabled");
+		else
+			$('#combo').removeAttr("disabled");
+	}
+}
+</script>

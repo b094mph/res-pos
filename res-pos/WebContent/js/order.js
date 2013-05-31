@@ -78,6 +78,7 @@ $(document).ready(function(){
 	//highlight order rows that are selected
 	$('#orderTable tbody tr').live('click', function(event) {
 	    $(this).addClass('highlight').siblings().removeClass('highlight');
+	    determineAvailableFoodSize();
 	});
 	
 	//on adding an item, last row is selected

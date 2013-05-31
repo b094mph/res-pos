@@ -20,7 +20,7 @@
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Restaurant Name</th>
+							<th>Restaurant</th>
 							<th>Location</th>
 							<th>Phone1</th>
 							<th>Phone2</th>
