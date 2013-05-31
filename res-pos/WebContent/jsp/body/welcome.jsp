@@ -58,7 +58,5 @@
 	</div>
 </div>
 
-<br><br><br><br><br><br>
-
 
 <script type="text/javascript" src="js/welcome.js"></script>
