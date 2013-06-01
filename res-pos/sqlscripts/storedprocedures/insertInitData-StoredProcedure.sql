@@ -16,12 +16,16 @@ BEGIN
 	INSERT IGNORE INTO person(firstname, lastname, phone1)
 		VALUES('Uncle', 'John', '3473338987');
 	INSERT INTO restaurant (addressid, personid, restaurantname, location, phone1, 
-			phone2,	deliverycost,tax, rounding)
+			phone2,	deliverycost,tax, rounding, montothursopen, montothursclose,
+			friopen, friclose, satopen, satclose, sunopen, sunclose)
 		VALUES(1,1,'New City Chinese', 'across from dominos', '8454567890', 
-			'8457893456',0.00, 0.08, 1);
+			'8457893456',0.00, 0.08, 1, '11:30 am', '09:30 pm', '11:30 am', '10:00 pm',
+			'11:30 am', '10:00 pm', '12:00 pm', '09:30 pm');
 	INSERT INTO restaurant(addressid, personid, restaurantname, location, phone1, 
-			phone2,deliverycost,tax, rounding)
+			phone2,deliverycost,tax, rounding, montothursopen, montothursclose,
+			friopen, friclose, satopen, satclose, sunopen, sunclose)
 		VALUES(1,1,'Uncle John\'s', 'across kfc', '7163239830',
-			'7163239831', 1.00, 0.08, 0);
+			'7163239831', 1.00, 0.08, 0, '11:30 am', '10:00 pm', '11:30 am', '10:00 pm',
+			'11:30 am', '10:00 pm', '12:00 pm', '10:00 pm');
 END//
 DELIMITER ;

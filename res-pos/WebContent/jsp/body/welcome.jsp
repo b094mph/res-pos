@@ -45,8 +45,8 @@
 							<td>${res.phone2}</td>
 							<td>${res.faxNumber}</td>
 							<td>${res.deliveryCost}</td>
-							<td>${res.tax}</td>
-							<td>${res.monToThursOpen} - ${monToThursClose}</td>
+							<td>${res.tax * 100}&nbsp;%</td>
+							<td>${res.monToThursOpen} - ${res.monToThursClose}</td>
 							<td>${res.friOpen} - ${res.friClose}</td>
 							<td>${res.satOpen} - ${res.satClose}</td>
 							<td>${res.sunOpen} - ${res.sunClose}</td>
