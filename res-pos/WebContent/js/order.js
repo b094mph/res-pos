@@ -173,18 +173,22 @@ $(document).ready(function(){
 	});
 	
 	$('#walkin').click(function(){
+		disableDeliveryFields();
 		setOrderType("Walk In");
 	});
 	
 	$('#pickup').click(function(){
+		disableDeliveryFields();
 		setOrderType("Pick Up");
 	});
 	
 	$('#delivery').click(function(){
+		enableDeliveryFields();
 		setOrderType("Delivery");
 	});
 	
 	$('#eatin').click(function(){
+		disableDeliveryFields();
 		setOrderType("Eat In");
 	});
 	
@@ -286,4 +290,25 @@ function changeSize(rowIndex, size){
 				alert("unsuccessful change size to " + size + " for item in ajax call...");
 			}
 	});
+}
+
+function disableDeliveryFields(){
+	$('#street1').val("");
+	$('#street1').attr("disabled", "disabled");
+	$('#street2').val("");
+	$('#street2').attr("disabled", "disabled");
+	$('#city').val("");
+	$('#city').attr("disabled", "disabled");
+	$('#state').val("");
+	$('#state').attr("disabled", "disabled");
+	$('#zipCode').val("");
+	$('#zipCode').attr("disabled", "disabled");
+}
+
+function enableDeliveryFields(){
+	$('#street1').removeAttr("disabled");
+	$('#street2').removeAttr("disabled");
+	$('#city').removeAttr("disabled");
+	$('#state').removeAttr("disabled");
+	$('#zipCode').removeAttr("disabled");
 }
