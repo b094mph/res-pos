@@ -151,6 +151,7 @@ $(document).ready(function(){
 		if(!validateDeliveryHasAddress(params)){
 			return;
 		}
+		$('#saveConfirmation').modal();
 		$.ajax({
 			type: "GET",
 			url: "saveOrder.json",
