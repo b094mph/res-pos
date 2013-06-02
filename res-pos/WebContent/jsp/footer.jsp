@@ -5,9 +5,9 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 			<div class="span4">
-				<a href="#">Terms of Service</a>&nbsp;&nbsp;&nbsp;
-				<a href="#">Privacy</a>&nbsp;&nbsp;&nbsp;
-				<a href="#">Security</a>
+				<a href="#"><spring:message code="label.terms.of.service"/></a>&nbsp;&nbsp;&nbsp;
+				<a href="#"><spring:message code="label.privacy"/></a>&nbsp;&nbsp;&nbsp;
+				<a href="#"><spring:message code="label.security"/></a>
 			</div>
 			<div class="span4">
 				<div class="center">

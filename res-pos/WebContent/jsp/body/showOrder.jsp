@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 <input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
@@ -14,18 +15,18 @@
 </style>
 
 <fieldset>
-<legend>Order</legend>
+<legend><spring:message code="label.order"/></legend>
 	<div class="fixed-table">
 		<div class="table-content">
 			<table id="orderTable" class="table table-striped table-hover table-condensed table-fixed-header">
 				<thead class="header">
 					<tr>
 						<th>&nbsp;</th>
-						<th>Qty</th>
-						<th>Size</th>
-						<th>Name</th>
-						<th>Unit</th>
-						<th>Price</th>
+						<th><spring:message code="label.order.qty"/></th>
+						<th><spring:message code="label.order.size"/></th>
+						<th><spring:message code="label.order.name"/></th>
+						<th><spring:message code="label.order.unit"/></th>
+						<th><spring:message code="label.order.price"/></th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,33 +80,57 @@
 	<table class="table table-striped table-hover table-condensed">
 		<tr>
 			<td>
-				<button id="walkin" type="button" class="btn btn-info btn2">Walk In</button>
-				<button id="pickup" type="button" class="btn btn-info btn2">Pick Up</button>
-				<button id="delivery" type="button" class="btn btn-info btn2">Delivery</button>
-				<button id="eatin" type="button" class="btn btn-info btn2">Eat In</button>
+				<button id="walkin" type="button" class="btn btn-info btn2">
+					<spring:message code="label.walkin"/>
+				</button>
+				<button id="pickup" type="button" class="btn btn-info btn2">
+					<spring:message code="label.pickup"/>
+				</button>
+				<button id="delivery" type="button" class="btn btn-info btn2">
+					<spring:message code="label.delivery"/>
+				</button>
+				<button id="eatin" type="button" class="btn btn-info btn2">
+					<spring:message code="label.eatin"/>
+				</button>
 			</td>
-			<td><b>Sub Total:</b></td>
+			<td><b><spring:message code="label.sub.total"/>:</b></td>
 			<td><b>$ <c:out value="${subTotal}"></c:out></b></td>
 		</tr>
 		<tr>
 			<td>
-				<button id="small" type="button" disabled="disabled" class="btn btn-info btn2">Small</button>
-				<button id="large" type="button" disabled="disabled" class="btn btn-info btn2">Large</button>
-				<button id="lunch" type="button" disabled="disabled" class="btn btn-info btn2">Lunch</button>
-				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">Combo</button>
+				<button id="small" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.small"/>
+				</button>
+				<button id="large" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.large"/>
+				</button>
+				<button id="lunch" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.lunch"/>
+				</button>
+				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.combo"/>
+				</button>
 			</td>
-			<td><b>Tax ${salesTax} %</b></td>
-			<td><b>$ <c:out value="${tax}"></c:out></b></td>
+			<td><b><spring:message code="label.tax"/>&nbsp;${salesTax} %</b></td>
+			<td><b>$&nbsp;<c:out value="${tax}"/></b></td>
 		</tr>
 		<tr>
 			<td>
-				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">New</button>
-				<button id="void" type="reset" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">Void</button>
-				<button id="save" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Saving...">Save</button>
-				<button id="print" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Printing...">Print</button>
+				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">
+					<spring:message code="label.new"/>
+				</button>
+				<button id="void" type="reset" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">
+					<spring:message code="label.void"/>
+				</button>
+				<button id="save" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Saving...">
+					<spring:message code="label.save"/>
+				</button>
+				<button id="print" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Printing...">
+					<spring:message code="label.print"/>
+				</button>
 			</td>
-			<td><b>Grand Total:</b></td>
-			<td><b>$ <c:out value="${grandTotal}"></c:out></b></td>
+			<td><b><spring:message code="label.grand.total"/>:</b></td>
+			<td><b>$&nbsp;<c:out value="${grandTotal}"/></b></td>
 			</tr>
 	</table>
 </fieldset>

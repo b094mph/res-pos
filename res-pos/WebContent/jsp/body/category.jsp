@@ -1,7 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <fieldset>
-<legend>Category</legend>
+<legend><spring:message code="label.category"/></legend>
 <table>
 	<% int count = 1; %>
 	<c:choose>
@@ -19,7 +20,7 @@
 		</c:when>
 		<c:otherwise>
 			<div id="noMenu" class="alert alert-danger">
-				<h3>No menu found.</h3>
+				<h3><spring:message code="label.no.menu.found"/></h3>
 			</div>
 		</c:otherwise>
 	</c:choose>

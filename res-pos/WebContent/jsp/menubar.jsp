@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -11,21 +13,21 @@
 				<a class="brand" href="index.jsp">RES-POS</a>
 				<ul class="nav">
 					<li id="home-link">
-						<a id="home-link" href="welcome.html"><i class="icon-home icon-white"></i> Home</a>
+						<a id="home-link" href="welcome.html"><i class="icon-home icon-white"></i>&nbsp;<spring:message code="label.menu.home"/></a>
 					</li>
 					<li id="file" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">File</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.file"/></a>
 					    <ul class="dropdown-menu">
 					    	<sec:authorize ifAnyGranted="ROLE_ADMIN">
-								<li><a id="address-link" tabindex="-1" href="addressForm.html">Address</a></li>
-								<li><a id="customer-link" tabindex="-1" href="customerForm.html">Customer</a></li>
+								<li><a id="address-link" tabindex="-1" href="addressForm.html"><spring:message code="label.menu.address"/></a></li>
+								<li><a id="customer-link" tabindex="-1" href="customerForm.html"><spring:message code="label.menu.customer"/></a></li>
 							</sec:authorize>
-							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html">Complete Menu</a></li>
-							<li><a tabindex="-1" href="#">Careers</a></li>
-	                        <li><a tabindex="-1" href="#">Contact Us</a></li>
+							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.complete.menu"/></a></li>
+							<li><a tabindex="-1" href="#"><spring:message code="label.menu.careers"/></a></li>
+	                        <li><a tabindex="-1" href="#"><spring:message code="label.menu.contact.us"/></a></li>
 	                        <li class="divider"></li>
 	                        <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
-								<li><a tabindex="-1" href="${logoutUrl}">Logout</a></li>
+								<li><a tabindex="-1" href="${logoutUrl}"><spring:message code="label.menu.logout"/></a></li>
 							</sec:authorize>
                       	</ul>
 					</li>
@@ -33,18 +35,18 @@
 					<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
 				</c:if>
 					<li id="search" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Search</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.search"/></a>
 					</li>
 					<li id="help" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Help</a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.help"/></a>
 					</li>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
-					<li><a href="${logoutUrl}">Logout</a></li>
+					<li><a href="${logoutUrl}"><spring:message code="label.menu.logout"/></a></li>
 				</sec:authorize>	
 				</ul>
 				<div class="btn-group pull-right" data-toggle="buttons-radio">
 					<a id="english" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" href="?lang=en">en</a>
-					<a id="chinese" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" href="?lang=zh">ch</a>
+					<a id="chinese" class="btn btn-danger" data-toggle="tooltip" data-placement="bottom" href="?lang=zh">中</a>
 				</div>
 			</div>
 		</div>
