@@ -37,7 +37,7 @@
 <div id="saveConfirmation" class="modal hide in display-none" tabindex="-1">
 	<jsp:include page="modal-header-success.jsp"/>
 	<div class="modal-body">
-		<p><spring:message code="save"/></p>
+		<p><spring:message code="label.modal.save"/></p>
 	</div>
 	<jsp:include page="modal-footer-close-success.jsp"/>
 </div>
