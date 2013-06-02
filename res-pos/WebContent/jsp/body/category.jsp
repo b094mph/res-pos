@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
@@ -14,7 +16,14 @@
 						class="btn btn-info btn1"
 						value='<c:out value="${fc.foodCategoryId}"></c:out>'
 				>
-					${fc.foodCategoryName}
+					<c:choose>
+						<c:when test="${lang == 'zh'}">
+							${fc.foodCategoryCName}
+						</c:when>
+						<c:otherwise>
+							${fc.foodCategoryName}
+						</c:otherwise>
+					</c:choose>	
 				</button> 
 			</c:forEach>
 		</c:when>

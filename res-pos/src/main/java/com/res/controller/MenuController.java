@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,6 +58,12 @@ public class MenuController {
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
+		
+		String lang = request.getParameter("lang");
+		if(StringUtils.isNotBlank(lang)){
+			session.setAttribute("lang", lang);
+			mav.addObject("lang", lang);
+		}
 		
 		// typeaheads
 		mav.addObject("phoneNumbers", customerService.typeaheadPhoneNumber(restaurantId));

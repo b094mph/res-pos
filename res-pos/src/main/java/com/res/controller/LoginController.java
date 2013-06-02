@@ -56,6 +56,12 @@ public class LoginController {
 		List<Restaurant> restaurants = restaurantService.getRestaurants();
 		mav.addObject("restaurants", restaurants);
 		mav.addObject("numOfRes", restaurants.size());
+
+		String lang = request.getParameter("lang");
+		if(StringUtils.isNotBlank(lang)){
+			session.setAttribute("lang", lang);
+			mav.addObject("lang", lang);
+		}
 		
 		return mav;
 	}

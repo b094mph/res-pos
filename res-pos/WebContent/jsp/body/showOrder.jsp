@@ -54,8 +54,39 @@
 										value='${pageScope.idx.index}'>x</button>								
 							</td>
 							<td>${orderdetail.quantity}</td>
-							<td>${orderdetail.size}</td>
-							<td>${orderdetail.menu.food.foodShortName}</td>
+							<td>
+								<c:choose>
+									<c:when test="${lang == 'zh'}">
+										<c:choose>
+											<c:when test="${orderdetail.size == 'Sm'}">
+												小
+											</c:when>
+											<c:when test="${orderdetail.size == 'Ln'}">
+												午餐
+											</c:when>
+											<c:when test="${orderdetail.size == 'Cb'}">
+												盒饭
+											</c:when>
+											<c:otherwise>
+												大
+											</c:otherwise>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										${orderdetail.size}
+									</c:otherwise>
+								</c:choose>
+							</td>
+							<td>
+								<c:choose>
+									<c:when test="${lang == 'zh'}">
+										${orderdetail.menu.food.cFoodName}
+									</c:when>
+									<c:otherwise>
+										${orderdetail.menu.food.foodShortName}		
+									</c:otherwise>
+								</c:choose>
+							</td>
 							<td>$&nbsp;
 								<c:choose>
 									<c:when test="${orderdetail.size == 'Sm'}">

@@ -64,7 +64,8 @@ public class OrderAjaxController {
 			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
 		}
 		ModelAndView mav = new ModelAndView("showOrder");
-		
+
+		mav.addObject("lang", session.getAttribute("lang"));
 		mav.addObject("orderList", orderList);
 		mav.addObject("orderListSize", orderList.size());
 		
@@ -76,7 +77,6 @@ public class OrderAjaxController {
 		BigDecimal grandTotal = new BigDecimal(0.00);
 		
 		mav.addObject("salesTax", tax.multiply(new BigDecimal(100)));
-		
 		
 		if(!orderList.isEmpty()){
 			for(OrderDetail orderDetail : orderList){

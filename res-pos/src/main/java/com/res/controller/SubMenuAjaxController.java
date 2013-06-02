@@ -43,7 +43,8 @@ public class SubMenuAjaxController {
 		
 		if(!subCategories.isEmpty()){
 			mav.addObject("foodCategoryName", subCategories.get(0).getFoodCategory().getFoodCategoryName());
-		
+			mav.addObject("foodCategoryCName", subCategories.get(0).getFoodCategory().getFoodCategoryCName());
+			
 			List<Long> menuIDs = new ArrayList<Long>();
 			for(Menu foodItem : subCategories){
 				menuIDs.add(foodItem.getMenuId());
@@ -53,6 +54,8 @@ public class SubMenuAjaxController {
 			logger.error("subCategories is empty.");
 			throw new EmptyCollectionException(messageLoader.getMessage("arraylist.empty"));
 		}
+		
+		mav.addObject("lang", session.getAttribute("lang"));
 		
 		return mav;
 	}

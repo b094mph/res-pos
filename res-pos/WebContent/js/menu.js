@@ -4,7 +4,8 @@ $.ajaxSetup({
 	cache: true //true is the default value
 });
 
-$(document).ready(function(){
+$(document).ready(function(){	
+	
 	//creating on click event for food category buttons
 	for(var i=1; i <=foodCategoriesSize; i++){
 		id = '#fc_'+i.toString();
