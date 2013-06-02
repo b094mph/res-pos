@@ -6,7 +6,9 @@
 <div class="row">
 	<div class="span12">
 		<div id="welcomealert" class="alert alert-info">
-			<a class="close" data-dismiss="alert">x</a>
+			<a class="close" data-dismiss="alert">
+				<img alt="remove" src="img/glyphicons/glyphicons/png/glyphicons_197_remove.png">
+			</a>
 			<h3>Hello <c:out value="${agentName}"/>!</h3>
 			<p>Welcome to RES-POS!</p>
 		</div>
