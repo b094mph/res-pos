@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.res.model.Restaurant;
 import com.res.model.User;
@@ -57,11 +58,9 @@ public class LoginController {
 		mav.addObject("restaurants", restaurants);
 		mav.addObject("numOfRes", restaurants.size());
 
-		String lang = request.getParameter("lang");
-		if(StringUtils.isNotBlank(lang)){
-			session.setAttribute("lang", lang);
-			mav.addObject("lang", lang);
-		}
+		String lang = RequestContextUtils.getLocale(request).toString();
+		session.setAttribute("lang", lang);
+		mav.addObject("lang", lang);
 		
 		return mav;
 	}

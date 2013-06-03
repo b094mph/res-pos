@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
@@ -59,11 +59,9 @@ public class MenuController {
 		mav.addObject("foodCategories", foodCategories);
 		mav.addObject("foodCategoriesSize", foodCategories.size());
 		
-		String lang = request.getParameter("lang");
-		if(StringUtils.isNotBlank(lang)){
-			session.setAttribute("lang", lang);
-			mav.addObject("lang", lang);
-		}
+		String lang = RequestContextUtils.getLocale(request).toString();
+		session.setAttribute("lang", lang);
+		mav.addObject("lang", lang);
 		
 		// typeaheads
 		mav.addObject("phoneNumbers", customerService.typeaheadPhoneNumber(restaurantId));
