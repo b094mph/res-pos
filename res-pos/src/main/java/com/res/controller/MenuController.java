@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -41,17 +42,16 @@ public class MenuController {
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) throws ServiceException{
 		HttpSession session = request.getSession();
-		String resId = (String) session.getAttribute("restaurantId");
-		logger.info("restaurantId = " + resId);
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		logger.info("restaurantId = " + restaurantId);
 		ModelAndView mav = null;
 		
-		if(resId == null){
+		if(restaurantId == null){
 			mav = new ModelAndView("redirect:/welcome.html");
 			return mav;
 		}
 		mav = new ModelAndView("menu");
 		
-		Long restaurantId = Long.parseLong(resId);
 		mav.addObject("restaurantId", restaurantId);
 		
 		String restaurantName = restaurantService.findRestaurantName(restaurantId);
@@ -86,14 +86,13 @@ public class MenuController {
 		HttpSession session = request.getSession();		
 		ModelAndView mav = null;
 
-		String resId = (String) session.getAttribute("restaurantId");
-		if(resId == null){
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		if(restaurantId == null){
 			mav = new ModelAndView("redirect:/welcome.html");
 			return mav;
 		}
 		
 		mav = new ModelAndView("wholeMenu");
-		Long restaurantId = Long.parseLong(resId);
 	
 		List<Menu> menuList = menuService.getMenu(restaurantId);
 		
@@ -102,11 +101,10 @@ public class MenuController {
 	}
 
 	@RequestMapping(value="editMenu", method=RequestMethod.GET)
-	public ModelAndView editMenu(HttpServletRequest request, HttpServletResponse response){
-		String menuId = request.getParameter("menuId");
+	public ModelAndView editMenu(HttpServletRequest request, @RequestParam("menuId") long menuId){
 		logger.info("menuId = " + menuId);
 		ModelAndView mav = new ModelAndView("editMenu");
-		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
+		Menu menu = menuService.getMenuByMenuId(menuId);
 		mav.addObject("menu", menu);
 		return mav;
 	}

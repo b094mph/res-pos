@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -56,10 +56,10 @@ public class OrderAjaxController {
 	private BigDecimal grandTotal;
 	
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
-	public ModelAndView showOrderList(HttpServletRequest request, HttpServletResponse response) 
+	public ModelAndView showOrderList(HttpServletRequest request) 
 			throws ServiceException{
 		HttpSession session = request.getSession();
-		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		if(restaurantId == null){
 			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
 		}
@@ -107,11 +107,10 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
-	public String addToOrder(HttpServletRequest request, HttpServletResponse response){
+	public String addToOrder(HttpServletRequest request, @RequestParam("menuId") long menuId){
 		
-		String menuId = request.getParameter("menuId");
 		logger.info("hitting addOrder controller with menuId " + menuId);
-		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
+		Menu menu = menuService.getMenuByMenuId(menuId);
 		
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setQuantity(1);
@@ -127,9 +126,8 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/changeSize.json", method=RequestMethod.GET)
-	public String changeSize(HttpServletRequest request, HttpServletResponse response){
-		int rowIndex = Integer.parseInt(request.getParameter("rowIndex"));
-		String size = request.getParameter("size");
+	public String changeSize(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex,
+			@RequestParam("size") String size){
 		
 		OrderDetail orderDetail = orderList.get(rowIndex);
 		
@@ -150,12 +148,10 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/deleteItem.json", method=RequestMethod.GET)
-	public String deleteItem(HttpServletRequest request, HttpServletResponse response)
+	public String deleteItem(HttpServletRequest request, @RequestParam("idx") int index)
 			throws NumberFormatException{
-		String idx = request.getParameter("idx");
 		try{
-			int index = Integer.parseInt(idx);
-			logger.info("removing orderList with " + idx);
+			logger.info("removing orderList with " + index);
 			orderList.remove(index);
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
@@ -165,11 +161,9 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
-	public String increaseQty(HttpServletRequest request, HttpServletResponse response)
+	public String increaseQty(HttpServletRequest request, @RequestParam("idx") int index)
 			throws NumberFormatException{
-		String idx = request.getParameter("idx");
 		try{
-			int index = Integer.parseInt(idx);
 			logger.info("increasing qty for item");
 			
 			OrderDetail orderDetail = orderList.get(index);
@@ -185,11 +179,9 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
-	public String decreaseQty(HttpServletRequest request, HttpServletResponse response)
+	public String decreaseQty(HttpServletRequest request, @RequestParam("idx") int index)
 			throws NumberFormatException{
-		String idx = request.getParameter("idx");
 		try{
-			int index  = Integer.parseInt(idx);
 			logger.info("decreasing qty for item");
 			OrderDetail orderDetail = orderList.get(index);
 			int quantity = orderDetail.getQuantity();
@@ -211,25 +203,25 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
-	public String newOrder(HttpServletRequest request, HttpServletResponse response){
+	public String newOrder(HttpServletRequest request){
 		logger.info("clearing the order and customer information...");
 		orderList.clear();
 		return "redirect:/showOrder.html";
 	}
 	
 	@RequestMapping(value="/voidOrder.json", method=RequestMethod.GET)
-	public String voidOrder(HttpServletRequest request, HttpServletResponse response){
+	public String voidOrder(HttpServletRequest request){
 		logger.info("deleting order...");
 		orderList.clear();
 		return "welcome";
 	}
 	
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
-	public String saveOrder(HttpServletRequest request, HttpServletResponse response) 
+	public String saveOrder(HttpServletRequest request) 
 			throws ServiceException{
 		HttpSession session = request.getSession();
 		String agentName = (String)session.getAttribute("agentName");
-		Long restaurantId = Long.parseLong((String)session.getAttribute("restaurantId"));
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		
 		String orderType = StringUtils.trimToNull(request.getParameter("orderType"));
 		if(orderType == null){
