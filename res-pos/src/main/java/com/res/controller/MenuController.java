@@ -115,7 +115,7 @@ public class MenuController {
 	public String saveMenu(@ModelAttribute("menu") Menu menu, BindingResult result){
 		logger.info("saving menu prices " + menu.getLunch());
 		
-		//TODO: fix bug
+		//TODO: fix bug - need to pass foodid as well.
 		//menuService.saveMenu(menu);
 		return "redirect:/wholeMenu.html";
 	}
