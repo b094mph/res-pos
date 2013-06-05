@@ -12,4 +12,5 @@ public interface MenuService {
 	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId);
 	public Menu getMenuByMenuId(long menuId);
 	public List<Menu> getMenu(long restaurantId);
+	public void saveMenu(Menu menu);
 }

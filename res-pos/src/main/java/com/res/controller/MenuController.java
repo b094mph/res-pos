@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
@@ -107,6 +109,15 @@ public class MenuController {
 		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
 		mav.addObject("menu", menu);
 		return mav;
+	}
+	
+	@RequestMapping(value="saveMenu", method=RequestMethod.GET)
+	public String saveMenu(@ModelAttribute("menu") Menu menu, BindingResult result){
+		logger.info("saving menu prices " + menu.getLunch());
+		
+		//TODO: fix bug
+		//menuService.saveMenu(menu);
+		return "redirect:/wholeMenu.html";
 	}
 
 }

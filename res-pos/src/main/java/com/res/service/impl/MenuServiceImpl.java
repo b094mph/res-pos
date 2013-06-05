@@ -46,4 +46,9 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.getMenu(restaurantId);
 	}
 
+	@Override
+	public void saveMenu(Menu menu) {
+		menuDao.save(menu);
+	}
+
 }
