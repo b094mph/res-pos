@@ -81,15 +81,32 @@ public class MenuController {
 	
 	@RequestMapping(value="/wholeMenu", method=RequestMethod.GET)
 	public ModelAndView showMenuList(HttpServletRequest request, HttpServletResponse response){
-		HttpSession session = request.getSession();
-		Long restaurantId = Long.parseLong((String) session.getAttribute("restaurantId"));
+		HttpSession session = request.getSession();		
+		ModelAndView mav = null;
+
+		String resId = (String) session.getAttribute("restaurantId");
+		if(resId == null){
+			mav = new ModelAndView("redirect:/welcome.html");
+			return mav;
+		}
+		
+		mav = new ModelAndView("wholeMenu");
+		Long restaurantId = Long.parseLong(resId);
 	
-		ModelAndView mav = new ModelAndView("wholeMenu");
 		List<Menu> menuList = menuService.getMenu(restaurantId);
 		
 		mav.addObject("menuList", menuList);
 		return mav;
 	}
-	
+
+	@RequestMapping(value="editMenu", method=RequestMethod.GET)
+	public ModelAndView editMenu(HttpServletRequest request, HttpServletResponse response){
+		String menuId = request.getParameter("menuId");
+		logger.info("menuId = " + menuId);
+		ModelAndView mav = new ModelAndView("editMenu");
+		Menu menu = menuService.getMenuByMenuId(Long.parseLong(menuId));
+		mav.addObject("menu", menu);
+		return mav;
+	}
 
 }

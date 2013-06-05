@@ -13,6 +13,7 @@
 		<intercept-url pattern="/customer*" access="ROLE_USER"/>
 		<intercept-url pattern="/menu*" access="ROLE_USER"/>
 		<intercept-url pattern="/wholeMenu*" access="ROLE_USER"/>
+		<intercept-url pattern="/editMenu*" access="ROLE_USER"/>
 		
 		<!-- Override default login and logout pages -->
 		<form-login login-page="/login.html" 
