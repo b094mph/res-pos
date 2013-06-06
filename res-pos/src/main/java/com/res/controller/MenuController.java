@@ -1,5 +1,6 @@
 package com.res.controller;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,8 +10,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -110,11 +109,16 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="saveMenu", method=RequestMethod.GET)
-	public String saveMenu(@ModelAttribute("menu") Menu menu, BindingResult result){
-		logger.info("saving menu prices " + menu.getLunch());
+	public String saveMenu(HttpServletRequest request,
+			@RequestParam("menuid") long menuId,
+			@RequestParam("small") BigDecimal small, 
+			@RequestParam("large") BigDecimal large,
+			@RequestParam("lunch") BigDecimal lunch, 
+			@RequestParam("combo") BigDecimal combo){
 		
-		//TODO: fix bug - need to pass foodid as well.
-		//menuService.saveMenu(menu);
+		logger.info("new menu prices (small, large, lunch, combo) respectively " + small + ", " + large + ", " + lunch + ", " + combo);
+		
+		menuService.updateMenuPrices(menuId, small, large, lunch, combo);
 		return "redirect:/wholeMenu.html";
 	}
 

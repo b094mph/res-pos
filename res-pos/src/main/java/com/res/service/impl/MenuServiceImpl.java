@@ -1,5 +1,6 @@
 package com.res.service.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -47,8 +48,9 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public void saveMenu(Menu menu) {
-		menuDao.save(menu);
+	public void updateMenuPrices(long menuId, BigDecimal small,
+			BigDecimal large, BigDecimal lunch, BigDecimal combo) {
+		menuDao.updateMenuPrices(menuId, small, large, lunch, combo);
 	}
 
 }

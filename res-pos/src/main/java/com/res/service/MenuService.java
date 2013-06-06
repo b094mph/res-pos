@@ -1,5 +1,6 @@
 package com.res.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.res.model.FoodCategory;
@@ -12,5 +13,7 @@ public interface MenuService {
 	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId);
 	public Menu getMenuByMenuId(long menuId);
 	public List<Menu> getMenu(long restaurantId);
-	public void saveMenu(Menu menu);
+	public void updateMenuPrices(long menuId, BigDecimal small, 
+			BigDecimal large, BigDecimal lunch, BigDecimal combo);
+	
 }

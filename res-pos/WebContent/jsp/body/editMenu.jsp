@@ -10,8 +10,11 @@
 <div class="row">
 	<div class="span12">
 	<fieldset>
-	<legend>EDIT - ${menu.foodCategory.foodCategoryName} - ${menu.food.foodShortName}</legend>
+	<legend>${restaurantName} / ${menu.foodCategory.foodCategoryName} / ${menu.food.foodShortName}</legend>
+		<h3>Please enter new prices:</h3>
+		<br>
 		<form method="get" class="form-horizontal" action="saveMenu.html">
+			<input type="hidden" name="menuid" value="${menu.menuId}">
 			<div class="control-group">
 				<div class="controls">
 					<a id="back" type="button" class="btn btn-primary btn-large" href="wholeMenu.html">

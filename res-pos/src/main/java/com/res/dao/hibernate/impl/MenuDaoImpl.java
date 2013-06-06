@@ -1,5 +1,6 @@
 package com.res.dao.hibernate.impl;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -75,6 +76,24 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		
 		return query.list();
 	}
-	
+
+	@Override
+	public void updateMenuPrices(long menuId, BigDecimal small,
+			BigDecimal large, BigDecimal lunch, BigDecimal combo) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("UPDATE Menu ");
+		sb.append("SET small = :small, large = :large, lunch = :lunch, combo = :combo ");
+		sb.append("WHERE menuid = :menuid");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("small", small);
+		query.setParameter("large", large);
+		query.setParameter("lunch", lunch);
+		query.setParameter("combo", combo);
+		query.setParameter("menuid", menuId);
+		
+		int rowsAffected = query.executeUpdate();
+		logger.info("rows updated = " + rowsAffected);
+	}
 	
 }
