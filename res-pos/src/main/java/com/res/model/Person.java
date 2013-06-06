@@ -1,7 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -49,7 +49,7 @@ public class Person implements Serializable{
 	private String note;
 
 	@Column(name="lastupdateddate", unique=false, nullable=true, length=12)	
-	private Time lastUpdatedDate;
+	private Date lastUpdatedDate;
 	
 	@Column(name="lastupdatedby", unique=false, nullable=true, length=20)
 	private String lastUpdatedBy;
@@ -122,11 +122,11 @@ public class Person implements Serializable{
 		this.note = note;
 	}
 
-	public Time getLastUpdatedDate() {
+	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(Time lastUpdatedDate) {
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 

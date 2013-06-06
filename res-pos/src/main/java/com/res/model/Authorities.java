@@ -1,7 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -17,13 +17,13 @@ public class Authorities implements Serializable {
 	@EmbeddedId AuthoritiesId id;
 
 	@Column(name="createddate", length=12)
-	private Time createdDate;
+	private Date createdDate;
 	
 	@Column(name="createdby", length=20)
 	private String createdBy;
 	
 	@Column(name="lastupdateddate", length=12)
-	private Time lastUpdatedDate;
+	private Date lastUpdatedDate;
 	
 	@Column(name="lastupdatedby", length=12)
 	private String lastUpdatedBy;
@@ -36,11 +36,11 @@ public class Authorities implements Serializable {
 		this.id = id;
 	}
 
-	public Time getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Time createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -52,11 +52,11 @@ public class Authorities implements Serializable {
 		this.createdBy = createdBy;
 	}
 
-	public Time getLastUpdatedDate() {
+	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(Time lastUpdatedDate) {
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 

@@ -21,7 +21,7 @@
 	 
 	  function processScroll() {
 	    if (!o.is(':visible')) return;
-	    var i, scrollTop = $win.scrollTop();
+	    var scrollTop = $win.scrollTop();
 	    var t = $head.length && $head.offset().top - config.topOffset;
 	    if (!isFixed && headTop != t) { headTop = t; }
 	    if      (scrollTop >= headTop && !isFixed) { isFixed = 1; }
@@ -33,11 +33,11 @@
 	 
 	  // hack sad times - holdover until rewrite for 2.1
 	  $head.on('click', function () {
-	    if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47) }, 10);
-	  })
+	    if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47); }, 10);
+	  });
 	 
 	  $head.clone().removeClass('header').addClass('header-copy header-fixed').appendTo(o);
-	  var ww = [];
+	  var ww = new Array();
 	  o.find('thead.header > tr:first > th').each(function (i, h){
 	    ww.push($(h).width());
 	  });

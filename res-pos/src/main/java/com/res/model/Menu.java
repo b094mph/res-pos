@@ -2,7 +2,7 @@ package com.res.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.sql.Time;
+import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -83,13 +83,13 @@ public class Menu implements Serializable{
 	private Boolean appetizerCombo;
 	
 	@Column(name="createddate", unique=false, nullable=true, length=12)
-	private Time createdDate;
+	private Date createdDate;
 	
 	@Column(name="createdby", unique=false, nullable=true, length=20)
 	private String createdBy;
 	
 	@Column(name="lastupdateddate", unique=false, nullable=true, length=12)
-	private Time lastUpdatedDate;
+	private Date lastUpdatedDate;
 	
 	@Column(name="lastupdatedby", unique=false, nullable=true, length=12)
 	private String lastUpdatedBy;
@@ -238,11 +238,11 @@ public class Menu implements Serializable{
 		this.appetizerCombo = appetizerCombo;
 	}
 
-	public Time getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Time createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -254,11 +254,11 @@ public class Menu implements Serializable{
 		this.createdBy = createdBy;
 	}
 
-	public Time getLastUpdatedDate() {
+	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(Time lastUpdatedDate) {
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 

@@ -1,7 +1,7 @@
 package com.res.dao.hibernate.impl;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -10,16 +10,20 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.MenuDao;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.util.MessageLoader;
 
 @Repository("menuDao")
 public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 
 	private static Logger logger = Logger.getLogger(MenuDaoImpl.class);
+	
+	@Autowired private MessageLoader messageLoader;
 	
 	@SuppressWarnings("unchecked")
 	@Override
@@ -113,13 +117,15 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		query.setParameter("appetizerCombo", isAppetizerCombo);
 		query.setParameter("lastUpdatedBy", lastUpdatedBy);
 		
-		Timestamp timestamp = new Timestamp(new Date().getTime());
-		
-//		try {
-//			query.setParameter("lastUpdatedDate", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(timestamp.toString()));
-//		} catch (HibernateException | ParseException e) {
-//			e.printStackTrace();
-//		}
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			query.setParameter("lastUpdatedDate", df.parse(df.format(new Date())));
+		} catch (HibernateException he) {
+			he.printStackTrace();
+		} catch (ParseException pe){
+			logger.error(messageLoader.getMessage("parse.exception.date"));
+			pe.printStackTrace();
+		}
 		query.setParameter("menuid", menuId);
 		
 		int rowsAffected = query.executeUpdate();

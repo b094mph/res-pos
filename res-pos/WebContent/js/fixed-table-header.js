@@ -13,7 +13,7 @@
 	  var $head = $('thead.header', o);
 	  
 	  $head.clone().removeClass('header').addClass('header-copy header-fixed').appendTo(nhead);
-	  var ww = [];
+	  var ww = new Array();
 	  o.find('thead.header > tr:first > th').each(function (i, h){
 	    ww.push($(h).width());
 	  });

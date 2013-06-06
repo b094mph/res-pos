@@ -1,7 +1,7 @@
 package com.res.model;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.sql.Date;
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -40,13 +40,13 @@ public class User implements Serializable, org.springframework.security.core.use
 	private boolean enabled;
 	
 	@Column(name="createddate", length=12)
-	private Time createdDate;
+	private Date createdDate;
 	
 	@Column(name="createdby", length=20)
 	private String createdBy;
 	
 	@Column(name="lastupdateddate", length=12)
-	private Time lastUpdatedDate;
+	private Date lastUpdatedDate;
 	
 	@Column(name="lastupdatedby", length=12)
 	private String lastUpdatedBy;
@@ -99,11 +99,11 @@ public class User implements Serializable, org.springframework.security.core.use
 		this.enabled = enabled;
 	}
 
-	public Time getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
 
-	public void setCreatedDate(Time createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
 
@@ -115,11 +115,11 @@ public class User implements Serializable, org.springframework.security.core.use
 		this.createdBy = createdBy;
 	}
 
-	public Time getLastUpdatedDate() {
+	public Date getLastUpdatedDate() {
 		return lastUpdatedDate;
 	}
 
-	public void setLastUpdatedDate(Time lastUpdatedDate) {
+	public void setLastUpdatedDate(Date lastUpdatedDate) {
 		this.lastUpdatedDate = lastUpdatedDate;
 	}
 
