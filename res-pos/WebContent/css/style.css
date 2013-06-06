@@ -32,3 +32,7 @@ body{
 .table-striped tbody tr.highlight td {
     background-color: yellow;
 }
+
+.visibility-hidden{
+	visibility: hidden;
+}

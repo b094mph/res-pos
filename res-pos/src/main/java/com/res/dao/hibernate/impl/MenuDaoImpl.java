@@ -1,9 +1,14 @@
 package com.res.dao.hibernate.impl;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
@@ -78,22 +83,48 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	}
 
 	@Override
-	public void updateMenuPrices(long menuId, BigDecimal small,
-			BigDecimal large, BigDecimal lunch, BigDecimal combo) {
+	public void updateMenu(long menuId, String menuNum, BigDecimal small,
+			BigDecimal large, String lunchNum, BigDecimal lunch,
+			String comboNum, BigDecimal combo, Boolean isSpicy,
+			Boolean hasRice, Boolean hasSauce, Boolean hasNoodles,
+			Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy) {
+		
 		StringBuffer sb = new StringBuffer();
 		sb.append("UPDATE Menu ");
-		sb.append("SET small = :small, large = :large, lunch = :lunch, combo = :combo ");
+		sb.append("SET menuNum = :menuNum, small = :small, large = :large, ");
+		sb.append("lunchNum = :lunchNum, lunch = :lunch, comboNum = :comboNum, combo = :combo, ");
+		sb.append("spicy = :spicy, rice = :rice, sauce = :sauce, noodle = :noodles, pieces = :pieces, appetizerCombo = :appetizerCombo, ");
+		sb.append("lastUpdatedBy = :lastUpdatedBy, lastUpdatedDate = :lastUpdatedDate ");
 		sb.append("WHERE menuid = :menuid");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("menuNum", menuNum);
 		query.setParameter("small", small);
 		query.setParameter("large", large);
+		query.setParameter("lunchNum", lunchNum);
 		query.setParameter("lunch", lunch);
+		query.setParameter("comboNum", comboNum);
 		query.setParameter("combo", combo);
+		query.setParameter("spicy", isSpicy);
+		query.setParameter("rice", hasRice);
+		query.setParameter("sauce", hasSauce);
+		query.setParameter("noodles", hasNoodles);
+		query.setParameter("pieces", numPieces);
+		query.setParameter("appetizerCombo", isAppetizerCombo);
+		query.setParameter("lastUpdatedBy", lastUpdatedBy);
+		
+		Timestamp timestamp = new Timestamp(new Date().getTime());
+		
+//		try {
+//			query.setParameter("lastUpdatedDate", new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").parse(timestamp.toString()));
+//		} catch (HibernateException | ParseException e) {
+//			e.printStackTrace();
+//		}
 		query.setParameter("menuid", menuId);
 		
 		int rowsAffected = query.executeUpdate();
 		logger.info("rows updated = " + rowsAffected);
+		
 	}
 	
 }

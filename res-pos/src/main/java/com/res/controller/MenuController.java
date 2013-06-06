@@ -109,16 +109,22 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="saveMenu", method=RequestMethod.GET)
-	public String saveMenu(HttpServletRequest request,
-			@RequestParam("menuid") long menuId,
-			@RequestParam("small") BigDecimal small, 
-			@RequestParam("large") BigDecimal large,
-			@RequestParam("lunch") BigDecimal lunch, 
-			@RequestParam("combo") BigDecimal combo){
+	public String updateMenu(HttpServletRequest request, @RequestParam("menuid") long menuId, @RequestParam("menunum") String menuNum,
+			@RequestParam("small") BigDecimal small, @RequestParam(value="large", required=true) BigDecimal large,
+			@RequestParam("lunchnum") String lunchNum, @RequestParam("lunch") BigDecimal lunch, 
+			@RequestParam("combonum") String comboNum, @RequestParam("combo") BigDecimal combo,
+			@RequestParam(value="spicy", defaultValue="false") Boolean isSpicy, @RequestParam(value="rice", defaultValue="false") Boolean hasRice,
+			@RequestParam(value="sauce", defaultValue="false") Boolean hasSauce, @RequestParam(value="noodle", defaultValue="false") Boolean hasNoodles,
+			@RequestParam(value="pieces", defaultValue="0") Integer numPieces, @RequestParam(value="appetizerCombo", defaultValue="false") Boolean isAppetizerCombo){
 		
 		logger.info("new menu prices (small, large, lunch, combo) respectively " + small + ", " + large + ", " + lunch + ", " + combo);
 		
-		menuService.updateMenuPrices(menuId, small, large, lunch, combo);
+		HttpSession session = request.getSession();
+		String lastUpdatedBy = (String) session.getAttribute("agentName");
+		
+		menuService.updateMenu(menuId, menuNum, small, large, lunchNum, lunch, comboNum, combo, 
+				isSpicy, hasRice, hasSauce, hasNoodles, numPieces, isAppetizerCombo, lastUpdatedBy);
+		
 		return "redirect:/wholeMenu.html";
 	}
 
