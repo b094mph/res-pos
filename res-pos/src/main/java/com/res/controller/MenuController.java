@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -39,9 +38,21 @@ public class MenuController {
 	@Autowired private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
-	public ModelAndView showMenu(HttpServletRequest request, HttpServletResponse response) throws ServiceException{
+	public ModelAndView showMenu(HttpServletRequest request,
+			@RequestParam(value="restaurantId", required=false) Long restaurantId,
+			@RequestParam(value="restaurantName", required=false) String restaurantName) 
+					throws ServiceException{
+		
 		HttpSession session = request.getSession();
-		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		
+		if(restaurantId == null){
+			restaurantId = (Long) session.getAttribute("restaurantId");
+			restaurantName = (String) session.getAttribute("restaurantName");
+		}else{
+			session.setAttribute("restaurantId", restaurantId);
+			session.setAttribute("restaurantName", restaurantName);
+		}
+		
 		logger.info("restaurantId = " + restaurantId);
 		ModelAndView mav = null;
 		
@@ -52,9 +63,6 @@ public class MenuController {
 		mav = new ModelAndView("menu");
 		
 		mav.addObject("restaurantId", restaurantId);
-		
-		String restaurantName = restaurantService.findRestaurantName(restaurantId);
-		session.setAttribute("restaurantName", restaurantName);
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("foodCategories", foodCategories);
@@ -81,11 +89,22 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="/wholeMenu", method=RequestMethod.GET)
-	public ModelAndView showMenuList(HttpServletRequest request, HttpServletResponse response){
-		HttpSession session = request.getSession();		
+	public ModelAndView showMenuList(HttpServletRequest request, 
+			@RequestParam(value="restaurantId", required=false) Long restaurantId,
+			@RequestParam(value="restaurantName", required=false) String restaurantName){
+		HttpSession session = request.getSession();
+		
+		if(restaurantId == null){
+			restaurantId = (Long) session.getAttribute("restaurantId");
+			restaurantName = (String) session.getAttribute("restaurantName");
+		}else{
+			session.setAttribute("restaurantId", restaurantId);
+			session.setAttribute("restaurantName", restaurantName);
+		}
+		
 		ModelAndView mav = null;
 
-		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		//if no restaurantid from both request and session 
 		if(restaurantId == null){
 			mav = new ModelAndView("redirect:/welcome.html");
 			return mav;
@@ -100,8 +119,17 @@ public class MenuController {
 	}
 
 	@RequestMapping(value="editMenu", method=RequestMethod.GET)
-	public ModelAndView editMenu(HttpServletRequest request, @RequestParam("menuId") long menuId){
+	public ModelAndView editMenu(HttpServletRequest request, 
+			@RequestParam(value="menuId", required=false) Long menuId){
+		
+		HttpSession session = request.getSession();
+		if(menuId == null){
+			menuId = (Long) session.getAttribute("menuId");
+		}else{
+			session.setAttribute("menuId", menuId);
+		}
 		logger.info("menuId = " + menuId);
+		
 		ModelAndView mav = new ModelAndView("editMenu");
 		Menu menu = menuService.getMenuByMenuId(menuId);
 		mav.addObject("menu", menu);
@@ -109,13 +137,21 @@ public class MenuController {
 	}
 	
 	@RequestMapping(value="saveMenu", method=RequestMethod.GET)
-	public String updateMenu(HttpServletRequest request, @RequestParam("menuid") long menuId, @RequestParam("menunum") String menuNum,
-			@RequestParam("small") BigDecimal small, @RequestParam(value="large", required=true) BigDecimal large,
-			@RequestParam("lunchnum") String lunchNum, @RequestParam("lunch") BigDecimal lunch, 
-			@RequestParam("combonum") String comboNum, @RequestParam("combo") BigDecimal combo,
-			@RequestParam(value="spicy", defaultValue="false") Boolean isSpicy, @RequestParam(value="rice", defaultValue="false") Boolean hasRice,
-			@RequestParam(value="sauce", defaultValue="false") Boolean hasSauce, @RequestParam(value="noodle", defaultValue="false") Boolean hasNoodles,
-			@RequestParam(value="pieces", defaultValue="0") Integer numPieces, @RequestParam(value="appetizerCombo", defaultValue="false") Boolean isAppetizerCombo){
+	public String updateMenu(HttpServletRequest request, 
+			@RequestParam("menuid") long menuId, 
+			@RequestParam("menunum") String menuNum,
+			@RequestParam("small") BigDecimal small, 
+			@RequestParam(value="large", required=true) BigDecimal large,
+			@RequestParam("lunchnum") String lunchNum, 
+			@RequestParam("lunch") BigDecimal lunch, 
+			@RequestParam("combonum") String comboNum, 
+			@RequestParam("combo") BigDecimal combo,
+			@RequestParam(value="spicy", defaultValue="false") Boolean isSpicy, 
+			@RequestParam(value="rice", defaultValue="false") Boolean hasRice,
+			@RequestParam(value="sauce", defaultValue="false") Boolean hasSauce, 
+			@RequestParam(value="noodle", defaultValue="false") Boolean hasNoodles,
+			@RequestParam(value="pieces", defaultValue="0") Integer numPieces, 
+			@RequestParam(value="appetizerCombo", defaultValue="false") Boolean isAppetizerCombo){
 		
 		logger.info("new menu prices (small, large, lunch, combo) respectively " + small + ", " + large + ", " + lunch + ", " + combo);
 		

@@ -2,12 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <link rel="stylesheet" href="css/fixed-header.css">
 
 <div class="row">
 	<fieldset>
-	<legend>Complete Menu: <c:out value="${restaurantName}"/></legend>
+	<legend><spring:message code="label.complete.menu"/>: <c:out value="${restaurantName}"/></legend>
 	<c:choose>
 		<c:when test="${not empty menuList}">
 			<table class="table table-striped table-hover table-fixed-header">

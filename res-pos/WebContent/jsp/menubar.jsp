@@ -22,7 +22,7 @@
 								<li><a id="address-link" tabindex="-1" href="addressForm.html"><spring:message code="label.menu.address"/></a></li>
 								<li><a id="customer-link" tabindex="-1" href="customerForm.html"><spring:message code="label.menu.customer"/></a></li>
 							</sec:authorize>
-							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.complete.menu"/></a></li>
+							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.menu"/></a></li>
 							<li><a tabindex="-1" href="#"><spring:message code="label.menu.careers"/></a></li>
 	                        <li><a tabindex="-1" href="#"><spring:message code="label.menu.contact.us"/></a></li>
 	                        <li class="divider"></li>
@@ -32,7 +32,7 @@
                       	</ul>
 					</li>
 				<c:if test="${not empty restaurantId }">
-					<li><a id="menu-link" href="menu.html"><spring:message code="label.menu"/></a></li>
+					<li><a id="menu-link" href="menu.html?restaurantId=${restaurantId}&restaurantName=${restaurantName}"><spring:message code="label.menu.order"/></a></li>
 				</c:if>
 					<li id="search" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.search"/></a>

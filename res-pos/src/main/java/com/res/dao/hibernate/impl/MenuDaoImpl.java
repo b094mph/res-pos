@@ -94,11 +94,22 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 			Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy) {
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE Menu ");
-		sb.append("SET menuNum = :menuNum, small = :small, large = :large, ");
-		sb.append("lunchNum = :lunchNum, lunch = :lunch, comboNum = :comboNum, combo = :combo, ");
-		sb.append("spicy = :spicy, rice = :rice, sauce = :sauce, noodle = :noodles, pieces = :pieces, appetizerCombo = :appetizerCombo, ");
-		sb.append("lastUpdatedBy = :lastUpdatedBy, lastUpdatedDate = :lastUpdatedDate ");
+		sb.append("UPDATE Menu SET");
+		sb.append("menuNum = :menuNum, ");
+		sb.append("small = :small, ");
+		sb.append("large = :large, ");
+		sb.append("lunchNum = :lunchNum, ");
+		sb.append("lunch = :lunch, ");
+		sb.append("comboNum = :comboNum, ");
+		sb.append("combo = :combo, ");
+		sb.append("spicy = :spicy, ");
+		sb.append("rice = :rice, ");
+		sb.append("sauce = :sauce, ");
+		sb.append("noodle = :noodles, ");
+		sb.append("pieces = :pieces, ");
+		sb.append("appetizerCombo = :appetizerCombo, ");
+		sb.append("lastUpdatedBy = :lastUpdatedBy, ");
+		sb.append("lastUpdatedDate = :lastUpdatedDate ");
 		sb.append("WHERE menuid = :menuid");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());

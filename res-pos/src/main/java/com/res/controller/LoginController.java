@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
@@ -63,14 +62,6 @@ public class LoginController {
 		mav.addObject("lang", lang);
 		
 		return mav;
-	}
-	
-	@RequestMapping(value="/setSessionAttribute", method=RequestMethod.GET)
-	public String setSessionAttribute(HttpServletRequest request, @RequestParam("restaurantId") long restaurantId){
-		HttpSession session = request.getSession();
-		session.setAttribute("restaurantId", restaurantId);
-
-		return "menu";
 	}
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
