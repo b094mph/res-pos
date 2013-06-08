@@ -25,6 +25,14 @@
 							type="button" 
 							name="${subCategory.menuId}" 
 							class="btn btn-danger btn1"
+							<c:choose>
+								<c:when test="${lang == 'zh'}">
+									title="<c:out value="${subCategory.food.cDescription}"></c:out>"	
+								</c:when>
+								<c:otherwise>
+									title="<c:out value="${subCategory.food.description}"></c:out>"
+								</c:otherwise>
+							</c:choose>
 							value='<c:out value="${subCategory.menuId}"></c:out>'
 				>
 					<c:choose>
@@ -42,6 +50,14 @@
 							type="button" 
 							name="${subCategory.menuId}" 
 							class="btn btn-info btn1"
+							<c:choose>
+								<c:when test="${lang == 'zh'}">
+									title="<c:out value="${subCategory.food.cDescription}"></c:out>"	
+								</c:when>
+								<c:otherwise>
+									title="<c:out value="${subCategory.food.description}"></c:out>"
+								</c:otherwise>
+							</c:choose>
 							value='<c:out value="${subCategory.menuId}"></c:out>'
 				>
 					<c:choose>

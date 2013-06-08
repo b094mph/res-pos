@@ -30,8 +30,8 @@ public class SubMenuAjaxController {
 	@Autowired private MessageLoader messageLoader;
 
 	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
-	public ModelAndView showSubCategories(HttpServletRequest request, @RequestParam("foodCategoryId") long foodCategoryId) 
-			throws EmptyCollectionException{
+	public ModelAndView showSubCategories(HttpServletRequest request, 
+			@RequestParam("foodCategoryId") long foodCategoryId) throws EmptyCollectionException{
 		HttpSession session = request.getSession();
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		
