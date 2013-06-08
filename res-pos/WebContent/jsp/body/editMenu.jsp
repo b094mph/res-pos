@@ -129,6 +129,8 @@ label{
 							<option value="false">No</option>
 						</select>
 					</div>
+				</div>
+				<div class="control-group">
 					<label class="control-label" for="noodle">Includes noodle?</label>
 					<div class="controls">
 						<select id="selectnoodle" name="noodle" class="selectpicker">
