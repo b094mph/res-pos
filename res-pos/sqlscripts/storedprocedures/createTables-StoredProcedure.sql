@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS menu (
 	sauce TINYINT(1) DEFAULT '0',
 	noodle TINYINT(1) DEFAULT '0',
 	pieces SMALLINT DEFAULT NULL,
-	appetizercombo TINYINT(1),
+	appetizercombo TINYINT(1) DEFAULT NULL,
 	createddate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	createdby VARCHAR(20),
 	lastupdateddate DATETIME,

@@ -94,7 +94,7 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 			Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy) {
 		
 		StringBuffer sb = new StringBuffer();
-		sb.append("UPDATE Menu SET");
+		sb.append("UPDATE Menu SET ");
 		sb.append("menuNum = :menuNum, ");
 		sb.append("small = :small, ");
 		sb.append("large = :large, ");

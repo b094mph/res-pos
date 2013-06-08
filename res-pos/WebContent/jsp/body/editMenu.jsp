@@ -5,6 +5,8 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<link rel="stylesheet" href="css/bootstrap-select.css">
+
 <style>
 label{
 	max-width: 100%;
@@ -12,6 +14,12 @@ label{
 </style>
 
 <sec:authorize ifAnyGranted="ROLE_ADMIN">
+
+<input id="spicy" type="hidden" value='<c:out value="${menu.spicy}"/>'>
+<input id="rice" type="hidden" value='<c:out value="${menu.rice}"/>'>
+<input id="sauce" type="hidden" value='<c:out value="${menu.sauce}"/>'>
+<input id="noodle" type="hidden" value='<c:out value="${menu.noodle}"/>'>
+<input id="appetizerCombo" type="hidden" value='<c:out value="${menu.appetizerCombo}"/>'>
 
 <div class="row">
 	<div class="span12">
@@ -30,7 +38,7 @@ label{
 					<button type="submit" class="btn btn-success btn-large" name="submit"><spring:message code="label.save"/></button>
 				</div>
 			</div>
-			<div class="span2">
+			<div class="span3">
 				<div class="control-group info">
 					<label class="control-label" for="category">Category</label>
 					<div class="controls">
@@ -64,7 +72,7 @@ label{
 					</div>
 				</div>
 			</div>
-			<div class="span2">
+			<div class="span3">
 				<div class="control-group info">
 					<label class="control-label" for="categorych">Category Chinese</label>
 					<div class="controls">
@@ -98,31 +106,47 @@ label{
 					</div>
 				</div>
 			</div>
-			<div class="span2">
+			<div class="span3">
 				<div class="control-group">
 					<label class="control-label" for="spicy">Is it spicy?</label>
 					<div class="controls">
-						<input type="text" name="spicy" placeholder="Yes or No" value='<c:out value="${menu.spicy}"/>'>
+						<select id="selectspicy" name="spicy" class="selectpicker">
+							<option value="true">Yes</option>
+							<option value="false">No</option>
+						</select>
 					</div>
 					<label class="control-label" for="rice">Includes rice?</label>
 					<div class="controls">
-						<input type="text" name="rice" placeholder="Yes or No" value='<c:out value="${menu.rice}"/>'>
+						<select id="selectrice" name="rice" class="selectpicker">
+							<option value="true">Yes</option>
+							<option value="false">No</option>
+						</select>
 					</div>
 					<label class="control-label" for="sauce">Includes sauce?</label>
 					<div class="controls">
-						<input type="text" name="sauce" placeholder="Yes or No" value='<c:out value="${menu.sauce}"/>'>
+						<select id="selectsauce" name="sauce" class="selectpicker">
+							<option value="true">Yes</option>
+							<option value="false">No</option>
+						</select>
 					</div>
 					<label class="control-label" for="noodle">Includes noodle?</label>
 					<div class="controls">
-						<input type="text" name="noodle" placeholder="Yes or No" value='<c:out value="${menu.noodle}"/>'>
+						<select id="selectnoodle" name="noodle" class="selectpicker">
+							<option value="true">Yes</option>
+							<option value="false">No</option>
+						</select>
 					</div>
 					<label class="control-label" for="pieces">How many pieces?</label>
 					<div class="controls">
 						<input type="text" name="pieces" placeholder="Enter a number here" value='<c:out value="${menu.pieces}"/>'>
 					</div>
-					<label class="control-label" for="appetizerCombo">Can this be a appetizer combo dish?</label>
+					<label class="control-label" for="appetizerCombo">Appetizer Combo dish?</label>
 					<div class="controls">
-						<input type="text" name="appetizerCombo" placeholder="Yes or No" value='<c:out value="${menu.appetizerCombo}"/>'>
+						<select id="selectappetizercombo" name="appetizerCombo" class="selectpicker">
+							<option value="">n/a</option>
+							<option value="true">Yes</option>
+							<option value="false">No</option>
+						</select>
 					</div>
 				</div>
 			</div>
@@ -131,3 +155,6 @@ label{
 	</div>
 </div>
 </sec:authorize>
+
+<script type="text/javascript" src="js/bootstrap-select.js"></script>
+<script type="text/javascript" src="js/editMenu.js"></script>
