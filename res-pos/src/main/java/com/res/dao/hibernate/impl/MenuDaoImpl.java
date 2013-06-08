@@ -143,5 +143,22 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		logger.info("rows updated = " + rowsAffected);
 		
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Menu> getSubcategories(long restaurantId, String size) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("FROM Menu m ");
+		sb.append("WHERE ");
+		sb.append("m.restaurantId = :restaurantId ");
+		sb.append("AND ");
+		sb.append("m.").append(size);
+		sb.append(" != 0.00");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
+		
+		return query.list();
+	}
 	
 }

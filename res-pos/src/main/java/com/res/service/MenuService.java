@@ -17,5 +17,7 @@ public interface MenuService {
 			BigDecimal large, String lunchNum, BigDecimal lunch, String comboNum, BigDecimal combo,
 			Boolean isSpicy, Boolean hasRice, Boolean hasSauce,
 			Boolean hasNoodles, Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy);
+	public List<Menu> getLunchSubcategories(long restaurantId);
+	public List<Menu> getComboSubcategories(long restaurantId);
 	
 }
