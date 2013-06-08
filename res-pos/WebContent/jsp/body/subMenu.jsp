@@ -6,6 +6,8 @@
 </script>
 <script type="text/javascript" src="js/submenu.js"></script>
 
+<input id="foodLegend" type="hidden" value="${foodCategoryName}">
+
 <fieldset>
 <legend>
 	<c:choose>

@@ -13,12 +13,12 @@ $(document).ready(function(){
 
 function createSubCategoriesOnClick(id){
 	$(id).click(function(){
-		addToOrder($(this).val());
+		addToOrder($(this).val(), $('#foodLegend').val());
 	});
 }
 
-function addToOrder(menuId){
-	var params = {menuId: menuId};
+function addToOrder(menuId, foodLegend){
+	var params = {menuId: menuId, foodLegend: foodLegend};
 	$.ajax({
 		type: "GET",
 		url: "addToOrder.json",

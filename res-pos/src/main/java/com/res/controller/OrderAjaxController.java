@@ -107,7 +107,9 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
-	public String addToOrder(HttpServletRequest request, @RequestParam("menuId") long menuId){
+	public String addToOrder(HttpServletRequest request, 
+			@RequestParam("menuId") long menuId,
+			@RequestParam(value="foodLegend", defaultValue="") String foodLegend){
 		
 		logger.info("hitting addOrder controller with menuId " + menuId);
 		Menu menu = menuService.getMenuByMenuId(menuId);
@@ -121,10 +123,10 @@ public class OrderAjaxController {
 		String foodCategory = menu.getFoodCategory().getFoodCategoryName().toLowerCase();
 		
 		// determines if lunch is the only size or combo is the only size, otherwise, set to large
-		if(foodCategory.startsWith("combo")){
+		if(foodLegend.toLowerCase().startsWith("combo") || foodCategory.startsWith("combo")){
 			orderDetail.setSize(ResConstant.COMBO);
 			price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
-		}else if(foodCategory.startsWith("lunch")){
+		}else if(foodLegend.toLowerCase().startsWith("lunch") || foodCategory.startsWith("lunch")){
 			orderDetail.setSize(ResConstant.LUNCH);
 			price = menu.getLunch().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}else{ // default is Large

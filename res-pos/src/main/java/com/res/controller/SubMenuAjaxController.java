@@ -42,7 +42,7 @@ public class SubMenuAjaxController {
 		
 		String foodCategory = subCategories.get(0).getFoodCategory().getFoodCategoryName();
 		
-		//check if it is a lunch/combo category, if yes, need to query menu for rest of 
+		// check if it is a lunch/combo category, if yes, need to query menu for rest of 
 		// lunch/combo foods.
 		if(foodCategory.toLowerCase().startsWith("combo")){
 			subCategories = menuService.getComboSubcategories(restaurantId);

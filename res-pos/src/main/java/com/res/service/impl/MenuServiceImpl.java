@@ -63,12 +63,6 @@ public class MenuServiceImpl implements MenuService {
 	public List<Menu> getLunchSubcategories(long restaurantId) {
 		List<Menu> lunchList = menuDao.getSubcategories(restaurantId, "lunch");
 		logger.info("Adding additional " + lunchList.size() + " lunch dishes to lunch category.");
-		
-		for(Menu menu : lunchList){
-			FoodCategory foodCategory = menu.getFoodCategory();
-			foodCategory.setFoodCategoryName("Lunch");
-			foodCategory.setFoodCategoryCName(""); //TODO: fill in lunch Chinese name
-		}
 		return lunchList;
 	}
 
