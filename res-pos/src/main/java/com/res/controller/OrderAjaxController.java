@@ -114,10 +114,24 @@ public class OrderAjaxController {
 		
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setQuantity(1);
-		orderDetail.setSize(ResConstant.LARGE);
 		orderDetail.setMenu(menu);
 		
-		BigDecimal price = orderDetail.getMenu().getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
+		BigDecimal price = null;
+		
+		String foodCategory = menu.getFoodCategory().getFoodCategoryName().toLowerCase();
+		
+		// determines if lunch is the only size or combo is the only size, otherwise, set to large
+		if(foodCategory.startsWith("lunch")){
+			orderDetail.setSize(ResConstant.LUNCH);
+			price = menu.getLunch().multiply(new BigDecimal(orderDetail.getQuantity()));
+		}else if(foodCategory.startsWith("combo")){
+			orderDetail.setSize(ResConstant.COMBO);
+			price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
+		}else{ // default is Large
+			orderDetail.setSize(ResConstant.LARGE);
+			price = menu.getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
+		}
+		
 		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		
 		orderList.add(orderDetail);
