@@ -123,7 +123,7 @@ public class OrderAjaxController {
 		String foodCategory = menu.getFoodCategory().getFoodCategoryName().toLowerCase();
 		
 		// determines if lunch is the only size or combo is the only size, otherwise, set to large
-		if(foodLegend.toLowerCase().startsWith("combo") || foodCategory.startsWith("combo")){
+		if(foodLegend.toLowerCase().startsWith("comb") || foodCategory.startsWith("comb")){
 			orderDetail.setSize(ResConstant.COMBO);
 			price = menu.getCombo().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}else if(foodLegend.toLowerCase().startsWith("lunch") || foodCategory.startsWith("lunch")){
