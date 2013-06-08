@@ -47,6 +47,9 @@ public class LoginController {
 	public ModelAndView welcome(Principal principal, HttpServletRequest request){	
 		HttpSession session = request.getSession();
 		
+		//this will clear foodCategoryId whenever leaving the order screen
+		session.setAttribute("foodCategoryId", "");  
+		
 		ModelAndView mav = new ModelAndView("welcome");
 		
 		String agentName = principal.getName();

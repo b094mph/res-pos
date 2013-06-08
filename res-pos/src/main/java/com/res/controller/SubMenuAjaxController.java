@@ -34,6 +34,7 @@ public class SubMenuAjaxController {
 			@RequestParam("foodCategoryId") long foodCategoryId) throws EmptyCollectionException{
 		HttpSession session = request.getSession();
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		session.setAttribute("foodCategoryId", foodCategoryId);
 		
 		ModelAndView mav = new ModelAndView("subMenu");
 		logger.info("hitting showSubcategories controller " + foodCategoryId);

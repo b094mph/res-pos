@@ -11,7 +11,9 @@ $(document).ready(function(){
 		id = '#fc_'+i.toString();
 		createFoodCategoryOnClick(id);
 	}
-	fireFirstCategoryButton();
+	
+	var sessionFoodCategoryId = $('#foodCategoryId').val();
+	fireFirstCategoryButton(sessionFoodCategoryId);
 });
 
 function createFoodCategoryOnClick(id){
@@ -38,6 +40,11 @@ function showSubCategory(foodCategoryId){
 	
 }
 
-function fireFirstCategoryButton(){
-	$('#fc_1').click();
+function fireFirstCategoryButton(sessionFoodCategoryId){
+	if(sessionFoodCategoryId == ""){
+		$('#fc_1').click();
+	}else{
+		$('#fc_'+sessionFoodCategoryId).click();
+	}
+	
 }
