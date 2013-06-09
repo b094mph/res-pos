@@ -56,5 +56,13 @@
  	<definition name="showOrder" template="/jsp/body/showOrder.jsp">
  		<put-attribute name="ajax" value="/jsp/body/showOrder.jsp"/>
  	</definition>
+ 	
+ 	<definition name="showExtras" template="/jsp/body/showExtras.jsp">
+ 		<put-attribute name="ajax" value="/jsp/body/showExtras.jsp"/>
+ 	</definition>
+ 	
+ 	<definition name="extras" template="/jsp/body/extras.jsp">
+ 		<put-attribute name="ajax" value="/jsp/body/extras.jsp"/>
+ 	</definition>
  
 </tiles-definitions>

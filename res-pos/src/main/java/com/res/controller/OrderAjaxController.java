@@ -218,6 +218,12 @@ public class OrderAjaxController {
 		return "redirect:/showOrder.html";
 	}
 	
+	@RequestMapping(value="/showExtras.json", method=RequestMethod.GET)
+	public ModelAndView showExtras(HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("showExtras");
+		return mav;
+	}
+	
 	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
 	public String newOrder(HttpServletRequest request){
 		logger.info("clearing the order and customer information...");

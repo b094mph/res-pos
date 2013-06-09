@@ -143,6 +143,9 @@
 				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">
 					<spring:message code="label.combo"/>
 				</button>
+				<button id="extras" type="button" class="btn btn-primary btn2">
+					Extras
+				</button>
 			</td>
 			<td><b><spring:message code="label.tax"/>&nbsp;${salesTax} %</b></td>
 			<td><b>$&nbsp;<c:out value="${tax}"/></b></td>

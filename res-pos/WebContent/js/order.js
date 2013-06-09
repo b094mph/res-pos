@@ -104,6 +104,21 @@ $(document).ready(function(){
 		changeSize(rowIndex, COMBO);
 	});
 	
+	$('#extras').click(function(){
+		$.ajax({
+			type: "GET",
+			url: "showExtras.json",
+			success:
+				function(data){
+					$('#subcategoryajax').html(data).show();
+				},
+			error:
+				function(data){
+					alert("unsuccessful making extras ajax call...");
+				}
+		});
+	});
+	
 	$('#new').click(function(){
 		$.ajax({
 			type: "GET",
