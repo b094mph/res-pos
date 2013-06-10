@@ -10,31 +10,32 @@
 
 <jsp:include page="status.jsp"/>
 
-<div class="row">
-	<div class="span6">
-		<jsp:include page="customerInfo.jsp"/>
-	</div>
-	<div class="span6">
-		<div id="category">
-			<jsp:include page="category.jsp"/>
+<div class="row-fluid">
+	<div class="row">
+		<div class="span6">
+			<jsp:include page="customerInfo.jsp"/>
+		</div>
+		<div class="span6">
+			<div id="category">
+				<jsp:include page="category.jsp"/>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="row">
-	<div id="orderList" class="span6">
-		<div id="orderListAjax">
+	<div class="row">
+		<div id="orderList" class="span6">
+			<div id="orderListAjax">
 			
+			</div>
 		</div>
-	</div>
-	<div class="span6">
-		<div id="subcategory">
-			<div id="subcategoryajax">
+		<div class="span6">
+			<div id="subcategory">
+				<div id="subcategoryajax">
 	
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
-
 
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
