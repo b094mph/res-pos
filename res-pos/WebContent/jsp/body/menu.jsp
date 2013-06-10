@@ -4,7 +4,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
-<input id="foodCategoryId" type="hidden" value='<c:out value="${foodCategoryId}"/>'>; 
+<input id="foodCategoryId" type="hidden" value='<c:out value="${foodCategoryId}"/>'>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 
