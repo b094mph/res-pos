@@ -22,13 +22,13 @@ CREATE TABLE IF NOT EXISTS foodcategory (
 
 CREATE TABLE IF NOT EXISTS food (
     foodid BIGINT(11) NOT NULL AUTO_INCREMENT,
-    foodshortname VARCHAR(50) NOT NULL UNIQUE,
-    foodlongname VARCHAR(80),
+    foodshortname VARCHAR(50) NOT NULL,
+    foodlongname VARCHAR(80) NOT NULL UNIQUE,
     cfoodname VARCHAR(10),
     description VARCHAR(500),
 	cdescription VARCHAR(500),
     PRIMARY KEY (foodid),
-	UNIQUE INDEX(foodshortname)
+	UNIQUE INDEX(foodlongname)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 CREATE TABLE IF NOT EXISTS person (

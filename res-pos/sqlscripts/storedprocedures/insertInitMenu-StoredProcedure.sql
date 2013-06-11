@@ -9,7 +9,7 @@ BEGIN
 			t.noodle, t.pieces, t.appetizercombo, 'dataconversion'
 		FROM temp t
 		INNER JOIN foodcategory fc ON fc.foodcategoryname=t.foodcategoryname
-		INNER JOIN food f ON f.foodshortname=t.foodshortname
+		INNER JOIN food f ON f.foodlongname=t.foodlongname
 		ORDER BY t.id;
 END //
 DELIMITER ;
