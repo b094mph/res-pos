@@ -25,6 +25,6 @@ CALL insertInitMenu;
 	 * new city chinese do not have a menu dish that is ONLY a combination. This is
 	 * needed in order to see combination as a food category in the order screen.*/
 	INSERT INTO foodcategory (foodcategoryname, foodcategorycname) VALUES('Combination', '组合');
-	INSERT INTO menu (restaurantid, foodcategoryid, foodid) VALUES(1,19,1);
+	INSERT INTO menu (restaurantid, foodcategoryid, foodid) VALUES(1,32,1);
 
 COMMIT;	
