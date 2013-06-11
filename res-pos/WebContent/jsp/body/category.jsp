@@ -6,11 +6,10 @@
 <fieldset>
 <legend><spring:message code="label.category"/></legend>
 <table>
-	<% int count = 1; %>
 	<c:choose>
 		<c:when test="${not empty foodCategories}">
 			<c:forEach items="${foodCategories}" var="fc">
-				<button id='fc_<%=count++%>'  
+				<button id="fc_${fc.foodCategoryId}"  
 						type="button" 
 						name="${fc.foodCategoryId}" 
 						class="btn btn-info btn1"

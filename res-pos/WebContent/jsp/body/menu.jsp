@@ -40,7 +40,7 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
 <script>
-	var foodCategoriesSize = '<c:out value="${foodCategoriesSize}"></c:out>';
+	var foodCategoryIDs = ${foodCategoryIDs};
 	
 	$(document).ready(function(){	
 		// make the header fixed on scroll
