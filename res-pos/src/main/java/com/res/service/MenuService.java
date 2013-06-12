@@ -19,5 +19,6 @@ public interface MenuService {
 			Boolean hasNoodles, Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy);
 	public List<Menu> getLunchSubcategories(long restaurantId);
 	public List<Menu> getComboSubcategories(long restaurantId);
+	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
 	
 }

@@ -29,8 +29,9 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@Override
 	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId){
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT distinct m.foodCategory.foodCategoryId FROM Menu m ");
+		sb.append("SELECT DISTINCT m.foodCategory.foodCategoryId FROM Menu m ");
 		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("AND m.foodCategory.foodCategoryName NOT LIKE 'Extra%' ");
 		sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
@@ -43,8 +44,9 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@Override
 	public List<FoodCategory> getFoodCategoriesFromMenu(long restaurantId){
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT distinct m.foodCategory FROM Menu m ");
+		sb.append("SELECT DISTINCT m.foodCategory FROM Menu m ");
 		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("AND m.foodCategory.foodCategoryName NOT LIKE 'Extra%' ");
 		sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
@@ -154,6 +156,21 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		sb.append("AND ");
 		sb.append("m.").append(size);
 		sb.append(" != 0.00");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
+		
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT DISTINCT m.foodCategory FROM Menu m ");
+		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("AND m.foodCategory.foodCategoryName LIKE 'Extra%' ");
+		sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);

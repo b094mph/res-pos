@@ -6,10 +6,15 @@
 <legend>Extras</legend>
 <div class="row-fluid">
 	<div class="btn-group">
-		<button id="veg" type="button" class="btn btn-primary btn2" value="veg">Veg</button>
-		<button id="meat" type="button" class="btn btn-primary btn2" value="meat">Meat</button>
-		<button id="taste" type="button" class="btn btn-primary btn2" value="taste">Taste</button>
-		<button id="sauce" type="button" class="btn btn-primary btn2" value="sauce">Sauce</button>
+		<c:forEach items="${extrasCategories}" var="extrasCategory">
+			<button id="${extrasCategory.foodCategoryName}"
+				type="button"
+				class="btn btn-primary btn2"
+				value="${extrasCategory.foodCategoryName}"
+			>
+				${extrasCategory.foodCategoryName}
+			</button>
+		</c:forEach>
 	</div>
 </div>
 <div class="row-fluid">
@@ -35,4 +40,10 @@
 </div>
 </fieldset>
 
+<script>
+	var extraCategoryNames = new Array();
+	<c:forEach items="${extraCategoryNames}" var="extraCategoryName">
+		extraCategoryNames.push("${extraCategoryName}");
+	</c:forEach>
+</script>
 <script type="text/javascript" src="js/extras.js"></script>
