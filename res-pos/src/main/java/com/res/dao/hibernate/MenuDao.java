@@ -19,4 +19,6 @@ public interface MenuDao extends BaseDao {
 			Boolean hasNoodles, Integer numPieces, Boolean isAppetizerCombo, String lastUpdatedBy);
 	public List<Menu> getSubcategories(long restaurantId, String size);
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
+	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId);
+	
 }

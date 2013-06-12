@@ -20,5 +20,6 @@ public interface MenuService {
 	public List<Menu> getLunchSubcategories(long restaurantId);
 	public List<Menu> getComboSubcategories(long restaurantId);
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
+	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId);
 	
 }

@@ -1,25 +1,71 @@
 package com.res.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.exception.ServiceException;
+import com.res.model.FoodCategory;
+import com.res.model.Menu;
+import com.res.service.MenuService;
+import com.res.util.MessageLoader;
+
 @Controller
 public class ExtrasAjaxController {
 
 	private static Logger logger = Logger.getLogger(ExtrasAjaxController.class);
 	
-	@RequestMapping(value="/extrasOption.json", method=RequestMethod.GET)
-	public ModelAndView showVeg(HttpServletRequest request,
-			@RequestParam("extrasOption") String option){
+	@Autowired MenuService menuService;
+	@Autowired MessageLoader messageLoader;
+	
+	@RequestMapping(value="/showExtras.json", method=RequestMethod.GET)
+	public ModelAndView showExtras(HttpServletRequest request) throws ServiceException{
+		HttpSession session = request.getSession();
+		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		if(restaurantId == null){
+			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
+		}
 		
-		logger.info("Extra option = " + option);
+		ModelAndView mav = new ModelAndView("showExtras");
+		
+		List<FoodCategory> extrasCategories = menuService.getExtrasCategoryFromMenu(restaurantId);
+		logger.info("Number of Extras categories: " +  extrasCategories.size());
+		
+		for(FoodCategory extrasCategory : extrasCategories){
+			String foodCategoryName = extrasCategory.getFoodCategoryName().replace("Extra ", "");
+			extrasCategory.setFoodCategoryName(foodCategoryName);
+		}
+		mav.addObject("extrasCategories", extrasCategories);
+		mav.addObject("lang", session.getAttribute("lang"));
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/extrasSubCategory.json", method=RequestMethod.GET)
+	public ModelAndView extrasSubCategory(HttpServletRequest request,
+			@RequestParam("extrasCategoryId") long extrasCategoryId) throws ServiceException{
+		HttpSession session = request.getSession();
+		
 		ModelAndView mav = new ModelAndView("extras");
+		logger.info("ExtraCategoryId = " + extrasCategoryId);
+		
+		Long restaurantId = (Long)session.getAttribute("restaurantId");
+		if(restaurantId == null){
+			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
+		}
+		
+		List<Menu> extrasSubCategories = menuService.getMenuByExtrasCategory(restaurantId, extrasCategoryId);
+		mav.addObject("extrasSubCategories", extrasSubCategories);
+		mav.addObject("lang", session.getAttribute("lang"));
 		
 		return mav;
 	}

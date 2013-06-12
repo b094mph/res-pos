@@ -78,4 +78,9 @@ public class MenuServiceImpl implements MenuService {
 		return menuDao.getExtrasCategoryFromMenu(restaurantId);
 	}
 
+	@Override
+	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId) {
+		return menuDao.getMenuByExtrasCategory(restaurantId, foodCategoryId);
+	}
+
 }

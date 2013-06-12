@@ -10,9 +10,16 @@
 			<button id="${extrasCategory.foodCategoryName}"
 				type="button"
 				class="btn btn-primary btn2"
-				value="${extrasCategory.foodCategoryName}"
+				value="${extrasCategory.foodCategoryId}"
 			>
-				${extrasCategory.foodCategoryName}
+				<c:choose>
+					<c:when test="${lang == 'zh'}">
+						${extrasCategory.foodCategoryCName}
+					</c:when>
+					<c:otherwise>
+						${extrasCategory.foodCategoryName}
+					</c:otherwise>
+				</c:choose>
 			</button>
 		</c:forEach>
 	</div>
@@ -42,8 +49,8 @@
 
 <script>
 	var extraCategoryNames = new Array();
-	<c:forEach items="${extraCategoryNames}" var="extraCategoryName">
-		extraCategoryNames.push("${extraCategoryName}");
+	<c:forEach items="${extrasCategories}" var="extrasCategory">
+		extraCategoryNames.push("${extrasCategory.foodCategoryName}");
 	</c:forEach>
 </script>
 <script type="text/javascript" src="js/extras.js"></script>

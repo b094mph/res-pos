@@ -177,5 +177,21 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		
 		return query.list();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("FROM Menu m ");
+		sb.append("WHERE m.restaurantId = :restaurantId ");
+		sb.append("AND m.foodCategory.foodCategoryId = :foodCategoryId ");
+		sb.append("AND m.foodCategory.foodCategoryName LIKE 'Extra%'");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
+		query.setParameter("foodCategoryId", foodCategoryId);
+		
+		return query.list();
+	}
 	
 }

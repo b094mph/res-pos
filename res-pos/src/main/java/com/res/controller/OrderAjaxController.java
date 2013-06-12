@@ -24,7 +24,6 @@ import com.res.constant.ResConstant;
 import com.res.exception.ServiceException;
 import com.res.model.Address;
 import com.res.model.CustomerOrder;
-import com.res.model.FoodCategory;
 import com.res.model.Menu;
 import com.res.model.OrderDetail;
 import com.res.model.Person;
@@ -217,33 +216,6 @@ public class OrderAjaxController {
 		}
 		
 		return "redirect:/showOrder.html";
-	}
-	
-	@RequestMapping(value="/showExtras.json", method=RequestMethod.GET)
-	public ModelAndView showExtras(HttpServletRequest request) throws ServiceException{
-		HttpSession session = request.getSession();
-		Long restaurantId = (Long) session.getAttribute("restaurantId");
-		if(restaurantId == null){
-			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
-		}
-		
-		ModelAndView mav = new ModelAndView("showExtras");
-		
-		List<FoodCategory> extrasCategories = menuService.getExtrasCategoryFromMenu(restaurantId);
-		for(FoodCategory extrasCategory : extrasCategories){
-			String foodCategoryName = extrasCategory.getFoodCategoryName().replace("Extra ", "");
-			extrasCategory.setFoodCategoryName(foodCategoryName);
-		}
-		mav.addObject("extrasCategories", extrasCategories);
-		
-		List<String> extraCategoryNames = new ArrayList<String>();
-		for(FoodCategory extrasCategory : extrasCategories){
-			String foodCategoryName = extrasCategory.getFoodCategoryName().replace("Extra ", "");
-			extraCategoryNames.add(foodCategoryName);
-		}
-		mav.addObject("extraCategoryNames", extraCategoryNames);
-		
-		return mav;
 	}
 	
 	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
