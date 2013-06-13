@@ -8,7 +8,7 @@ $(document).ready(function(){
 
 function createSubCategoriesOnClick(id){
 	$(id).click(function(){
-		addToOrder($(this).val(), $('#foodLegend').val());
+		addToOrder($(this).val(), "Extras");
 	});
 }
 

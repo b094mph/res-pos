@@ -50,6 +50,9 @@ public class OrderServiceImpl implements OrderService {
 	public BigDecimal calculatePrice(OrderDetail orderDetail) {
 		BigDecimal price = null;
 		String size = orderDetail.getSize();
+		if(size == null){
+			size = ResConstant.LARGE;
+		}
 		Menu menu = orderDetail.getMenu();
 		
 		if(ResConstant.LARGE.equals(size)){

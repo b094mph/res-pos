@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 <input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
@@ -55,27 +56,30 @@
 							</td>
 							<td>${orderdetail.quantity}</td>
 							<td>
-								<c:choose>
-									<c:when test="${lang == 'zh'}">
-										<c:choose>
-											<c:when test="${orderdetail.size == 'Sm'}">
-												小
-											</c:when>
-											<c:when test="${orderdetail.size == 'Ln'}">
-												午餐
-											</c:when>
-											<c:when test="${orderdetail.size == 'Cb'}">
-												盒饭
-											</c:when>
-											<c:otherwise>
-												大
-											</c:otherwise>
-										</c:choose>
-									</c:when>
-									<c:otherwise>
-										${orderdetail.size}
-									</c:otherwise>
-								</c:choose>
+								<c:set var="foodCategoryName" value="${orderdetail.menu.foodCategory.foodCategoryName}"/>
+								<c:if test='${fn:startsWith(foodCategoryName, "Extra") == false}'>
+									<c:choose>
+										<c:when test="${lang == 'zh'}">
+											<c:choose>
+												<c:when test="${orderdetail.size == 'Sm'}">
+													小
+												</c:when>
+												<c:when test="${orderdetail.size == 'Ln'}">
+													午餐
+												</c:when>
+												<c:when test="${orderdetail.size == 'Cb'}">
+													盒饭
+												</c:when>
+												<c:otherwise>
+													大
+												</c:otherwise>
+											</c:choose>
+										</c:when>
+										<c:otherwise>
+											${orderdetail.size}
+										</c:otherwise>
+									</c:choose>
+								</c:if>
 							</td>
 							<td>
 								<c:choose>
