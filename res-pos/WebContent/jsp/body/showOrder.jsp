@@ -144,7 +144,7 @@
 					<spring:message code="label.combo"/>
 				</button>
 				<button id="extras" type="button" class="btn btn-primary btn2">
-					Extras
+					<spring:message code="label.extras"/>
 				</button>
 			</td>
 			<td><b><spring:message code="label.tax"/>&nbsp;${salesTax} %</b></td>

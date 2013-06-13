@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
 <fieldset>
-<legend>Extras</legend>
+<legend><spring:message code="label.extras"/></legend>
 <div class="row-fluid">
 	<div class="btn-group" data-toggle="buttons-radio">
 		<c:forEach items="${extrasCategories}" var="extrasCategory">
@@ -29,12 +30,12 @@
 </div>
 <div class="row-fluid">
 	<div class="btn-group" data-toggle="buttons-radio">
-		<button id="add" type="button" class="btn btn-primary btn2">Add</button>
-		<button id="no" type="button" class="btn btn-primary btn2">No</button>
-		<button id="less" type="button" class="btn btn-primary btn2">Less</button>
-		<button id="with" type="button" class="btn btn-primary btn2">With</button>
-		<button id="only" type="button" class="btn btn-primary btn2">Only</button>
-		<button id="want" type="button" class="btn btn-primary btn2">Want</button>
+		<button id="add" type="button" class="btn btn-primary btn2" value="add">Add</button>
+		<button id="no" type="button" class="btn btn-primary btn2" value="no">No</button>
+		<button id="less" type="button" class="btn btn-primary btn2" value="less">Less</button>
+		<button id="with" type="button" class="btn btn-primary btn2" value="with">With</button>
+		<button id="only" type="button" class="btn btn-primary btn2" value="only">Only</button>
+		<button id="want" type="button" class="btn btn-primary btn2" value="want">Want</button>
 	</div>
 </div>
 <div class="row-fluid">
