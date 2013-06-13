@@ -1,5 +1,3 @@
-var id = "";
-
 $.ajaxSetup({
 	cache: true //true is the default value
 });
@@ -8,7 +6,7 @@ $(document).ready(function(){
 
 	//creating on click event for food category buttons
 	for(var i=0; i < foodCategoryIDs.length; i++){
-		id = '#fc_'+foodCategoryIDs[i];
+		var id = '#fc_'+foodCategoryIDs[i].toString();
 		createFoodCategoryOnClick(id);
 	}
 	

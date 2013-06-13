@@ -1,7 +1,6 @@
 package com.res.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,12 +66,6 @@ public class MenuController {
 		
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("foodCategories", foodCategories);
-		
-		List<Long> foodCategoryIDs = new ArrayList<Long>();
-		for(FoodCategory foodCategory : foodCategories){
-			foodCategoryIDs.add(foodCategory.getFoodCategoryId());
-		}
-		mav.addObject("foodCategoryIDs", foodCategoryIDs);
 		
 		String lang = RequestContextUtils.getLocale(request).toString();
 		session.setAttribute("lang", lang);

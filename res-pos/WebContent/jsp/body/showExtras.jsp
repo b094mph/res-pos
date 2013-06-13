@@ -53,4 +53,4 @@
 		extraCategoryNames.push("${extrasCategory.foodCategoryName}");
 	</c:forEach>
 </script>
-<script type="text/javascript" src="js/extras.js"></script>
+<script type="text/javascript" src="js/showExtras.js"></script>

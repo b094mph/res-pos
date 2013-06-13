@@ -40,7 +40,10 @@
 <script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript" src="js/fixed-table-header.js"></script>
 <script>
-	var foodCategoryIDs = ${foodCategoryIDs};
+	var foodCategoryIDs = new Array();
+	<c:forEach items="${foodCategories}" var="foodCategory">
+		foodCategoryIDs.push("${foodCategory.foodCategoryId}");
+	</c:forEach>
 	
 	$(document).ready(function(){	
 		// make the header fixed on scroll

@@ -28,3 +28,11 @@
 		</button>
 	</c:forEach>
 </table>
+
+<script>
+	var extraIDs = new Array();
+	<c:forEach items="${extrasSubCategories}" var="extrasSubCategory">
+		extraIDs.push("${extrasSubCategory.menuId}");
+	</c:forEach>
+</script>
+<script type="text/javascript" src="js/extras.js"></script>

@@ -1,6 +1,5 @@
 package com.res.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -55,12 +54,6 @@ public class SubMenuAjaxController {
 		if(!subCategories.isEmpty()){
 			mav.addObject("foodCategoryName", foodCategory);
 			mav.addObject("foodCategoryCName", subCategories.get(0).getFoodCategory().getFoodCategoryCName());
-			
-			List<Long> menuIDs = new ArrayList<Long>();
-			for(Menu foodItem : subCategories){
-				menuIDs.add(foodItem.getMenuId());
-			}
-			mav.addObject("menuIDs", menuIDs);
 		}else{
 			logger.error("subCategories is empty.");
 			throw new EmptyCollectionException(messageLoader.getMessage("arraylist.empty"));

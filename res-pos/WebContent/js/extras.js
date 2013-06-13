@@ -1,28 +1,30 @@
 $(document).ready(function(){
 
-	for(var i = 0; i < extraCategoryNames.length; i++){
-		var extraLongName = '#' + extraCategoryNames[i].toString();
-		
-		$(extraLongName).click(function(){
-			getExtrasSubCategory($(this).val());
-		});
+	for(var i =0; i < extraIDs.length; i++){
+		var id = "#extra_" + extraIDs[i].toString();
+		createSubCategoriesOnClick(id);
 	}
-
 });
 
-function getExtrasSubCategory(extrasCategoryId){
-	var params = {extrasCategoryId: extrasCategoryId};
+function createSubCategoriesOnClick(id){
+	$(id).click(function(){
+		addToOrder($(this).val(), $('#foodLegend').val());
+	});
+}
+
+function addToOrder(menuId, foodLegend){
+	var params = {menuId: menuId, foodLegend: foodLegend};
 	$.ajax({
 		type: "GET",
-		url: "extrasSubCategory.json",
+		url: "addToOrder.json",
 		data: params,
 		success:
 			function(data){
-				$('#extraMenu').html(data).show();
-			},
+				$('#orderListAjax').html(data).show();
+		},
 		error:
 			function(data){
-				alert("unsuccessful displaying extras subcategories in ajax call...");
-			}
+				alert("unsuccessful in order ajax...");
+		}
 	});
 }

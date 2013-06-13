@@ -5,8 +5,8 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
-	for(var i = menuIDs[0]; i <= menuIDs[menuIDs.length-1]; i++){
-		id = "#menu_" + i.toString();
+	for(var i = 0; i < menuIDs.length; i++){
+		id = "#menu_" + menuIDs[i].toString();
 		createSubCategoriesOnClick(id);
 	}
 });
