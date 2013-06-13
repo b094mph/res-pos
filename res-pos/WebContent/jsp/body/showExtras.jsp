@@ -5,7 +5,7 @@
 <fieldset>
 <legend>Extras</legend>
 <div class="row-fluid">
-	<div class="btn-group">
+	<div class="btn-group" data-toggle="buttons-radio">
 		<c:forEach items="${extrasCategories}" var="extrasCategory">
 			<button id="${extrasCategory.foodCategoryName}"
 				type="button"
@@ -28,7 +28,7 @@
 	<br>
 </div>
 <div class="row-fluid">
-	<div class="btn-group">
+	<div class="btn-group" data-toggle="buttons-radio">
 		<button id="add" type="button" class="btn btn-primary btn2">Add</button>
 		<button id="no" type="button" class="btn btn-primary btn2">No</button>
 		<button id="less" type="button" class="btn btn-primary btn2">Less</button>
