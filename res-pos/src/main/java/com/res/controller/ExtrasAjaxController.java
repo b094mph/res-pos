@@ -72,7 +72,9 @@ public class ExtrasAjaxController {
 		List<Menu> extrasSubCategories = menuService.getMenuByExtrasCategory(restaurantId, extrasCategoryId);
 		mav.addObject("extrasSubCategories", extrasSubCategories);
 		mav.addObject("lang", session.getAttribute("lang"));
-		mav.addObject("rowIndex", rowIndex);
+		if(rowIndex != null){
+			mav.addObject("rowIndex", rowIndex.intValue());
+		}
 		
 		return mav;
 	}

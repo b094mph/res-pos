@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	
+
 	for(var i =0; i < extraIDs.length; i++){
 		var id = "#extra_" + extraIDs[i].toString();
 		createSubCategoriesOnClick(id);

@@ -84,8 +84,10 @@ $(document).ready(function(){
 	//on adding an item, last row is selected
 	var selectLast = $('#selectLast').val();
 	if(selectLast){
+		alert("select last is true");
 		$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
 	}else{
+		alert("select last is false");
 		var test = $('#rowIndex').val();
 		$('#orderTable tbody tr:eq('+test+')').addClass('highlight').siblings().removeClass('highlight');
 	}
