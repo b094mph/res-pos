@@ -28,9 +28,12 @@ public class ExtrasAjaxController {
 	@Autowired MessageLoader messageLoader;
 	
 	@RequestMapping(value="/showExtras.json", method=RequestMethod.GET)
-	public ModelAndView showExtras(HttpServletRequest request) throws ServiceException{
+	public ModelAndView showExtras(HttpServletRequest request,
+			@RequestParam("rowIndex") int rowIndex) throws ServiceException{
 		HttpSession session = request.getSession();
+		session.setAttribute("rowIndex", rowIndex);
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
+		
 		if(restaurantId == null){
 			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
 		}
@@ -55,6 +58,9 @@ public class ExtrasAjaxController {
 			@RequestParam("extrasCategoryId") long extrasCategoryId) throws ServiceException{
 		HttpSession session = request.getSession();
 		
+		session.setAttribute("selectLast", Boolean.FALSE);
+		Integer rowIndex = (Integer) session.getAttribute("rowIndex");
+		
 		ModelAndView mav = new ModelAndView("extras");
 		logger.info("ExtraCategoryId = " + extrasCategoryId);
 		
@@ -66,6 +72,7 @@ public class ExtrasAjaxController {
 		List<Menu> extrasSubCategories = menuService.getMenuByExtrasCategory(restaurantId, extrasCategoryId);
 		mav.addObject("extrasSubCategories", extrasSubCategories);
 		mav.addObject("lang", session.getAttribute("lang"));
+		mav.addObject("rowIndex", rowIndex);
 		
 		return mav;
 	}

@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	
 	for(var i =0; i < extraIDs.length; i++){
 		var id = "#extra_" + extraIDs[i].toString();
 		createSubCategoriesOnClick(id);
@@ -13,7 +13,10 @@ function createSubCategoriesOnClick(id){
 }
 
 function addToOrder(menuId, foodLegend){
-	var params = {menuId: menuId, foodLegend: foodLegend};
+	var params = {menuId: menuId, 
+					foodLegend: foodLegend,
+					rowIndex: $('#rowIndex').val(),
+					selectLast: false};
 	$.ajax({
 		type: "GET",
 		url: "addToOrder.json",

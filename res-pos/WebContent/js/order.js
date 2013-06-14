@@ -82,32 +82,40 @@ $(document).ready(function(){
 	});
 	
 	//on adding an item, last row is selected
-	$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
+	var selectLast = $('#selectLast').val();
+	if(selectLast){
+		$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
+	}else{
+		var test = $('#rowIndex').val();
+		$('#orderTable tbody tr:eq('+test+')').addClass('highlight').siblings().removeClass('highlight');
+	}
 	
 	$('#small').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, SMALL);
 	});
 	
 	$('#large').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, LARGE);
 	});
 	
 	$('#lunch').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, LUNCH);
 	});
 	
 	$('#combo').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, COMBO);
 	});
 	
 	$('#extras').click(function(){
+		var params = {rowIndex:  getRowIndex()};
 		$.ajax({
 			type: "GET",
 			url: "showExtras.json",
+			data: params,
 			success:
 				function(data){
 					$('#subcategoryajax').html(data).show();
@@ -327,4 +335,9 @@ function enableDeliveryFields(){
 	$('#city').removeAttr("disabled");
 	$('#state').removeAttr("disabled");
 	$('#zipCode').removeAttr("disabled");
+}
+
+function getRowIndex(){
+	var rowIndex = $('#orderTable tbody tr.highlight').index();
+	return rowIndex;
 }

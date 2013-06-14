@@ -6,6 +6,8 @@
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
 <input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
+<input id="rowIndex" type="hidden" value='<c:out value="${rowIndex}"/>'>
+<input id="selectLast" type="hidden" value='<c:out value="${selectLast}"/>'>
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 <style>
