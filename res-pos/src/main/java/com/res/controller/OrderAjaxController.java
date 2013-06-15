@@ -109,7 +109,9 @@ public class OrderAjaxController {
 	@RequestMapping(value="/addToOrder.json", method=RequestMethod.GET)
 	public String addToOrder(HttpServletRequest request, 
 			@RequestParam("menuId") long menuId,
-			@RequestParam(value="foodLegend", defaultValue="") String foodLegend){
+			@RequestParam(value="foodLegend", defaultValue="") String foodLegend,
+			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
+			@RequestParam(value="lastRow", defaultValue="true") boolean lastRow){
 		
 		logger.info("hitting addOrder controller with menuId " + menuId);
 		Menu menu = menuService.getMenuByMenuId(menuId);
@@ -136,8 +138,12 @@ public class OrderAjaxController {
 		
 		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		
-		orderList.add(orderDetail);
-		
+		if(lastRow){
+			orderList.add(orderDetail);
+		}else{
+			orderList.add(rowIndex+1, orderDetail);
+		}
+			
 		return "redirect:/showOrder.html";
 	}
 	

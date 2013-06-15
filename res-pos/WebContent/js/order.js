@@ -7,7 +7,7 @@ var params = null;
 var orderType = null;
 
 $.ajaxSetup({
-	cache: false
+	cache: true
 });
 
 $(document).ready(function(){
@@ -85,29 +85,31 @@ $(document).ready(function(){
 	$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
 	
 	$('#small').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, SMALL);
 	});
 	
 	$('#large').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, LARGE);
 	});
 	
 	$('#lunch').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, LUNCH);
 	});
 	
 	$('#combo').click(function(){
-		var rowIndex = $('#orderTable tbody tr.highlight').index();
+		var rowIndex = getRowIndex();
 		changeSize(rowIndex, COMBO);
 	});
 	
 	$('#extras').click(function(){
+		var params = {rowIndex: getRowIndex()};
 		$.ajax({
 			type: "GET",
 			url: "showExtras.json",
+			data: params,
 			success:
 				function(data){
 					$('#subcategoryajax').html(data).show();
@@ -327,4 +329,9 @@ function enableDeliveryFields(){
 	$('#city').removeAttr("disabled");
 	$('#state').removeAttr("disabled");
 	$('#zipCode').removeAttr("disabled");
+}
+
+
+function getRowIndex(){
+	return $('#orderTable tbody tr.highlight').index();
 }

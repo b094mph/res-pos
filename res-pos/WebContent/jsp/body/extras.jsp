@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<input id="rowIndex" type="hidden" value="${rowIndex}">
+
 <table>
 	<c:forEach items="${extrasSubCategories}" var="extrasSubCategory">
 		<button id="extra_${extrasSubCategory.menuId}"

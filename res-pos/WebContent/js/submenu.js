@@ -18,7 +18,9 @@ function createSubCategoriesOnClick(id){
 }
 
 function addToOrder(menuId, foodLegend){
-	var params = {menuId: menuId, foodLegend: foodLegend};
+	var params = {menuId: menuId, 
+			foodLegend: foodLegend,
+			lastRow: true};
 	$.ajax({
 		type: "GET",
 		url: "addToOrder.json",

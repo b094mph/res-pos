@@ -13,7 +13,10 @@ function createSubCategoriesOnClick(id){
 }
 
 function addToOrder(menuId, foodLegend){
-	var params = {menuId: menuId, foodLegend: foodLegend};
+	var params = {menuId: menuId, 
+			foodLegend: foodLegend,
+			rowIndex: getRowIndex(),
+			lastRow: false};
 	$.ajax({
 		type: "GET",
 		url: "addToOrder.json",
@@ -27,4 +30,8 @@ function addToOrder(menuId, foodLegend){
 				alert("unsuccessful in order ajax...");
 		}
 	});
+}
+
+function getRowIndex(){
+	return $('#rowIndex').val();
 }
