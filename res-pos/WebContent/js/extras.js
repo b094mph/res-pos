@@ -4,6 +4,10 @@ $(document).ready(function(){
 		var id = "#extra_" + extraIDs[i].toString();
 		createSubCategoriesOnClick(id);
 	}
+	
+	function getRowIndex(){
+		return $('#rowIndex').val();
+	}
 });
 
 function createSubCategoriesOnClick(id){
@@ -14,9 +18,9 @@ function createSubCategoriesOnClick(id){
 
 function addToOrder(menuId, foodLegend){
 	var params = {menuId: menuId, 
-					foodLegend: foodLegend,
-					rowIndex: $('#rowIndex').val(),
-					selectLast: false};
+			foodLegend: foodLegend,
+			rowIndex: getRowIndex(),
+			lastRow: false};
 	$.ajax({
 		type: "GET",
 		url: "addToOrder.json",

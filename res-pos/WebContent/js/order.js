@@ -7,7 +7,7 @@ var params = null;
 var orderType = null;
 
 $.ajaxSetup({
-	cache: false
+	cache: true
 });
 
 $(document).ready(function(){
@@ -82,14 +82,12 @@ $(document).ready(function(){
 	});
 	
 	//on adding an item, last row is selected
-	var selectLast = $('#selectLast').val();
-	if(selectLast){
-		alert("select last is true");
+	var lastRow = $('#lastRow').val();
+	if(lastRow == 'true'){
 		$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
 	}else{
-		alert("select last is false");
-		var test = $('#rowIndex').val();
-		$('#orderTable tbody tr:eq('+test+')').addClass('highlight').siblings().removeClass('highlight');
+		var rowIndex = $('#rowIndex').val();
+		$('#orderTable tbody tr:eq('+rowIndex+')').addClass('highlight').siblings().removeClass('highlight');
 	}
 	
 	$('#small').click(function(){
@@ -113,7 +111,7 @@ $(document).ready(function(){
 	});
 	
 	$('#extras').click(function(){
-		var params = {rowIndex:  getRowIndex()};
+		var params = {rowIndex: getRowIndex()};
 		$.ajax({
 			type: "GET",
 			url: "showExtras.json",
@@ -340,6 +338,5 @@ function enableDeliveryFields(){
 }
 
 function getRowIndex(){
-	var rowIndex = $('#orderTable tbody tr.highlight').index();
-	return rowIndex;
+	return $('#orderTable tbody tr.highlight').index();
 }

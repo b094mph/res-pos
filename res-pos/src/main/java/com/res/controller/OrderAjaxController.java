@@ -72,12 +72,8 @@ public class OrderAjaxController {
 		mav.addObject("lang", session.getAttribute("lang"));
 		mav.addObject("orderList", orderList);
 		mav.addObject("orderListSize", orderList.size());
-		if(BooleanUtils.isTrue(selectLast)){
-			mav.addObject("selectLast", selectLast.booleanValue());
-		}
-		if(rowIndex != null){
-			mav.addObject("rowIndex", rowIndex.intValue());
-		}
+		mav.addObject("rowIndex", session.getAttribute("rowIndex"));
+		mav.addObject("lastRow", session.getAttribute("lastRow"));
 		
 		BigDecimal subTotal = new BigDecimal(0.00);
 		
@@ -121,10 +117,9 @@ public class OrderAjaxController {
 			@RequestParam("menuId") long menuId,
 			@RequestParam(value="foodLegend", defaultValue="") String foodLegend,
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
-			@RequestParam(value="selectLast", defaultValue="true") boolean selectLast){
-		
+			@RequestParam(value="lastRow", defaultValue="true") boolean lastRow){
 		HttpSession session = request.getSession();
-		session.setAttribute("selectLast", selectLast);
+		session.setAttribute("lastRow", lastRow);
 		session.setAttribute("rowIndex", rowIndex);
 		
 		logger.info("hitting addOrder controller with menuId " + menuId);
@@ -152,11 +147,12 @@ public class OrderAjaxController {
 		
 		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
 		
-		if(rowIndex == 0){
-			rowIndex = orderList.size()-1;
+		if(lastRow){
+			orderList.add(orderDetail);
+		}else{
+			orderList.add(rowIndex+1, orderDetail);
 		}
-		orderList.add(rowIndex + 1, orderDetail);
-		
+			
 		return "redirect:/showOrder.html";
 	}
 	
