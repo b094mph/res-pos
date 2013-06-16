@@ -82,7 +82,13 @@ $(document).ready(function(){
 	});
 	
 	//on adding an item, last row is selected
-	$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
+	var lastRow = $('#lastRow').val();
+	if(lastRow == 'true'){
+		$('#orderTable tbody tr:last').addClass('highlight').siblings().removeClass('highlight');
+	}else{
+		var rowIndex = $('#rowIndex').val();
+		$('#orderTable tbody tr:eq('+rowIndex+')').addClass('highlight').siblings().removeClass('highlight');
+	}
 	
 	$('#small').click(function(){
 		var rowIndex = getRowIndex();
