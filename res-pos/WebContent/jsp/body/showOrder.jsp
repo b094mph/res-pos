@@ -36,6 +36,7 @@
 				</thead>
 				<tbody>
 					<c:forEach items="${orderList}" var="orderdetail" varStatus="idx">
+						<c:set var="foodCategoryName" value="${orderdetail.menu.foodCategory.foodCategoryName}"/>
 						<tr>
 							<td>	
 								<button id="increaseQty_${pageScope.idx.index}"
@@ -56,33 +57,38 @@
 										class="btn btn-danger" 
 										value='${pageScope.idx.index}'>x</button>								
 							</td>
+						<c:choose>
+						<c:when test='${fn:startsWith(foodCategoryName, "Extra") == false}'>
 							<td>${orderdetail.quantity}</td>
 							<td>
-								<c:set var="foodCategoryName" value="${orderdetail.menu.foodCategory.foodCategoryName}"/>
-								<c:if test='${fn:startsWith(foodCategoryName, "Extra") == false}'>
-									<c:choose>
-										<c:when test="${lang == 'zh'}">
-											<c:choose>
-												<c:when test="${orderdetail.size == 'Sm'}">
-													小
-												</c:when>
-												<c:when test="${orderdetail.size == 'Ln'}">
-													午餐
-												</c:when>
-												<c:when test="${orderdetail.size == 'Cb'}">
-													盒饭
-												</c:when>
-												<c:otherwise>
-													大
-												</c:otherwise>
-											</c:choose>
-										</c:when>
-										<c:otherwise>
-											${orderdetail.size}
-										</c:otherwise>
-									</c:choose>
-								</c:if>
+								<c:choose>
+									<c:when test="${lang == 'zh'}">
+										<c:choose>
+											<c:when test="${orderdetail.size == 'Sm'}">
+												小
+											</c:when>
+											<c:when test="${orderdetail.size == 'Ln'}">
+												午餐
+											</c:when>
+											<c:when test="${orderdetail.size == 'Cb'}">
+												盒饭
+											</c:when>
+											<c:otherwise>
+												大
+											</c:otherwise>
+										</c:choose>
+									</c:when>
+									<c:otherwise>
+										${orderdetail.size}
+									</c:otherwise>
+								</c:choose>
 							</td>
+						</c:when>
+						<c:otherwise>
+							<td></td>
+							<td></td>
+						</c:otherwise>
+						</c:choose>	
 							<td>
 								<c:choose>
 									<c:when test="${lang == 'zh'}">
