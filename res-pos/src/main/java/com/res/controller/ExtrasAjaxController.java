@@ -61,9 +61,6 @@ public class ExtrasAjaxController {
 			@RequestParam("extrasCategoryId") long extrasCategoryId) throws ServiceException{
 		HttpSession session = request.getSession();
 		
-		session.setAttribute("selectLast", Boolean.FALSE);
-		Integer rowIndex = (Integer) session.getAttribute("rowIndex");
-		
 		ModelAndView mav = new ModelAndView("extras");
 		logger.info("ExtraCategoryId = " + extrasCategoryId);
 		
