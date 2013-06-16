@@ -9,7 +9,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +60,6 @@ public class OrderAjaxController {
 			throws ServiceException{
 		HttpSession session = request.getSession();
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
-		Boolean selectLast = (Boolean) session.getAttribute("selectLast");
-		Integer rowIndex = (Integer) session.getAttribute("rowIndex");
 		
 		if(restaurantId == null){
 			throw new ServiceException(messageLoader.getMessage("restaurantid.not.set"));
