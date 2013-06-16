@@ -110,6 +110,10 @@ $(document).ready(function(){
 		changeSize(rowIndex, COMBO);
 	});
 	
+	if($('#orderListSize').val() > 0){
+		$('#extras').removeAttr("disabled");
+	}
+	
 	$('#extras').click(function(){
 		var params = {rowIndex: getRowIndex()};
 		$.ajax({
