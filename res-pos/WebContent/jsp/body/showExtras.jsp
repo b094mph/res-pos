@@ -10,6 +10,7 @@
 		<c:forEach items="${extrasCategories}" var="extrasCategory">
 			<button id="${extrasCategory.foodCategoryName}"
 				type="button"
+				name="extraCategoryRdo"
 				class="btn btn-primary btn2"
 				value="${extrasCategory.foodCategoryId}"
 			>
@@ -31,24 +32,20 @@
 <div class="row-fluid">
 	<div class="btn-group" data-toggle="buttons-radio">
 		<c:forEach items="${tasteModifiers}" var="modifier">
-			<c:choose>
-				<c:when test="${lang == 'zh'}">
-					<button id="${modifier.modifyTasteCName}" 
-							type="button" 
-							class="btn btn-primary btn2" 
-							value="${modifier.modifyTasteCName}">
+			<button id="${modifier.modifyTasteName}" 
+					type="button"
+					name="tasteModifierRdo" 
+					class="btn btn-primary btn2" 
+					value="${modifier.modifyTasteName}">
+				<c:choose>
+					<c:when test="${lang == 'zh'}">
 						${modifier.modifyTasteCName}
-					</button>
-				</c:when>
-				<c:otherwise>
-					<button id="${modifier.modifyTasteName}" 
-							type="button" 
-							class="btn btn-primary btn2" 
-							value="${modifier.modifyTasteName}">
+					</c:when>
+					<c:otherwise>
 						${modifier.modifyTasteName}
-					</button>
-				</c:otherwise>
-			</c:choose>
+					</c:otherwise>
+				</c:choose>
+			</button>
 		</c:forEach>
 	</div>
 </div>
