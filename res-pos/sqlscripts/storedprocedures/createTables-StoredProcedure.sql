@@ -196,9 +196,10 @@ CREATE TABLE IF NOT EXISTS modifytaste (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS restaurantmodifytaste (
+	restaurantmodifytasteid BIGINT(11) NOT NULL AUTO_INCREMENT,
 	restaurantid BIGINT(11) NOT NULL,
 	modifytasteid BIGINT(11) NOT NULL,
-	PRIMARY KEY (restaurantid, modifytasteid),
+	PRIMARY KEY (restaurantmodifytasteid),
 	UNIQUE INDEX (restaurantid, modifytasteid),
 	CONSTRAINT fk_restaurantmodifytaste_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant(restaurantid) ON DELETE CASCADE,
 	CONSTRAINT fk_restaurantmodifytaste_modifytaste FOREIGN KEY (modifytasteid) REFERENCES modifytaste(modifytasteid) ON DELETE CASCADE

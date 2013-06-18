@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.model.ModifyTaste;
 
 public interface MenuService {
 
@@ -21,5 +22,6 @@ public interface MenuService {
 	public List<Menu> getComboSubcategories(long restaurantId);
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
 	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId);
+	public List<ModifyTaste> getModifiers(long restaurantId);
 	
 }

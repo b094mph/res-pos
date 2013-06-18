@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.exception.ServiceException;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.model.ModifyTaste;
 import com.res.service.MenuService;
 import com.res.util.MessageLoader;
 
@@ -45,12 +46,14 @@ public class ExtrasAjaxController {
 		
 		List<FoodCategory> extrasCategories = menuService.getExtrasCategoryFromMenu(restaurantId);
 		logger.info("Number of Extras categories: " +  extrasCategories.size());
+		List<ModifyTaste> tasteModifiers = menuService.getModifiers(restaurantId);
 		
 		for(FoodCategory extrasCategory : extrasCategories){
 			String foodCategoryName = extrasCategory.getFoodCategoryName().replace("Extra ", "");
 			extrasCategory.setFoodCategoryName(foodCategoryName);
 		}
 		mav.addObject("extrasCategories", extrasCategories);
+		mav.addObject("tasteModifiers", tasteModifiers);
 		mav.addObject("lang", session.getAttribute("lang"));
 		
 		return mav;

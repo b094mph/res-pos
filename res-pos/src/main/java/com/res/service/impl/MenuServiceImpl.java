@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.res.dao.hibernate.MenuDao;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.model.ModifyTaste;
 import com.res.service.MenuService;
 
 @Service("menuService")
@@ -81,6 +82,11 @@ public class MenuServiceImpl implements MenuService {
 	@Override
 	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId) {
 		return menuDao.getMenuByExtrasCategory(restaurantId, foodCategoryId);
+	}
+
+	@Override
+	public List<ModifyTaste> getModifiers(long restaurantId) {
+		return menuDao.getModifiers(restaurantId);
 	}
 
 }

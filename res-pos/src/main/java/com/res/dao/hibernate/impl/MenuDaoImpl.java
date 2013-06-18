@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 import com.res.dao.hibernate.MenuDao;
 import com.res.model.FoodCategory;
 import com.res.model.Menu;
+import com.res.model.ModifyTaste;
 import com.res.util.MessageLoader;
 
 @Repository("menuDao")
@@ -190,6 +191,19 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
 		query.setParameter("foodCategoryId", foodCategoryId);
+		
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ModifyTaste> getModifiers(long restaurantId) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT m.modifyTaste FROM RestaurantModifyTaste m ");
+		sb.append("WHERE m.restaurant.restaurantId = :restaurantId");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setParameter("restaurantId", restaurantId);
 		
 		return query.list();
 	}

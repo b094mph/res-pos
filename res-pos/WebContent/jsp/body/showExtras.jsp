@@ -30,12 +30,26 @@
 </div>
 <div class="row-fluid">
 	<div class="btn-group" data-toggle="buttons-radio">
-		<button id="add" type="button" class="btn btn-primary btn2" value="add">Add</button>
-		<button id="no" type="button" class="btn btn-primary btn2" value="no">No</button>
-		<button id="less" type="button" class="btn btn-primary btn2" value="less">Less</button>
-		<button id="with" type="button" class="btn btn-primary btn2" value="with">With</button>
-		<button id="only" type="button" class="btn btn-primary btn2" value="only">Only</button>
-		<button id="want" type="button" class="btn btn-primary btn2" value="want">Want</button>
+		<c:forEach items="${tasteModifiers}" var="modifier">
+			<c:choose>
+				<c:when test="${lang == 'zh'}">
+					<button id="${modifier.modifyTasteCName}" 
+							type="button" 
+							class="btn btn-primary btn2" 
+							value="${modifier.modifyTasteCName}">
+						${modifier.modifyTasteCName}
+					</button>
+				</c:when>
+				<c:otherwise>
+					<button id="${modifier.modifyTasteName}" 
+							type="button" 
+							class="btn btn-primary btn2" 
+							value="${modifier.modifyTasteName}">
+						${modifier.modifyTasteName}
+					</button>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
 	</div>
 </div>
 <div class="row-fluid">
