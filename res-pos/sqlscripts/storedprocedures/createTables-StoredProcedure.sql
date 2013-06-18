@@ -187,9 +187,27 @@ CREATE TABLE IF NOT EXISTS customerorder (
 	CONSTRAINT fk_customerorder_users FOREIGN KEY (username) REFERENCES users (username) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
+CREATE TABLE IF NOT EXISTS modifytaste (
+	modifytasteid BIGINT(11) NOT NULL AUTO_INCREMENT,
+	modifytastename VARCHAR(10) NOT NULL UNIQUE,
+	modifytastecname VARCHAR(10),
+	PRIMARY KEY (modifytasteid),
+	UNIQUE INDEX (modifytastename)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS restaurantmodifytaste (
+	restaurantid BIGINT(11) NOT NULL,
+	modifytasteid BIGINT(11) NOT NULL,
+	PRIMARY KEY (restaurantid, modifytasteid),
+	UNIQUE INDEX (restaurantid, modifytasteid),
+	CONSTRAINT fk_restaurantmodifytaste_restaurant FOREIGN KEY (restaurantid) REFERENCES restaurant(restaurantid) ON DELETE CASCADE,
+	CONSTRAINT fk_restaurantmodifytaste_modifytaste FOREIGN KEY (modifytasteid) REFERENCES modifytaste(modifytasteid) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;
+
 CREATE TABLE IF NOT EXISTS orderdetail (
 	orderdetailid BIGINT(11) NOT NULL AUTO_INCREMENT,
 	customerorderid BIGINT(11) NOT NULL,
+	modifytasteid BIGINT(11),
 	menuid BIGINT(11) NOT NULL,
 	quantity INT NOT NULL,
 	size VARCHAR(5) NOT NULL,

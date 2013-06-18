@@ -47,6 +47,10 @@ public class OrderDetail implements Serializable{
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="customerorderid", nullable=false)
 	private CustomerOrder customerOrder;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="modifytasteid")
+	private ModifyTaste modifyTaste;
 
 	public long getOrderDetailId() {
 		return orderDetailId;
@@ -103,5 +107,13 @@ public class OrderDetail implements Serializable{
 	public void setCustomerOrder(CustomerOrder customerOrder) {
 		this.customerOrder = customerOrder;
 	}
-		
+
+	public ModifyTaste getModifyTaste() {
+		return modifyTaste;
+	}
+
+	public void setModifyTaste(ModifyTaste modifyTaste) {
+		this.modifyTaste = modifyTaste;
+	}
+
 }

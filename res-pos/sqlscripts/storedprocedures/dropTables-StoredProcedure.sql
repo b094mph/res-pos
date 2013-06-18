@@ -2,7 +2,9 @@ DELIMITER //
 CREATE PROCEDURE restaurant.dropTables()
 BEGIN
 
+DROP TABLE IF EXISTS restaurantmodifytaste;
 DROP TABLE IF EXISTS orderdetail;
+DROP TABLE IF EXISTS modifytaste;
 DROP TABLE IF EXISTS customerorder;
 DROP TABLE IF EXISTS menu;
 DROP TABLE IF EXISTS agentjob;

@@ -18,7 +18,7 @@ BEGIN
 	INSERT INTO restaurant (addressid, personid, restaurantname, location, phone1, 
 			phone2,	deliverycost,tax, rounding, montothursopen, montothursclose,
 			friopen, friclose, satopen, satclose, sunopen, sunclose)
-		VALUES(1,1,'New City Chinese', 'across from dominos', '8454567890', 
+		VALUES(1,1,'New City Chinese', 'across from dominos', '8454185288', 
 			'8457893456',0.00, 0.08, 1, '11:30 am', '09:30 pm', '11:30 am', '10:00 pm',
 			'11:30 am', '10:00 pm', '12:00 pm', '09:30 pm');
 	INSERT INTO restaurant(addressid, personid, restaurantname, location, phone1, 
@@ -27,5 +27,20 @@ BEGIN
 		VALUES(1,1,'Uncle Johns', 'across kfc', '7163239830',
 			'7163239831', 1.00, 0.08, 0, '11:30 am', '10:00 pm', '11:30 am', '10:00 pm',
 			'11:30 am', '10:00 pm', '12:00 pm', '10:00 pm');
+
+	/* Prepopulate data */
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Add','加');
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('No','不');
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Less','少');
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('With','同');
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Only','只');
+	INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Want','要');
+
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,1);
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,2);
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,3);
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,4);
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,5);
+	INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,6);
 END//
 DELIMITER ;
