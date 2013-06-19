@@ -6,29 +6,6 @@
 <fieldset>
 <legend><spring:message code="label.extras"/></legend>
 <div class="row-fluid">
-	<div id="tasteModifierDiv" class="btn-group" data-toggle="buttons-radio">
-		<c:forEach items="${tasteModifiers}" var="modifier">
-			<button id="${modifier.modifyTasteName}" 
-					type="button"
-					name="tasteModifierRdo" 
-					class="btn btn-primary btn2" 
-					value="${modifier.modifyTasteId}">
-				<c:choose>
-					<c:when test="${lang == 'zh'}">
-						${modifier.modifyTasteCName}
-					</c:when>
-					<c:otherwise>
-						${modifier.modifyTasteName}
-					</c:otherwise>
-				</c:choose>
-			</button>
-		</c:forEach>
-	</div>
-</div>
-<div class="row-fluid">
-	<br>
-</div>
-<div class="row-fluid">
 	<div class="btn-group" data-toggle="buttons-radio">
 		<c:forEach items="${extrasCategories}" var="extrasCategory">
 			<button id="${extrasCategory.foodCategoryName}"
@@ -43,6 +20,29 @@
 					</c:when>
 					<c:otherwise>
 						${extrasCategory.foodCategoryName}
+					</c:otherwise>
+				</c:choose>
+			</button>
+		</c:forEach>
+	</div>
+</div>
+<div class="row-fluid">
+	<br>
+</div>
+<div class="row-fluid">
+	<div id="tasteModifierDiv" class="btn-group" data-toggle="buttons-radio">
+		<c:forEach items="${tasteModifiers}" var="modifier">
+			<button id="${modifier.modifyTasteName}" 
+					type="button"
+					name="tasteModifierRdo" 
+					class="btn btn-primary btn2" 
+					value="${modifier.modifyTasteId}">
+				<c:choose>
+					<c:when test="${lang == 'zh'}">
+						${modifier.modifyTasteCName}
+					</c:when>
+					<c:otherwise>
+						${modifier.modifyTasteName}
 					</c:otherwise>
 				</c:choose>
 			</button>

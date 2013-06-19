@@ -2,6 +2,10 @@ var modifyTasteId = null;
 
 $(document).ready(function(){
 
+	$("[name=tasteModifierRdo]").attr("checked", "true").click(function(){
+		modifyTasteId = $(this).val();
+	});
+	
 	for(var i =0; i < extraIDs.length; i++){
 		var id = "#extra_" + extraIDs[i].toString();
 		createSubCategoriesOnClick(id);
@@ -10,10 +14,7 @@ $(document).ready(function(){
 	function getRowIndex(){
 		return $('#rowIndex').val();
 	}
-	
-	$("[name=tasteModifierRdo]").attr("checked", "true").click(function(){
-		modifyTasteId = $(this).val();
-	});
+
 });
 
 function getTasteModifier(){
