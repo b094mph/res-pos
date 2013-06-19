@@ -5,9 +5,9 @@
 		<div class="container-fluid">
 			<div class="row-fluid">
 			<div class="span4">
-				<a href="#"><spring:message code="label.terms.of.service"/></a>&nbsp;&nbsp;&nbsp;
-				<a href="#"><spring:message code="label.privacy"/></a>&nbsp;&nbsp;&nbsp;
-				<a href="#"><spring:message code="label.security"/></a>
+				<button id="ToS" class="btn btn-link"><spring:message code="label.terms.of.service"/></button>
+				<button id="privacy" class="btn btn-link"><spring:message code="label.privacy"/></button>
+				<button id="security" class="btn btn-link"><spring:message code="label.security"/></button>
 			</div>
 			<div class="span4">
 				<div class="center">
@@ -30,4 +30,7 @@
 	</div>
 </div>
 
+<jsp:include page="modal/termsOfService.jsp"/>
+<jsp:include page="modal/privacy.jsp"/>
+<jsp:include page="modal/security.jsp"/>
 <script type="text/javascript" src="js/footer.js"></script>

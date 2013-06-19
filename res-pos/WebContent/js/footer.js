@@ -1,5 +1,18 @@
 
 $(document).ready(function(){
+	
+	$('#ToS').click(function(){
+		$('#modal-ToS').modal();
+	});
+	
+	$('#privacy').click(function(){
+		$('#modal-privacy').modal();
+	});
+	
+	$('#security').click(function(){
+		$('#modal-security').modal();
+	});
+	
 	$('#facebook').attr('title', "Like us on Facebook");
 	$('#facebook').tooltip();
 	$('#twitter').attr('title', "Follow us on Twitter");
