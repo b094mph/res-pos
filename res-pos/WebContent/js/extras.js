@@ -23,7 +23,12 @@ function getTasteModifier(){
 
 function createSubCategoriesOnClick(id){
 	$(id).click(function(){
-		addToOrder($(this).val(), "Extras", getTasteModifier());
+		var modifyTasteId = getTasteModifier();
+		if(modifyTasteId == null){
+			alert("Please choose a taste modifier.");
+			return;
+		}
+		addToOrder($(this).val(), "Extras", modifyTasteId);
 	});
 }
 
