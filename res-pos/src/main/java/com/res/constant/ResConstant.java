@@ -25,5 +25,13 @@ public class ResConstant {
 	public static final String COMPLETE = "Complete";
 	public static final String PICKEDUP = "Picked Up";
 	public static final String PENDING = "Pending";
-			
+
+	//Taste Modifier
+	public static final String ADD = "Add";
+	public static final String NO = "No";
+	public static final String LESS = "Less";
+	public static final String WITH = "With";
+	public static final String ONLY = "Only";
+	public static final String WANT = "Want";
+	
 }

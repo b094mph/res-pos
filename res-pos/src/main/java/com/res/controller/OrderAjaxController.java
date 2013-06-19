@@ -25,6 +25,7 @@ import com.res.exception.ServiceException;
 import com.res.model.Address;
 import com.res.model.CustomerOrder;
 import com.res.model.Menu;
+import com.res.model.ModifyTaste;
 import com.res.model.OrderDetail;
 import com.res.model.Person;
 import com.res.model.Restaurant;
@@ -72,12 +73,12 @@ public class OrderAjaxController {
 		mav.addObject("rowIndex", session.getAttribute("rowIndex"));
 		mav.addObject("lastRow", session.getAttribute("lastRow"));
 		
-		BigDecimal subTotal = new BigDecimal(0.00);
+		BigDecimal subTotal = BigDecimal.ZERO;
 		
 		Restaurant res = restaurantService.getResturantInfo(restaurantId);
 		BigDecimal tax = res.getTax();
 		logger.info("tax = " + tax);
-		BigDecimal grandTotal = new BigDecimal(0.00);
+		BigDecimal grandTotal = BigDecimal.ZERO;
 		
 		mav.addObject("salesTax", tax.multiply(new BigDecimal(100)));
 		
@@ -128,10 +129,6 @@ public class OrderAjaxController {
 		orderDetail.setQuantity(1);
 		orderDetail.setMenu(menu);
 		
-		if(modifyTasteId != 0){
-			orderDetail.setModifyTaste(menuService.getTasteModifier(modifyTasteId));
-		}
-		
 		BigDecimal price = null;
 		
 		String foodCategory = menu.getFoodCategory().getFoodCategoryName().toLowerCase();
@@ -148,7 +145,17 @@ public class OrderAjaxController {
 			price = menu.getLarge().multiply(new BigDecimal(orderDetail.getQuantity()));
 		}
 		
-		orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+		ModifyTaste modifyTaste = null;
+		if(modifyTasteId != 0){
+			modifyTaste = menuService.getTasteModifier(modifyTasteId);
+			orderDetail.setModifyTaste(modifyTaste);
+		}
+		
+		if(modifyTaste == null || ResConstant.ADD.equalsIgnoreCase(modifyTaste.getModifyTasteName())){
+			orderDetail.setPrice(price.setScale(ResConstant.SCALE));
+		}else{ //ignore price for taste modifiers (NO, LESS, WITH, ONLY, WANT )
+			orderDetail.setPrice(BigDecimal.ZERO.setScale(ResConstant.SCALE));
+		}
 		
 		if(lastRow){
 			orderList.add(orderDetail);
