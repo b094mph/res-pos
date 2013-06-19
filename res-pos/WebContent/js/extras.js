@@ -1,3 +1,5 @@
+var modifyTasteId = null;
+
 $(document).ready(function(){
 
 	for(var i =0; i < extraIDs.length; i++){
@@ -8,17 +10,26 @@ $(document).ready(function(){
 	function getRowIndex(){
 		return $('#rowIndex').val();
 	}
+	
+	$("[name=tasteModifierRdo]").attr("checked", "true").click(function(){
+		modifyTasteId = $(this).val();
+	});
 });
+
+function getTasteModifier(){
+	return modifyTasteId;
+}
 
 function createSubCategoriesOnClick(id){
 	$(id).click(function(){
-		addToOrder($(this).val(), "Extras");
+		addToOrder($(this).val(), "Extras", getTasteModifier());
 	});
 }
 
-function addToOrder(menuId, foodLegend){
+function addToOrder(menuId, foodLegend, modifyTasteId){
 	var params = {menuId: menuId, 
 			foodLegend: foodLegend,
+			modifyTasteId: modifyTasteId,
 			rowIndex: getRowIndex(),
 			lastRow: false};
 	$.ajax({

@@ -26,6 +26,14 @@ public class ModifyTaste implements Serializable{
 	@Column(name="modifytastecname", length=10)
 	private String modifyTasteCName;
 
+	public long getModifyTasteId() {
+		return modifyTasteId;
+	}
+
+	public void setModifyTasteId(long modifyTasteId) {
+		this.modifyTasteId = modifyTasteId;
+	}
+
 	public String getModifyTasteName() {
 		return modifyTasteName;
 	}

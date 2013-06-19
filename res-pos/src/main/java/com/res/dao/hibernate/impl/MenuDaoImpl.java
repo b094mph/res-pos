@@ -197,7 +197,7 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<ModifyTaste> getModifiers(long restaurantId) {
+	public List<ModifyTaste> getTasteModifiers(long restaurantId) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("SELECT m.modifyTaste FROM RestaurantModifyTaste m ");
 		sb.append("WHERE m.restaurant.restaurantId = :restaurantId");
@@ -206,6 +206,11 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 		query.setParameter("restaurantId", restaurantId);
 		
 		return query.list();
+	}
+
+	@Override
+	public ModifyTaste getTasteModifier(long id) {
+		return (ModifyTaste) getCurrentSession().get(ModifyTaste.class, id);
 	}
 	
 }

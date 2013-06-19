@@ -16,7 +16,7 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 	
 	@Override
 	public Address findByAddressId(long id) {
-		return (Address) getCurrentSession().get(getClass(), id);
+		return (Address) getCurrentSession().get(Address.class, id);
 	}
 
 	@SuppressWarnings("unchecked")

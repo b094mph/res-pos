@@ -85,8 +85,13 @@ public class MenuServiceImpl implements MenuService {
 	}
 
 	@Override
-	public List<ModifyTaste> getModifiers(long restaurantId) {
-		return menuDao.getModifiers(restaurantId);
+	public List<ModifyTaste> getTasteModifiers(long restaurantId) {
+		return menuDao.getTasteModifiers(restaurantId);
+	}
+
+	@Override
+	public ModifyTaste getTasteModifier(long modifyTasteId) {
+		return menuDao.getTasteModifier(modifyTasteId);
 	}
 
 }

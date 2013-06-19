@@ -113,8 +113,10 @@ public class OrderAjaxController {
 	public String addToOrder(HttpServletRequest request, 
 			@RequestParam("menuId") long menuId,
 			@RequestParam(value="foodLegend", defaultValue="") String foodLegend,
+			@RequestParam(value="modifyTasteId", defaultValue="0") long modifyTasteId,
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
 			@RequestParam(value="lastRow", defaultValue="true") boolean lastRow){
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("lastRow", lastRow);
 		session.setAttribute("rowIndex", rowIndex);
@@ -125,6 +127,10 @@ public class OrderAjaxController {
 		OrderDetail orderDetail = new OrderDetail();
 		orderDetail.setQuantity(1);
 		orderDetail.setMenu(menu);
+		
+		if(modifyTasteId != 0){
+			orderDetail.setModifyTaste(menuService.getTasteModifier(modifyTasteId));
+		}
 		
 		BigDecimal price = null;
 		

@@ -22,6 +22,7 @@ public interface MenuService {
 	public List<Menu> getComboSubcategories(long restaurantId);
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
 	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId);
-	public List<ModifyTaste> getModifiers(long restaurantId);
+	public List<ModifyTaste> getTasteModifiers(long restaurantId);
+	public ModifyTaste getTasteModifier(long modifyTasteId);
 	
 }

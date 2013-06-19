@@ -92,10 +92,24 @@
 							<td>
 								<c:choose>
 									<c:when test="${lang == 'zh'}">
-										${orderdetail.menu.food.cFoodName}
+										<c:choose>
+										<c:when test="${not empty orderdetail.modifyTaste.modifyTasteCName}">
+											- ${orderdetail.modifyTaste.modifyTasteCName}&nbsp;${orderdetail.menu.food.cFoodName}
+										</c:when>
+										<c:otherwise>
+											${orderdetail.menu.food.cFoodName}
+										</c:otherwise>
+										</c:choose>
 									</c:when>
 									<c:otherwise>
-										${orderdetail.menu.food.foodShortName}		
+										<c:choose>
+										<c:when test="${not empty orderdetail.modifyTaste.modifyTasteName}">
+											- ${orderdetail.modifyTaste.modifyTasteName}&nbsp;${orderdetail.menu.food.foodShortName}
+										</c:when>
+										<c:otherwise>
+											${orderdetail.menu.food.foodShortName}
+										</c:otherwise>
+										</c:choose>					
 									</c:otherwise>
 								</c:choose>
 							</td>

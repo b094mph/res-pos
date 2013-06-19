@@ -21,6 +21,7 @@ public interface MenuDao extends BaseDao {
 	public List<Menu> getSubcategories(long restaurantId, String size);
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId);
 	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId);
-	public List<ModifyTaste> getModifiers(long restaurantId);
+	public List<ModifyTaste> getTasteModifiers(long restaurantId);
+	public ModifyTaste getTasteModifier(long modifyTasteId);
 	
 }

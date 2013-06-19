@@ -46,7 +46,7 @@ public class ExtrasAjaxController {
 		
 		List<FoodCategory> extrasCategories = menuService.getExtrasCategoryFromMenu(restaurantId);
 		logger.info("Number of Extras categories: " +  extrasCategories.size());
-		List<ModifyTaste> tasteModifiers = menuService.getModifiers(restaurantId);
+		List<ModifyTaste> tasteModifiers = menuService.getTasteModifiers(restaurantId);
 		
 		for(FoodCategory extrasCategory : extrasCategories){
 			String foodCategoryName = extrasCategory.getFoodCategoryName().replace("Extra ", "");
