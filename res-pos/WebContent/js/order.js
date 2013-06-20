@@ -167,37 +167,12 @@ $(document).ready(function(){
 	});
 	
 	$('#save').click(function(){
-		params = createJsonCusOrder();
-		if(!validateOrderType()){
-			return;
-		}
-		if(!validateHasPhoneNumber()){
-			return;
-		}
-		params.orderType = orderType;
-		if(!validateDeliveryHasAddress(params)){
-			return;
-		}
-		$('#saveConfirmation').modal();
-		$.ajax({
-			type: "GET",
-			url: "saveOrder.json",
-			contentType: 'application/json',
-			data: params,
-			success:
-				function(data){
-					window.location.replace($('#welcomeJsp').val());
-			},
-			error:
-				function(data){
-					alert("unsuccessful sending the order in ajax call...");
-			}
-		});
+		saveOrder("save");
 	});
 	
 	//Temp buttons for alert as actions.
 	$('#print').click(function(){
-		alert("printing...");
+		saveOrder("print");
 	});
 	
 	$('#walkin').click(function(){
@@ -339,6 +314,41 @@ function enableDeliveryFields(){
 	$('#city').removeAttr("disabled");
 	$('#state').removeAttr("disabled");
 	$('#zipCode').removeAttr("disabled");
+}
+
+function saveOrder(action){
+	params = createJsonCusOrder();
+	if(!validateOrderType()){
+		return;
+	}
+	if(!validateHasPhoneNumber()){
+		return;
+	}
+	params.orderType = orderType;
+	if(!validateDeliveryHasAddress(params)){
+		return;
+	}
+	
+	if(action == "print"){
+		$('#printConfirmation').modal();
+	}else{
+		$('#saveConfirmation').modal();
+	}
+	
+	$.ajax({
+		type: "GET",
+		url: "saveOrder.json",
+		contentType: 'application/json',
+		data: params,
+		success:
+			function(data){
+				window.location.replace($('#welcomeJsp').val());
+		},
+		error:
+			function(data){
+				alert("unsuccessful sending the order in ajax call...");
+		}
+	});
 }
 
 function getRowIndex(){
