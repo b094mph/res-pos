@@ -20,6 +20,10 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		$("[id=currentDateTime]").text(moment().format('MMMM DD YYYY, hh:mm A'));
+		
+		setInterval(function(){
+			$("[id=currentDateTime]").text(moment().format('MMMM DD YYYY, hh:mm:ss A'));	
+		}, 1000);
+		
 	});
 </script>

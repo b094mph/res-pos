@@ -39,7 +39,6 @@
 	<div class="modal-body">
 		<p><spring:message code="label.modal.save"/></p>
 	</div>
-	<jsp:include page="modal-footer-close-success.jsp"/>
 </div>
 
 <div id="printConfirmation" class="modal hide in display-none" tabindex="-1">
@@ -47,5 +46,4 @@
 	<div class="modal-body">
 		<p><spring:message code="label.modal.print"/></p>
 	</div>
-	<jsp:include page="modal-footer-close-success.jsp"/>
 </div>

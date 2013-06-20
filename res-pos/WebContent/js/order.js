@@ -335,6 +335,10 @@ function saveOrder(action){
 		$('#saveConfirmation').modal();
 	}
 	
+	setTimeout('saveOrderAjax(params);', 1000);
+}
+
+function saveOrderAjax(params){
 	$.ajax({
 		type: "GET",
 		url: "saveOrder.json",
