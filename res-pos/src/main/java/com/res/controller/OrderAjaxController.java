@@ -167,10 +167,14 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/changeSize.json", method=RequestMethod.GET)
-	public String changeSize(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex,
+	public String changeSize(HttpServletRequest request, 
+			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
 			@RequestParam("size") String size){
+		HttpSession session = request.getSession();
 		
 		OrderDetail orderDetail = orderList.get(rowIndex);
+		session.setAttribute("rowIndex", rowIndex);
+		session.setAttribute("lastRow", false);
 		
 		if(ResConstant.SMALL.equals(size)){
 			orderDetail.setSize(ResConstant.SMALL);
@@ -202,7 +206,8 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
-	public String increaseQty(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
+	public String increaseQty(HttpServletRequest request, 
+			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex)
 			throws NumberFormatException{
 		
 		HttpSession session = request.getSession();
@@ -217,6 +222,7 @@ public class OrderAjaxController {
 			orderDetail.setPrice(price);
 			
 			session.setAttribute("rowIndex", rowIndex);
+			session.setAttribute("lastRow", false);
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
@@ -225,7 +231,8 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
-	public String decreaseQty(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
+	public String decreaseQty(HttpServletRequest request, 
+			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex)
 			throws NumberFormatException{
 		HttpSession session = request.getSession();
 		
@@ -241,6 +248,7 @@ public class OrderAjaxController {
 				orderDetail.setPrice(price);
 				
 				session.setAttribute("rowIndex", rowIndex);
+				session.setAttribute("lastRow", false);
 			}else{
 				logger.info("subtracting quantity of 1, therefore deleting item.");
 				orderList.remove(rowIndex);

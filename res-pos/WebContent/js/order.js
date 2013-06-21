@@ -11,6 +11,9 @@ $.ajaxSetup({
 });
 
 $(document).ready(function(){
+
+	//make the header fixed on scroll
+	$('.table-fixed-header').fixedHeader();
 	
 	for(var i=0; i<orderListSize; i++){
 		deleteItemId = '#deleteItem_' + i.toString();
@@ -71,9 +74,6 @@ $(document).ready(function(){
 			});
 		});
 	}
-
-	//make the header fixed on scroll
-	$('.table-fixed-header').fixedHeader();
 	
 	//highlight order rows that are selected
 	$('#orderTable tbody tr').live('click', function(event) {
