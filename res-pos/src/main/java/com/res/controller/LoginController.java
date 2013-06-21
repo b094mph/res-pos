@@ -43,6 +43,13 @@ public class LoginController {
 		return "loginfail";
 	}
 	
+	@RequestMapping(value="/signupSuccess", method=RequestMethod.GET)
+	public String signupSuccess(ModelMap model){
+		logger.info("Username and password created successfully...");
+		model.addAttribute("error", "false");
+		return "signupSuccess";
+	}
+	
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
 	public ModelAndView welcome(Principal principal, HttpServletRequest request){	
 		HttpSession session = request.getSession();

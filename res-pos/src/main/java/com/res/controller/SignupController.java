@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,9 +35,16 @@ public class SignupController {
 		session.setAttribute("lang", lang);
 		
 		if(validateUser){
-			return "welcome";
+			return "redirect:signupSuccess.html";
 		}else{
-			return "loginfail";
+			return "redirect:signupFail.html";
 		}
+	}
+	
+	@RequestMapping(value="/signupFail", method=RequestMethod.GET)
+	public String signupFail(ModelMap model){
+		logger.info("signup failed, username is taken...");
+		model.addAttribute("error", "true");
+		return "signupFail";
 	}
 }

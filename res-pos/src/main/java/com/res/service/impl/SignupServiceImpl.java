@@ -18,11 +18,8 @@ public class SignupServiceImpl implements SignupService {
 	
 	private static Logger logger = Logger.getLogger(SignupServiceImpl.class);
 
-	@Autowired
-	private UserDao usersDao;
-	
-	@Autowired
-	private AuthoritiesDao authoritiesDao;
+	@Autowired private UserDao usersDao;
+	@Autowired private AuthoritiesDao authoritiesDao;
 	
 	@Override
 	public boolean isUsernameTaken(String username) {
@@ -35,8 +32,6 @@ public class SignupServiceImpl implements SignupService {
 			logger.info("Username " + username +" is not taken.");
 			return false;
 		}
-		
-		
 	}
 
 	@Override

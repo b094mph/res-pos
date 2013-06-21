@@ -20,6 +20,14 @@
     	<put-attribute name="body" value="/jsp/body/loginfail.jsp"/>
     </definition>
     
+    <definition name="signupSuccess" extends="base.definition">
+    	<put-attribute name="body" value="/jsp/body/signupSuccess.jsp"/>
+    </definition>
+    
+    <definition name="signupFail" extends="base.definition">
+    	<put-attribute name="body" value="/jsp/body/signupFail.jsp"/>
+    </definition>
+    
     <definition name="welcome" extends="base.definition">
     	<put-attribute name="body" value="/jsp/body/welcome.jsp"/>
     </definition>

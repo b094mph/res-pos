@@ -15,13 +15,13 @@ public class AuthoritiesDaoImpl extends BaseDaoImpl implements AuthoritiesDao{
 
 	@Override
 	public void setRoleAdmin(String username) {
-		logger.info("Setting " + username + "with " + RoleConstant.ROLE_ADMIN);
+		logger.info("Setting " + username + " with " + RoleConstant.ROLE_ADMIN);
 		setRole(username, RoleConstant.ROLE_ADMIN);
 	}
 
 	@Override
 	public void setRoleUser(String username) {
-		logger.info("Setting " + username + "with " + RoleConstant.ROLE_USER);
+		logger.info("Setting " + username + " with " + RoleConstant.ROLE_USER);
 		setRole(username, RoleConstant.ROLE_USER);
 	}
 
