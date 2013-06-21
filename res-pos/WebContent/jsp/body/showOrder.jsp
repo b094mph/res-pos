@@ -42,13 +42,19 @@
 								<button id="increaseQty_${pageScope.idx.index}"
 										type="button"
 										title="Increase quantity" 
-										class="btn btn-success" 
+										class="btn btn-success"
+										<c:if test='${orderdetail.price == "0.00"}' >
+											disabled="true"
+										</c:if>	
 										value='${pageScope.idx.index}'>+</button>
 							&nbsp;
 								<button id="decreaseQty_${pageScope.idx.index}"
 										type="button"
 										title="Decrease quantity" 
-										class="btn btn-warning" 
+										class="btn btn-warning"
+										<c:if test='${orderdetail.price == "0.00"}' >
+											disabled="true"
+										</c:if>	 
 										value='${pageScope.idx.index}'>-</button>
 							&nbsp;
 								<button id="deleteItem_${pageScope.idx.index}"

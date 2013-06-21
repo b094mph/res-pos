@@ -2,7 +2,7 @@ var orderListSize = $('#orderListSize').val();
 var deleteItemId = null;
 var increaseQtyId = null;
 var decreaseQtyId = null;
-var idx = null;
+var rowIndex = null;
 var params = null;
 var orderType = null;
 
@@ -18,8 +18,8 @@ $(document).ready(function(){
 		decreaseQtyId = '#decreaseQty_' + i.toString();
 		
 		$(deleteItemId).click(function(){
-			idx = $(this).val();
-			params = {idx: idx};
+			rowIndex = $(this).val();
+			params = {rowIndex: rowIndex};
 			$.ajax({
 				type: "GET",
 				url: "deleteItem.json",
@@ -36,8 +36,8 @@ $(document).ready(function(){
 		});	
 		
 		$(increaseQtyId).click(function(){
-			idx = $(this).val();
-			params = {idx: idx};
+			rowIndex = $(this).val();
+			params = {rowIndex: rowIndex};
 			$.ajax({
 				type: "GET",
 				url: "increaseQty.json",
@@ -54,8 +54,8 @@ $(document).ready(function(){
 		});
 		
 		$(decreaseQtyId).click(function(){
-			idx = $(this).val();
-			params = {idx: idx};
+			rowIndex = $(this).val();
+			params = {rowIndex: rowIndex};
 			$.ajax({
 				type: "GET",
 				url: "decreaseQty.json",

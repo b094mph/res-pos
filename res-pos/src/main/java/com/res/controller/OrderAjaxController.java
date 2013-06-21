@@ -189,11 +189,11 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/deleteItem.json", method=RequestMethod.GET)
-	public String deleteItem(HttpServletRequest request, @RequestParam("idx") int index)
+	public String deleteItem(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
 			throws NumberFormatException{
 		try{
-			logger.info("removing orderList with " + index);
-			orderList.remove(index);
+			logger.info("removing orderList with " + rowIndex);
+			orderList.remove(rowIndex);
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
@@ -202,16 +202,21 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/increaseQty.json", method=RequestMethod.GET)
-	public String increaseQty(HttpServletRequest request, @RequestParam("idx") int index)
+	public String increaseQty(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
 			throws NumberFormatException{
+		
+		HttpSession session = request.getSession();
+
 		try{
 			logger.info("increasing qty for item");
 			
-			OrderDetail orderDetail = orderList.get(index);
+			OrderDetail orderDetail = orderList.get(rowIndex);
 			orderDetail.setQuantity(orderDetail.getQuantity() + 1);
 			
 			BigDecimal price = orderService.calculatePrice(orderDetail);
 			orderDetail.setPrice(price);
+			
+			session.setAttribute("rowIndex", rowIndex);
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
 		}
@@ -220,21 +225,25 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/decreaseQty.json", method=RequestMethod.GET)
-	public String decreaseQty(HttpServletRequest request, @RequestParam("idx") int index)
+	public String decreaseQty(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
 			throws NumberFormatException{
+		HttpSession session = request.getSession();
+		
 		try{
 			logger.info("decreasing qty for item");
-			OrderDetail orderDetail = orderList.get(index);
+			OrderDetail orderDetail = orderList.get(rowIndex);
 			int quantity = orderDetail.getQuantity();
 			
 			if(quantity > 1){
 				orderDetail.setQuantity(quantity - 1);
-				
+
 				BigDecimal price = orderService.calculatePrice(orderDetail);
 				orderDetail.setPrice(price);
+				
+				session.setAttribute("rowIndex", rowIndex);
 			}else{
 				logger.info("subtracting quantity of 1, therefore deleting item.");
-				orderList.remove(index);
+				orderList.remove(rowIndex);
 			}
 		}catch(Exception e){
 			throw new NumberFormatException(messageLoader.getMessage("is.not.a.number"));
