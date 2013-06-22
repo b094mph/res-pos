@@ -187,13 +187,13 @@
 				<button id="new" type="reset" class="btn btn-info btn2" data-toggle="tooltip" data-placement="top">
 					<spring:message code="label.new"/>
 				</button>
-				<button id="void" type="reset" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top">
+				<button id="void" type="reset" class="btn btn-danger btn2" data-toggle="tooltip" data-placement="top" disabled="disabled">
 					<spring:message code="label.void"/>
 				</button>
-				<button id="save" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Saving...">
+				<button id="save" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Saving..." disabled="disabled">
 					<spring:message code="label.save"/>
 				</button>
-				<button id="print" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Printing...">
+				<button id="print" type="button" class="btn btn-success btn2" data-toggle="tooltip" data-placement="top" data-loading-text="Printing..." disabled="disabled">
 					<spring:message code="label.print"/>
 				</button>
 			</td>

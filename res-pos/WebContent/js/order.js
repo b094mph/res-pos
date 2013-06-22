@@ -15,6 +15,12 @@ $(document).ready(function(){
 	//make the header fixed on scroll
 	$('.table-fixed-header').fixedHeader();
 	
+	if(orderListSize > 0){
+		$('#void').removeAttr("disabled");
+		$('#save').removeAttr("disabled");
+		$('#print').removeAttr("disabled");
+	}
+	
 	for(var i=0; i<orderListSize; i++){
 		deleteItemId = '#deleteItem_' + i.toString();
 		increaseQtyId = '#increaseQty_' + i.toString();
