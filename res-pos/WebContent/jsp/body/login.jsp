@@ -41,8 +41,8 @@
 								<input type="password" id="password" class="span12" name="password" placeholder='<spring:message code="label.signup.password"/>'>
 						</div>
 						<div class="control-group">
-							<button type="submit" class="btn btn-success btn-block btn-large" name="signup"><spring:message code="label.signup.free"/></button>
-							<button type="reset" class="btn btn-block btn-large" name="reset"><spring:message code="label.reset"/></button>
+							<button type="submit" class="btn btn-success btn-block" name="signup"><spring:message code="label.signup.free"/></button>
+							<button type="reset" class="btn btn-block" name="reset"><spring:message code="label.reset"/></button>
 						</div>
 					</form>
 				</fieldset>

@@ -7,7 +7,7 @@
 <div class="row">
 	<div class="span12">
 		<button id="home" type="button" class="btn btn-large btn-block">
-			<spring:message code="label.back.to.homepage"/>
+			<i class="icon-home"></i>&nbsp;<spring:message code="label.back.to.homepage"/>
 		</button>
 	</div>
 </div>

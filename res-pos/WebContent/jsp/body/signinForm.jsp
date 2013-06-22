@@ -18,8 +18,8 @@
 	</div>
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn btn-success btn-block btn-large" name="submit"><spring:message code="label.login"/></button>
-			<button type="reset" class="btn btn-block btn-large" name="reset"><spring:message code="label.reset"/></button>
+			<button type="submit" class="btn btn-success btn-block" name="submit"><spring:message code="label.login"/></button>
+			<button type="reset" class="btn btn-block" name="reset"><spring:message code="label.reset"/></button>
 		</div>
 	</div>
 </form>
