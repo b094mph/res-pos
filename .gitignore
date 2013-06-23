@@ -5,30 +5,45 @@
 *.war
 *.ear
 
+
 #############################################################
 # .metadata and RemoteSystemsTempFiles
 #############################################################
 .metadata/
 RemoteSystemsTempFiles/
 
+
 #############################################################
 # Servers
 #############################################################
 Servers/
+
 
 #############################################################
 # Tells Git to ignore all files that end with a tilde (~) *
 #############################################################
 *~
 
+
 #############################################################
 # sql
 #############################################################
 *.mwb.bak
 
+
 #############################################################
-# ignore certain properties files
-#############################################################
-#res-pos/WebContent/WEB-INF/database.properties
-#res-pos/build.properties
+# ignore certain properties files that has been commited
+# into the repo
+# initially, these files where staged and commited into the repo
+# then ran the command below for git to ignore and stop tracking.
+# git update-index --assume-unchanged path/to/file
+#
+# When you want to start keeping track again
+# git update-index --no-assume-unchanged path/to/file
+############################################################
+# git/res-pos/res-pos/build.properties
+# git/res-pos/res-pos/src/main/resources/log4j.properties
+# git/res-pos/res-pos/build/classes/log4j.properties
+# git/res-pos/WebContent/WEB-INF/database.properties
+
 
