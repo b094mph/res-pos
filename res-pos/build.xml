@@ -39,7 +39,8 @@
 			<entry key="log4j.rootLogger" value="${development.log4j.rootLogger}"/>
 			<entry key="log4j.logger.com.res" value="${development.log4j.logger.com.res}"/>
 		</propertyfile>
-		<replaceregexp file="src/main/resources/log4j.properties" match="^#.*" replace=""/>
+<!-- 		<replaceregexp file="src/main/resources/log4j.properties" match="^#.*" replace=""/> -->
+
 		<echo message="restaurant_log=${development.restaurant_log}"/>
 		<echo message="log4j.rootLogger=${development.log4j.rootLogger}"/>
 		<echo message="log4j.logger.com.res=${development.log4j.logger.com.res}"/>
@@ -47,7 +48,7 @@
 		<propertyfile file="WebContent/WEB-INF/database.properties">
 			<entry key="jdbc.showhql" value="${development.jdbc.showhql}"/>		
 		</propertyfile>
-		<replaceregexp file="WebContent/WEB-INF/database.properties" match="^#.*" replace=""/>
+<!-- 		<replaceregexp file="WebContent/WEB-INF/database.properties" match="^#.*" replace=""/> -->
 		<echo message="jdbc.showhql=${development.jdbc.showhql}"/>
 	</target>
 	
