@@ -7,6 +7,8 @@ import java.util.Collection;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Cache;
@@ -14,6 +16,10 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.security.core.GrantedAuthority;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name="getUserByUsername", query="FROM User u WHERE u.username = :username"),
+	@NamedQuery(name="getUsernames", query="SELECT u.username FROM User u")
+})
 @Table(name="users", catalog="restaurant")
 @Cache(region="users", usage=CacheConcurrencyStrategy.READ_WRITE)
 public class User implements Serializable, org.springframework.security.core.userdetails.UserDetails{

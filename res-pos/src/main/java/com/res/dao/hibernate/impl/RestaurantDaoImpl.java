@@ -22,12 +22,8 @@ public class RestaurantDaoImpl extends BaseDaoImpl implements RestaurantDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Restaurant> getRestaurants() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("FROM Restaurant");
-		
-		logger.info(sb.toString());
-		Query query = getCurrentSession().createQuery(sb.toString());
-		
+		Query query = getCurrentSession().getNamedQuery("restaurant");
+		logger.info("@NamedQuery annotation: " + query.getQueryString());
 		return query.list();
 	}
 

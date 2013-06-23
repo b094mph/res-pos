@@ -21,9 +21,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 
 	@Override
 	public User getUserByUsername(String username) {
-		StringBuffer sb = new StringBuffer();
-		sb.append("FROM User u WHERE u.username = :username");
-		Query query = getCurrentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().getNamedQuery("getUserByUsername");
 		query.setString("username", username);
 		if(!query.list().isEmpty()){
 			return (User) query.list().get(0);
@@ -37,9 +35,7 @@ public class UserDaoImpl extends BaseDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> getUsernames() {
-		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT u.username FROM User u");
-		Query query = getCurrentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().getNamedQuery("getUsernames");
 		return (List<String>) query.list();
 	}
 
