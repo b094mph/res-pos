@@ -28,7 +28,7 @@
 		</div>
 		 <div class="tab-pane fade" id="create">
 		 	<div class="row-fluid">
-				<div class="span4">
+				<div class="span3">
 				<fieldset>
 				<legend><spring:message code="label.signup"/></legend>
 					<form method="post" action="signup.html">
