@@ -10,7 +10,7 @@
 	<property name="path"     value="/${warfile}"/>
 	
 	<!-- Configure properties to access the Manager application -->
-	<property name="url"      value="http://${dns}:${8080}/manager/html"/>
+	<property name="url"      value="http://${dns}:${port}/manager/html"/>
 	<property name="username" value="${username}"/>
 	<property name="password" value="${password}"/>
 	<property name="warfile"  value="${warfile}"/>
