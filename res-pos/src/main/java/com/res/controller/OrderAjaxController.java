@@ -2,8 +2,8 @@ package com.res.controller;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,7 +51,7 @@ public class OrderAjaxController {
 	@Autowired private CustomerService customerService;
 	@Autowired private MessageLoader messageLoader;
 	
-	private List<OrderDetail> orderList = new ArrayList<OrderDetail>();
+	private List<OrderDetail> orderList = new LinkedList<OrderDetail>();
 	private BigDecimal subTotal;
 	private BigDecimal tax;
 	private BigDecimal grandTotal;
