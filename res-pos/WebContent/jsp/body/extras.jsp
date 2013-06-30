@@ -8,6 +8,7 @@
 	<c:forEach items="${extrasSubCategories}" var="extrasSubCategory">
 		<button id="extra_${extrasSubCategory.menuId}"
 			type="button"
+			name="extraSubMenuBtn"
 			class="btn btn-primary btn1"
 			<c:choose>
 				<c:when test="${lang == 'zh'}">
@@ -31,8 +32,14 @@
 	</c:forEach>
 </table>
 
-<script>
+<script type="text/javascript">
+	var lang = "<c:out value='${lang}'/>";
 	var extraIDs = new Array();
+	
+	if(lang == 'zh'){
+		$("button[name='extraSubMenuBtn']").css("font-size", "22px");
+	}
+	
 	<c:forEach items="${extrasSubCategories}" var="extrasSubCategory">
 		extraIDs.push("${extrasSubCategory.menuId}");
 	</c:forEach>

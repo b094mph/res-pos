@@ -21,7 +21,7 @@
 			<c:when test="${subCategory.spicy}">
 				<button id="menu_${subCategory.menuId}"  
 							type="button" 
-							name="${subCategory.menuId}" 
+							name="subMenuBtn" 
 							class="btn btn-danger btn1"
 							<c:choose>
 								<c:when test="${lang == 'zh'}">
@@ -46,7 +46,7 @@
 			<c:otherwise>
 				<button id="menu_${subCategory.menuId}"  
 							type="button" 
-							name="${subCategory.menuId}" 
+							name="subMenuBtn" 
 							class="btn btn-info btn1"
 							<c:choose>
 								<c:when test="${lang == 'zh'}">
@@ -73,8 +73,14 @@
 </table>
 </fieldset>
 
-<script>
+<script type="text/javascript">
+	var lang = "<c:out value='${lang}'/>";
 	var menuIDs = new Array();
+	
+	if(lang == 'zh'){
+		$("button[name='subMenuBtn']").css("font-size", "22px");
+	}
+	
 	<c:forEach items="${subCategories}" var="subCategory">
 		menuIDs.push("${subCategory.menuId}");
 	</c:forEach>

@@ -11,7 +11,7 @@
 			<c:forEach items="${foodCategories}" var="fc">
 				<button id="fc_${fc.foodCategoryId}"  
 						type="button" 
-						name="${fc.foodCategoryId}" 
+						name="categoryBtn" 
 						class="btn btn-info btn1"
 						value='<c:out value="${fc.foodCategoryId}"></c:out>'
 				>
@@ -34,3 +34,10 @@
 	</c:choose>
 </table>
 </fieldset>
+
+<script type="text/javascript">
+	var lang = '<c:out value="${lang}"/>';
+	if(lang == 'zh'){
+		$("button[name='categoryBtn']").css("font-size", "22px");
+	}
+</script>

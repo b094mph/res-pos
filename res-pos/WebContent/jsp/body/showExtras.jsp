@@ -59,8 +59,15 @@
 </div>
 </fieldset>
 
-<script>
+<script type="text/javascript">
+	var lang = "<c:out value='${lang}'/>";
 	var extraCategoryNames = new Array();
+	
+	if(lang == 'zh'){
+		$("button[name='extraCategoryRdo']").css("font-size", "22px");
+		$("button[name='tasteModifierRdo']").css("font-size", "22px");
+	}
+	
 	<c:forEach items="${extrasCategories}" var="extrasCategory">
 		extraCategoryNames.push("${extrasCategory.foodCategoryName}");
 	</c:forEach>

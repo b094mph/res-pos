@@ -66,7 +66,7 @@
 						<c:choose>
 						<c:when test='${fn:startsWith(foodCategoryName, "Extra") == false}'>
 							<td>${orderdetail.quantity}</td>
-							<td>
+							<td id="size" >
 								<c:choose>
 									<c:when test="${lang == 'zh'}">
 										<c:choose>
@@ -74,7 +74,7 @@
 												小
 											</c:when>
 											<c:when test="${orderdetail.size == 'Ln'}">
-												午餐
+												午
 											</c:when>
 											<c:when test="${orderdetail.size == 'Cb'}">
 												盒饭
@@ -95,7 +95,7 @@
 							<td></td>
 						</c:otherwise>
 						</c:choose>	
-							<td>
+							<td id="item">
 								<c:choose>
 									<c:when test="${lang == 'zh'}">
 										<c:choose>
@@ -209,6 +209,13 @@
 <script type="text/javascript" src="js/order.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var lang = "<c:out value='${lang}'/>";
+	
+	if(lang == 'zh'){
+		$("td[id='size']").css("font-size", "18px");
+		$("td[id='item']").css("font-size", "18px");
+	}
+	
 	determineAvailableFoodSize();
 });
 
