@@ -1,7 +1,6 @@
 package com.res.controller;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -73,35 +72,28 @@ public class OrderAjaxController {
 		mav.addObject("rowIndex", session.getAttribute("rowIndex"));
 		mav.addObject("lastRow", session.getAttribute("lastRow"));
 		
-		BigDecimal subTotal = BigDecimal.ZERO;
-		
 		Restaurant res = restaurantService.getResturantInfo(restaurantId);
-		BigDecimal tax = res.getTax();
-		logger.info("tax = " + tax);
-		BigDecimal grandTotal = BigDecimal.ZERO;
+		BigDecimal tax = res.getTax();	
 		
-		mav.addObject("salesTax", tax.multiply(new BigDecimal(100)));
+		mav.addObject("salesTax", orderService.computeSalesTax(tax));
 		
 		if(!orderList.isEmpty()){
-			for(OrderDetail orderDetail : orderList){
-				subTotal = subTotal.add(orderDetail.getPrice());
-			}
-			BigDecimal calcSubTotal = subTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
-			this.setSubTotal(calcSubTotal);
-			mav.addObject("subTotal", calcSubTotal);
+			BigDecimal subTotal = orderService.computeSubtotal(orderList);
+			BigDecimal calcTax = orderService.computeTotalTax(subTotal, tax); 
+			BigDecimal grandTotal = orderService.computeGrandTotal(subTotal, calcTax);
 			
-			BigDecimal calcTax = subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP); 
-			this.setTax(calcTax);		
+			this.setSubTotal(subTotal);
+			this.setTax(calcTax);
+			
+			mav.addObject("subTotal", orderService.roundTotal(subTotal));
 			mav.addObject("tax", calcTax);
 			
-			grandTotal = subTotal.add(calcTax);
-
 			if(res.getRounding()){
 				logger.info(res.getRestaurantName() + " rounds to nearest nickel.");
 				grandTotal = Price.roundToNearestNickel(grandTotal);
 			}else{
 				logger.info(res.getRestaurantName() + " does not round to nearest nickel.");
-				grandTotal = grandTotal.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+				grandTotal = orderService.roundTotal(grandTotal);
 			}
 			this.setGrandTotal(grandTotal);
 			mav.addObject("grandTotal", grandTotal);

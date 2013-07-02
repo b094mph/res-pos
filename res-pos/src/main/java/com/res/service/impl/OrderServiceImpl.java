@@ -1,6 +1,7 @@
 package com.res.service.impl;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -67,4 +68,41 @@ public class OrderServiceImpl implements OrderService {
 		
 		return price.setScale(ResConstant.SCALE);
 	}
+
+	/**
+	 * Example tax of 8% computes to 8.00
+	 */
+	@Override
+	public BigDecimal computeSalesTax(BigDecimal tax) {
+		logger.info("tax = " + tax);
+		return tax.multiply(new BigDecimal(100));
+	}
+	
+	@Override
+	public BigDecimal computeSubtotal(List<OrderDetail> orderList) {
+		BigDecimal subTotal = BigDecimal.ZERO;
+		for(OrderDetail orderDetail : orderList){
+			subTotal = subTotal.add(orderDetail.getPrice());
+		}
+		return subTotal;
+	}
+
+	@Override
+	public BigDecimal roundTotal(BigDecimal total) {
+		return total.setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+	}
+	
+	/**
+	 * computes the total tax for based on the subtotal
+	 */
+	@Override
+	public BigDecimal computeTotalTax(BigDecimal subTotal, BigDecimal tax) {
+		return subTotal.multiply(tax).setScale(ResConstant.SCALE, RoundingMode.HALF_UP);
+	}
+
+	@Override
+	public BigDecimal computeGrandTotal(BigDecimal subTotal, BigDecimal calcTax) {
+		return subTotal.add(calcTax);
+	}
+
 }

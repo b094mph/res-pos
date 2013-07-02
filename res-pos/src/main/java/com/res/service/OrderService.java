@@ -12,5 +12,9 @@ public interface OrderService {
 	public List<OrderDetail> listOrder(long customerOrderId);
 	public void saveOrder(CustomerOrder customerOrder, List<OrderDetail> orderList);
 	public BigDecimal calculatePrice(OrderDetail orderDetail);
-	
+	public BigDecimal computeSalesTax(BigDecimal decimalTax);
+	public BigDecimal computeSubtotal(List<OrderDetail> orderList);
+	public BigDecimal roundTotal(BigDecimal total);
+	public BigDecimal computeTotalTax(BigDecimal subTotal, BigDecimal tax);
+	public BigDecimal computeGrandTotal(BigDecimal subTotal, BigDecimal calcTax);
 }
