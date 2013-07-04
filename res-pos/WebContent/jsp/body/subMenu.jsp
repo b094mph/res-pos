@@ -78,7 +78,7 @@
 	var menuIDs = new Array();
 	
 	if(lang == 'zh'){
-		$("button[name='subMenuBtn']").css("font-size", "22px");
+		$("button[name='subMenuBtn']").css("font-size", "20px");
 	}
 	
 	<c:forEach items="${subCategories}" var="subCategory">

@@ -24,7 +24,7 @@
 	<div class="fixed-table">
 		<div class="table-content">
 			<table id="orderTable" class="table table-striped table-hover table-condensed table-fixed-header">
-				<thead class="header">
+				<thead id="header" class="header">
 					<tr>
 						<th>&nbsp;</th>
 						<th><spring:message code="label.order.qty"/></th>
@@ -212,8 +212,22 @@ $(document).ready(function(){
 	var lang = "<c:out value='${lang}'/>";
 	
 	if(lang == 'zh'){
+		$("thead[id='header']").css("font-size", "18px");
 		$("td[id='size']").css("font-size", "18px");
 		$("td[id='item']").css("font-size", "18px");
+		$("#walkin").css("font-size", "20px");
+		$("#pickup").css("font-size", "20px");
+		$("#delivery").css("font-size", "20px");
+		$("#eatin").css("font-size", "20px");
+		$("#small").css("font-size", "20px");
+		$("#large").css("font-size", "20px");
+		$("#lunch").css("font-size", "20px");
+		$("#combo").css("font-size", "20px");
+		$("#extras").css("font-size", "20px");
+		$("#new").css("font-size", "20px");
+		$("#void").css("font-size", "20px");
+		$("#save").css("font-size", "20px");
+		$("#print").css("font-size", "20px");
 	}
 	
 	determineAvailableFoodSize();

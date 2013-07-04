@@ -54,3 +54,15 @@
 </div>
 
 <script type="text/javascript" src="js/menubar.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var lang = "<c:out value='${lang}'/>";
+		if(lang == 'zh'){
+			$("a").css("font-size","18px");
+			$("b").css("font-size","18px");
+			$("label").css("font-size","18px");
+			$("input").css("font-size","18px");
+			$("button").css("font-size","20px");
+		}
+	});
+</script>

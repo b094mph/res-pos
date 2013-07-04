@@ -17,7 +17,7 @@
 		<fieldset>
 		<legend><spring:message code="label.choose.restaurant"/></legend>
 			<table class="table table-striped table-hover">
-				<thead>
+				<thead id="header">
 					<tr>
 						<th><spring:message code="label.id"/></th>
 						<th><spring:message code="label.restaurant"/></th>
@@ -61,3 +61,11 @@
 		</fieldset>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		var lang = "<c:out value='${lang}'/>";
+		if(lang == 'zh'){
+			$("#header").css("font-size","18px");
+		}
+	});
+</script>

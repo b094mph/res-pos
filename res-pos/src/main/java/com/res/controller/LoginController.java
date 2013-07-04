@@ -31,9 +31,12 @@ public class LoginController {
 	@Autowired private RestaurantService restaurantService;
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
-	public ModelAndView login(){
+	public ModelAndView login(HttpServletRequest request){
+		HttpSession session = request.getSession();
+		ModelAndView mav = new ModelAndView("login", "command", new User());
 		logger.info("Logging in...");
-		return new ModelAndView("login", "command", new User());
+		setSessionLang(request, session, mav);
+		return mav;
 	}
 	
 	@RequestMapping(value= "/loginfail", method=RequestMethod.GET)
@@ -66,11 +69,8 @@ public class LoginController {
 		List<Restaurant> restaurants = restaurantService.getRestaurants();
 		mav.addObject("restaurants", restaurants);
 		mav.addObject("numOfRes", restaurants.size());
-
-		String lang = RequestContextUtils.getLocale(request).toString();
-		session.setAttribute("lang", lang);
-		mav.addObject("lang", lang);
 		
+		setSessionLang(request, session, mav);
 		return mav;
 	}
 	
@@ -78,6 +78,12 @@ public class LoginController {
 	public String logout(){
 		logger.info("Logging out...");
 		return "logout";
+	}
+	
+	private void setSessionLang(HttpServletRequest request, HttpSession session, ModelAndView mav){
+		String lang = RequestContextUtils.getLocale(request).toString();
+		session.setAttribute("lang", lang);
+		mav.addObject("lang", lang);
 	}
 
 }

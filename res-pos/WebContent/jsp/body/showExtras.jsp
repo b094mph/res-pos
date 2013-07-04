@@ -64,8 +64,8 @@
 	var extraCategoryNames = new Array();
 	
 	if(lang == 'zh'){
-		$("button[name='extraCategoryRdo']").css("font-size", "22px");
-		$("button[name='tasteModifierRdo']").css("font-size", "22px");
+		$("button[name='extraCategoryRdo']").css("font-size", "20px");
+		$("button[name='tasteModifierRdo']").css("font-size", "20px");
 	}
 	
 	<c:forEach items="${extrasCategories}" var="extrasCategory">
