@@ -12,15 +12,22 @@
 	      </fileset>
 		  <pathelement location="build/classes"/>
     </path>
+	
+    <taskdef resource="liquibasetasks.properties">
+        <classpath refid="classpath"/>
+    </taskdef>
+	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
+	  <classpath refid="classpath" />
+	</taskdef>
 
-	<target name="generateChangeLog">
+	<target name="generateChangeLog" description="to create the change log for existing db">
 		<input message="Which release is this for?" addProperty="release" />
 		<input message="Which database server is this for?" addProperty="database.server" />
 		<input message="Which database schema is this for?" addproperty="database.schema" />
 		<input message="Username for ${database.server}?" addproperty="database.username" />
 		<input message="Password for ${database.server}?" addproperty="database.password" />
 		
-		<property name="database.url" value="jdbc\:mysql\://${database.server}\:${database.port}/${database.schema}"/>
+		<property name="database.url" value="jdbc:mysql://${database.server}:${database.port}/${database.schema}"/>
 		
 		<fail unless="database.url">database.url not set</fail>
 	    <fail unless="database.username">database.username not set</fail>
@@ -42,20 +49,30 @@
 	            classpathref="classpath"
 	            />
 	</target>
-
-	<target name="update-database">
-	    <fail unless="db.changelog.file">db.changelog.file not set</fail>
-	    <fail unless="database.url">database.url not set</fail>
+	
+	<target name="setup">
+		<input message="Which release is this for?" addProperty="release" />
+		<input message="Which database server is this for?" addProperty="database.server" />
+		<input message="Which database schema is this for?" addproperty="database.schema" />
+		<input message="Username for ${database.server}?" addproperty="database.username" />
+		<input message="Password for ${database.server}?" addproperty="database.password" />
+		
+		<property name="database.url" value="jdbc:mysql://${database.server}:${database.port}/${database.schema}"/>
 	
 	    <fail unless="database.username">database.username not set</fail>
 	    <fail unless="database.password">database.password not set</fail>
-
+	    <fail unless="database.url">database.url not set</fail>
+		
 		<taskdef resource="liquibasetasks.properties">
 	        <classpath refid="classpath"/>
 	    </taskdef>
-	
-	    <updateDatabase
-	            changeLogFile="${db.changelog.file}"
+	</target>
+
+	<target name="update-database" depends="setup">
+		<input message="Which contexts are you migrating? (leave blank to migrate everything for this release)" addproperty="contexts" />
+		<input message="What's the change log to migrate (restaurant.xml)" addproperty="change.log" defaultvalue="${database.schema}" />
+		<updateDatabase
+	            changeLogFile="${release}/${change.log}.xml"
 	            driver="${database.driver}"
 	            url="${database.url}"
 	            username="${database.username}"
@@ -63,7 +80,36 @@
 	            promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
 	            dropFirst="false"
 	            classpathref="classpath"
-	    />
-	    
+	    		contexts="${contexts}"
+	    >
+			<changeLogProperty name="include.dir.base" value="${include.dir.base}" />
+			<changeLogProperty name="include.dir.relative" value="${include.dir.relative}" />
+		</updateDatabase>
+		
+		<buildnumber file="${release}/build.number"/>
+			
+		<tagDatabase 
+	        driver="${database.driver}"
+	        url="${database.url}"
+	        username="${database.username}"
+	        password="${database.password}"
+	        classpathref="classpath"
+			tag="${release}.${build.number}"
+		/>
+	</target>
+	
+	<target name="rollback-database" depends="setup">
+		<input message="What's the change log to migrate (restaurant.xml)" addproperty="change.log" defaultvalue="${database.schema}" />
+		
+		<rollbackDatabase
+				changeLogFile="${release}/${change.log}.xml"
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            username="${database.username}"
+	            password="${database.password}"
+	            promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
+				classpathref="classpath"
+				rollbacktag="${release}"
+		/>
 	</target>
 </project>

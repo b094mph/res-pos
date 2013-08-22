@@ -1,0 +1,464 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="bobby (generated)" id="1377210364041-1">
+        <createTable tableName="creditcard">
+            <column autoIncrement="true" name="creditcardid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="personid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="addressid" type="BIGINT(19)"/>
+            <column name="cardtypeid" type="BIGINT(19)"/>
+            <column name="creditcardending" type="VARCHAR(4)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creditcardnum" type="VARCHAR(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="creditcardname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="expiration" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ccv" type="VARCHAR(3)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-2">
+        <createTable tableName="customerorder">
+            <column autoIncrement="true" name="customerorderid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="restaurantid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personid" type="BIGINT(19)"/>
+            <column name="creditcardid" type="BIGINT(19)"/>
+            <column name="orderoption" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="ordertime" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subtotal" type="DECIMAL(6, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tax" type="DECIMAL(4, 2)"/>
+            <column name="grandtotal" type="DECIMAL(6, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="tip" type="DECIMAL(6, 2)"/>
+            <column name="orderstatus" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-3">
+        <createTable tableName="foodcategory">
+            <column autoIncrement="true" name="foodcategoryid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="foodcategoryname" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodcategorycname" type="VARCHAR(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-4">
+        <createTable tableName="food">
+            <column autoIncrement="true" name="foodid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="foodshortname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodlongname" type="VARCHAR(80)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="cfoodname" type="VARCHAR(10)"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="cdescription" type="VARCHAR(500)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-5">
+        <createTable tableName="address">
+            <column autoIncrement="true" name="addressid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="street1" type="VARCHAR(40)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street2" type="VARCHAR(40)"/>
+            <column name="city" type="VARCHAR(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="state" type="VARCHAR(2)"/>
+            <column name="zipcode" type="VARCHAR(5)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-6">
+        <createTable tableName="orderdetail">
+            <column autoIncrement="true" name="orderdetailid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="customerorderid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifytasteid" type="BIGINT(19)"/>
+            <column name="menuid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="quantity" type="INT(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="size" type="VARCHAR(5)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DECIMAL(6, 2)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="note" type="VARCHAR(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-7">
+        <createTable tableName="temp">
+            <column autoIncrement="true" name="id" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="foodcategoryname" type="VARCHAR(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodcategorycname" type="VARCHAR(10)"/>
+            <column name="foodshortname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodlongname" type="VARCHAR(80)"/>
+            <column name="cfoodname" type="VARCHAR(10)"/>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="cdescription" type="VARCHAR(500)"/>
+            <column name="menunum" type="VARCHAR(5)"/>
+            <column name="small" type="DECIMAL(4, 2)"/>
+            <column name="large" type="DECIMAL(4, 2)"/>
+            <column name="lunchnum" type="VARCHAR(5)"/>
+            <column name="lunch" type="DECIMAL(4, 2)"/>
+            <column name="combonum" type="VARCHAR(5)"/>
+            <column name="combo" type="DECIMAL(4, 2)"/>
+            <column defaultValueNumeric="0" name="spicy" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="rice" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="sauce" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="noodle" type="BIT(1)"/>
+            <column name="pieces" type="SMALLINT(5)"/>
+            <column name="appetizercombo" type="BIT(1)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-8">
+        <createTable tableName="restaurantmodifytaste">
+            <column autoIncrement="true" name="restaurantmodifytasteid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="restaurantid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifytasteid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-9">
+        <createTable tableName="modifytaste">
+            <column autoIncrement="true" name="modifytasteid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="modifytastename" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modifytastecname" type="VARCHAR(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-10">
+        <createTable tableName="menu">
+            <column autoIncrement="true" name="menuid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="restaurantid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodcategoryid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="foodid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="menunum" type="VARCHAR(5)"/>
+            <column name="small" type="DECIMAL(4, 2)"/>
+            <column name="large" type="DECIMAL(4, 2)"/>
+            <column name="lunchnum" type="VARCHAR(5)"/>
+            <column name="lunch" type="DECIMAL(4, 2)"/>
+            <column name="combonum" type="VARCHAR(5)"/>
+            <column name="combo" type="DECIMAL(4, 2)"/>
+            <column defaultValueNumeric="0" name="spicy" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="rice" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="sauce" type="BIT(1)"/>
+            <column defaultValueNumeric="0" name="noodle" type="BIT(1)"/>
+            <column name="pieces" type="SMALLINT(5)"/>
+            <column name="appetizercombo" type="BIT(1)"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="createddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdby" type="VARCHAR(20)"/>
+            <column name="lastupdateddate" type="datetime"/>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-11">
+        <createTable tableName="agentjob">
+            <column autoIncrement="true" name="agentjobid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="restaurantid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="createddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdby" type="VARCHAR(20)"/>
+            <column name="lastupdateddate" type="datetime"/>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-12">
+        <createTable tableName="authorities">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="authority" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="createddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdby" type="VARCHAR(20)"/>
+            <column name="lastupdateddate" type="datetime"/>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-13">
+        <createTable tableName="users">
+            <column name="username" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="salt" type="VARCHAR(48)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="firstname" type="VARCHAR(30)"/>
+            <column name="lastname" type="VARCHAR(50)"/>
+            <column name="enabled" type="BIT(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="createddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdby" type="VARCHAR(20)"/>
+            <column name="lastupdateddate" type="datetime"/>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-14">
+        <createTable tableName="person">
+            <column autoIncrement="true" name="personid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="addressid" type="BIGINT(19)"/>
+            <column name="firstname" type="VARCHAR(20)"/>
+            <column name="lastname" type="VARCHAR(20)"/>
+            <column name="phone1" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone2" type="VARCHAR(10)"/>
+            <column name="ext" type="VARCHAR(5)"/>
+            <column name="email" type="VARCHAR(50)"/>
+            <column name="note" type="LONGTEXT"/>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="lastupdateddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-15">
+        <createTable tableName="cardtype">
+            <column autoIncrement="true" name="cardtypeid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="cardname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-16">
+        <createTable tableName="restaurant">
+            <column autoIncrement="true" name="restaurantid" type="BIGINT(19)">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="addressid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="personid" type="BIGINT(19)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurantname" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="location" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone1" type="VARCHAR(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="phone2" type="VARCHAR(10)"/>
+            <column name="faxnumber" type="VARCHAR(12)"/>
+            <column name="deliverycost" type="DECIMAL(3, 2)"/>
+            <column name="tax" type="DECIMAL(2, 2)"/>
+            <column name="rounding" type="BIT(1)"/>
+            <column name="montothursopen" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="montothursclose" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="friopen" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="friclose" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="satopen" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="satclose" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sunopen" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sunclose" type="VARCHAR(8)">
+                <constraints nullable="false"/>
+            </column>
+            <column defaultValueComputed="CURRENT_TIMESTAMP" name="createddate" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="createdby" type="VARCHAR(20)"/>
+            <column name="lastupdateddate" type="datetime"/>
+            <column name="lastupdatedby" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-17">
+        <addUniqueConstraint columnNames="foodcategoryname" constraintName="foodcategoryname_2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="foodcategory"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-18">
+        <addUniqueConstraint columnNames="username, authority" constraintName="username" deferrable="false" disabled="false" initiallyDeferred="false" tableName="authorities"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-19">
+        <addUniqueConstraint columnNames="modifytastename" constraintName="modifytastename_2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="modifytaste"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-20">
+        <addUniqueConstraint columnNames="phone1" constraintName="phone1" deferrable="false" disabled="false" initiallyDeferred="false" tableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-21">
+        <addUniqueConstraint columnNames="phone1" constraintName="phone1_2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-22">
+        <addUniqueConstraint columnNames="cardname" constraintName="cardname" deferrable="false" disabled="false" initiallyDeferred="false" tableName="cardtype"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-23">
+        <addUniqueConstraint columnNames="foodlongname" constraintName="foodlongname_2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="food"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-24">
+        <addUniqueConstraint columnNames="modifytastename" constraintName="modifytastename" deferrable="false" disabled="false" initiallyDeferred="false" tableName="modifytaste"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-25">
+        <addUniqueConstraint columnNames="foodcategoryname" constraintName="foodcategoryname" deferrable="false" disabled="false" initiallyDeferred="false" tableName="foodcategory"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-26">
+        <addUniqueConstraint columnNames="cardname" constraintName="cardname_2" deferrable="false" disabled="false" initiallyDeferred="false" tableName="cardtype"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-27">
+        <addUniqueConstraint columnNames="restaurantid, modifytasteid" constraintName="restaurantid" deferrable="false" disabled="false" initiallyDeferred="false" tableName="restaurantmodifytaste"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-28">
+        <addUniqueConstraint columnNames="creditcardnum" constraintName="creditcardnum" deferrable="false" disabled="false" initiallyDeferred="false" tableName="creditcard"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-29">
+        <addUniqueConstraint columnNames="foodlongname" constraintName="foodlongname" deferrable="false" disabled="false" initiallyDeferred="false" tableName="food"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-30">
+        <addPrimaryKey columnNames="username, authority" constraintName="PRIMARY" tableName="authorities"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-31">
+        <addPrimaryKey columnNames="username" constraintName="PRIMARY" tableName="users"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-32">
+        <addForeignKeyConstraint baseColumnNames="modifytasteid" baseTableName="restaurantmodifytaste" constraintName="fk_restaurantmodifytaste_modifytaste" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="modifytasteid" referencedTableName="modifytaste"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-33">
+        <addForeignKeyConstraint baseColumnNames="username" baseTableName="customerorder" constraintName="fk_customerorder_users" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="username" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-34">
+        <addForeignKeyConstraint baseColumnNames="customerorderid" baseTableName="orderdetail" constraintName="fk_orderdetail_customerorder" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="customerorderid" referencedTableName="customerorder"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-35">
+        <addForeignKeyConstraint baseColumnNames="addressid" baseTableName="restaurant" constraintName="fk_restaurant_address" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="addressid" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-36">
+        <addForeignKeyConstraint baseColumnNames="restaurantid" baseTableName="restaurantmodifytaste" constraintName="fk_restaurantmodifytaste_restaurant" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="restaurantid" referencedTableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-37">
+        <addForeignKeyConstraint baseColumnNames="username" baseTableName="authorities" constraintName="fk_authorities_users" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="username" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-38">
+        <addForeignKeyConstraint baseColumnNames="personid" baseTableName="creditcard" constraintName="fk_creditcard_person" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="personid" referencedTableName="person"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-39">
+        <addForeignKeyConstraint baseColumnNames="personid" baseTableName="restaurant" constraintName="fk_restaurant_person" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="personid" referencedTableName="person"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-40">
+        <addForeignKeyConstraint baseColumnNames="addressid" baseTableName="person" constraintName="fk_person_address" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="addressid" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-41">
+        <addForeignKeyConstraint baseColumnNames="menuid" baseTableName="orderdetail" constraintName="fk_orderdetail_menu" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="menuid" referencedTableName="menu"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-42">
+        <addForeignKeyConstraint baseColumnNames="foodid" baseTableName="menu" constraintName="fk_menu_food" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="foodid" referencedTableName="food"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-43">
+        <addForeignKeyConstraint baseColumnNames="restaurantid" baseTableName="customerorder" constraintName="fk_customerorder_restaurant" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="restaurantid" referencedTableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-44">
+        <addForeignKeyConstraint baseColumnNames="username" baseTableName="agentjob" constraintName="fk_agentjob_users" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="username" referencedTableName="users"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-45">
+        <addForeignKeyConstraint baseColumnNames="cardtypeid" baseTableName="creditcard" constraintName="fk_creditcard_cardtype" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="cardtypeid" referencedTableName="cardtype"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-46">
+        <addForeignKeyConstraint baseColumnNames="restaurantid" baseTableName="menu" constraintName="fk_menu_restaurant" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="restaurantid" referencedTableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-47">
+        <addForeignKeyConstraint baseColumnNames="restaurantid" baseTableName="agentjob" constraintName="fk_agentjob_restaurant" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="restaurantid" referencedTableName="restaurant"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-48">
+        <addForeignKeyConstraint baseColumnNames="addressid" baseTableName="creditcard" constraintName="fk_creditcard_address" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="addressid" referencedTableName="address"/>
+    </changeSet>
+    <changeSet author="bobby (generated)" id="1377210364041-49">
+        <addForeignKeyConstraint baseColumnNames="foodcategoryid" baseTableName="menu" constraintName="fk_menu_foodcategory" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="foodcategoryid" referencedTableName="foodcategory"/>
+    </changeSet>
+</databaseChangeLog>
