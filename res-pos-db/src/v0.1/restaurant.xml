@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+	<changeSet id="res-pos-1" author="bthai" context="create-initial-tables">
+		<preConditions onFail="MARK_RAN">
+			<not>
+				<tableExists tableName="address" schemaName="{database.schema}"/>
+			</not>
+		</preConditions>
+		<createTable tableName="address" schemaName="test">
+			<column name="addressid" autoIncrement="true" type="NUMERIC(11,0)">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="addressid"/>
+			</column>
+			<column name="street1" type="VARCHAR(40)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="street2" type="VARCHAR(40)"/>
+			<column name="city" type="VARCHAR(20)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="zipcode" type="VARCHAR(5)"/>
+		</createTable>
+	</changeSet>
+
+</databaseChangeLog>

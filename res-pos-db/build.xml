@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="database" basedir=".">
+	<property file="database.properties" />
+	<property name="database.driver" value="{database.driver}"/>
+	<property name="database.port" value="{database.port}"/>
+	
+	<mkdir dir="${basedir}/build/classes" />
+
+	<path id="classpath">
+	      <fileset dir="lib">
+	        <include name="**/*.jar"/>
+	      </fileset>
+		  <pathelement location="build/classes"/>
+    </path>
+
+	<target name="generateChangeLog">
+		<input message="Which release is this for?" addProperty="release" />
+		<input message="Which database server is this for?" addProperty="database.server" />
+		<input message="Which database schema is this for?" addproperty="database.schema" />
+		<input message="Username for ${database.server}?" addproperty="database.username" />
+		<input message="Password for ${database.server}?" addproperty="database.password" />
+		
+		<property name="database.url" value="jdbc\:mysql\://${database.server}\:${database.port}/${database.schema}"/>
+		
+		<fail unless="database.url">database.url not set</fail>
+	    <fail unless="database.username">database.username not set</fail>
+	    <fail unless="database.password">database.password not set</fail>
+	    
+	   	<echo>Generating Changelog for ${database.url};username=${database.username};password=${database.password}</echo>
+	 	<echo>Change Log being migrated : ${release}/${database.schema}.xml</echo>
+
+		<taskdef resource="liquibasetasks.properties">
+	        <classpath refid="classpath"/>
+	    </taskdef>
+	 
+	    <generateChangeLog
+	            outputFile="${release}/${database.schema}.xml"
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            username="${database.username}"
+	            password="${database.password}"
+	            classpathref="classpath"
+	            />
+	</target>
+
+	<target name="update-database">
+	    <fail unless="db.changelog.file">db.changelog.file not set</fail>
+	    <fail unless="database.url">database.url not set</fail>
+	
+	    <fail unless="database.username">database.username not set</fail>
+	    <fail unless="database.password">database.password not set</fail>
+
+		<taskdef resource="liquibasetasks.properties">
+	        <classpath refid="classpath"/>
+	    </taskdef>
+	
+	    <updateDatabase
+	            changeLogFile="${db.changelog.file}"
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            username="${database.username}"
+	            password="${database.password}"
+	            promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
+	            dropFirst="false"
+	            classpathref="classpath"
+	    />
+	    
+	</target>
+</project>
