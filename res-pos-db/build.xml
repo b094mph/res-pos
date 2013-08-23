@@ -51,9 +51,9 @@
 	</target>
 	
 	<target name="setup">
-		<input message="Which release is this for?" addProperty="release" />
-		<input message="Which database server is this for?" addProperty="database.server" />
-		<input message="Which database schema is this for?" addproperty="database.schema" />
+		<input message="Which release is this for? (v0.5)" addProperty="release" />
+		<input message="Which database server is this for? (amazonaws)" addProperty="database.server" />
+		<input message="Which database schema is this for? (restaurant)" addproperty="database.schema" defaultvalue="restaurant" />
 		<input message="Username for ${database.server}?" addproperty="database.username" />
 		<input message="Password for ${database.server}?" addproperty="database.password" />
 		
@@ -67,10 +67,13 @@
 	        <classpath refid="classpath"/>
 	    </taskdef>
 	</target>
+	
+	<target name="update-setup" depends="setup">
+		<input message="Which contexts are you migrating? (v0.5) (leave blank to migrate everything for this release)" addproperty="contexts" />
+		<input message="What's the change log to migrate (restaurant)" addproperty="change.log" defaultvalue="${database.schema}" />
+	</target>
 
-	<target name="update-database" depends="setup">
-		<input message="Which contexts are you migrating? (leave blank to migrate everything for this release)" addproperty="contexts" />
-		<input message="What's the change log to migrate (restaurant.xml)" addproperty="change.log" defaultvalue="${database.schema}" />
+	<target name="update-database" depends="update-setup">
 		<updateDatabase
 	            changeLogFile="${release}/${change.log}.xml"
 	            driver="${database.driver}"
@@ -96,6 +99,23 @@
 	        classpathref="classpath"
 			tag="${release}.${build.number}"
 		/>
+	</target>
+	
+	<target name="update-storedProcedure" depends="update-setup">
+		<updateDatabase
+	            changeLogFile="${release}/storedProcedures/${change.log}.xml"
+	            driver="${database.driver}"
+	            url="${database.url}"
+	            username="${database.username}"
+	            password="${database.password}"
+	            promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
+	            dropFirst="false"
+	            classpathref="classpath"
+	    		contexts="${contexts}"
+	    >
+			<changeLogProperty name="include.dir.base" value="${include.dir.base}" />
+			<changeLogProperty name="include.dir.relative" value="${include.dir.relative}" />
+		</updateDatabase>
 	</target>
 	
 	<target name="rollback-database" depends="setup">
