@@ -10,13 +10,114 @@
 				IN foodCategoryId LONG
 			)
 			BEGIN
-			
 			SELECT * From menu m 
 				where m.restaurantid = restaurantId 
 				AND m.foodcategoryid = foodCategoryId;
-			
 			END;
 		</createProcedure>
+		<rollback/>
 	</changeSet>
-
+	
+	<changeSet author="bobby" id="002" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getFoodCategoryIdsFromMenu;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getFoodCategoryIdsFromMenu(
+				IN restaurantId LONG
+			)
+			BEGIN
+			SELECT DISTINCT m.foodcategoryid FROM menu m
+				INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+				WHERE m.restaurantid = restaurantId
+				AND fc.foodcategoryname NOT LIKE 'Extra%'
+				ORDER BY m.foodcategoryid ASC;
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="003" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getFoodCategoriesFromMenu;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getFoodCategoriesFromMenu(
+				IN restaurantId LONG
+			)
+			BEGIN
+			SELECT DISTINCT fc.* FROM menu m 
+				INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid 
+				WHERE m.restaurantid = restaurantId 
+				AND fc.foodcategoryname NOT LIKE 'Extra%' 
+				ORDER BY fc.foodcategoryid ASC;
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="004" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getMenu;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getMenu(
+				IN restaurantId LONG
+			)
+			BEGIN
+			SELECT * FROM menu m WHERE m.restaurantid = restaurantId;
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="005" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getExtrasCategoryFromMenu;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getExtrasCategoryFromMenu(
+				IN restaurantId LONG
+			)
+			BEGIN
+			SELECT DISTINCT fc.* FROM menu m
+				INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+				WHERE m.restaurantid = restaurantId
+				AND fc.foodcategoryname LIKE 'Extra%'
+				ORDER BY fc.foodcategoryid ASC;
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="006" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getMenuByExtrasCategory;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getMenuByExtrasCategory(
+				IN restaurantId LONG,
+				IN foodCategoryId LONG
+			)
+			BEGIN
+			SELECT * FROM menu m
+				INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+				WHERE m.restaurantid = restaurantId
+				AND fc.foodcategoryid = foodCategoryId
+				AND fc.foodcategoryname LIKE 'Extra%';
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="007" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getTasteModifiers;</sql>
+		<createProcedure>
+			CREATE PROCEDURE getTasteModifiers(
+				IN restaurantId LONG
+			)
+			BEGIN
+			SELECT m.modifyTaste FROM restaurantmodifytaste m
+				INNER JOIN restaurant r on r.restaurantid = m.restaurantid 
+				WHERE r.restaurantId = restaurantId;
+			END;
+		</createProcedure>
+		<rollback/>
+	</changeSet>
 </databaseChangeLog>
