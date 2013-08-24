@@ -51,7 +51,7 @@
 	</target>
 	
 	<target name="setup">
-		<input message="Which release is this for? (v0.5)" addProperty="release" />
+		<input message="Which release is this for?" addProperty="release" defaultValue="v0.5"/>
 		<input message="Which database server is this for?" addProperty="database.server" defaultvalue="ec2-23-23-7-182.compute-1.amazonaws.com" />
 		<input message="Which database schema is this for?" addproperty="database.schema" defaultvalue="restaurant" />
 		<input message="Username for ${database.server}?" addproperty="database.username" />
@@ -69,8 +69,8 @@
 	</target>
 	
 	<target name="update-setup" depends="setup">
-		<input message="Which contexts are you migrating? (v0.5) (leave blank to migrate everything for this release)" addproperty="contexts" />
-		<input message="What's the change log to migrate (restaurant)" addproperty="change.log" defaultvalue="${database.schema}" />
+		<input message="Which contexts are you migrating? (leave blank to migrate everything for this release)" addproperty="contexts" defaultValue="${release}" />
+		<input message="What's the change log to migrate?" addproperty="change.log" defaultvalue="${database.schema}" />
 	</target>
 
 	<target name="update-database" depends="update-setup">
