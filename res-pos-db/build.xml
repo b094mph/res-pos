@@ -52,8 +52,8 @@
 	
 	<target name="setup">
 		<input message="Which release is this for? (v0.5)" addProperty="release" />
-		<input message="Which database server is this for? (amazonaws)" addProperty="database.server" />
-		<input message="Which database schema is this for? (restaurant)" addproperty="database.schema" defaultvalue="restaurant" />
+		<input message="Which database server is this for?" addProperty="database.server" defaultvalue="ec2-23-23-7-182.compute-1.amazonaws.com" />
+		<input message="Which database schema is this for?" addproperty="database.schema" defaultvalue="restaurant" />
 		<input message="Username for ${database.server}?" addproperty="database.username" />
 		<input message="Password for ${database.server}?" addproperty="database.password" />
 		
