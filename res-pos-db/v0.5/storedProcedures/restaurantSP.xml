@@ -49,8 +49,8 @@
 					IN restaurantId LONG
 				)
 				BEGIN
-				SELECT DISTINCT fc.* FROM menu m 
-					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid 
+				SELECT DISTINCT fc.* FROM foodcategory fc 
+					INNER JOIN menu m on m.foodcategoryid = fc.foodcategoryid 
 					WHERE m.restaurantid = restaurantId 
 					AND fc.foodcategoryname NOT LIKE 'Extra%' 
 					ORDER BY fc.foodcategoryid ASC;
@@ -85,8 +85,8 @@
 					IN restaurantId LONG
 				)
 				BEGIN
-				SELECT DISTINCT fc.* FROM menu m
-					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+				SELECT DISTINCT fc.* FROM foodcategory fc 
+					INNER JOIN menu m on m.foodcategoryid = fc.foodcategoryid
 					WHERE m.restaurantid = restaurantId
 					AND fc.foodcategoryname LIKE 'Extra%'
 					ORDER BY fc.foodcategoryid ASC;
@@ -126,8 +126,9 @@
 					IN restaurantId LONG
 				)
 				BEGIN
-				SELECT m.modifyTaste FROM restaurantmodifytaste m
-					INNER JOIN restaurant r on r.restaurantid = m.restaurantid 
+				SELECT mt.* FROM modifytaste mt
+					INNER JOIN restaurantmodifytaste rmt on rmt.modifytasteid = mt.modifytasteid
+					INNER JOIN restaurant r on r.restaurantid = rmt.restaurantid 
 					WHERE r.restaurantId = restaurantId;
 				END;
 			]]>

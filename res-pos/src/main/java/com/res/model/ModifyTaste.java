@@ -7,9 +7,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedNativeQueries({
+	@NamedNativeQuery(name="getTasteModifiers",
+			query="CALL getTasteModifiers(:restaurantId);",
+			resultClass= ModifyTaste.class)
+})
 @Table(name="modifytaste", catalog="restaurant")
 public class ModifyTaste implements Serializable{
 

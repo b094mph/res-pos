@@ -27,20 +27,11 @@ import javax.persistence.UniqueConstraint;
 	@NamedNativeQuery(name="getFoodCategoryIdsFromMenu",
 			query="CALL getFoodCategoryIdsFromMenu(:restaurantId);",
 			resultClass = Menu.class),
-	@NamedNativeQuery(name="getFoodCategoriesFromMenu",
-			query="CALL getFoodCategoriesFromMenu(:restaurantId);",
-			resultClass= Menu.class),
 	@NamedNativeQuery(name="getMenu",
 			query="CALL getMenu(:restaurantId);",
 			resultClass= Menu.class),
-	@NamedNativeQuery(name="getExtrasCategoryFromMenu",
-			query="CALL getExtrasCategoryFromMenu(:restaurantId);",
-			resultClass= Menu.class),
 	@NamedNativeQuery(name="getMenuByExtrasCategory",
 			query="CALL getMenuByExtrasCategory(:restaurantId, :foodCategoryId);",
-			resultClass= Menu.class),
-	@NamedNativeQuery(name="getTasteModifiers",
-			query="CALL getTasteModifiers(:restaurantId);",
 			resultClass= Menu.class)
 })
 @Table(name="menu", catalog="restaurant", uniqueConstraints={
