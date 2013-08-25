@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    
+    <changeSet author="bobby" id="001" context="insert-initial-data" runOnChange="true">
+    	<sql>DROP PROCEDURE IF EXISTS insertInitialData;</sql>
+    	<createProcedure>
+    		<![CDATA[
+	    		CREATE PROCEDURE insertInitialData()
+				BEGIN
+					INSERT IGNORE INTO users (username, password, salt, firstname, enabled, createdby) 
+						VALUES ('admin', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 'bfbaf639c79f06ca22556c5bb59def6ebea816eb37801787','admin', 1,'admin');
+					INSERT IGNORE INTO users (username, password, salt, firstname, lastname, enabled, createdby) 
+						VALUES ('bthai', '7abb643aeb2a15ef0bf01aa335fca1cf3e0ea0ce54f5894389cf9abf6488128b','daee01bac2ff29e976116fa3d6515c51fddea2917b57c4b5','bobby', 'thai', 1,'admin');
+					INSERT IGNORE INTO authorities(username, authority,createdby) 
+						VALUES('admin', 'ROLE_ADMIN', 'admin');
+					INSERT IGNORE INTO authorities(username, authority,createdby) 
+						VALUES('admin', 'ROLE_USER', 'admin');
+					INSERT IGNORE INTO authorities(username, authority,createdby) 
+						VALUES('bthai', 'ROLE_USER', 'admin');
+					INSERT IGNORE INTO address(street1, city, state, zipcode) 
+						VALUES('100 Main Street', 'Flushing', 'NY', '11355');
+					INSERT IGNORE INTO person(firstname, lastname, phone1)
+						VALUES('Uncle', 'John', '3473338987');
+					INSERT INTO restaurant (addressid, personid, restaurantname, location, phone1, 
+							phone2,	deliverycost,tax, rounding, montothursopen, montothursclose,
+							friopen, friclose, satopen, satclose, sunopen, sunclose)
+						VALUES(1,1,'New City Chinese', 'across from dominos', '8454185288', 
+							'8457893456',0.00, 0.08, 1, '11:30 am', '09:30 pm', '11:30 am', '10:00 pm',
+							'11:30 am', '10:00 pm', '12:00 pm', '09:30 pm');
+					INSERT INTO restaurant(addressid, personid, restaurantname, location, phone1, 
+							phone2,deliverycost,tax, rounding, montothursopen, montothursclose,
+							friopen, friclose, satopen, satclose, sunopen, sunclose)
+						VALUES(1,1,'Uncle Johns', 'across kfc', '7163239830',
+							'7163239831', 1.00, 0.08, 0, '11:30 am', '10:00 pm', '11:30 am', '10:00 pm',
+							'11:30 am', '10:00 pm', '12:00 pm', '10:00 pm');
+				
+					/* Prepopulate data */
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Add','加');
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('No','不');
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Less','少');
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('With','同');
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Only','只');
+					INSERT INTO modifytaste(modifytastename, modifytastecname) VALUES('Want','要');
+				
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,1);
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,2);
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,3);
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,4);
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,5);
+					INSERT INTO restaurantmodifytaste(restaurantid, modifytasteid) VALUES (1,6);
+				END;
+			]]>
+    	</createProcedure>
+    </changeSet>
+    <changeSet author="bobby" id="002" context="insert-initial-data" runOnChange="true">
+    	<sql>DROP PROCEDURE IF EXISTS insertInitialFoodCategories;</sql>
+    	<createProcedure>
+    		<![CDATA[
+    			CREATE PROCEDURE insertInitialFoodCategories()
+				BEGIN
+					INSERT IGNORE INTO foodcategory(foodcategoryname, foodcategorycname)
+						SELECT t.foodcategoryname, t.foodcategorycname FROM temp t;
+				END;
+    		]]>
+    	</createProcedure>
+    </changeSet>
+    <changeSet author="bobby" id="003" context="insert-initial-data" runOnChange="true">
+    	<sql>DROP PROCEDURE IF EXISTS insertInitialFoods;</sql>
+    	<createProcedure>
+    		<![CDATA[
+    			CREATE PROCEDURE insertInitialFoods()
+				BEGIN
+					INSERT IGNORE INTO food(foodshortname, foodlongname, cfoodname, description, cdescription)
+						SELECT t.foodshortname, t.foodlongname, t.cfoodname, t.description, t.cdescription 
+						FROM temp t;
+				END;
+    		]]>
+    	</createProcedure>
+    </changeSet>
+    <changeSet author="bobby" id="004" context="insert-initial-data" runOnChange="true">
+    	<sql>DROP PROCEDURE IF EXISTS insertInitalMenu;</sql>
+    	<createProcedure>
+    		<![CDATA[
+    			CREATE PROCEDURE insertInitalMenu()
+				BEGIN
+					INSERT IGNORE INTO menu(restaurantid, foodcategoryid, foodid, 
+							menunum, small, large, lunchnum, lunch, combonum, combo, 
+							spicy, rice, sauce, noodle, pieces, appetizercombo, createdby)
+						SELECT 1 as restaurantid, fc.foodcategoryid, f.foodid, t.menunum, t.small, t.large,
+							t.lunchnum, t.lunch, t.combonum, t.combo, t.spicy, t.rice, t.sauce,
+							t.noodle, t.pieces, t.appetizercombo, 'dataconversion'
+						FROM temp t
+						INNER JOIN foodcategory fc ON fc.foodcategoryname=t.foodcategoryname
+						INNER JOIN food f ON f.foodlongname=t.foodlongname
+						ORDER BY t.id;
+				END;
+    		]]>
+    	</createProcedure>
+    </changeSet>
+    
+	<changeSet author="bobby" id="005" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getMenuByFoodCategory;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getMenuByFoodCategory(
+					IN restaurantId LONG, 
+					IN foodCategoryId LONG
+				)
+				BEGIN
+				SELECT * From menu m 
+					where m.restaurantid = restaurantId 
+					AND m.foodcategoryid = foodCategoryId;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="006" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getFoodCategoryIdsFromMenu;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getFoodCategoryIdsFromMenu(
+					IN restaurantId LONG
+				)
+				BEGIN
+				SELECT DISTINCT m.foodcategoryid FROM menu m
+					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+					WHERE m.restaurantid = restaurantId
+					AND fc.foodcategoryname NOT LIKE 'Extra%'
+					ORDER BY m.foodcategoryid ASC;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="007" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getFoodCategoriesFromMenu;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getFoodCategoriesFromMenu(
+					IN restaurantId LONG
+				)
+				BEGIN
+				SELECT DISTINCT fc.* FROM menu m 
+					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid 
+					WHERE m.restaurantid = restaurantId 
+					AND fc.foodcategoryname NOT LIKE 'Extra%' 
+					ORDER BY fc.foodcategoryid ASC;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="008" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getMenu;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getMenu(
+					IN restaurantId LONG
+				)
+				BEGIN
+				SELECT * FROM menu m WHERE m.restaurantid = restaurantId;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="009" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getExtrasCategoryFromMenu;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getExtrasCategoryFromMenu(
+					IN restaurantId LONG
+				)
+				BEGIN
+				SELECT DISTINCT fc.* FROM menu m
+					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+					WHERE m.restaurantid = restaurantId
+					AND fc.foodcategoryname LIKE 'Extra%'
+					ORDER BY fc.foodcategoryid ASC;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="010" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getMenuByExtrasCategory;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getMenuByExtrasCategory(
+					IN restaurantId LONG,
+					IN foodCategoryId LONG
+				)
+				BEGIN
+				SELECT * FROM menu m
+					INNER JOIN foodcategory fc on fc.foodcategoryid = m.foodcategoryid
+					WHERE m.restaurantid = restaurantId
+					AND fc.foodcategoryid = foodCategoryId
+					AND fc.foodcategoryname LIKE 'Extra%';
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+	
+	<changeSet author="bobby" id="011" context="v0.5" runOnChange="true">
+		<comment></comment>
+		<sql>DROP PROCEDURE IF EXISTS getTasteModifiers;</sql>
+		<createProcedure>
+			<![CDATA[
+				CREATE PROCEDURE getTasteModifiers(
+					IN restaurantId LONG
+				)
+				BEGIN
+				SELECT m.modifyTaste FROM restaurantmodifytaste m
+					INNER JOIN restaurant r on r.restaurantid = m.restaurantid 
+					WHERE r.restaurantId = restaurantId;
+				END;
+			]]>
+		</createProcedure>
+		<rollback/>
+	</changeSet>
+</databaseChangeLog>

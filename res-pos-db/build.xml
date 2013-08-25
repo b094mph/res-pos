@@ -16,9 +16,6 @@
     <taskdef resource="liquibasetasks.properties">
         <classpath refid="classpath"/>
     </taskdef>
-	<taskdef resource="net/sf/antcontrib/antcontrib.properties">
-	  <classpath refid="classpath" />
-	</taskdef>
 
 	<target name="generateChangeLog" description="to create the change log for existing db">
 		<input message="Which release is this for?" addProperty="release" />
@@ -35,10 +32,6 @@
 	    
 	   	<echo>Generating Changelog for ${database.url};username=${database.username};password=${database.password}</echo>
 	 	<echo>Change Log being migrated : ${release}/${database.schema}.xml</echo>
-
-		<taskdef resource="liquibasetasks.properties">
-	        <classpath refid="classpath"/>
-	    </taskdef>
 	 
 	    <generateChangeLog
 	            outputFile="${release}/${database.schema}.xml"
@@ -62,18 +55,15 @@
 	    <fail unless="database.username">database.username not set</fail>
 	    <fail unless="database.password">database.password not set</fail>
 	    <fail unless="database.url">database.url not set</fail>
-		
-		<taskdef resource="liquibasetasks.properties">
-	        <classpath refid="classpath"/>
-	    </taskdef>
-	</target>
-	
-	<target name="update-setup" depends="setup">
-		<input message="Which contexts are you migrating? (leave blank to migrate everything for this release)" addproperty="contexts" defaultValue="${release}" />
-		<input message="What's the change log to migrate?" addproperty="change.log" defaultvalue="${database.schema}" />
 	</target>
 
-	<target name="update-database" depends="update-setup">
+	<target name="update-database" depends="setup">
+		<input message="Which contexts are you migrating? (leave blank to migrate everything for this release)" addproperty="contexts"/>
+		<input message="What's the change log to migrate? (changelog_v0.5)" addproperty="change.log" defaultvalue="changelog_v0.5" />
+		
+	   	<echo>Generating Changelog for ${database.url};username=${database.username};password=${database.password}</echo>
+		<echo>Contexts being migrated : ${contexts}</echo>
+	 	<echo>Change Log being migrated : ${release}/${change.log}.xml</echo>
 		<updateDatabase
 	            changeLogFile="${release}/${change.log}.xml"
 	            driver="${database.driver}"
@@ -101,25 +91,8 @@
 		/>
 	</target>
 	
-	<target name="update-storedProcedure" depends="update-setup">
-		<updateDatabase
-	            changeLogFile="${release}/storedProcedures/${change.log}.xml"
-	            driver="${database.driver}"
-	            url="${database.url}"
-	            username="${database.username}"
-	            password="${database.password}"
-	            promptOnNonLocalDatabase="${prompt.user.if.not.local.database}"
-	            dropFirst="false"
-	            classpathref="classpath"
-	    		contexts="${contexts}"
-	    >
-			<changeLogProperty name="include.dir.base" value="${include.dir.base}" />
-			<changeLogProperty name="include.dir.relative" value="${include.dir.relative}" />
-		</updateDatabase>
-	</target>
-	
 	<target name="rollback-database" depends="setup">
-		<input message="What's the change log to migrate (restaurant.xml)" addproperty="change.log" defaultvalue="${database.schema}" />
+		<input message="What's the change log to migrate (changelog_v0.5)" addproperty="change.log" defaultvalue="changelog_v0.5"/>
 		
 		<rollbackDatabase
 				changeLogFile="${release}/${change.log}.xml"
