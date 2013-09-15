@@ -461,7 +461,25 @@
     <changeSet author="bobby (generated)" id="1377210364041-49">
         <addForeignKeyConstraint baseColumnNames="foodcategoryid" baseTableName="menu" constraintName="fk_menu_foodcategory" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="NO ACTION" referencedColumnNames="foodcategoryid" referencedTableName="foodcategory"/>
     </changeSet>
-    <changeSet author="bobby" id="initial-50" context="data-conversion" runOnChange="true" runInTransaction="true">
+    <changeSet id="initial-50" author="bobby" context="utf8">
+    	<sql>
+    		<![CDATA[
+				ALTER TABLE address CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE foodcategory CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE food CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE person CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE restaurant CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE menu CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE cardtype CONVERT TO CHARACTER SET utf8;
+				ALTER TABLE creditcard CONVERT TO CHARACTER SET utf8;
+    			ALTER TABLE modifytaste CONVERT TO CHARACTER SET utf8;
+    			ALTER TABLE restaurantmodifytaste CONVERT TO CHARACTER SET utf8;
+    			ALTER TABLE orderdetail CONVERT TO CHARACTER SET utf8;
+    			ALTER TABLE temp CONVERT TO CHARACTER SET utf8;
+    		]]>
+    	</sql>
+    </changeSet>
+    <changeSet author="bobby" id="initial-51" context="data-conversion" runOnChange="true" runInTransaction="true">
     	<comment>Dump menu.csv file into temp table. this chinese menu contains everything 
 				about the restuarant's menu. we will use this temp table and put the 
 				information in the correct table - foodcategory, food and menu tables.
