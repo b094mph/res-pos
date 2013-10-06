@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.AddressDao;
+import com.res.domain.Address;
 import com.res.exception.ServiceException;
-import com.res.model.Address;
 import com.res.service.AddressService;
 import com.res.util.MessageLoader;
 

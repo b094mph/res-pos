@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.RestaurantDao;
-import com.res.model.Restaurant;
+import com.res.domain.Restaurant;
 
 @Repository("restaurantDao")
 public class RestaurantDaoImpl extends BaseDaoImpl implements RestaurantDao {

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.CustomerDao;
-import com.res.model.Person;
+import com.res.domain.Person;
 import com.res.service.CustomerService;
 
 @Service("customerService")

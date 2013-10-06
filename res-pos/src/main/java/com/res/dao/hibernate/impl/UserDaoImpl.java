@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.UserDao;
-import com.res.model.User;
+import com.res.domain.User;
 
 @Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl implements UserDao {

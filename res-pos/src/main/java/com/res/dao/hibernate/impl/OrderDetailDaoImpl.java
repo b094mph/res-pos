@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.OrderDetailDao;
-import com.res.model.OrderDetail;
+import com.res.domain.OrderDetail;
 
 @Repository("orderDetailDao")
 public class OrderDetailDaoImpl extends BaseDaoImpl implements OrderDetailDao {

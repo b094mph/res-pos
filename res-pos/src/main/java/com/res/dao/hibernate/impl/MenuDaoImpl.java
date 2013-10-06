@@ -14,9 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.MenuDao;
-import com.res.model.FoodCategory;
-import com.res.model.Menu;
-import com.res.model.ModifyTaste;
+import com.res.domain.FoodCategory;
+import com.res.domain.Menu;
+import com.res.domain.ModifyTaste;
 import com.res.util.MessageLoader;
 
 @Repository("menuDao")

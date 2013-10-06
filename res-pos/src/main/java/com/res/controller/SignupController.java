@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.res.model.User;
+import com.res.domain.User;
 import com.res.service.SignupService;
 
 @Controller

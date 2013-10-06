@@ -2,7 +2,7 @@ package com.res.dao.hibernate;
 
 import java.util.List;
 
-import com.res.model.OrderDetail;
+import com.res.domain.OrderDetail;
 
 public interface OrderDetailDao extends BaseDao {
 

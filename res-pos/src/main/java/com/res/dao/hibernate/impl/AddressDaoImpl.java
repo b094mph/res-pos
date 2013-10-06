@@ -7,7 +7,7 @@ import org.hibernate.Query;
 import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.AddressDao;
-import com.res.model.Address;
+import com.res.domain.Address;
 
 @Repository("addressDao")
 public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {

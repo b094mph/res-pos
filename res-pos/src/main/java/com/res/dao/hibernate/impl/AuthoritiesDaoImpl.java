@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import com.res.constant.RoleConstant;
 import com.res.dao.hibernate.AuthoritiesDao;
-import com.res.model.Authorities;
-import com.res.model.AuthoritiesId;
+import com.res.domain.Authorities;
+import com.res.domain.AuthoritiesId;
 
 @Repository("authoritiesDao")
 public class AuthoritiesDaoImpl extends BaseDaoImpl implements AuthoritiesDao{

@@ -47,7 +47,7 @@
 		</property>
 	    <property name="packagesToScan">
 	        <list>
-	            <value>com.res.model</value>
+	            <value>com.res.domain</value>
 	        </list>
 	    </property>
 	</bean>

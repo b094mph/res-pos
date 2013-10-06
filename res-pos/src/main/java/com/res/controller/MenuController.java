@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.res.domain.FoodCategory;
+import com.res.domain.Menu;
 import com.res.exception.ServiceException;
-import com.res.model.FoodCategory;
-import com.res.model.Menu;
 import com.res.service.AddressService;
 import com.res.service.CustomerService;
 import com.res.service.MenuService;

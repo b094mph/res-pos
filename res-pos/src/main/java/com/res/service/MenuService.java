@@ -3,9 +3,9 @@ package com.res.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.res.model.FoodCategory;
-import com.res.model.Menu;
-import com.res.model.ModifyTaste;
+import com.res.domain.FoodCategory;
+import com.res.domain.Menu;
+import com.res.domain.ModifyTaste;
 
 public interface MenuService {
 

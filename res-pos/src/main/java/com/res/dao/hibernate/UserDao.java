@@ -2,7 +2,7 @@ package com.res.dao.hibernate;
 
 import java.util.List;
 
-import com.res.model.User;
+import com.res.domain.User;
 
 public interface UserDao extends BaseDao{
 

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.domain.Address;
 import com.res.exception.ServiceException;
-import com.res.model.Address;
 import com.res.service.AddressService;
 
 @Controller

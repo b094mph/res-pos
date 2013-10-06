@@ -12,9 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 import com.res.constant.ResConstant;
 import com.res.dao.hibernate.CustomerOrderDao;
 import com.res.dao.hibernate.OrderDetailDao;
-import com.res.model.CustomerOrder;
-import com.res.model.Menu;
-import com.res.model.OrderDetail;
+import com.res.domain.CustomerOrder;
+import com.res.domain.Menu;
+import com.res.domain.OrderDetail;
 import com.res.service.OrderService;
 
 @Service("orderService")

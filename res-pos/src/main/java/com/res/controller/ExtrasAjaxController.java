@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.domain.FoodCategory;
+import com.res.domain.Menu;
+import com.res.domain.ModifyTaste;
 import com.res.exception.ServiceException;
-import com.res.model.FoodCategory;
-import com.res.model.Menu;
-import com.res.model.ModifyTaste;
 import com.res.service.MenuService;
 import com.res.util.MessageLoader;
 

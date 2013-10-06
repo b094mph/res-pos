@@ -5,7 +5,7 @@ import java.util.Set;
 
 import org.springframework.security.access.annotation.Secured;
 
-import com.res.model.Person;
+import com.res.domain.Person;
 
 public interface CustomerService {
 

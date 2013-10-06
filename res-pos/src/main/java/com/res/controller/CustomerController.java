@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.res.model.Person;
+import com.res.domain.Person;
 import com.res.service.CustomerService;
 
 @Controller

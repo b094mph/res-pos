@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.res.domain.Menu;
 import com.res.exception.EmptyCollectionException;
-import com.res.model.Menu;
 import com.res.service.MenuService;
 import com.res.util.MessageLoader;
 

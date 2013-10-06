@@ -3,8 +3,8 @@ package com.res.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.res.model.CustomerOrder;
-import com.res.model.OrderDetail;
+import com.res.domain.CustomerOrder;
+import com.res.domain.OrderDetail;
 
 public interface OrderService {
 

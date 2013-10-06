@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.MenuDao;
-import com.res.model.FoodCategory;
-import com.res.model.Menu;
-import com.res.model.ModifyTaste;
+import com.res.domain.FoodCategory;
+import com.res.domain.Menu;
+import com.res.domain.ModifyTaste;
 import com.res.service.MenuService;
 
 @Service("menuService")

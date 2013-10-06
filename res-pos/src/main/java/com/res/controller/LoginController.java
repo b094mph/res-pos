@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
-import com.res.model.Restaurant;
-import com.res.model.User;
+import com.res.domain.Restaurant;
+import com.res.domain.User;
 import com.res.service.RestaurantService;
 import com.res.service.UserService;
 

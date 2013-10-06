@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.RestaurantDao;
-import com.res.model.Restaurant;
+import com.res.domain.Restaurant;
 import com.res.service.RestaurantService;
 
 @Service("restaurantService")

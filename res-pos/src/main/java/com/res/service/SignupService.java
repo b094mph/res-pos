@@ -1,6 +1,6 @@
 package com.res.service;
 
-import com.res.model.User;
+import com.res.domain.User;
 
 
 public interface SignupService {

@@ -2,7 +2,7 @@ package com.res.service;
 
 import java.util.List;
 
-import com.res.model.Restaurant;
+import com.res.domain.Restaurant;
 
 public interface RestaurantService {
 

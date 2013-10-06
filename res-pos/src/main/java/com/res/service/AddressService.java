@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.security.access.annotation.Secured;
 
+import com.res.domain.Address;
 import com.res.exception.ServiceException;
-import com.res.model.Address;
 
 public interface AddressService {
 

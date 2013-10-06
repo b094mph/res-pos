@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.AuthoritiesDao;
 import com.res.dao.hibernate.UserDao;
-import com.res.model.User;
+import com.res.domain.User;
 import com.res.security.SHAHashing;
 import com.res.service.SignupService;
 
