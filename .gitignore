@@ -44,11 +44,15 @@ Servers/
 # git/res-pos/res-pos/build.properties
 # git/res-pos/res-pos/src/main/resources/log4j.properties
 # git/res-pos/res-pos/build/classes/log4j.properties
-# git/res-pos/WebContent/WEB-INF/database.properties
+# git/res-pos/res-pos/src/main/resources/database.properties
+# git/res-pos/res-pos/build/classes/database.properties
 
-
-
+# res-pos
+############################################################
+res-pos/bin
+res-pos/build
 ############################################################
 # res-pos-db
-bin/
+res-pos-db/bin/
+res-pos-db/build/
 ############################################################
