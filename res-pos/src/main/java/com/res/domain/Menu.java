@@ -12,28 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@NamedNativeQueries({
-	@NamedNativeQuery(name="getMenuByFoodCategory", 
-			query="CALL getMenuByFoodCategory(:restaurantId, :foodCategoryId);",
-			resultClass = Menu.class),
-	@NamedNativeQuery(name="getFoodCategoryIdsFromMenu",
-			query="CALL getFoodCategoryIdsFromMenu(:restaurantId);",
-			resultClass = Menu.class),
-	@NamedNativeQuery(name="getMenu",
-			query="CALL getMenu(:restaurantId);",
-			resultClass= Menu.class),
-	@NamedNativeQuery(name="getMenuByExtrasCategory",
-			query="CALL getMenuByExtrasCategory(:restaurantId, :foodCategoryId);",
-			resultClass= Menu.class)
-})
 @Table(name="menu", uniqueConstraints={
 		@UniqueConstraint(columnNames="restaurantid"),
 		@UniqueConstraint(columnNames="foodcategoryid"),

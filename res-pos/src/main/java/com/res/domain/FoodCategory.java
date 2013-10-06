@@ -9,8 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQueries;
-import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,14 +16,6 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 @Entity
-@NamedNativeQueries({
-	@NamedNativeQuery(name="getFoodCategoriesFromMenu",
-			query="CALL getFoodCategoriesFromMenu(:restaurantId);",
-			resultClass= FoodCategory.class),
-	@NamedNativeQuery(name="getExtrasCategoryFromMenu",
-			query="CALL getExtrasCategoryFromMenu(:restaurantId);",
-			resultClass= FoodCategory.class),
-})
 @Table(name="foodcategory")
 public class FoodCategory implements Serializable{
 

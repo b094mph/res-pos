@@ -4,18 +4,8 @@
 #*.jar
 *.war
 *.ear
-
-
-#############################################################
-# .metadata and RemoteSystemsTempFiles
-#############################################################
 .metadata/
 RemoteSystemsTempFiles/
-
-
-#############################################################
-# Servers
-#############################################################
 Servers/
 
 
@@ -23,11 +13,6 @@ Servers/
 # Tells Git to ignore all files that end with a tilde (~) *
 #############################################################
 *~
-
-
-#############################################################
-# sql
-#############################################################
 *.mwb.bak
 
 
@@ -47,10 +32,10 @@ Servers/
 # git/res-pos/res-pos/src/main/resources/database.properties
 # git/res-pos/res-pos/build/classes/database.properties
 
-# res-pos
+# res-pos-core
 ############################################################
-res-pos/bin
-res-pos/build
+res-pos/bin/
+res-pos/build/
 ############################################################
 # res-pos-db
 res-pos-db/bin/

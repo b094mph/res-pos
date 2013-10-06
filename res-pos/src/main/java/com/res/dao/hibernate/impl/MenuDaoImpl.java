@@ -30,23 +30,42 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Long> getFoodCategoryIdsFromMenu(long restaurantId){
-		Query query = getCurrentSession().getNamedQuery("getFoodCategoryIdsFromMenu");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("SELECT DISTINCT m.foodCategory.foodCategoryId FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId ");
+	    sb.append("AND m.foodCategory.foodCategoryName NOT LIKE 'Extra%' ");
+	    sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
+		    
+		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setLong("restaurantId",restaurantId);
+		
 		return query.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FoodCategory> getFoodCategoriesFromMenu(long restaurantId){
-		Query query = getCurrentSession().getNamedQuery("getFoodCategoriesFromMenu");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("SELECT DISTINCT m.foodCategory FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId ");
+	    sb.append("AND m.foodCategory.foodCategoryName NOT LIKE 'Extra%' ");
+	    sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
+		    
+	    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
+		
 		return query.list();
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId){
-		Query query = getCurrentSession().getNamedQuery("getMenuByFoodCategory");
+		    StringBuffer sb = new StringBuffer();
+		    sb.append("FROM Menu m ");
+		    sb.append("WHERE m.restaurantId = :restaurantId " +
+		        "AND m.foodCategory.foodCategoryId = :foodCategoryId");
+		    
+		    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
 		query.setParameter("foodCategoryId", foodCategoryId);
 		
@@ -62,8 +81,13 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> getMenu(long restaurantId) {
-		Query query = getCurrentSession().getNamedQuery("getMenu");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId ");
+	    
+	    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
+		
 		return query.list();
 	}
 
@@ -145,25 +169,44 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FoodCategory> getExtrasCategoryFromMenu(long restaurantId) {
-		Query query = getCurrentSession().getNamedQuery("getExtrasCategoryFromMenu");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("SELECT DISTINCT m.foodCategory FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId ");
+	    sb.append("AND m.foodCategory.foodCategoryName LIKE 'Extra%' ");
+	    sb.append("ORDER BY m.foodCategory.foodCategoryId ASC");
+	    
+	    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
+		
 		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> getMenuByExtrasCategory(long restaurantId, long foodCategoryId) {
-		Query query = getCurrentSession().getNamedQuery("getMenuByExtrasCategory");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId ");
+	    sb.append("AND m.foodCategory.foodCategoryId = :foodCategoryId ");
+	    sb.append("AND m.foodCategory.foodCategoryName LIKE 'Extra%'");
+	    
+	    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
 		query.setParameter("foodCategoryId", foodCategoryId);
+		
 		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ModifyTaste> getTasteModifiers(long restaurantId) {
-		Query query = getCurrentSession().getNamedQuery("getTasteModifiers");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("SELECT m.modifyTaste FROM RestaurantModifyTaste m ");
+	    sb.append("WHERE m.restaurant.restaurantId = :restaurantId");
+	    
+	    Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
+		
 		return query.list();
 	}
 
