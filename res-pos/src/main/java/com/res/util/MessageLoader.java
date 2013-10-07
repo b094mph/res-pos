@@ -3,7 +3,10 @@ package com.res.util;
 import java.util.Locale;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
 
 /**
  * MessageLoader class is used to load the properties of the message resource file.
@@ -12,8 +15,11 @@ import org.springframework.context.MessageSource;
  * @author bobby
  *
  */
+@Component
 public class MessageLoader {
 
+	@Autowired
+	@Qualifier("messageSource")
 	private MessageSource messages;
 
 	public String getMessage(String key){
