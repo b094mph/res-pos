@@ -26,10 +26,12 @@
 		<echo message="log4j.rootLogger=${deployment.log4j.rootLogger}"/>
 		<echo message="log4j.logger.com.res=${deployment.log4j.logger.com.res}"/>
 		
-		<propertyfile file="WebContent/WEB-INF/database.properties">
-			<entry key="jdbc.showhql" value="${deployment.jdbc.showhql}"/>		
+		<propertyfile file="src/main/resources/database.properties">
+			<entry key="jdbc.showhql" value="${deployment.jdbc.showhql}"/>
+			<entry key="schema" value="${deployment.schema}"/>
 		</propertyfile>
-		<echo message="jdbc.showhql=${deployment.jdbc.showhql}"/>	
+		<echo message="jdbc.showhql=${deployment.jdbc.showhql}"/>
+		<echo message="schema=${deployment.schema}"/>
 	</target>
 	
 	<target name="ready.log4j.and.database.for.development"
@@ -45,11 +47,13 @@
 		<echo message="log4j.rootLogger=${development.log4j.rootLogger}"/>
 		<echo message="log4j.logger.com.res=${development.log4j.logger.com.res}"/>
 			
-		<propertyfile file="WebContent/WEB-INF/database.properties">
-			<entry key="jdbc.showhql" value="${development.jdbc.showhql}"/>		
+		<propertyfile file="src/main/resources/database.properties">
+			<entry key="jdbc.showhql" value="${development.jdbc.showhql}"/>
+			<entry key="schema" value="${development.schema}"/>
 		</propertyfile>
-<!-- 		<replaceregexp file="WebContent/WEB-INF/database.properties" match="^#.*" replace=""/> -->
+<!-- 		<replaceregexp file="src/main/resources/database.properties" match="^#.*" replace=""/> -->
 		<echo message="jdbc.showhql=${development.jdbc.showhql}"/>
+		<echo message="schema=${development.schema}"/>
 	</target>
 	
 	<target name="create.warfile">
