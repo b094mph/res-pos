@@ -47,8 +47,8 @@
 		<input message="Which release is this for?" addProperty="release" defaultValue="v0.5"/>
 		<input message="Which database server is this for?" addProperty="database.server" defaultvalue="ec2-23-23-7-182.compute-1.amazonaws.com" />
 		<input message="Which database schema is this for?" addproperty="database.schema" defaultvalue="restaurant" />
-		<input message="Username for ${database.server}?" addproperty="database.username" />
-		<input message="Password for ${database.server}?" addproperty="database.password" />
+		<input message="Database username for ${database.server}?" addproperty="database.username" />
+		<input message="Database password for ${database.server}?" addproperty="database.password" />
 		
 		<property name="database.url" value="jdbc:mysql://${database.server}:${database.port}/${database.schema}"/>
 	
