@@ -60,12 +60,12 @@ public class MenuDaoImpl extends BaseDaoImpl implements MenuDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Menu> getMenuByFoodCategory(long restaurantId, long foodCategoryId){
-		    StringBuffer sb = new StringBuffer();
-		    sb.append("FROM Menu m ");
-		    sb.append("WHERE m.restaurantId = :restaurantId " +
-		        "AND m.foodCategory.foodCategoryId = :foodCategoryId");
+	    StringBuffer sb = new StringBuffer();
+	    sb.append("FROM Menu m ");
+	    sb.append("WHERE m.restaurantId = :restaurantId " +
+	        "AND m.foodCategory.foodCategoryId = :foodCategoryId");
 		    
-		    Query query = getCurrentSession().createQuery(sb.toString());
+		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setParameter("restaurantId", restaurantId);
 		query.setParameter("foodCategoryId", foodCategoryId);
 		

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -64,6 +65,7 @@ public class LoginController {
 		
 		String agentName = principal.getName();
 		session.setAttribute("agentName", agentName);
+		MDC.put("agentName", agentName);
 		logger.info("in welcome " + agentName);
 
 		List<Restaurant> restaurants = restaurantService.getRestaurants();

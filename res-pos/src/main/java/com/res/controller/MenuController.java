@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,8 +53,7 @@ public class MenuController {
 			session.setAttribute("restaurantId", restaurantId);
 			session.setAttribute("restaurantName", restaurantName);
 		}
-		
-		logger.info("restaurantId = " + restaurantId);
+
 		ModelAndView mav = null;
 		
 		if(restaurantId == null){
@@ -70,6 +70,10 @@ public class MenuController {
 		String lang = RequestContextUtils.getLocale(request).toString();
 		session.setAttribute("lang", lang);
 		mav.addObject("lang", lang);
+		
+		MDC.put("restaurantId", restaurantId);
+		MDC.put("restaurantName", restaurantName);
+		MDC.put("lang", lang);
 		
 		// typeaheads
 		mav.addObject("phoneNumbers", customerService.typeaheadPhoneNumber(restaurantId));
