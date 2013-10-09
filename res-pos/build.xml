@@ -5,6 +5,7 @@
 
 	<!-- Configure the directory into which the web application is built -->
 	<property name="build"    value="${basedir}/build"/>
+	<property name="src"	  value="${basedir}/src" />
 	
 	<!-- Configure the context path for this application as in Tomcat -->
 	<property name="path"     value="/${warfile}"/>
@@ -14,6 +15,15 @@
 	<property name="username" value="${username}"/>
 	<property name="password" value="${password}"/>
 	<property name="warfile"  value="${warfile}"/>
+	
+	<target name="clean" description="Delete old build directories">
+		<delete dir="${build}"/>
+	</target>
+	
+	<target name="build" depends="clean" description="build project">
+		<mkdir dir="${build}"/>
+		<javac srcdir="${src}" destdir="${build}" debug="true" includes="**/*.java" />
+	</target>
 	
 	<target name="ready.log4j.and.database.for.deployment"
 			description="ready log4j and database properties files for deployment">
