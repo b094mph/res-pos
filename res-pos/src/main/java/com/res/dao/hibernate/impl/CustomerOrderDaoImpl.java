@@ -7,4 +7,5 @@ import com.res.dao.hibernate.CustomerOrderDao;
 @Repository("customerOrderDao")
 public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDao {
 
+	public
 }
