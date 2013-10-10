@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="res-pos-remote" default="remote.war.deployment" basedir=".">
+
+	<!-- Configure the directory into which the web application is built -->
+	<property name="build"    value="${basedir}/build"/>
+	<property name="src"	  value="${basedir}/src" />
+	
+	<!-- Configure the context path for this application as in Tomcat -->
+	<property name="path"     value="/${warfile}"/>
+	
+	<!-- Configure properties to access the Manager application -->
+	<property name="url"      value="http://${dns}:${port}/manager/html"/>
+	<property name="username" value="${username}"/>
+	<property name="password" value="${password}"/>
+	<property name="warfile"  value="${warfile}"/>
+
+	<target name="remote.war.deployment">
+		<propertyfile file="src/main/resources/log4j.properties">
+			<entry key="restaurant_log" value="${deployment.restaurant_log}"/>
+			<entry key="log4j.rootLogger" value="${deployment.log4j.rootLogger}"/>
+			<entry key="log4j.logger.com.res" value="${deployment.log4j.logger.com.res}"/>
+		</propertyfile>
+		<echo message="restaurant_log=${deployment.restaurant_log}"/>
+		<echo message="log4j.rootLogger=${deployment.log4j.rootLogger}"/>
+		<echo message="log4j.logger.com.res=${deployment.log4j.logger.com.res}"/>
+		
+		<propertyfile file="src/main/resources/database.properties">
+			<entry key="jdbc.username" value="${jdbc.username}"/>
+			<entry key="jdbc.password" value="${jdbc.password}"/>
+			<entry key="jdbc.showhql" value="${deployment.jdbc.showhql}"/>
+			<entry key="schema" value="${deployment.schema}"/>
+		</propertyfile>
+		<echo message="jdbc.username=${jdbc.username}"/>
+		<echo message="jdbc.password=${jdbc.password}"/>
+		<echo message="jdbc.showhql=${deployment.jdbc.showhql}"/>
+		<echo message="schema=${deployment.schema}"/>
+		<war destfile="${warfile}.war" webxml="WebContent/WEB-INF/web.xml" update="true">
+			<classes dir="build\classes"/>
+			<fileset dir="WebContent">
+				<exclude name="WEB-INF/web.xml"/>
+			</fileset>
+		</war>
+		<move file="${warfile}.war" todir="/var/lib/tomcat6/webapps"/>
+	</target>
+
+</project>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<project name="res-pos" default="war.deployment" basedir=".">
+<project name="res-pos-local" default="war.deployment" basedir=".">
 	<property file="build.properties"/>
 
 	<!-- Configure the directory into which the web application is built -->
