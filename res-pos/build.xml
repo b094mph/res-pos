@@ -15,15 +15,6 @@
 	<property name="password" value="${password}"/>
 	<property name="warfile"  value="${warfile}"/>
 	
-	<target name="clean" description="Delete old build directories">
-		<delete dir="${build}"/>
-	</target>
-	
-	<target name="build" depends="clean" description="build project">
-		<mkdir dir="${build}"/>
-		<javac srcdir="${src}" destdir="${build}" debug="true" includes="**/*.java" />
-	</target>
-	
 	<target name="ready.log4j.and.database.for.deployment"
 			description="ready log4j and database properties files for deployment">
 		<propertyfile file="src/main/resources/log4j.properties">
