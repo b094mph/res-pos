@@ -40,7 +40,7 @@
 				<exclude name="WEB-INF/web.xml"/>
 			</fileset>
 		</war>
-		<move file="${warfile}.war" todir="/var/lib/tomcat6/webapps"/>
+		<move file="${warfile}.war" todir="/var/lib/tomcat6/webapps" force="true"/>
 	</target>
 
 </project>
