@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="res-pos-local" default="war.deployment" basedir=".">
-	<property file="build.properties"/>
+<project name="res-pos" default="war.deployment" basedir=".">
+	<property file="/var/lib/tomcat6/conf/res-init.properties"/>
 
 	<!-- Configure the directory into which the web application is built -->
 	<property name="build"    value="${basedir}/build"/>
@@ -14,47 +14,6 @@
 	<property name="username" value="${username}"/>
 	<property name="password" value="${password}"/>
 	<property name="warfile"  value="${warfile}"/>
-	
-	<target name="ready.log4j.and.database.for.deployment"
-			description="ready log4j and database properties files for deployment">
-		<propertyfile file="src/main/resources/log4j.properties">
-			<entry key="restaurant_log" value="${deployment.restaurant_log}"/>
-			<entry key="log4j.rootLogger" value="${deployment.log4j.rootLogger}"/>
-			<entry key="log4j.logger.com.res" value="${deployment.log4j.logger.com.res}"/>
-		</propertyfile>
-		<echo message="restaurant_log=${deployment.restaurant_log}"/>
-		<echo message="log4j.rootLogger=${deployment.log4j.rootLogger}"/>
-		<echo message="log4j.logger.com.res=${deployment.log4j.logger.com.res}"/>
-		
-		<propertyfile file="src/main/resources/database.properties">
-			<entry key="jdbc.showhql" value="${deployment.jdbc.showhql}"/>
-			<entry key="schema" value="${deployment.schema}"/>
-		</propertyfile>
-		<echo message="jdbc.showhql=${deployment.jdbc.showhql}"/>
-		<echo message="schema=${deployment.schema}"/>
-	</target>
-	
-	<target name="ready.log4j.and.database.for.development"
-			description="ready log4j and database properties files back to development">
-		<propertyfile file="src/main/resources/log4j.properties">
-			<entry key="restaurant_log" value="${development.restaurant_log}"/>
-			<entry key="log4j.rootLogger" value="${development.log4j.rootLogger}"/>
-			<entry key="log4j.logger.com.res" value="${development.log4j.logger.com.res}"/>
-		</propertyfile>
-<!-- 		<replaceregexp file="src/main/resources/log4j.properties" match="^#.*" replace=""/> -->
-
-		<echo message="restaurant_log=${development.restaurant_log}"/>
-		<echo message="log4j.rootLogger=${development.log4j.rootLogger}"/>
-		<echo message="log4j.logger.com.res=${development.log4j.logger.com.res}"/>
-			
-		<propertyfile file="src/main/resources/database.properties">
-			<entry key="jdbc.showhql" value="${development.jdbc.showhql}"/>
-			<entry key="schema" value="${development.schema}"/>
-		</propertyfile>
-<!-- 		<replaceregexp file="src/main/resources/database.properties" match="^#.*" replace=""/> -->
-		<echo message="jdbc.showhql=${development.jdbc.showhql}"/>
-		<echo message="schema=${development.schema}"/>
-	</target>
 	
 	<target name="create.warfile">
 		<war destfile="${warfile}.war" webxml="WebContent/WEB-INF/web.xml" update="true">
@@ -75,10 +34,8 @@
 	</target>
 	
 	<target name="war.deployment">
-		<antcall target="ready.log4j.and.database.for.deployment"/>
 		<antcall target="create.warfile"/>
 		<antcall target="scp.warfile"/>
-		<antcall target="ready.log4j.and.database.for.development"/>
 		<antcall target="delete.warfile"/>
 	</target>
 	
