@@ -47,7 +47,7 @@
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-danger">
-				<h3>No Orders found.</h3>
+				<h3><spring:message code="label.no.orders.found"/></h3>
 			</div>
 		</c:otherwise>
 	</c:choose>

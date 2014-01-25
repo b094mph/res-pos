@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
-import org.apache.log4j.MDC;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -35,21 +35,21 @@ public class LoginController {
 	public ModelAndView login(HttpServletRequest request){
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView("login", "command", new User());
-		logger.info("Logging in...");
+		logger.debug("Logging in...");
 		setSessionLang(request, session, mav);
 		return mav;
 	}
 	
 	@RequestMapping(value= "/loginfail", method=RequestMethod.GET)
 	public String loginFail(ModelMap model){
-		logger.info("Login failed...");
+		logger.debug("Login failed...");
 		model.addAttribute("error", "true");
 		return "loginfail";
 	}
 	
 	@RequestMapping(value="/signupSuccess", method=RequestMethod.GET)
 	public String signupSuccess(ModelMap model){
-		logger.info("Username and password created successfully...");
+		logger.debug("Username and password created successfully...");
 		model.addAttribute("error", "false");
 		return "signupSuccess";
 	}
@@ -65,6 +65,7 @@ public class LoginController {
 		
 		String agentName = principal.getName();
 		session.setAttribute("agentName", agentName);
+		MDC.clear();
 		MDC.put("agentName", agentName);
 		logger.info("in welcome " + agentName);
 
@@ -78,7 +79,7 @@ public class LoginController {
 	
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(){
-		logger.info("Logging out...");
+		logger.debug("Logging out...");
 		return "logout";
 	}
 	
