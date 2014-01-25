@@ -24,6 +24,7 @@ import com.res.service.AddressService;
 import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.RestaurantService;
+import com.res.util.LogUtils;
 import com.res.util.MessageLoader;
 
 @Controller
@@ -32,11 +33,20 @@ public class MenuController {
 
 	private static Logger logger = Logger.getLogger(MenuController.class);
 	
-	@Autowired private MenuService menuService;
-	@Autowired private RestaurantService restaurantService;
-	@Autowired private CustomerService customerService;
-	@Autowired private AddressService addressService;
-	@Autowired private MessageLoader messageLoader;
+	@Autowired 
+	private MenuService menuService;
+	
+	@Autowired 
+	private RestaurantService restaurantService;
+	
+	@Autowired 
+	private CustomerService customerService;
+	
+	@Autowired 
+	private AddressService addressService;
+	
+	@Autowired 
+	private MessageLoader messageLoader;
 	
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	public ModelAndView showMenu(HttpServletRequest request,
@@ -44,6 +54,7 @@ public class MenuController {
 			@RequestParam(value="restaurantName", required=false) String restaurantName) 
 					throws ServiceException{
 		
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		if(restaurantId == null){
@@ -95,6 +106,7 @@ public class MenuController {
 	public ModelAndView showMenuList(HttpServletRequest request, 
 			@RequestParam(value="restaurantId", required=false) Long restaurantId,
 			@RequestParam(value="restaurantName", required=false) String restaurantName){
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		if(restaurantId == null){
@@ -124,7 +136,7 @@ public class MenuController {
 	@RequestMapping(value="editMenu", method=RequestMethod.GET)
 	public ModelAndView editMenu(HttpServletRequest request, 
 			@RequestParam(value="menuId", required=false) Long menuId){
-		
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		if(menuId == null){
 			menuId = (Long) session.getAttribute("menuId");
@@ -156,6 +168,7 @@ public class MenuController {
 			@RequestParam(value="pieces", defaultValue="0") Integer numPieces, 
 			@RequestParam(value="appetizerCombo", defaultValue="false") Boolean isAppetizerCombo){
 		
+		LogUtils.initLog(request);
 		logger.info("new menu prices (small, large, lunch, combo) respectively " + small + ", " + large + ", " + lunch + ", " + combo);
 		
 		HttpSession session = request.getSession();

@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.res.domain.Menu;
 import com.res.exception.EmptyCollectionException;
 import com.res.service.MenuService;
+import com.res.util.LogUtils;
 import com.res.util.MessageLoader;
 
 @Controller
@@ -31,6 +32,7 @@ public class SubMenuAjaxController {
 	@RequestMapping(value="/subMenu.json", method=RequestMethod.GET)
 	public ModelAndView showSubCategories(HttpServletRequest request, 
 			@RequestParam("foodCategoryId") long foodCategoryId) throws EmptyCollectionException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		session.setAttribute("foodCategoryId", foodCategoryId);

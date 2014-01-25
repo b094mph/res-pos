@@ -6,13 +6,7 @@ import com.res.domain.CustomerOrder;
 
 public interface CustomerOrderDao extends BaseDao {
 	
-	/**
-	 * 
-	 * @param restaurantId
-	 * @param orderType
-	 * @param requestDate - yyyy-MM-dd
-	 * @return
-	 */
 	public List<CustomerOrder> dailyTotalOrder(long restaurantId, String orderType, String requestDate);
-
+	public List<CustomerOrder> searchByOrdersDesc(long restaurantId, String requestDate);
+	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum);
 }

@@ -25,7 +25,7 @@ public class CustomerController {
 	
 	@RequestMapping("/customerForm")
 	public ModelAndView customerForm(){
-		logger.info("in showCustomerForm() method...");
+		logger.debug("in showCustomerForm() method...");
 		ModelAndView mav = new ModelAndView("customer");
 		
 		Person customer = new Person();
@@ -37,7 +37,7 @@ public class CustomerController {
 	
 	@RequestMapping(value= "addCustomer", method=RequestMethod.GET)
 	public String addCustomer(@ModelAttribute("customer") Person customer, BindingResult result){
-		logger.info("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
+		logger.debug("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
 		customerService.save(customer);
 		return "redirect:/customerForm.html";

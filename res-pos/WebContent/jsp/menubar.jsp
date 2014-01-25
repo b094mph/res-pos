@@ -33,13 +33,13 @@
 					</li>
 				<c:if test="${not empty restaurantId }">
 					<li><a id="menu-link" href="menu.html?restaurantId=${restaurantId}&restaurantName=${restaurantName}"><spring:message code="label.menu.order"/></a></li>
-				</c:if>
 					<li id="search" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.search"/></a>
+						<a href="searchOrders.html?restaurantId=${restaurantId}"><spring:message code="label.menu.search"/></a>
 					</li>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
 					<li><a id="management-link" tabindex="-1" href="management.html?restaurantId=${restaurantId}"><spring:message code="label.menu.management"/></a></li>
 				</sec:authorize>
+				</c:if>
 					<li id="help" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.help"/></a>
 					</li>

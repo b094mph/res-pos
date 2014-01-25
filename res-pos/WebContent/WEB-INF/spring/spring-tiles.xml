@@ -59,6 +59,10 @@
 	<definition name="management" extends="base.definition">
 		<put-attribute name="body" value="/jsp/body/management.jsp"/>
 	</definition>
+	
+	<definition name="searchOrders" extends="base.definition">
+		<put-attribute name="body" value="/jsp/body/searchOrders.jsp"/>
+	</definition>
  	
  	<!-- Ajax calls -->
  	<definition name="subMenu" template="/jsp/body/subMenu.jsp">
@@ -79,6 +83,10 @@
 
 	<definition name="viewTotalOrder" template="/jsp/body/viewTotalOrder.jsp">
 		<put-attribute name="ajax" value="/jsp/body/viewTotalOrder.jsp"/>
+	</definition>
+	
+	<definition name="viewOrdersDesc" template="/jsp/body/viewOrdersDesc.jsp">
+		<put-attribute name="ajax" value="/jsp/body/viewOrdersDesc.jsp"/>
 	</definition>
  
 </tiles-definitions>

@@ -10,6 +10,7 @@
 			<table class="table table-striped table-hover table-fixed-header">
 				<thead class="header">
 					<tr>
+						<th>Edit</th>
 						<th>Order #</th>
 						<th>Name</th>
 						<th>Street 1</th>
@@ -27,6 +28,7 @@
 				<tbody>
 					<c:forEach items="${orderList}" var="list">
 						<tr>
+							<td><a href="">Edit</a></td>
 							<td>${list.orderNum}</td>
 							<td>${list.customer.firstName} ${list.customer.lastName}</td>
 							<td>${list.customer.address.street1}</td>
@@ -46,13 +48,10 @@
 		</c:when>
 		<c:otherwise>
 			<div class="alert alert-danger">
-				<h3><spring:message code="label.no.orders.found"/></h3>
+				<h3><spring:message code="label.no.today.orders.found"/></h3>
 			</div>
 		</c:otherwise>
 	</c:choose>
-</div>
-<div class="pull-right">
-	<h2>Total: $ ${total}</h2> 
 </div>
 <script type="text/javascript" src="js/fixed-header.js"></script>
 <script type="text/javascript">

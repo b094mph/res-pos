@@ -9,7 +9,7 @@
 		<h5><b><spring:message code="label.restaurant"/>:</b> <c:out value="${restaurantName}"/></h5>	
 	</div>
 	<div class="span2">
-		<h5><b><spring:message code="label.order.num"/>:&nbsp;</b><b id="orderNum"></b></h5>
+		<h5><b><spring:message code="label.order.num"/>:&nbsp;</b><c:out value="${currentOrderNum}"/></h5>
 	</div>
 	<div class="span2">
 		<h5><b><spring:message code="label.order.type"/>:&nbsp;</b><b id="orderType"></b></h5>

@@ -19,6 +19,7 @@ import com.res.domain.Menu;
 import com.res.domain.ModifyTaste;
 import com.res.exception.ServiceException;
 import com.res.service.MenuService;
+import com.res.util.LogUtils;
 import com.res.util.MessageLoader;
 
 @Controller
@@ -33,6 +34,7 @@ public class ExtrasAjaxController {
 	@RequestMapping(value="/showExtras.json", method=RequestMethod.GET)
 	public ModelAndView showExtras(HttpServletRequest request,
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex) throws ServiceException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		session.setAttribute("rowIndex", rowIndex);
 
@@ -62,6 +64,7 @@ public class ExtrasAjaxController {
 	@RequestMapping(value="/extrasSubCategory.json", method=RequestMethod.GET)
 	public ModelAndView extrasSubCategory(HttpServletRequest request,
 			@RequestParam("extrasCategoryId") long extrasCategoryId) throws ServiceException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		ModelAndView mav = new ModelAndView("extras");

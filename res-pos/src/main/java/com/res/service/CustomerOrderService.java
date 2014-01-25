@@ -16,4 +16,6 @@ public interface CustomerOrderService {
 	 */
 	public List<CustomerOrder> dailyTotalOrder(long restaurantId, String orderType, String requestDate);
 	public BigDecimal managementDailyTotal(List<CustomerOrder> orderList);
+	public List<CustomerOrder> searchByOrdersDesc(long restaurantId, String requestDate);
+	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum);
 }

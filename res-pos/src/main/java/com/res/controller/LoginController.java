@@ -21,6 +21,7 @@ import com.res.domain.Restaurant;
 import com.res.domain.User;
 import com.res.service.RestaurantService;
 import com.res.service.UserService;
+import com.res.util.LogUtils;
 
 @Controller
 @SessionAttributes
@@ -33,6 +34,7 @@ public class LoginController {
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public ModelAndView login(HttpServletRequest request){
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView("login", "command", new User());
 		logger.debug("Logging in...");
@@ -55,7 +57,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value="/welcome", method=RequestMethod.GET)
-	public ModelAndView welcome(Principal principal, HttpServletRequest request){	
+	public ModelAndView welcome(Principal principal, HttpServletRequest request){
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		//this will clear foodCategoryId whenever leaving the order screen
@@ -84,6 +87,7 @@ public class LoginController {
 	}
 	
 	private void setSessionLang(HttpServletRequest request, HttpSession session, ModelAndView mav){
+		LogUtils.initLog(request);
 		String lang = RequestContextUtils.getLocale(request).toString();
 		session.setAttribute("lang", lang);
 		mav.addObject("lang", lang);

@@ -33,6 +33,7 @@ import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
 import com.res.service.RestaurantService;
+import com.res.util.LogUtils;
 import com.res.util.MessageLoader;
 import com.res.util.Price;
 
@@ -43,12 +44,23 @@ public class OrderAjaxController {
 
 	private static Logger logger = Logger.getLogger(OrderAjaxController.class);
 	
-	@Autowired private OrderService orderService;
-	@Autowired private MenuService menuService;
-	@Autowired private RestaurantService restaurantService;
-	@Autowired private AddressService addressService;
-	@Autowired private CustomerService customerService;
-	@Autowired private MessageLoader messageLoader;
+	@Autowired 
+	private OrderService orderService;
+	
+	@Autowired 
+	private MenuService menuService;
+	
+	@Autowired 
+	private RestaurantService restaurantService;
+	
+	@Autowired 
+	private AddressService addressService;
+	
+	@Autowired 
+	private CustomerService customerService;
+	
+	@Autowired 
+	private MessageLoader messageLoader;
 	
 	private List<OrderDetail> orderList = new LinkedList<OrderDetail>();
 	private BigDecimal subTotal;
@@ -58,6 +70,7 @@ public class OrderAjaxController {
 	@RequestMapping(value="/showOrder", method=RequestMethod.GET)
 	public ModelAndView showOrderList(HttpServletRequest request) 
 			throws ServiceException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		Long restaurantId = (Long) session.getAttribute("restaurantId");
 		
@@ -110,6 +123,7 @@ public class OrderAjaxController {
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
 			@RequestParam(value="lastRow", defaultValue="true") boolean lastRow){
 		
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		session.setAttribute("lastRow", lastRow);
 		session.setAttribute("rowIndex", rowIndex);
@@ -162,6 +176,7 @@ public class OrderAjaxController {
 	public String changeSize(HttpServletRequest request, 
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex,
 			@RequestParam("size") String size){
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		OrderDetail orderDetail = orderList.get(rowIndex);
@@ -187,6 +202,7 @@ public class OrderAjaxController {
 	@RequestMapping(value="/deleteItem.json", method=RequestMethod.GET)
 	public String deleteItem(HttpServletRequest request, @RequestParam("rowIndex") int rowIndex)
 			throws NumberFormatException{
+		LogUtils.initLog(request);
 		try{
 			logger.info("removing orderList with " + rowIndex);
 			orderList.remove(rowIndex);
@@ -201,7 +217,7 @@ public class OrderAjaxController {
 	public String increaseQty(HttpServletRequest request, 
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex)
 			throws NumberFormatException{
-		
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 
 		try{
@@ -226,6 +242,7 @@ public class OrderAjaxController {
 	public String decreaseQty(HttpServletRequest request, 
 			@RequestParam(value="rowIndex", defaultValue="0") int rowIndex)
 			throws NumberFormatException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		
 		try{
@@ -254,6 +271,7 @@ public class OrderAjaxController {
 	
 	@RequestMapping(value="/newOrder.json", method=RequestMethod.GET)
 	public String newOrder(HttpServletRequest request){
+		LogUtils.initLog(request);
 		logger.info("clearing the order and customer information...");
 		orderList.clear();
 		return "redirect:/showOrder.html";
@@ -261,6 +279,7 @@ public class OrderAjaxController {
 	
 	@RequestMapping(value="/voidOrder.json", method=RequestMethod.GET)
 	public String voidOrder(HttpServletRequest request){
+		LogUtils.initLog(request);
 		logger.info("deleting order...");
 		orderList.clear();
 		return "welcome";
@@ -269,6 +288,7 @@ public class OrderAjaxController {
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
 	public String saveOrder(HttpServletRequest request) 
 			throws ServiceException{
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		String agentName = (String)session.getAttribute("agentName");
 		Long restaurantId = (Long) session.getAttribute("restaurantId");

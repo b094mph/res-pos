@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+
+<input id="restaurantId" type="hidden" value='<c:out value="${restaurantId}"/>'>
 
 <div class="row">
 	<fieldset>
@@ -68,7 +71,7 @@
 		});
 
 		function viewTotalOrder(orderType, requestDate){
-			var params = {restaurantId : 1, 
+			var params = {restaurantId : $("#restaurantId").val(), 
 					requestDate : requestDate, 
 					orderType : orderType};
 			$.ajax({

@@ -15,6 +15,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 
 import com.res.domain.User;
 import com.res.service.SignupService;
+import com.res.util.LogUtils;
 
 @Controller
 public class SignupController {
@@ -27,6 +28,7 @@ public class SignupController {
 	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String signup(@ModelAttribute("user") User user, BindingResult result, 
 			HttpServletRequest request){
+		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		Boolean validateUser = signupService.validateUser(user);
 		logger.info("User valid = " + validateUser);

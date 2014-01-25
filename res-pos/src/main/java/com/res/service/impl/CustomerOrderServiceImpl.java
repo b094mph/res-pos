@@ -12,13 +12,13 @@ import com.res.domain.CustomerOrder;
 import com.res.service.CustomerOrderService;
 
 @Service("customerOrderService")
-@Transactional
 public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Autowired
 	private CustomerOrderDao customerOrderDao;
 	
 	@Override
+	@Transactional
 	public List<CustomerOrder> dailyTotalOrder(long restaurantId, String orderType, String requestDate) {
 		return customerOrderDao.dailyTotalOrder(restaurantId, orderType, requestDate);
 	}
@@ -30,6 +30,18 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			total = total.add(order.getGrandTotal());
 		}
 		return total;
+	}
+
+	@Override
+	@Transactional
+	public List<CustomerOrder> searchByOrdersDesc(long restaurantId, String requestDate) {
+		return customerOrderDao.searchByOrdersDesc(restaurantId, requestDate);
+	}
+
+	@Override
+	@Transactional
+	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum) {
+		return customerOrderDao.searchByOrderNum(restaurantId, requestDate, orderNum);
 	}
 
 }

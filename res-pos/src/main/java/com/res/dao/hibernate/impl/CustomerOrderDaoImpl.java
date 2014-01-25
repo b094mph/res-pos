@@ -16,14 +16,20 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 
 	public static Logger logger = Logger.getLogger(CustomerOrderDaoImpl.class);
 
+	/**
+	 * 
+	 * @param restaurantId
+	 * @param orderOption
+	 * @param requestDate - yyyy-MM-dd
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<CustomerOrder> dailyTotalOrder(long restaurantId, String orderOption, String requestDate) {
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("FROM CustomerOrder co ");
-		sb.append("WHERE (co.orderTime BETWEEN :startOfHour ");
-		sb.append("AND :endOfHour) ");
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
 		sb.append("AND co.restaurantId = :restaurantId ");
 		
 		if(StringUtils.isNotBlank(orderOption)){
@@ -38,6 +44,41 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 		if(StringUtils.isNotBlank(orderOption)){
 			query.setString("orderOption", orderOption);
 		}
+		
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomerOrder> searchByOrdersDesc(long restaurantId, String requestDate) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("FROM CustomerOrder co ");
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
+		sb.append("AND co.restaurantId = :restaurantId ");
+		sb.append("ORDER BY co.orderNum DESC");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		
+		return query.list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("FROM CustomerOrder co ");
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
+		sb.append("AND co.restaurantId = :restaurantId ");
+		sb.append("WHERE co.orderNum = :orderNum");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		query.setInteger("orderNum", orderNum);
 		
 		return query.list();
 	}
