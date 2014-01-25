@@ -55,6 +55,10 @@
 	<definition name="editMenu" extends="base.definition">
 		<put-attribute name="body" value="/jsp/body/editMenu.jsp"/>
 	</definition>
+	
+	<definition name="management" extends="base.definition">
+		<put-attribute name="body" value="/jsp/body/management.jsp"/>
+	</definition>
  	
  	<!-- Ajax calls -->
  	<definition name="subMenu" template="/jsp/body/subMenu.jsp">
@@ -72,5 +76,9 @@
  	<definition name="extras" template="/jsp/body/extras.jsp">
  		<put-attribute name="ajax" value="/jsp/body/extras.jsp"/>
  	</definition>
+
+	<definition name="viewTotalOrder" template="/jsp/body/viewTotalOrder.jsp">
+		<put-attribute name="ajax" value="/jsp/body/viewTotalOrder.jsp"/>
+	</definition>
  
 </tiles-definitions>

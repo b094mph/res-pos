@@ -11,6 +11,7 @@
 		<intercept-url pattern="/welcome*" access="ROLE_USER"/>
 		<intercept-url pattern="/address*" access="ROLE_USER"/>
 		<intercept-url pattern="/customer*" access="ROLE_USER"/>
+		<intercept-url pattern="/management*" access="ROLE_USER"/>
 		<intercept-url pattern="/menu*" access="ROLE_USER"/>
 		<intercept-url pattern="/wholeMenu*" access="ROLE_USER"/>
 		<intercept-url pattern="/editMenu*" access="ROLE_USER"/>

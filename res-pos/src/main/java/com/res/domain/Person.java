@@ -54,7 +54,7 @@ public class Person implements Serializable{
 	@Column(name="lastupdatedby", unique=false, nullable=true, length=20)
 	private String lastUpdatedBy;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="addressid", nullable=true)
 	private Address address;
 

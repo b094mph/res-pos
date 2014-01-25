@@ -37,6 +37,9 @@
 					<li id="search" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.search"/></a>
 					</li>
+				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
+					<li><a id="management-link" tabindex="-1" href="management.html?restaurantId=${restaurantId}"><spring:message code="label.menu.management"/></a></li>
+				</sec:authorize>
 					<li id="help" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.help"/></a>
 					</li>
