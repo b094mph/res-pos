@@ -64,6 +64,9 @@ public class CustomerOrder implements Serializable{
 	@Column(name="note", unique=false, nullable=true, length=200)
 	private String note;
 	
+	@Column(name="ordernum", nullable=true)
+	private int orderNum;
+	
 	@OneToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name="personid")
 	private Person customer;
@@ -162,6 +165,14 @@ public class CustomerOrder implements Serializable{
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	public int getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 
 	public Person getCustomer() {

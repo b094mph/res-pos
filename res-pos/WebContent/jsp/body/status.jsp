@@ -9,9 +9,12 @@
 		<h5><b><spring:message code="label.restaurant"/>:</b> <c:out value="${restaurantName}"/></h5>	
 	</div>
 	<div class="span2">
+		<h5><b><spring:message code="label.order.num"/>:&nbsp;</b><b id="orderNum"></b></h5>
+	</div>
+	<div class="span2">
 		<h5><b><spring:message code="label.order.type"/>:&nbsp;</b><b id="orderType"></b></h5>
 	</div>
-	<div class="span3 offset2">
+	<div class="span3">
 		<div class="pull-right">
 			<h5 id="currentDateTime"></h5>
 		</div>
