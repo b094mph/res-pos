@@ -82,5 +82,24 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 		
 		return query.list();
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> findLastOrderNumber(long restaurantId, String requestDate) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT co.orderNum ");
+		sb.append("FROM CustomerOrder co "); 
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
+		sb.append("AND co.restaurantId = :restaurantId ");
+		sb.append("ORDER BY co.orderNum DESC ");
+		sb.append("LIMIT 1 ");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		
+		return query.list();
+	}
 	
 }

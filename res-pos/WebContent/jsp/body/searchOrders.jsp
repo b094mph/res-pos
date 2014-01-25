@@ -22,12 +22,11 @@
 		// make the header fixed on scroll
 		$('.table-fixed-header').fixedHeader();
 
-		viewOrdersDesc("2014-01-23");
+		viewOrdersDesc();
 	});
 
-	function viewOrdersDesc(requestDate){
-		var params = {restaurantId : $("#restaurantId").val(), 
-				requestDate : requestDate};
+	function viewOrdersDesc(){
+		var params = {restaurantId : $("#restaurantId").val()};
 		$.ajax({
 			type: "GET",
 			url: "viewOrdersDesc.json",

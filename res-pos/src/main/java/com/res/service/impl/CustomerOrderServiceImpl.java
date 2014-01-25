@@ -44,4 +44,15 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 		return customerOrderDao.searchByOrderNum(restaurantId, requestDate, orderNum);
 	}
 
+	@Override
+	@Transactional
+	public Integer findLastOrderNumber(long restaurantId, String requestDate) {
+		List<Integer> list = customerOrderDao.findLastOrderNumber(restaurantId, requestDate);
+		
+		if(list.isEmpty()){
+			return 1; //order number starts at 1 at the beginning of the day
+		}
+		return list.get(0)+1;
+	}
+
 }

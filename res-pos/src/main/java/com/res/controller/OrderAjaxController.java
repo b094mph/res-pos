@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -29,6 +30,7 @@ import com.res.domain.Person;
 import com.res.domain.Restaurant;
 import com.res.exception.ServiceException;
 import com.res.service.AddressService;
+import com.res.service.CustomerOrderService;
 import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.OrderService;
@@ -61,6 +63,9 @@ public class OrderAjaxController {
 	
 	@Autowired 
 	private MessageLoader messageLoader;
+	
+	@Autowired
+	private CustomerOrderService customerOrderService;
 	
 	private List<OrderDetail> orderList = new LinkedList<OrderDetail>();
 	private BigDecimal subTotal;
@@ -335,6 +340,7 @@ public class OrderAjaxController {
 		customerOrder.setTax(this.getTax());
 		customerOrder.setGrandTotal(this.getGrandTotal());
 		customerOrder.setOrderStatus(ResConstant.PENDING);
+		customerOrder.setOrderNum(customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));
 		
 		for(OrderDetail orderDetail : orderList){
 			orderDetail.setCustomerOrder(customerOrder);

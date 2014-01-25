@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import com.res.domain.FoodCategory;
 import com.res.domain.Menu;
 import com.res.exception.ServiceException;
 import com.res.service.AddressService;
+import com.res.service.CustomerOrderService;
 import com.res.service.CustomerService;
 import com.res.service.MenuService;
 import com.res.service.RestaurantService;
@@ -44,6 +46,9 @@ public class MenuController {
 	
 	@Autowired 
 	private AddressService addressService;
+	
+	@Autowired
+	private CustomerOrderService customerOrderService;
 	
 	@Autowired 
 	private MessageLoader messageLoader;
@@ -98,6 +103,7 @@ public class MenuController {
 		mav.addObject("cities", addressService.typeaheadCity(restaurantId));
 		mav.addObject("states", addressService.typeaheadState(restaurantId));
 		mav.addObject("zipCodes", addressService.typeaheadZipcode(restaurantId));
+		mav.addObject("currentOrderNum", customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));
 		
 		return mav;
 	}

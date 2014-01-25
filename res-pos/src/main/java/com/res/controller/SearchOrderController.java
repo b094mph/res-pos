@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.MDC;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,9 +38,9 @@ public class SearchOrderController {
 	
 	@RequestMapping(value="/viewOrdersDesc.json", method=RequestMethod.GET)
 	public ModelAndView searchByOrdersDesc(HttpServletRequest request,
-			@RequestParam(value="restaurantId", required=true) Long restaurantId,
-			@RequestParam(value="requestDate", required=true) String requestDate){
+			@RequestParam(value="restaurantId", required=true) Long restaurantId){
 		
+		String requestDate = new LocalDate().toString();
 		LogUtils.initLog(request);
 		MDC.put("restaurantId", restaurantId);
 		MDC.put("requestDate", requestDate);
