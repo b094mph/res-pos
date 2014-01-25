@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+	<changeSet id="v0.6-orderNumber" author="bobby" context="orderNumber" runOnChange="true" runInTransaction="true">
+		<addColumn tableName="customerorder">
+			<column name="ordernum" type="SMALLINT">
+				<constraints nullable="true"/>
+			</column>
+		</addColumn>
+	</changeSet>
+</databaseChangeLog>
