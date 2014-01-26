@@ -41,7 +41,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	@Override
 	@Transactional
 	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum) {
-		return customerOrderDao.searchByOrderNum(restaurantId, requestDate, orderNum);
+		return customerOrderDao.searchCustomerOrderDetails(restaurantId, requestDate, orderNum);
 	}
 
 	@Override

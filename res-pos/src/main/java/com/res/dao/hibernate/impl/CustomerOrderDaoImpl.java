@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.CustomerOrderDao;
 import com.res.domain.CustomerOrder;
+import com.res.domain.OrderDetail;
 import com.res.util.DateUtils;
 
 @Repository("customerOrderDao")
@@ -67,9 +68,28 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum) {
+	public List<CustomerOrder> searchCustomerOrderDetails(long restaurantId, String requestDate, int orderNum) {
 		StringBuffer sb = new StringBuffer();
 		sb.append("FROM CustomerOrder co ");
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
+		sb.append("AND co.restaurantId = :restaurantId ");
+		sb.append("WHERE co.orderNum = :orderNum");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		query.setInteger("orderNum", orderNum);
+		
+		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<OrderDetail> searchOrderDetails(long restaurantId, String requestDate, int orderNum) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT od.* FROM CustomerOrder co ");
+		sb.append("INNER JOIN OrderDetail od ");
 		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
 		sb.append("AND co.restaurantId = :restaurantId ");
 		sb.append("WHERE co.orderNum = :orderNum");

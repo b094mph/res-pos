@@ -5,7 +5,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <input id="orderListSize" type="hidden" value="${orderListSize}">
-<input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/welcome.html'>
+<input id="welcomeJsp" type="hidden" value='<%=request.getContextPath()%>/menu.html'>
 <input id="lastRow" type="hidden" value="${lastRow}">
 <input id="rowIndex" type="hidden" value="${rowIndex}">
 
