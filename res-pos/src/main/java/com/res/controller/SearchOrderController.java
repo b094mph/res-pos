@@ -44,10 +44,12 @@ public class SearchOrderController {
 		LogUtils.initLog(request);
 		MDC.put("restaurantId", restaurantId);
 		MDC.put("requestDate", requestDate);
+		logger.debug("viewing orders");
 		
 		ModelAndView mav = new ModelAndView("viewOrdersDesc");
-		
 		mav.addObject("orderList", customerOrderService.searchByOrdersDesc(restaurantId, requestDate));
+		mav.addObject("restaurantId", restaurantId);
+		mav.addObject("requestDate", requestDate);
 		return mav;
 	}
 }

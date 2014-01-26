@@ -351,6 +351,23 @@ public class OrderAjaxController {
 		
 		return "welcome";
 	}
+	
+	@RequestMapping(value="/editOrder", method=RequestMethod.GET)
+	public ModelAndView editOrder(HttpServletRequest request,
+			@RequestParam(value="restaurantId", required=true) Long restaurantId,
+			@RequestParam(value="requestDate", required=true) String requestDate,
+			@RequestParam(value="orderNum", required=true) Integer orderNum){
+		LogUtils.initLog(request);
+		ModelAndView mav = new ModelAndView("menu");
+		List<OrderDetail> odList = customerOrderService.editOrderDetails(restaurantId, requestDate, orderNum);
+		for(OrderDetail od : odList){
+			this.orderList.add(od);
+		}
+		
+		logger.debug("Editing order # " + this.orderList.get(0).getCustomerOrder().getOrderNum());
+		mav.addObject("orderDetailsList", this.orderList);
+		return mav;
+	}
 
 	public BigDecimal getSubTotal() {
 		return subTotal;

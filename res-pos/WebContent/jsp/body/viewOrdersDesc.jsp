@@ -3,6 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 
+<input id="restaurantId" type="hidden" value='<c:out value="${restaurantId}"/>'>
+<input id="requestDate" type="hidden" value='<c:out value="${requestDate}"/>'>
+
 <link rel="stylesheet" href="css/fixed-header.css">
 <div>
 	<c:choose>
@@ -28,7 +31,7 @@
 				<tbody>
 					<c:forEach items="${orderList}" var="list">
 						<tr>
-							<td><a href="">Edit</a></td>
+							<td><a href="editOrder.html?restaurantId=${restaurantId}&requestDate=${requestDate}&orderNum=${list.orderNum}">Edit</a></td>
 							<td>${list.orderNum}</td>
 							<td>${list.customer.firstName} ${list.customer.lastName}</td>
 							<td>${list.customer.address.street1}</td>

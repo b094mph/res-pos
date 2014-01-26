@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.CustomerOrderDao;
 import com.res.domain.CustomerOrder;
+import com.res.domain.OrderDetail;
 import com.res.service.CustomerOrderService;
 
 @Service("customerOrderService")
@@ -40,8 +41,9 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 
 	@Override
 	@Transactional
-	public List<CustomerOrder> searchByOrderNum(long restaurantId, String requestDate, int orderNum) {
-		return customerOrderDao.searchCustomerOrderDetails(restaurantId, requestDate, orderNum);
+	public List<OrderDetail> editOrderDetails(long restaurantId, String requestDate, int orderNum) {
+		List<OrderDetail> list = customerOrderDao.searchOrderDetails(restaurantId, requestDate, orderNum); 
+		return list;
 	}
 
 	@Override
