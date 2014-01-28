@@ -9,10 +9,19 @@
 		<h5><b><spring:message code="label.restaurant"/>:</b> <c:out value="${restaurantName}"/></h5>	
 	</div>
 	<div class="span2">
-		<h5><b><spring:message code="label.order.num"/>:&nbsp;</b><c:out value="${currentOrderNum}"/></h5>
+		<h5><b><spring:message code="label.order.num"/>:&nbsp;</b>
+			<c:choose>
+			<c:when test="${not empty orderNum}">
+				<c:out value="${orderNum}"/>
+			</c:when>
+			<c:otherwise>
+				<c:out value="${currentOrderNum}"/>
+			</c:otherwise>
+			</c:choose>
+		</h5>
 	</div>
 	<div class="span2">
-		<h5><b><spring:message code="label.order.type"/>:&nbsp;</b><b id="orderType"></b></h5>
+		<h5><b><spring:message code="label.order.type"/>:&nbsp;</b><b id="orderType">${orderType}</b></h5>
 	</div>
 	<div class="span3">
 		<div class="pull-right">

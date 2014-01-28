@@ -1,5 +1,9 @@
 package com.res.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.joda.time.DateTime;
 
 public class DateUtils {
@@ -26,10 +30,22 @@ public class DateUtils {
 		return requestDate.concat(" 23:59:59");
 	}
 	
+	/**
+	 * returns a date in the format yyyy-MM-dd
+	 * @param date 
+	 * @return
+	 */
+	public static String dateFormat(Date date){
+		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		return df.format(date);
+	}
+	
 	public static void main(String[] args){
 		String requestDate = "2014-01-23";
 		System.out.println(new DateTime());
 		System.out.println(DateUtils.addStartOfHour(requestDate));
 		System.out.println(DateUtils.addEndOfHour(requestDate));
+		
+		System.out.println(DateUtils.dateFormat(new Date()));
 	}
 }

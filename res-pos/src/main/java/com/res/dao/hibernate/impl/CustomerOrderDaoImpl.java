@@ -1,7 +1,5 @@
 package com.res.dao.hibernate.impl;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
@@ -11,11 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.res.dao.hibernate.CustomerOrderDao;
 import com.res.domain.CustomerOrder;
-import com.res.domain.Menu;
 import com.res.domain.OrderDetail;
-import com.res.domain.Person;
 import com.res.util.DateUtils;
-import com.res.util.Price;
 
 @Repository("customerOrderDao")
 public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDao {
@@ -92,57 +87,19 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderDetail> searchOrderDetails(long restaurantId, String requestDate, int orderNum) {
-//		StringBuffer sb = new StringBuffer()
-//			.append("FROM OrderDetail od ")
-//			.append("INNER JOIN od.customerOrder co ")
-//			.append("WHERE co.customerOrderId=od.customerOrder.customerOrderId ")
-//			.append("AND (co.orderTime BETWEEN :startOfHour AND :endOfHour) ")
-//			.append("AND co.restaurantId = :restaurantId ")
-//			.append("AND co.orderNum = :orderNum");
-//		
-//		Query query = getCurrentSession().createQuery(sb.toString());
-//		query.setLong("restaurantId", restaurantId);
-//		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
-//		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
-//		query.setInteger("orderNum", orderNum);
-//		
-//		return query.list();
-		
-		List<OrderDetail> list = new ArrayList<OrderDetail>();
-		CustomerOrder co = new CustomerOrder();
-		co.setCustomerOrderId(25);
-		Person customer = new Person();
-		customer.setFirstName("Bobby");
-		co.setCustomer(customer);
-		co.setGrandTotal(new BigDecimal(2));
-		Menu menu = new Menu();
-		menu.setMenuId(1);
-		OrderDetail od = new OrderDetail();
-		od.setOrderDetailId(79);
-		od.setCustomerOrder(co);
-		od.setMenu(menu);
-		od.setQuantity(1);
-		od.setSize("Lg");
-		od.setPrice(Price.roundToNearestNickel(new BigDecimal(2)));
-		
-		list.add(od);
-		return list;
-		
-//		StringBuffer sb = new StringBuffer()
-//			.append("select t1.* from customerorder t0 ")
-//			.append("inner join orderdetail t1 on t0.customerorderid=t1.customerorderid ")
-//			.append("where (t0.ordertime between :startOfHour and :endOfHour) ")
-//			.append("and t0.restaurantid= :restaurantId ")
-//			.append("and t0.ordernum= :orderNum ");
-//		
-//		Query query = getCurrentSession().createSQLQuery(sb.toString());
-//		query.setLong("restaurantId", restaurantId);
-//		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
-//		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
-//		query.setInteger("orderNum", orderNum);
-//		
-//		return query.list();
+		StringBuffer sb = new StringBuffer()
+			.append("FROM OrderDetail od ")
+			.append("WHERE (od.customerOrder.orderTime BETWEEN :startOfHour AND :endOfHour) ")
+			.append("AND od.customerOrder.restaurantId = :restaurantId ")
+			.append("AND od.customerOrder.orderNum = :orderNum");
+	
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		query.setInteger("orderNum", orderNum);
 
+		return query.list();
 	}
 
 	@SuppressWarnings("unchecked")
@@ -155,6 +112,24 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 		sb.append("AND co.restaurantId = :restaurantId ");
 		sb.append("ORDER BY co.orderNum DESC ");
 		sb.append("LIMIT 1 ");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		
+		return query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Integer> allOrderNumList(long restaurantId, String requestDate){
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT co.orderNum ");
+		sb.append("FROM CustomerOrder co "); 
+		sb.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ");
+		sb.append("AND co.restaurantId = :restaurantId ");
+		sb.append("ORDER BY co.orderNum DESC ");
 		
 		Query query = getCurrentSession().createQuery(sb.toString());
 		query.setLong("restaurantId", restaurantId);

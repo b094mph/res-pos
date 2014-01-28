@@ -15,15 +15,23 @@ import com.res.dao.hibernate.OrderDetailDao;
 import com.res.domain.CustomerOrder;
 import com.res.domain.Menu;
 import com.res.domain.OrderDetail;
+import com.res.service.CustomerOrderService;
 import com.res.service.OrderService;
+import com.res.util.DateUtils;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
 	
 	private Logger logger = Logger.getLogger(OrderServiceImpl.class);
 	
-	@Autowired private OrderDetailDao orderDetailDao;
-	@Autowired private CustomerOrderDao customerOrderDao;
+	@Autowired 
+	private OrderDetailDao orderDetailDao;
+	
+	@Autowired 
+	private CustomerOrderDao customerOrderDao;
+	
+	@Autowired
+	private CustomerOrderService customerOrderService;
 	
 	@Override
 	@Transactional
@@ -40,10 +48,21 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	@Transactional
 	public void saveOrder(CustomerOrder customerOrder, List<OrderDetail> orderList) {
-		logger.info("Saving customer order.");
-		customerOrderDao.save(customerOrder);
-		for(OrderDetail orderDetail : orderList){
-			orderDetailDao.save(orderDetail);
+		String requestDate = DateUtils.dateFormat(customerOrder.getOrderTime());
+		boolean isExistingOrder = customerOrderService.isExistingOrder(customerOrder.getRestaurantId(), requestDate, customerOrder.getOrderNum());
+		
+		if(isExistingOrder){
+			logger.info("Updating customer order.");
+			customerOrderDao.update(customerOrder);
+			for(OrderDetail orderDetail : orderList){
+				orderDetailDao.update(orderDetail);
+			}
+		}else{
+			logger.info("Saving customer order.");
+			customerOrderDao.save(customerOrder);
+			for(OrderDetail orderDetail : orderList){
+				orderDetailDao.save(orderDetail);
+			}
 		}
 	}
 

@@ -42,8 +42,7 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 	@Override
 	@Transactional
 	public List<OrderDetail> editOrderDetails(long restaurantId, String requestDate, int orderNum) {
-		List<OrderDetail> list = customerOrderDao.searchOrderDetails(restaurantId, requestDate, orderNum); 
-		return list;
+		return customerOrderDao.searchOrderDetails(restaurantId, requestDate, orderNum); 
 	}
 
 	@Override
@@ -55,6 +54,20 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			return 1; //order number starts at 1 at the beginning of the day
 		}
 		return list.get(0)+1;
+	}
+
+	@Override
+	public boolean isExistingOrder(long restaurantId, String requestDate, int orderNum) {
+		List<Integer> orderNumList = customerOrderDao.allOrderNumList(restaurantId, requestDate);
+		
+		boolean isExistingOrder = false;
+		for(Integer num : orderNumList){
+			if(num == orderNum){
+				isExistingOrder = true;
+				break;
+			}
+		}
+		return isExistingOrder;
 	}
 
 }

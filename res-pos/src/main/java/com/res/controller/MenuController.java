@@ -56,8 +56,21 @@ public class MenuController {
 	@RequestMapping(value="/menu", method=RequestMethod.GET)
 	public ModelAndView showMenu(HttpServletRequest request,
 			@RequestParam(value="restaurantId", required=false) Long restaurantId,
-			@RequestParam(value="restaurantName", required=false) String restaurantName) 
-					throws ServiceException{
+			@RequestParam(value="restaurantName", required=false) String restaurantName,
+			@RequestParam(value="orderNum", required=false) Integer orderNum,
+			@RequestParam(value="orderType", required=false) String orderType,
+			@RequestParam(value="firstName", required=false) String firstName,
+			@RequestParam(value="lastName", required=false) String lastName,
+			@RequestParam(value="phone1", required=false) String phone1,
+			@RequestParam(value="phone2", required=false) String phone2,
+			@RequestParam(value="ext", required=false) String ext,
+			@RequestParam(value="email", required=false) String email,
+			@RequestParam(value="note", required=false) String note,
+			@RequestParam(value="street1", required=false) String street1,
+			@RequestParam(value="street2", required=false) String street2,
+			@RequestParam(value="city", required=false) String city,
+			@RequestParam(value="state", required=false) String state,
+			@RequestParam(value="zipCode", required=false) String zipCode) throws ServiceException{
 		
 		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
@@ -79,7 +92,21 @@ public class MenuController {
 		mav = new ModelAndView("menu");
 		
 		mav.addObject("restaurantId", restaurantId);
-		
+		mav.addObject("orderNum", orderNum);
+		mav.addObject("orderType", orderType);
+		mav.addObject("firstName", firstName);
+		mav.addObject("lastName", lastName);
+		mav.addObject("phone1", phone1);
+		mav.addObject("phone2", phone2);
+		mav.addObject("ext", ext);
+		mav.addObject("email", email);
+		mav.addObject("note", note);
+		mav.addObject("street1", street1);
+		mav.addObject("street2", street2);
+		mav.addObject("city", city);
+		mav.addObject("state", state);
+		mav.addObject("zipCode", zipCode);
+
 		List<FoodCategory> foodCategories = menuService.getFoodCategoriesFromMenu(restaurantId); 
 		mav.addObject("foodCategories", foodCategories);
 		

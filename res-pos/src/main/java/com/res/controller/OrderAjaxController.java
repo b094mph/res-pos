@@ -291,8 +291,7 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/saveOrder.json", method=RequestMethod.GET)
-	public String saveOrder(HttpServletRequest request) 
-			throws ServiceException{
+	public String saveOrder(HttpServletRequest request) throws ServiceException{
 		LogUtils.initLog(request);
 		HttpSession session = request.getSession();
 		String agentName = (String)session.getAttribute("agentName");
@@ -353,20 +352,60 @@ public class OrderAjaxController {
 	}
 	
 	@RequestMapping(value="/editOrder", method=RequestMethod.GET)
-	public ModelAndView editOrder(HttpServletRequest request,
+	public String editOrder(HttpServletRequest request,
 			@RequestParam(value="restaurantId", required=true) Long restaurantId,
 			@RequestParam(value="requestDate", required=true) String requestDate,
 			@RequestParam(value="orderNum", required=true) Integer orderNum){
 		LogUtils.initLog(request);
-		ModelAndView mav = new ModelAndView("menu");
 		List<OrderDetail> odList = customerOrderService.editOrderDetails(restaurantId, requestDate, orderNum);
 		for(OrderDetail od : odList){
 			this.orderList.add(od);
 		}
+
+		CustomerOrder customerOrder = this.orderList.get(0).getCustomerOrder();
+		setSubTotal(customerOrder.getSubTotal());
+		setTax(customerOrder.getTax());
+		setGrandTotal(customerOrder.getGrandTotal());
+
+		logger.debug("Editing order # " + orderNum);
 		
-		logger.debug("Editing order # " + this.orderList.get(0).getCustomerOrder().getOrderNum());
-		mav.addObject("orderDetailsList", this.orderList);
-		return mav;
+		String orderType = customerOrder.getOrderOption();
+		
+		Person customer = customerOrder.getCustomer();
+		String firstName = customer.getFirstName();
+		String lastName = customer.getLastName();
+		String phone1 = customer.getPhone1();
+		String phone2 = customer.getPhone2();
+		String ext = customer.getExt();
+		String email = customer.getEmail();
+		String note = customer.getNote();
+		
+		Address address = customer.getAddress();
+		String street1 = address.getStreet1();
+		String street2 = address.getStreet2();
+		String city = address.getCity();
+		String state = address.getState();
+		String zipCode = address.getZipCode();
+		
+		StringBuffer sb = new StringBuffer()
+			.append("redirect:/menu.html")
+			.append("?orderNum=").append(orderNum)
+			.append("&orderType=").append(orderType)
+			.append("&firstName=").append(firstName)
+			.append("&lastName=").append(lastName)
+			.append("&phone1=").append(phone1)
+			.append("&phone2=").append(phone2)
+			.append("&ext=").append(ext)
+			.append("&email=").append(email)
+			.append("&note=").append(note)
+			.append("&street1=").append(street1)
+			.append("&street2=").append(street2)
+			.append("&city=").append(city)
+			.append("&state=").append(state)
+			.append("&zipCode=").append(zipCode);
+		
+		return sb.toString();
+
 	}
 
 	public BigDecimal getSubTotal() {
