@@ -19,15 +19,29 @@ public class AddressServiceImpl implements AddressService {
 	
 	private static Logger logger = Logger.getLogger(AddressServiceImpl.class);
 	
-	@Autowired private AddressDao addressDao;
-	@Autowired private MessageLoader messageLoader;
+	@Autowired 
+	private AddressDao addressDao;
+	
+	@Autowired 
+	private MessageLoader messageLoader;
 
 	public void save(Address address) throws ServiceException {
 		if(address.getState() == null){
 			throw new ServiceException("state.is.required");
 		}
 		address.setState(address.getState().toUpperCase());
-		addressDao.save(address);
+		
+		Long addressId = addressDao.isAddressUnique(address.getStreet1(), address.getCity());
+		if(addressId == null){
+			addressDao.save(address);
+		}else{
+			if(logger.isDebugEnabled()){
+				logger.debug("address is not unique, updating.");
+			}
+			address.setAddressId(addressId);
+			addressDao.update(address);
+		}
+				
 	}
 
 	public void update(Address address) {

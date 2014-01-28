@@ -10,4 +10,5 @@ public interface AddressDao extends BaseDao{
 	public List<Address> listAddress();
 	public void deleteAddress(long id);
 	public List<String> typeaheadAttribute(long restaurantId, String attribute);
+	public Long isAddressUnique(String street1, String city);
 }

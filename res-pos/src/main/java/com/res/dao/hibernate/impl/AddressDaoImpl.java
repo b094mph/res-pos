@@ -55,4 +55,22 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 		return query.list();
 	}
 
+	@Override
+	public Long isAddressUnique(String street1, String city) {
+		StringBuffer sb = new StringBuffer()
+			.append("SELECT a.addressId FROM Address a ")
+			.append("WHERE a.street1 = :street1 ")
+			.append("AND a.city = :city");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setString("street1", street1);
+		query.setString("city", city);
+
+		if(query.list().isEmpty()){
+			return null;
+		}
+		return (Long) query.list().get(0);
+		
+	}
+
 }
