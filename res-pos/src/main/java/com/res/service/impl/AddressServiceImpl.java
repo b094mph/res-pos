@@ -40,8 +40,7 @@ public class AddressServiceImpl implements AddressService {
 			}
 			address.setAddressId(addressId);
 			addressDao.update(address);
-		}
-				
+		}	
 	}
 
 	public void update(Address address) {

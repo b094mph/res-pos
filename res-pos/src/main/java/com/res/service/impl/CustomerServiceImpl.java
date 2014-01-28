@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.res.dao.hibernate.CustomerDao;
 import com.res.domain.Person;
+import com.res.exception.ServiceException;
 import com.res.service.CustomerService;
 
 @Service("customerService")
@@ -23,6 +24,17 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public void save(Person customer) {
+		Long personId = customerDao.isPhoneNumUnique(customer.getPhone1());
+		
+		if(personId == null){
+			customerDao.save(customer);
+		}else{
+			if(logger.isDebugEnabled()){
+				logger.debug("phone number is not unique, updating.");
+			}
+			customer.setPersonId(personId);
+			customerDao.update(customer);
+		}
 		customerDao.save(customer);
 	}
 

@@ -69,8 +69,8 @@ public class AddressDaoImpl extends BaseDaoImpl implements AddressDao {
 		if(query.list().isEmpty()){
 			return null;
 		}
-		return (Long) query.list().get(0);
 		
+		return (Long) query.list().get(0);
 	}
 
 }

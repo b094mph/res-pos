@@ -57,4 +57,20 @@ public class CustomerDaoImpl extends BaseDaoImpl implements CustomerDao{
 		return query.list();
 	}
 
+	@Override
+	public Long isPhoneNumUnique(String phone1) {
+		StringBuffer sb = new StringBuffer()
+			.append("SELECT p.personId FROM Person p ")
+			.append("WHERE p.phone1 = :phone1 ");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setString("phone1", phone1);
+	
+		if(query.list().isEmpty()){
+			return null;
+		}
+		
+		return (Long) query.list().get(0);
+	}
+
 }
