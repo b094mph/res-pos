@@ -48,4 +48,9 @@ public class BaseDaoImpl implements BaseDao{
 		getCurrentSession().merge(obj);
 	}
 
+	@Override
+	public void flush() {
+		getCurrentSession().flush();
+	}
+
 }

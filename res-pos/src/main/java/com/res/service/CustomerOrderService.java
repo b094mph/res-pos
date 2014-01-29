@@ -14,4 +14,5 @@ public interface CustomerOrderService {
 	public List<OrderDetail> editOrderDetails(long restaurantId, String requestDate, int orderNum);
 	public Integer findLastOrderNumber(long restaurantId, String requestDate);
 	public boolean isExistingOrder(long restaurantId, String requestDate, int orderNum);
+	public void saveOrUpdate(CustomerOrder customerOrder);
 }

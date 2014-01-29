@@ -37,7 +37,7 @@ public class AddressController {
 			throws ServiceException{
 		logger.info("Address = " + address.getStreet1() + " " +  address.getStreet2() +
 				" " + address.getCity() + " " + address.getState() + " " + address.getZipCode());
-		addressService.save(address);
+		addressService.saveOrUpdate(address);
 		return "redirect:/addressForm.html";
 	}
 	

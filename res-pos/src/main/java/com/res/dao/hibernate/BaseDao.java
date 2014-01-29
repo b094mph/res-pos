@@ -10,4 +10,5 @@ public interface BaseDao {
 	public void saveOrUpdate(Object obj);
 	public void delete(Object obj);
 	public void merge(Object obj);
+	public void flush();
 }

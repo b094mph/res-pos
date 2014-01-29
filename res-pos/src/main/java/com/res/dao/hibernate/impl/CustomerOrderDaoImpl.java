@@ -138,5 +138,27 @@ public class CustomerOrderDaoImpl extends BaseDaoImpl implements CustomerOrderDa
 		
 		return query.list();
 	}
+
+	@Override
+	public Long existingCustomerOrderId(long restaurantId, String requestDate, int orderNum) {
+		StringBuffer sb = new StringBuffer()
+			.append("SELECT co.customerOrderId ")
+			.append("FROM CustomerOrder co ")
+			.append("WHERE (co.orderTime BETWEEN :startOfHour AND :endOfHour) ")
+			.append("AND co.restaurantId = :restaurantId ")
+			.append("AND co.orderNum = :orderNum ");
+		
+		Query query = getCurrentSession().createQuery(sb.toString());
+		query.setLong("restaurantId", restaurantId);
+		query.setString("startOfHour", DateUtils.addStartOfHour(requestDate));
+		query.setString("endOfHour", DateUtils.addEndOfHour(requestDate));
+		query.setInteger("orderNum", orderNum);
+		
+		if(query.list().isEmpty()){
+			return null;
+		}
+		
+		return (Long) query.list().get(0);
+	}
 	
 }

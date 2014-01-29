@@ -3,6 +3,7 @@ package com.res.service.impl;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,9 +12,12 @@ import com.res.dao.hibernate.CustomerOrderDao;
 import com.res.domain.CustomerOrder;
 import com.res.domain.OrderDetail;
 import com.res.service.CustomerOrderService;
+import com.res.util.DateUtils;
 
 @Service("customerOrderService")
 public class CustomerOrderServiceImpl implements CustomerOrderService {
+	
+	private static Logger logger = Logger.getLogger(CustomerOrderServiceImpl.class);
 
 	@Autowired
 	private CustomerOrderDao customerOrderDao;
@@ -68,6 +72,24 @@ public class CustomerOrderServiceImpl implements CustomerOrderService {
 			}
 		}
 		return isExistingOrder;
+	}
+
+	@Override
+	public void saveOrUpdate(CustomerOrder customerOrder) {
+		String requestDate = DateUtils.dateFormat(customerOrder.getOrderTime());
+		Long customerOrderId = customerOrderDao.existingCustomerOrderId(customerOrder.getRestaurantId(), requestDate, customerOrder.getOrderNum());
+		
+		if(customerOrderId != null){
+			if(logger.isDebugEnabled()){
+				logger.debug("existing customer order, updating.");
+			}
+			customerOrder.setCustomerOrderId(customerOrderId);
+			customerOrderDao.update(customerOrder);
+		}else{
+			
+			customerOrderDao.save(customerOrder);
+		}
+		
 	}
 
 }

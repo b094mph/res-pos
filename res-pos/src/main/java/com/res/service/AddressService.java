@@ -9,7 +9,7 @@ import com.res.exception.ServiceException;
 
 public interface AddressService {
 
-	public void save(Address address) throws ServiceException;
+	public void saveOrUpdate(Address address) throws ServiceException;
 	public void update(Address address);
 	public void delete(Address address);
 	public Address findByAddressId(long id);

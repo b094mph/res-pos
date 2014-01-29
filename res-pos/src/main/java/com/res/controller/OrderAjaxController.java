@@ -324,11 +324,11 @@ public class OrderAjaxController {
 				address.setCity(StringUtils.trimToNull(request.getParameter("address[city]")));
 				address.setState(StringUtils.trimToNull(request.getParameter("address[state]")));
 				address.setZipCode(StringUtils.trimToNull(request.getParameter("address[zipCode]")));
-				addressService.save(address);
+				addressService.saveOrUpdate(address);
 				customer.setAddress(address);
 			}
 			
-			customerService.save(customer);
+			customerService.saveOrUpdate(customer);
 			customerOrder.setCustomer(customer);
 		}
 
@@ -339,7 +339,8 @@ public class OrderAjaxController {
 		customerOrder.setTax(this.getTax());
 		customerOrder.setGrandTotal(this.getGrandTotal());
 		customerOrder.setOrderStatus(ResConstant.PENDING);
-		customerOrder.setOrderNum(customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));
+//		customerOrder.setOrderNum(customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));
+		customerOrder.setOrderNum(2);
 		
 		for(OrderDetail orderDetail : orderList){
 			orderDetail.setCustomerOrder(customerOrder);

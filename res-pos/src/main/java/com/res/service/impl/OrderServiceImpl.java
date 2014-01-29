@@ -53,9 +53,13 @@ public class OrderServiceImpl implements OrderService {
 		
 		if(isExistingOrder){
 			logger.info("Updating customer order.");
-			customerOrderDao.update(customerOrder);
+			customerOrderService.saveOrUpdate(customerOrder);
 			for(OrderDetail orderDetail : orderList){
-				orderDetailDao.update(orderDetail);
+				if(orderDetail.getOrderDetailId() == 0){
+					orderDetailDao.save(orderDetail);
+				}else{
+					orderDetailDao.update(orderDetail);
+				}
 			}
 		}else{
 			logger.info("Saving customer order.");

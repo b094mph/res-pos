@@ -9,7 +9,7 @@ import com.res.domain.Person;
 
 public interface CustomerService {
 
-	public void save(Person customer);
+	public void saveOrUpdate(Person customer);
 	public void update(Person customer);
 	public void delete(Person customer);
 	public Person findCustomer(long id);

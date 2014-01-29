@@ -13,4 +13,5 @@ public interface CustomerOrderDao extends BaseDao {
 	public List<OrderDetail> searchOrderDetails(long restaurantId, String requestDate, int orderNum);
 	public List<Integer> findLastOrderNumber(long restaurantId, String requestDate);
 	public List<Integer> allOrderNumList(long restaurantId, String requestDate);
+	public Long existingCustomerOrderId(long restaurantId, String requestDate, int orderNum);
 }

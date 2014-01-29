@@ -39,7 +39,7 @@ public class CustomerController {
 	public String addCustomer(@ModelAttribute("customer") Person customer, BindingResult result){
 		logger.debug("Customer = " +  customer.getFirstName() + " " + customer.getLastName() + " " +
 				customer.getPhone1() + " " + customer.getPhone2() + " " + customer.getEmail());
-		customerService.save(customer);
+		customerService.saveOrUpdate(customer);
 		return "redirect:/customerForm.html";
 	}
 	

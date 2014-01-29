@@ -25,7 +25,7 @@ public class AddressServiceImpl implements AddressService {
 	@Autowired 
 	private MessageLoader messageLoader;
 
-	public void save(Address address) throws ServiceException {
+	public void saveOrUpdate(Address address) throws ServiceException {
 		if(address.getState() == null){
 			throw new ServiceException("state.is.required");
 		}
