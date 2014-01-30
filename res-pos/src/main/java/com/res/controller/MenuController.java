@@ -57,6 +57,7 @@ public class MenuController {
 	public ModelAndView showMenu(HttpServletRequest request,
 			@RequestParam(value="restaurantId", required=false) Long restaurantId,
 			@RequestParam(value="restaurantName", required=false) String restaurantName,
+			@RequestParam(value="isEdit", required=false, defaultValue="false") Boolean isEdit,
 			@RequestParam(value="orderNum", required=false) Integer orderNum,
 			@RequestParam(value="orderType", required=false) String orderType,
 			@RequestParam(value="firstName", required=false) String firstName,
@@ -92,6 +93,7 @@ public class MenuController {
 		mav = new ModelAndView("menu");
 		
 		mav.addObject("restaurantId", restaurantId);
+		mav.addObject("isEdit", isEdit);
 		mav.addObject("orderNum", orderNum);
 		mav.addObject("orderType", orderType);
 		mav.addObject("firstName", firstName);

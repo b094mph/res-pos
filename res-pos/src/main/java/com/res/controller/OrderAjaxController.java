@@ -8,6 +8,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.joda.time.LocalDate;
@@ -339,8 +340,13 @@ public class OrderAjaxController {
 		customerOrder.setTax(this.getTax());
 		customerOrder.setGrandTotal(this.getGrandTotal());
 		customerOrder.setOrderStatus(ResConstant.PENDING);
-//		customerOrder.setOrderNum(customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));
-		customerOrder.setOrderNum(2);
+		
+		Boolean isEdit = BooleanUtils.toBoolean(request.getParameter("isEdit"));
+		if(isEdit){
+			customerOrder.setOrderNum(Integer.valueOf(request.getParameter("orderNum")));			
+		}else{
+			customerOrder.setOrderNum(customerOrderService.findLastOrderNumber(restaurantId, new LocalDate().toString()));			
+		}
 		
 		for(OrderDetail orderDetail : orderList){
 			orderDetail.setCustomerOrder(customerOrder);
@@ -390,7 +396,8 @@ public class OrderAjaxController {
 		
 		StringBuffer sb = new StringBuffer()
 			.append("redirect:/menu.html")
-			.append("?orderNum=").append(orderNum)
+			.append("?isEdit=true")
+			.append("&orderNum=").append(orderNum)
 			.append("&orderType=").append(orderType)
 			.append("&firstName=").append(firstName)
 			.append("&lastName=").append(lastName)

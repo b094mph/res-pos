@@ -5,6 +5,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 
 <input id="foodCategoryId" type="hidden" value='<c:out value="${foodCategoryId}"/>'>
+<input id="isEdit" type="hidden" value="${isEdit}">
+<input id="orderNum" type="hidden" value="${orderNum}">
 
 <link rel="stylesheet" href="css/fixed-table-header.css">
 
