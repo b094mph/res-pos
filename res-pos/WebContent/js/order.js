@@ -4,9 +4,10 @@ var increaseQtyId = null;
 var decreaseQtyId = null;
 var rowIndex = null;
 var params = null;
-var orderType = null;
+var orderType = $('#orderType').val();
 var isEdit = $('#isEdit').val();
 var orderNum = $('#orderNum').val();
+
 
 $.ajaxSetup({
 	cache: true
@@ -230,7 +231,7 @@ function createJsonCusOrder(){
 							"state": $('#state').val(),
 							"zipCode": $('#zipCode').val()
 							},
-					"orderType": "Pick Up",
+					"orderType": orderType,
 					"isEdit" : isEdit,
 					"orderNum" : orderNum
 				};

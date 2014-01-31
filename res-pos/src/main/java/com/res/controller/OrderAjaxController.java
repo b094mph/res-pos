@@ -378,42 +378,83 @@ public class OrderAjaxController {
 		
 		String orderType = customerOrder.getOrderOption();
 		
-		Person customer = customerOrder.getCustomer();
-		String firstName = customer.getFirstName();
-		String lastName = customer.getLastName();
-		String phone1 = customer.getPhone1();
-		String phone2 = customer.getPhone2();
-		String ext = customer.getExt();
-		String email = customer.getEmail();
-		String note = customer.getNote();
-		
-		Address address = customer.getAddress();
-		String street1 = address.getStreet1();
-		String street2 = address.getStreet2();
-		String city = address.getCity();
-		String state = address.getState();
-		String zipCode = address.getZipCode();
-		
 		StringBuffer sb = new StringBuffer()
 			.append("redirect:/menu.html")
 			.append("?isEdit=true")
 			.append("&orderNum=").append(orderNum)
-			.append("&orderType=").append(orderType)
-			.append("&firstName=").append(firstName)
-			.append("&lastName=").append(lastName)
-			.append("&phone1=").append(phone1)
-			.append("&phone2=").append(phone2)
-			.append("&ext=").append(ext)
-			.append("&email=").append(email)
-			.append("&note=").append(note)
-			.append("&street1=").append(street1)
-			.append("&street2=").append(street2)
-			.append("&city=").append(city)
-			.append("&state=").append(state)
-			.append("&zipCode=").append(zipCode);
+			.append("&orderType=").append(orderType);
+		
+		String firstName = null;
+		String lastName = null;
+		String phone1 = null;
+		String phone2 = null;
+		String ext = null;
+		String email = null;
+		String note = null;
+		String street1 = null;
+		String street2 = null;
+		String city = null;
+		String state = null;
+		String zipCode = null;
+		
+		Person customer = customerOrder.getCustomer();
+		
+		if(customer != null){
+			firstName = customer.getFirstName();
+			if(firstName != null){
+				sb.append("&firstName=").append(firstName);
+			}
+			lastName = customer.getLastName();
+			if(lastName != null){
+				sb.append("&lastName=").append(lastName);
+			}
+			phone1 = customer.getPhone1();
+			if(phone1 != null){
+				sb.append("&phone1=").append(phone1);
+			}
+			phone2 = customer.getPhone2();
+			if(phone2 != null){
+				sb.append("&phone2=").append(phone2);
+			}
+			ext = customer.getExt();
+			if(ext != null){
+				sb.append("&ext=").append(ext);
+			}
+			email = customer.getEmail();
+			if(email != null){
+				sb.append("&email=").append(email);
+			}
+			note = customer.getNote();
+			if(note != null){
+				sb.append("&note=").append(note);
+			}
+
+			Address address = customer.getAddress();
+			if(address != null){
+				street1 = address.getStreet1();
+				if(street1 != null){
+					sb.append("&street1=").append(street1);
+				}
+				street2 = address.getStreet2();
+				if(street2 != null){
+					sb.append("&street2=").append(street2);
+				}
+				city = address.getCity();
+				if(city != null){
+					sb.append("&city=").append(city);
+				}
+				state = address.getState();
+				if(state != null){
+					sb.append("&state=").append(state);
+				}
+				zipCode = address.getZipCode();
+				if(zipCode != null){
+					sb.append("&zipCode=").append(zipCode);
+				}
+			}
+		}
 		
 		return sb.toString();
-
 	}
 
 	public BigDecimal getSubTotal() {
