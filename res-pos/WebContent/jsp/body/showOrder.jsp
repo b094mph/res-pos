@@ -22,7 +22,7 @@
 <fieldset>
 <legend><spring:message code="label.order"/></legend>
 	<div class="fixed-table">
-		<div class="table-content">
+		<div id="orderDiv" class="table-content">
 			<table id="orderTable" class="table table-striped table-hover table-condensed table-fixed-header">
 				<thead id="header" class="header">
 					<tr>
@@ -228,6 +228,8 @@ $(document).ready(function(){
 	}
 	
 	determineAvailableFoodSize();
+
+	$('#orderDiv').scrollTop($('#orderTable').height());
 });
 
 function determineAvailableFoodSize(){
