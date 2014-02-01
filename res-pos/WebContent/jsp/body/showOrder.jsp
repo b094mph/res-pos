@@ -163,17 +163,17 @@
 		</tr>
 		<tr>
 			<td>
-				<button id="small" type="button" disabled="disabled" class="btn btn-info btn2">
-					<spring:message code="label.small"/>
-				</button>
-				<button id="large" type="button" disabled="disabled" class="btn btn-info btn2">
-					<spring:message code="label.large"/>
-				</button>
 				<button id="lunch" type="button" disabled="disabled" class="btn btn-info btn2">
 					<spring:message code="label.lunch"/>
 				</button>
 				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">
 					<spring:message code="label.combo"/>
+				</button>
+				<button id="small" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.small"/>
+				</button>
+				<button id="large" type="button" disabled="disabled" class="btn btn-info btn2">
+					<spring:message code="label.large"/>
 				</button>
 			</td>
 			<td><b><spring:message code="label.tax"/>&nbsp;${salesTax} %</b></td>
