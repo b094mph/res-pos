@@ -16,7 +16,6 @@
 <div class="row">
 	<ul class="nav nav-pills">
 	  <li class="active"><a id="totalAllOrder">View All Orders</a></li>
-	  <li><a id="totalEatInOrder">View Orders By Eat-In</a></li>
 	  <li><a id="totalWalkInOrder">View Orders By Walk-In</a></li>
 	  <li><a id="totalPickUpOrder">View Orders By Pick Up</a></li>
 	  <li><a id="totalDeliveryOrder">View Orders By Delivery</a></li>
@@ -48,11 +47,6 @@
 		$('#totalAllOrder').click(function(){
 			requestDate = $("#datepicker").val();
 			viewTotalOrder(null, requestDate);
-		});
-		
-		$('#totalEatInOrder').click(function(){
-			requestDate = $("#datepicker").val();
-			viewTotalOrder('Eat In', requestDate);
 		});
 
 		$('#totalWalkInOrder').click(function(){

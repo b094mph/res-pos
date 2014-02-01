@@ -154,8 +154,8 @@
 				<button id="delivery" type="button" class="btn btn-info btn2">
 					<spring:message code="label.delivery"/>
 				</button>
-				<button id="eatin" type="button" class="btn btn-info btn2">
-					<spring:message code="label.eatin"/>
+				<button id="extras" type="button" disabled="disabled" class="btn btn-primary btn2">
+					<spring:message code="label.extras"/>
 				</button>
 			</td>
 			<td><b><spring:message code="label.sub.total"/>:</b></td>
@@ -174,9 +174,6 @@
 				</button>
 				<button id="combo" type="button" disabled="disabled" class="btn btn-info btn2">
 					<spring:message code="label.combo"/>
-				</button>
-				<button id="extras" type="button" disabled="disabled" class="btn btn-primary btn2">
-					<spring:message code="label.extras"/>
 				</button>
 			</td>
 			<td><b><spring:message code="label.tax"/>&nbsp;${salesTax} %</b></td>
