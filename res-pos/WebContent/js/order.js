@@ -4,7 +4,7 @@ var increaseQtyId = null;
 var decreaseQtyId = null;
 var rowIndex = null;
 var params = null;
-var orderType = $('#orderType').val();
+var orderType = $('b#orderType').text();
 var isEdit = $('#isEdit').val();
 var orderNum = $('#orderNum').val();
 
@@ -255,7 +255,7 @@ function clearCustomerInfo(){
 
 function setOrderType(type){
 	orderType = type;
-	$('b#orderType').html(orderType);
+	$('b#orderType').text(orderType);
 }
 
 function validateDeliveryHasAddress(data){
@@ -309,22 +309,13 @@ function changeSize(rowIndex, size){
 function disableDeliveryFields(){
 	$('#street1').val("");
 	$('#street1').attr("disabled", "disabled");
-	$('#street2').val("");
-	$('#street2').attr("disabled", "disabled");
 	$('#city').val("");
 	$('#city').attr("disabled", "disabled");
-	$('#state').val("");
-	$('#state').attr("disabled", "disabled");
-	$('#zipCode').val("");
-	$('#zipCode').attr("disabled", "disabled");
 }
 
 function enableDeliveryFields(){
 	$('#street1').removeAttr("disabled");
-	$('#street2').removeAttr("disabled");
 	$('#city').removeAttr("disabled");
-	$('#state').removeAttr("disabled");
-	$('#zipCode').removeAttr("disabled");
 }
 
 function saveOrder(action){

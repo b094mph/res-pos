@@ -26,10 +26,9 @@ public class AddressServiceImpl implements AddressService {
 	private MessageLoader messageLoader;
 
 	public void saveOrUpdate(Address address) throws ServiceException {
-		if(address.getState() == null){
-			throw new ServiceException("state.is.required");
+		if(address.getState() != null){
+			address.setState(address.getState().toUpperCase());
 		}
-		address.setState(address.getState().toUpperCase());
 		
 		Long addressId = addressDao.isAddressUnique(address.getStreet1(), address.getCity());
 		if(addressId == null){

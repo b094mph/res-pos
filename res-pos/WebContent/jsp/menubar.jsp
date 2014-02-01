@@ -23,8 +23,8 @@
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
 					<li><a id="management-link" tabindex="-1" href="management.html?restaurantId=${restaurantId}"><spring:message code="label.menu.management"/></a></li>
 				</sec:authorize>
-				</c:if>
 					<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.menu"/></a></li>
+				</c:if>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
 					<li><a href="${logoutUrl}"><spring:message code="label.menu.logout"/></a></li>
 				</sec:authorize>	
