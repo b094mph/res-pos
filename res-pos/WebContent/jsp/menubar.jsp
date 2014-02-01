@@ -15,22 +15,6 @@
 					<li id="home-link">
 						<a id="home-link" href="welcome.html"><i class="icon-home icon-white"></i>&nbsp;<spring:message code="label.menu.home"/></a>
 					</li>
-					<li id="file" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.file"/></a>
-					    <ul class="dropdown-menu">
-					    	<sec:authorize ifAnyGranted="ROLE_ADMIN">
-								<li><a id="address-link" tabindex="-1" href="addressForm.html"><spring:message code="label.menu.address"/></a></li>
-								<li><a id="customer-link" tabindex="-1" href="customerForm.html"><spring:message code="label.menu.customer"/></a></li>
-							</sec:authorize>
-							<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.menu"/></a></li>
-							<li><a tabindex="-1" href="#"><spring:message code="label.menu.careers"/></a></li>
-	                        <li><a tabindex="-1" href="#"><spring:message code="label.menu.contact.us"/></a></li>
-	                        <li class="divider"></li>
-	                        <sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
-								<li><a tabindex="-1" href="${logoutUrl}"><spring:message code="label.menu.logout"/></a></li>
-							</sec:authorize>
-                      	</ul>
-					</li>
 				<c:if test="${not empty restaurantId }">
 					<li><a id="menu-link" href="menu.html?restaurantId=${restaurantId}&restaurantName=${restaurantName}"><spring:message code="label.menu.order"/></a></li>
 					<li id="search" class="dropdown">
@@ -40,9 +24,7 @@
 					<li><a id="management-link" tabindex="-1" href="management.html?restaurantId=${restaurantId}"><spring:message code="label.menu.management"/></a></li>
 				</sec:authorize>
 				</c:if>
-					<li id="help" class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><spring:message code="label.menu.help"/></a>
-					</li>
+					<li><a id="wholeMenu-link" tabindex="-1" href="wholeMenu.html"><spring:message code="label.menu.menu"/></a></li>
 				<sec:authorize ifAnyGranted="ROLE_ADMIN, ROLE_USER">	
 					<li><a href="${logoutUrl}"><spring:message code="label.menu.logout"/></a></li>
 				</sec:authorize>	
